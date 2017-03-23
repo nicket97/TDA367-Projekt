@@ -1,0 +1,90 @@
+Mötesprotokoll
+Datum: 170323
+
+Ansvarig: Hanna
+Deltagare: Niclas, Anton, Stina
+
+
+1. Objectives (5 min). Några problem som hindrar gruppen från att fortsätta? Hur ska de lösas?
+Hade inte bestämt projekt
+Projekt är nu bestämt
+
+2. Rapporter (15 min). Varje medlem rapporterar hur det har gått sedan föregående möte.
+Anton:
+Hanna:
+Niclas:
+Stina:
+
+Alla: Funderat på idéer.
+
+3. Diskussion (35 min) - Diskutera saker från punk 1 och 2. Andra tankar.
+Vad vill vi att vårt program ska kunna göra:
+Bildredigering
+Filter
+Blur
+Skärpa
+Tilt-shift
+Färg
+Svartvitt
+Selective color
+Stående färg
+Kall
+Varm
+“Looks”
+Vintage
+Matt
+SV-modern
+Autoförbättring
+Kontrast
+Ljus/mörker
+Text
+Placera var vi vill
+Storlek
+Typsnitt
+ca 5-10 st
+Storlek
+Beskärning
+Horisont
+Spegling
+Rotation
+
+Andra funktioner:
+Zomma
+man ska kunna dra sig runt
+Hand
+Spara preset
+Exportera
+storlek
+var
+format
+namn
+kvalitet
+Öppna bild
+Avsluta
+Uppbyggnad:
+GUI - menyer, etc.
+CS (center stage) - själva bilder
+Lager
+Filter
+Blur
+Färg
+
+Hur ska GUI se ut?
+Menypanel
+Ingen idé att ha toolbar
+Canvas + Palette
+Filter till höger eller nere? 
+titled sections
+previews?
+
+4. Outcomes and assignments (5 min) - Vad bestäms under diskussionen? Lägg in i andra system? Dela ut uppgifter till gruppmedlemmar. 
+Funktionalitet och GUI - se ovan
+Fixa GUI - 
+
+
+
+5. Wrap up - Skriv ner olösta problem till nästa möte. Bestäm tid och plats.
+Logga
+Namn
+
+Vi ses på måndag den 27/3 kl 09:00

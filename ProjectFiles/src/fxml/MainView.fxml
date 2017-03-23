@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane id="mainPane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" />
+      <AnchorPane id="bottomPane" fx:id="bottomPane" layoutX="213.0" layoutY="440.0" prefHeight="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" />
+      <AnchorPane id="rightPane" fx:id="rightPane" layoutX="1021.0" layoutY="5.0" prefHeight="659.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <MenuBar id="menuBar" fx:id="menuBar" layoutX="26.0" layoutY="2.0" prefHeight="30.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Arkiv">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Verktyg">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Anpassa">
+               <items>
+                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Beskära" />
+                  <MenuItem fx:id="menuExposure" mnemonicParsing="false" text="Exponering" />
+                  <MenuItem fx:id="menuContrast" mnemonicParsing="false" text="Kontrast" />
+                  <MenuItem fx:id="menuReflect" mnemonicParsing="false" text="Spegla" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Färg">
+               <items>
+                  <MenuItem fx:id="menuColorFilter" mnemonicParsing="false" text="Färgfilter" />
+                  <MenuItem fx:id="menuBlackWhite" mnemonicParsing="false" text="Svartvitt" />
+                  <MenuItem fx:id="menuWhitebalance" mnemonicParsing="false" text="Vitbalans" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Effekter">
+               <items>
+                  <MenuItem fx:id="menuBlur" mnemonicParsing="false" text="Oskärpa" />
+                  <MenuItem fx:id="menuSharpen" mnemonicParsing="false" text="Skärpa" />
+                  <MenuItem fx:id="menuTextFilter" mnemonicParsing="false" text="Text" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Filter">
+               <items>
+                  <MenuItem fx:id="menuFMatte" mnemonicParsing="false" text="Matt" />
+                  <MenuItem fx:id="menuFBW" mnemonicParsing="false" text="Modern svartvit" />
+                  <MenuItem fx:id="menuFVintage" mnemonicParsing="false" text="Vintage" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Hjälp">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane id="canvasPane" fx:id="canvasPane" layoutX="197.0" layoutY="96.0" prefHeight="352.0" prefWidth="611.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="55.0" />
+   </children>
+</AnchorPane>

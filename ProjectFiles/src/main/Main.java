@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 	
@@ -16,10 +17,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/resorces/fxml/MainView.fxml"));
 	    
         Scene scene = new Scene(root, 1280, 720);
-    
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("TO BE DECIDED");
         primaryStage.setScene(scene);
         primaryStage.show();

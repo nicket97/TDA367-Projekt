@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="bottomPane" fx:id="bottomPane" prefHeight="120.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label contentDisplay="TOP" text="Anpassa">
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/colorIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label contentDisplay="TOP" text="Färg">
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/colorIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label contentDisplay="TOP" text="Effekter">
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/colorIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label contentDisplay="TOP" text="Filter">
+               <graphic>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/colorIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="80.0" right="80.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

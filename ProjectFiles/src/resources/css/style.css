@@ -20,6 +20,9 @@
 #canvasPane {
 	-fx-background-color: #FFF;
 }
+#hbox {
+	-fx-background-color: red;
+}
 
 /** MENU **/
 

@@ -17,7 +17,7 @@
           <Menu mnemonicParsing="false" text="Arkiv">
             <items>
               <MenuItem fx:id="openImage" mnemonicParsing="false" text="Open Image" />
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Verktyg">

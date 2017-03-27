@@ -35,6 +35,8 @@ public class MainView extends AnchorPane implements Initializable {
 	CanvasView canvasView;
 	@FXML
 	MenuItem openImage;
+	@FXML
+	MenuItem menuClose;
 	
 	Layers layerstack = new Layers();
 
@@ -75,6 +77,9 @@ public class MainView extends AnchorPane implements Initializable {
 
 			
 			
+		});
+		menuClose.setOnAction(e ->{
+			System.exit(0);
 		});
 		
 }

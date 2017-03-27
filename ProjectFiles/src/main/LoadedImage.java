@@ -3,10 +3,10 @@ package main;
 import java.awt.image.BufferedImage;
 
 public class LoadedImage {
-	int[][] pxImage;
-	BufferedImage lImg;
-	int width;
-	int heigth;
+	public int[][] pxImage;
+	public BufferedImage lImg;
+	public int width;
+	public int heigth;
 	public LoadedImage(BufferedImage img){
 		lImg = img;
 		width = img.getWidth();

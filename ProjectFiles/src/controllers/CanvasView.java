@@ -7,19 +7,25 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
+import main.LoadedImage;
 
 public class CanvasView extends AnchorPane implements Initializable {
 	
 	@FXML
 	AnchorPane canvasPane;
-	@FXML
-	Pane imagePane;
+	
+	Canvas imagePane;
+	
+	
 	
 	public CanvasView() {
 
@@ -28,6 +34,8 @@ public class CanvasView extends AnchorPane implements Initializable {
 		System.out.println("canvasview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
+		
+		
 		
 		try {
 			fxmlLoader.load();
@@ -41,6 +49,29 @@ public class CanvasView extends AnchorPane implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init canvas");
 		
+	}
+	public void drawImage(LoadedImage img){
+		imagePane = new Canvas(img.width, img.heigth);
+		GraphicsContext gc = imagePane.getGraphicsContext2D();
+		
+		for(int i = 0; i < img.pxImage.length; i++){
+			for(int j = 0; j < img.pxImage[i].length; j++){
+				//String hexColor = String.format("#%06X", (0xFFFFFF & img.pxImage[i][j]));
+				System.out.println(img.pxImage[i][j]);
+				int argb = img.pxImage[i][j];
+				int r = (argb>>16)&0xFF;
+				int g = (argb>>8)&0xFF;
+				int b = (argb>>0)&0xFF;
+				gc.setFill(Color.rgb(r, g, b));
+				gc.fillRect(i, j, 1, 1);
+			}
+		}
+		
+		System.out.println("hej");
+		canvasPane.getChildren().clear();
+		canvasPane.getChildren().add(imagePane);
+		
+		System.out.println(canvasPane.getChildren().toString());
 	}
 	
 	

@@ -1,14 +1,20 @@
 package controllers;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javax.imageio.ImageIO;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
@@ -16,6 +22,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import main.Layers;
+import main.LoadedImage;
 
 public class MainView extends AnchorPane implements Initializable {
 	
@@ -51,7 +58,25 @@ public class MainView extends AnchorPane implements Initializable {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setSelectedExtensionFilter(new ExtensionFilter("jpg", "png" , "jpeg"));
 			fileChooser.setTitle("Open a Image");
-			fileChooser.showOpenDialog(new Stage());
+			File f = fileChooser.showOpenDialog(new Stage());
+			BufferedImage in;
+			try {
+				in = ImageIO.read(f);
+				BufferedImage newImage = new BufferedImage(
+					    in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_ARGB);
+
+					Graphics2D g = newImage.createGraphics();
+					g.drawImage(in, 0, 0, null);
+					g.dispose();
+					
+					canvasView.drawImage(new LoadedImage (newImage));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			
+			
 		});
 		
 }

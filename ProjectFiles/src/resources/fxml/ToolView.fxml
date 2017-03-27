@@ -6,47 +6,47 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="AnchorPane" id="bottomPane" fx:id="bottomPane" prefHeight="120.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="AnchorPane" id="bottomPane" fx:id="bottomPane" prefHeight="120.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane fx:id="toolContainer">
          <children>
             <HBox id="hbox" alignment="CENTER" prefHeight="120.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="adjustIcon" contentDisplay="TOP" text="Anpassa">
-               <!--  <graphic>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <Label id="clickable" fx:id="adjustIcon" contentDisplay="TOP" text="Anpassa">
+                 <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icons/colorIcon.png" />
+                        <Image url="/resources/icons/adjustIcon.png" />
                      </image>
                   </ImageView>
-               </graphic>-->
+               </graphic>
             </Label>
-                  <Label fx:id="colorIcon" contentDisplay="TOP" text="Färg">
-               <!--  <graphic>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <Label id="clickable" fx:id="effectIcon" contentDisplay="TOP" text="Effekter">
+                 <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icons/colorIcon.png" />
+                        <Image url="/resources/icons/effectIcon.png" />
                      </image>
                   </ImageView>
-               </graphic>-->
+               </graphic>
             </Label>
-                  <Label fx:id="effectIcon" contentDisplay="TOP" text="Effekter">
-               <!--  <graphic>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+            <Label id="clickable" fx:id="colorIcon" contentDisplay="TOP" text="Färg">
+                 <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="/../icons/colorIcon.png" />
+                        <Image url="/resources/icons/colorIcon.png" />
                      </image>
                   </ImageView>
-               </graphic>-->
+               </graphic>
             </Label>
-                  <Label fx:id="filterIcon" contentDisplay="TOP" text="Filter">
-             <!--    <graphic>
-                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <Label id="clickable" fx:id="filterIcon" contentDisplay="TOP" text="Filter">
+                 <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@icons/colorIcon.png" />
+                        <Image url="/resources/icons/filterIcon.png" />
                      </image>
                   </ImageView>
-               </graphic>-->
+               </graphic>
             </Label>
                </children>
                <padding>

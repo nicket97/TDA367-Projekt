@@ -19,13 +19,15 @@ import main.Layers;
 
 public class MainView extends AnchorPane implements Initializable {
 	
-	@FXML
-	AnchorPane bottomPane;
+	//@FXML
+	//AnchorPane bottomPane;
 	@FXML
 	TilePane bottomContainer;
 	@FXML
+	AnchorPane canvasPane;
+	@FXML
 	ToolView toolView;
-	
+	CanvasView canvasView;
 	@FXML
 	MenuItem openImage;
 	
@@ -59,7 +61,9 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		toolView = new ToolView();
 		bottomContainer.getChildren().add(toolView);
-		
+		canvasView = new CanvasView();
+		canvasPane.getChildren().add(canvasView);
+	
 	}
 	
 }

@@ -17,10 +17,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Parent root = FXMLLoader.load(getClass().getResource("/resorces/fxml/MainView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/MainView.fxml"));
 	    
         Scene scene = new Scene(root, 1280, 720);
-        //primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("TO BE DECIDED");
         primaryStage.setScene(scene);
         primaryStage.show();

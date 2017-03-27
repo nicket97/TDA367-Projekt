@@ -12,40 +12,40 @@
       <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label contentDisplay="TOP" text="Anpassa">
-               <graphic>
+               <!--  <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/colorIcon.png" />
                      </image>
                   </ImageView>
-               </graphic>
+               </graphic>-->
             </Label>
             <Label contentDisplay="TOP" text="Färg">
-               <graphic>
+               <!--  <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/colorIcon.png" />
                      </image>
                   </ImageView>
-               </graphic>
+               </graphic>-->
             </Label>
             <Label contentDisplay="TOP" text="Effekter">
-               <graphic>
+               <!--  <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="/../icons/colorIcon.png" />
                      </image>
                   </ImageView>
-               </graphic>
+               </graphic>-->
             </Label>
             <Label contentDisplay="TOP" text="Filter">
-               <graphic>
+             <!--    <graphic>
                   <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/colorIcon.png" />
                      </image>
                   </ImageView>
-               </graphic>
+               </graphic>-->
             </Label>
          </children>
          <padding>

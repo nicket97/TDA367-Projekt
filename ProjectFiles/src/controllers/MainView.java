@@ -19,12 +19,10 @@ import main.Layers;
 
 public class MainView extends AnchorPane implements Initializable {
 	
-	//@FXML
-	//AnchorPane bottomPane;
 	@FXML
 	TilePane bottomContainer;
 	@FXML
-	AnchorPane canvasPane;
+	AnchorPane bottomPane, canvasPane;
 	@FXML
 	ToolView toolView;
 	CanvasView canvasView;

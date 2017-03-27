@@ -6,13 +6,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="AnchorPane" id="bottomPane" fx:id="bottomPane" prefHeight="120.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="bottomPane" fx:id="bottomPane" prefHeight="120.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane fx:id="toolContainer">
          <children>
-            <HBox id="hbox" alignment="CENTER" prefHeight="120.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox id="hbox" fx:id="topLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label id="clickable" fx:id="adjustIcon" contentDisplay="TOP" text="Anpassa">
+                  <Label id="clickable" fx:id="adjustIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Anpassa">
                  <graphic>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -20,8 +20,11 @@
                      </image>
                   </ImageView>
                </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
             </Label>
-                  <Label id="clickable" fx:id="effectIcon" contentDisplay="TOP" text="Effekter">
+                  <Label id="clickable" fx:id="effectIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Effekter">
                  <graphic>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,8 +32,11 @@
                      </image>
                   </ImageView>
                </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
             </Label>
-            <Label id="clickable" fx:id="colorIcon" contentDisplay="TOP" text="Färg">
+            <Label id="clickable" fx:id="colorIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Färg">
                  <graphic>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -38,8 +44,11 @@
                      </image>
                   </ImageView>
                </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
             </Label>
-                  <Label id="clickable" fx:id="filterIcon" contentDisplay="TOP" text="Filter">
+                  <Label id="clickable" fx:id="filterIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Filter">
                  <graphic>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -47,11 +56,219 @@
                      </image>
                   </ImageView>
                </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
             </Label>
                </children>
-               <padding>
-                  <Insets left="80.0" right="80.0" />
-               </padding>
+            </HBox>
+            <HBox id="hbox" fx:id="adjustLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" visible="false">
+               <children>
+                  <Label id="clickable" fx:id="cropIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/adjustIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="exposureIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Exponering">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/effectIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="contrastIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Kontrast">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/colorIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="flipIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Spegla">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/filterIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hbox" fx:id="effectLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" visible="false">
+               <children>
+                  <Label id="clickable" fx:id="blurIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/adjustIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="sharpenIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Exponering">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/effectIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="textIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Kontrast">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/colorIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="flipIcon1" contentDisplay="TOP" graphicTextGap="10.0" text="Spegla">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/filterIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hbox" fx:id="colorLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" visible="false">
+               <children>
+                  <Label id="clickable" fx:id="colorFilterIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/adjustIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="bwIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Exponering">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/effectIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="whiteBalanceIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Kontrast">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/colorIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="flipIcon2" contentDisplay="TOP" graphicTextGap="10.0" text="Spegla">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/filterIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="hbox" fx:id="filterLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" visible="false">
+               <children>
+                  <Label id="clickable" fx:id="matteIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/adjustIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="vintageIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Exponering">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/effectIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="modernBWIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Kontrast">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/colorIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+                  <Label id="clickable" fx:id="flipIcon3" contentDisplay="TOP" graphicTextGap="10.0" text="Spegla">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/filterIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
+               </children>
             </HBox>
          </children>
       </StackPane>

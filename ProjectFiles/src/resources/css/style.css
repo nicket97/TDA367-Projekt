@@ -1,8 +1,8 @@
 /** GENERAL **/
 
 .root {
-	-fx-focus-color: #88B04B;
-	-fx-accent: #88B04B;
+	-fx-focus-color: #02b192;
+	-fx-accent: #02b192;
 }
 
 /** LABELS **/
@@ -25,7 +25,6 @@
 }
 
 #canvasPane {
-	-fx-background-color: #FFF;
 }
 
 /** MENU **/
@@ -44,9 +43,9 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    /**-fx-opacity: 0.6;**/
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #d3d3d3;
+    -fx-opacity: 1.0;
 }
 
 .label-bright {

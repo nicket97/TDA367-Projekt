@@ -8,9 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import main.Layers;
 
 public class MainView extends AnchorPane implements Initializable {
 	
@@ -20,6 +25,11 @@ public class MainView extends AnchorPane implements Initializable {
 	TilePane bottomContainer;
 	@FXML
 	ToolView toolView;
+	
+	@FXML
+	MenuItem openImage;
+	
+	Layers layerstack = new Layers();
 
 	public MainView() {
 
@@ -34,6 +44,13 @@ public class MainView extends AnchorPane implements Initializable {
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
+		
+		openImage.setOnAction(e -> {
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setSelectedExtensionFilter(new ExtensionFilter("jpg", "png" , "jpeg"));
+			fileChooser.setTitle("Open a Image");
+			fileChooser.showOpenDialog(new Stage());
+		});
 		
 }
 	

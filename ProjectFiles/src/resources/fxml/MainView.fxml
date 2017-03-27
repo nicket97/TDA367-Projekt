@@ -20,7 +20,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Arkiv">
             <items>
-              <MenuItem mnemonicParsing="false" text="OpenImage" />
+              <MenuItem fx:id="openImage" mnemonicParsing="false" text="Open Image" />
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>

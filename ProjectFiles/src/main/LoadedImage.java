@@ -7,7 +7,6 @@ public class LoadedImage {
 	BufferedImage lImg;
 	int width;
 	int heigth;
-	
 	public LoadedImage(BufferedImage img){
 		lImg = img;
 		width = img.getWidth();

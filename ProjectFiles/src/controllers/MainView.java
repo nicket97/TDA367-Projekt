@@ -35,8 +35,6 @@ public class MainView extends AnchorPane implements Initializable {
 	MenuItem openImage;
 	@FXML
 	MenuItem menuClose;
-	@FXML
-	Button miniButton, maxiButton, closeButton;
 	
 	Layers layerstack = new Layers();
 
@@ -56,9 +54,12 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		openImage.setOnAction(e -> {
 			FileChooser fileChooser = new FileChooser();
+			
 			fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
 			fileChooser.setTitle("Open a Image");
+			
 			File f = fileChooser.showOpenDialog(new Stage());
+			
 			BufferedImage in;
 			try {
 				in = ImageIO.read(f);
@@ -78,6 +79,7 @@ public class MainView extends AnchorPane implements Initializable {
 			System.exit(0);
 		});
 		
+<<<<<<< HEAD
 		closeButton.setOnAction(e ->{
 			System.exit(0);
 		});
@@ -88,6 +90,8 @@ public class MainView extends AnchorPane implements Initializable {
 		maxiButton.setOnAction(e ->{
 			
 		});**/
+=======
+>>>>>>> origin/master
 }
 	
 	@Override

@@ -53,10 +53,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 		
 	}
 	public void drawImage(LoadedImage img){
-		BlackAndWhite w = new BlackAndWhite();
-		System.out.println(img.toString());
-		img = w.transform(img);
-		System.out.println(img.toString());
+		
 		imagePane = new Canvas(img.width, img.heigth);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		

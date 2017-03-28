@@ -56,7 +56,7 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		openImage.setOnAction(e -> {
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setSelectedExtensionFilter(new ExtensionFilter("jpg", "png" , "jpeg"));
+			fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
 			fileChooser.setTitle("Open a Image");
 			File f = fileChooser.showOpenDialog(new Stage());
 			BufferedImage in;
@@ -71,12 +71,8 @@ public class MainView extends AnchorPane implements Initializable {
 					
 					canvasView.drawImage(new LoadedImage (newImage));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				// On canceld fileopening
 			}
-
-			
-			
 		});
 		menuClose.setOnAction(e ->{
 			System.exit(0);

@@ -74,7 +74,7 @@
                <children>
                   <Button id="interfaceButton" fx:id="maxiButton" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/maximize-icon.png" />
                            </image>
@@ -83,7 +83,7 @@
                   </Button>
                   <Button id="interfaceButton" fx:id="miniButton" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/minimize-icon.png" />
                            </image>
@@ -92,7 +92,7 @@
                   </Button>
                   <Button id="interfaceButton" fx:id="closeButton" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/close-icon.png" />
                            </image>

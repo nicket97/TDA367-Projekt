@@ -62,8 +62,20 @@
             </Label>
                </children>
             </HBox>
-            <HBox id="hbox" fx:id="adjustLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" visible="false">
+            <HBox id="hbox" fx:id="adjustLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
                <children>
+                  <Label id="clickable" fx:id="aBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/back-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
                   <Label id="clickable" fx:id="cropIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
@@ -114,8 +126,20 @@
                   </Label>
                </children>
             </HBox>
-            <HBox id="hbox" fx:id="effectLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" visible="false">
+            <HBox id="hbox" fx:id="effectLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
                <children>
+                  <Label id="clickable" fx:id="eBackIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Tillbaka">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/back-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
                   <Label id="clickable" fx:id="blurIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
@@ -166,8 +190,20 @@
                   </Label>
                </children>
             </HBox>
-            <HBox id="hbox" fx:id="colorLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" visible="false">
+            <HBox id="hbox" fx:id="colorLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
                <children>
+                  <Label id="clickable" fx:id="cBackIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Tillbaka">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/back-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
                   <Label id="clickable" fx:id="colorFilterIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
@@ -218,8 +254,20 @@
                   </Label>
                </children>
             </HBox>
-            <HBox id="hbox" fx:id="filterLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" visible="false">
+            <HBox id="hbox" fx:id="filterLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
                <children>
+                  <Label id="clickable" fx:id="fBackIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Tillbaka">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/resources/icons/back-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" right="50.0" />
+                     </padding>
+                  </Label>
                   <Label id="clickable" fx:id="matteIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">

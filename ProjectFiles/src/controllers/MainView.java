@@ -14,9 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -83,8 +81,12 @@ public class MainView extends AnchorPane implements Initializable {
 		closeButton.setOnAction(e ->{
 			System.exit(0);
 		});
-		/**miniButton.setOnAction(e ->{
-			System.
+		/**
+		miniButton.setOnAction(e ->{
+			
+		});
+		maxiButton.setOnAction(e ->{
+			
 		});**/
 }
 	

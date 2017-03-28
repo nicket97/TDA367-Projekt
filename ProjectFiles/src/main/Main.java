@@ -18,8 +18,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		//Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/MainView.fxml"));
-	    
 		Parent root = new MainView();
 		
         Scene scene = new Scene(root, 1280, 720);

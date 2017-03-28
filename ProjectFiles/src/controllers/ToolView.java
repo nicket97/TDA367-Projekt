@@ -24,6 +24,8 @@ public class ToolView extends AnchorPane implements Initializable {
 	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel;
 	@FXML
 	Label adjustIcon, colorIcon, effectIcon, filterIcon;
+	@FXML
+	Label aBackIcon, cBackIcon, eBackIcon, fBackIcon;
 	
 	public ToolView() {
 
@@ -49,17 +51,33 @@ public class ToolView extends AnchorPane implements Initializable {
 			topLevel.setVisible(false);
 			adjustLevel.setVisible(true);
 		});
+		aBackIcon.setOnMouseClicked(e -> {
+			topLevel.setVisible(true);
+			adjustLevel.setVisible(false);
+		});
 		colorIcon.setOnMouseClicked(e -> {
 			topLevel.setVisible(false);
 			colorLevel.setVisible(true);
 		});
+		cBackIcon.setOnMouseClicked(e -> {
+			topLevel.setVisible(true);
+			colorLevel.setVisible(false);
+		});
 		effectIcon.setOnMouseClicked(e -> {
 			topLevel.setVisible(false);
 			effectLevel.setVisible(true);
-		});
+		});	
+		eBackIcon.setOnMouseClicked(e -> {
+			topLevel.setVisible(true);
+			effectLevel.setVisible(false);
+		});		
 		filterIcon.setOnMouseClicked(e -> {
 			topLevel.setVisible(false);
 			filterLevel.setVisible(true);
+		});	
+		fBackIcon.setOnMouseClicked(e -> {
+			topLevel.setVisible(true);
+			filterLevel.setVisible(false);
 		});
 	}
 	

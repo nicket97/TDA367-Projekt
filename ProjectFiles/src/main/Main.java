@@ -10,6 +10,8 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 	
+	public static Stage primaryStage;
+	
 	public static void main(String[] args) {
 
 		launch(args);
@@ -18,6 +20,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		this.primaryStage = primaryStage;
 		Parent root = new MainView();
 		
         Scene scene = new Scene(root, 1280, 720);
@@ -25,6 +28,8 @@ public class Main extends Application {
         primaryStage.setTitle("TO BE DECIDED");
         primaryStage.setScene(scene);
         primaryStage.show();
-
 }
+	public static Stage getPrimaryStage(){
+		return primaryStage;
+	}
 }

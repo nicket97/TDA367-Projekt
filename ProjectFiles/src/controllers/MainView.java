@@ -20,6 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import main.Layers;
+import main.Main;
 import model.LoadedImage;
 
 public class MainView extends AnchorPane implements Initializable {
@@ -35,6 +36,8 @@ public class MainView extends AnchorPane implements Initializable {
 	MenuItem openImage;
 	@FXML
 	MenuItem menuClose;
+	@FXML
+	Button closeButton, miniButton, maxiButton;
 	
 	Layers layerstack = new Layers();
 
@@ -79,19 +82,20 @@ public class MainView extends AnchorPane implements Initializable {
 			System.exit(0);
 		});
 		
-<<<<<<< HEAD
 		closeButton.setOnAction(e ->{
 			System.exit(0);
 		});
-		/**
+		
 		miniButton.setOnAction(e ->{
-			
+			Main.getPrimaryStage().setIconified(true);
 		});
 		maxiButton.setOnAction(e ->{
-			
-		});**/
-=======
->>>>>>> origin/master
+		if (Main.getPrimaryStage().isMaximized()){
+				Main.getPrimaryStage().setMaximized(false);
+		} else { 
+			Main.getPrimaryStage().setMaximized(true);
+		}
+		});
 }
 	
 	@Override

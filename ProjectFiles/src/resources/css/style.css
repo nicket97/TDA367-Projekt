@@ -134,7 +134,13 @@
 
 /** BUTTONS **/
 
-.button {
+#interfaceButton {
+    -fx-background-radius: 0;
+    -fx-background-color: #1d1d1d;
+    -fx-cursor: hand;
+}
+
+/**.button {
     -fx-padding: 5 22 5 22;   
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
@@ -144,13 +150,13 @@
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
-}
+}**/
 
 .button:hover {
     -fx-background-color: #3a3a3a;
 }
 
-.button:pressed, .button:default:hover:pressed {
+/**.button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
   -fx-text-fill: #1d1d1d;
 }
@@ -161,7 +167,7 @@
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
     -fx-border-insets: 1 1 1 1, 0;
-}
+}**/
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;

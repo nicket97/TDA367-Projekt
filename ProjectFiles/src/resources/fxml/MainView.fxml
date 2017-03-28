@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -16,12 +17,13 @@
         <menus>
           <Menu mnemonicParsing="false" text="Arkiv">
             <items>
-              <MenuItem fx:id="openImage" mnemonicParsing="false" text="Open Image" />
-              <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="openImage" mnemonicParsing="false" text="Öppna bild..." />
+              <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Avsluta" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Verktyg">
             <items>
+              <MenuItem mnemonicParsing="false" text="Ångra" />
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
@@ -66,5 +68,40 @@
          <children>
             <TilePane fx:id="bottomContainer" alignment="CENTER" layoutX="33.0" layoutY="-36.0" prefHeight="120.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children></AnchorPane>
+      <AnchorPane prefHeight="35.0" prefWidth="94.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="98.0" prefHeight="35.0" prefWidth="192.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button id="interfaceButton" fx:id="maxiButton" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/maximize-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="interfaceButton" fx:id="miniButton" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/minimize-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="interfaceButton" fx:id="closeButton" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/close-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
    </children>
 </fx:root>

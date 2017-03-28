@@ -37,6 +37,8 @@ public class MainView extends AnchorPane implements Initializable {
 	MenuItem openImage;
 	@FXML
 	MenuItem menuClose;
+	@FXML
+	Button miniButton, maxiButton, closeButton;
 	
 	Layers layerstack = new Layers();
 
@@ -78,6 +80,12 @@ public class MainView extends AnchorPane implements Initializable {
 			System.exit(0);
 		});
 		
+		closeButton.setOnAction(e ->{
+			System.exit(0);
+		});
+		/**miniButton.setOnAction(e ->{
+			System.
+		});**/
 }
 	
 	@Override

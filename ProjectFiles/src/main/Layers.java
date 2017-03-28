@@ -2,6 +2,8 @@ package main;
 
 import java.util.ArrayList;
 
+import model.Layer;
+
 public class Layers {
 	private static ArrayList<Layer> layerStack = new ArrayList<>();
 	

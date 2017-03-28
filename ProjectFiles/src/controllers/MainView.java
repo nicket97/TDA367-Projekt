@@ -22,7 +22,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import main.Layers;
-import main.LoadedImage;
+import model.LoadedImage;
 
 public class MainView extends AnchorPane implements Initializable {
 	

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<fx:root type="AnchorPane" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <CheckBox mnemonicParsing="false" AnchorPane.leftAnchor="2.0" />
+      <Label text="Label" AnchorPane.leftAnchor="25.0" />
+      <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0">
+         <image>
+            <Image url="@../icons/garbage.png" />
+         </image>
+      </ImageView>
+   </children>
+</fx:root>

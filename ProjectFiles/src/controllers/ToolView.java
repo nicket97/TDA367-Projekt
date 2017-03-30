@@ -7,12 +7,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 
 public class ToolView extends AnchorPane implements Initializable {
 	
@@ -45,7 +43,7 @@ public class ToolView extends AnchorPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("init");
+		System.out.println("init tools");
 		
 		adjustIcon.setOnMouseClicked(e -> {
 			topLevel.setVisible(false);

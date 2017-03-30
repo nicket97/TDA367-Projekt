@@ -28,10 +28,11 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	TilePane bottomContainer;
 	@FXML
-	AnchorPane bottomPane, canvasPane;
+	AnchorPane bottomPane, canvasPane, rightPane;
 	@FXML
 	ToolView toolView;
 	CanvasView canvasView;
+	
 	@FXML
 	MenuItem openImage;
 	@FXML
@@ -75,7 +76,7 @@ public class MainView extends AnchorPane implements Initializable {
 					
 					canvasView.drawImage(new LoadedImage (newImage));
 			} catch (IOException e1) {
-				// On canceld fileopening
+				// On canceled fileopening
 			}
 		});
 		menuClose.setOnAction(e ->{
@@ -101,10 +102,9 @@ public class MainView extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		toolView = new ToolView();
-		bottomContainer.getChildren().add(toolView);
-		canvasView = new CanvasView();
-		canvasPane.getChildren().add(canvasView);
+		bottomContainer.getChildren().add(new ToolView());
+		canvasPane.getChildren().add(new CanvasView());
+		rightPane.getChildren().add(new SettingsView());
 	
 	}
 	

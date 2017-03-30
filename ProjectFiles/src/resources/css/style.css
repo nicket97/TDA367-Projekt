@@ -23,8 +23,8 @@
 #rightPane {
 	-fx-background-color: derive(#1d1d1d,10%);
 }
-
-#canvasPane {
+#miniCanvas, #layerPane {
+	
 }
 
 /** MENU **/
@@ -138,6 +138,7 @@
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
     -fx-cursor: hand;
+    -fx-opacity: 0.6;
 }
 
 /**.button {

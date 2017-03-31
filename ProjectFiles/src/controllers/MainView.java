@@ -28,7 +28,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	TilePane bottomContainer;
 	@FXML
-	AnchorPane bottomPane, canvasPane, rightPane;
+	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
 	@FXML
 	ToolView toolView;
 	CanvasView canvasView;
@@ -104,7 +104,7 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		bottomContainer.getChildren().add(new ToolView());
 		canvasPane.getChildren().add(new CanvasView());
-		rightPane.getChildren().add(new SettingsView());
+		layerPane.getChildren().add(new LayerView());
 	
 	}
 	

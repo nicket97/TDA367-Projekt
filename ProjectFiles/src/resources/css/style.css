@@ -1,7 +1,8 @@
 /** GENERAL **/
 
 .root {
-	-fx-focus-color: #02b192;
+	/**-fx-focus-color: #02b192;**/
+	-fx-focus-color: transparent;
 	-fx-accent: #02b192;
 }
 
@@ -9,6 +10,9 @@
 
 #clickable {
 	-fx-cursor: hand;
+}
+#boldLabel {
+	-fx-font-weight: bold;
 }
 
 /** PANES **/
@@ -23,8 +27,8 @@
 #rightPane {
 	-fx-background-color: derive(#1d1d1d,10%);
 }
-#miniCanvas, #layerPane {
-	
+#trashCan {
+	-fx-cursor: hand;
 }
 
 /** MENU **/
@@ -43,7 +47,7 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Light";
+    /**-fx-font-family: "Segoe UI Light";**/
     -fx-text-fill: #d3d3d3;
     -fx-opacity: 1.0;
 }
@@ -183,4 +187,66 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color,30%);
+}
+
+/** CHECKBOXES **/
+
+.check-box {
+    -fx-text-fill: white;
+}
+
+.check-box .box {
+    -fx-background-color: #d1d1d1;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: #d1d1d1;
+    -fx-border-width: 2px;
+    -fx-borders-style: solid;
+    -fx-padding: 1;
+}
+
+.check-box .mark {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 5px;
+    -fx-shape: "M1,10L3,8L7,12L14,5L16,7L7,16Z"
+}
+
+.check-box:focused .box{
+    -fx-background-color: #d1d1d1;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    /**-fx-border-color: white, #d1d1d1;
+    -fx-border-width: 1, 2;
+    -fx-border-style: segments(1, 1), solid;
+    -fx-border-insets: -3, 0;*/
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #202020;
+}
+
+.check-box:indeterminate .mark {
+   -fx-background-color: black; 
+   -fx-background-insets: 2.8; 
+   -fx-padding:7px;
+   -fx-shape: null;
+}
+
+.check-box:disabled
+{
+    -fx-opacity: 0.4;
+}
+
+.check-box:disabled .box
+{
+    -fx-border-color: white;
+    -fx-background-color: white;
+}
+
+.check-box:armed .box
+{
+    -fx-background-color: transparent, white;
+    -fx-background-insets: -1, 2;
+    -fx-background-radius: 0, 0;
 }

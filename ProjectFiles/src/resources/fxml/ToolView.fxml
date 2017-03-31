@@ -10,7 +10,7 @@
    <children>
       <StackPane fx:id="toolContainer">
          <children>
-            <HBox id="hbox" fx:id="topLevel" alignment="CENTER" prefHeight="120.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox id="hbox" fx:id="topLevel" alignment="CENTER" prefHeight="120.0" spacing="80.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label id="clickable" fx:id="adjustIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Anpassa">
                  <graphic>

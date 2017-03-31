@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -12,18 +13,23 @@
 <fx:root id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane id="mainPane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" />
-      <AnchorPane id="rightPane" fx:id="rightPane" layoutX="1021.0" layoutY="5.0" prefHeight="659.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
       <MenuBar id="menuBar" fx:id="menuBar" layoutX="26.0" layoutY="2.0" prefHeight="30.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Arkiv">
             <items>
-              <MenuItem fx:id="openImage" mnemonicParsing="false" text="Öppna bild..." />
+              <MenuItem fx:id="openImage" text="Öppna bild...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
               <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Avsluta" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Verktyg">
             <items>
-              <MenuItem mnemonicParsing="false" text="Ångra" />
+              <MenuItem text="Ångra">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
@@ -66,7 +72,13 @@
       <AnchorPane id="canvasPane" fx:id="canvasPane" layoutX="197.0" layoutY="96.0" prefHeight="352.0" prefWidth="611.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="55.0" />
       <AnchorPane id="bottomPane" fx:id="bottomPane" layoutX="213.0" layoutY="440.0" prefHeight="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0">
          <children>
-            <TilePane fx:id="bottomContainer" alignment="CENTER" layoutX="33.0" layoutY="-36.0" prefHeight="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <TilePane fx:id="bottomContainer" alignment="CENTER" layoutX="33.0" layoutY="-36.0" prefHeight="120.0" prefWidth="651.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children></AnchorPane>
+      <AnchorPane id="rightPane" fx:id="rightPane" layoutX="1021.0" layoutY="5.0" prefHeight="659.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <Slider fx:id="miniSlider" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="150.0" />
+            <AnchorPane id="miniCanvas" fx:id="miniCanvas" layoutX="-4.0" layoutY="-30.0" prefHeight="135.0" prefWidth="180.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <AnchorPane id="layerPane" fx:id="layerPane" prefHeight="290.0" prefWidth="180.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
          </children></AnchorPane>
       <AnchorPane prefHeight="35.0" prefWidth="94.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

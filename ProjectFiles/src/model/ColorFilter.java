@@ -2,9 +2,19 @@ package model;
 
 import javafx.scene.paint.Color;
 
-public class ColorFilter {
+public class ColorFilter implements Layrable{
 
-    protected static LoadedImage transform(LoadedImage img, double r, double g, double b) {
+    double r;
+    double g;
+    double b;
+
+    public ColorFilter(double r, double g, double b) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+
+    public LoadedImage transform(LoadedImage img) {
         LoadedImage newImage = new LoadedImage(img);
 
         for(int i = 0; i < newImage.pxImage.length; i++){
@@ -16,5 +26,6 @@ public class ColorFilter {
         }
         return newImage;
     }
+
 
 }

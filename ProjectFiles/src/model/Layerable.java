@@ -1,6 +1,6 @@
 package model;
 
-public interface Layrable {
+public interface Layerable {
 	
 	public LoadedImage transform(LoadedImage img);
 }

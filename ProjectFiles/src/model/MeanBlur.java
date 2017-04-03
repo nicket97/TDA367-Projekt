@@ -1,6 +1,6 @@
 package model;
 
-public class MeanBlur implements Layrable {
+public class MeanBlur implements Layerable {
 	double blurValue;
 	public MeanBlur(){
 		

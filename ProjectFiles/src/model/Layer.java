@@ -2,18 +2,18 @@ package model;
 
 
 public class Layer {
-	private Layrable action;
+	private Layerable action;
 	private boolean visable;
 	
-	public Layer(Layrable l){
+	public Layer(Layerable l){
 		this.action = l;
 	}
 
-	public Layrable getL() {
+	public Layerable getL() {
 		return action;
 	}
 
-	public void setaction(Layrable l) {
+	public void setaction(Layerable l) {
 		this.action = l;
 	}
 	

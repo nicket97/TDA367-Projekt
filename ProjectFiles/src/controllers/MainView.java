@@ -33,7 +33,7 @@ public class MainView extends AnchorPane implements Initializable {
 	ToolView toolView;
 	LayerView layerView;
 	CanvasView canvasView;
-	
+	MiniCanvasView miniCanvasView; 
 	@FXML
 	MenuItem openImage;
 	@FXML
@@ -110,7 +110,8 @@ public class MainView extends AnchorPane implements Initializable {
 		bottomContainer.getChildren().add(new ToolView());
 		canvasPane.getChildren().add(canvasView);
 		layerPane.getChildren().add(new LayerView());
-	
+		miniCanvas.getChildren().add(new MiniCanvasView());
+		
 	}
 	
 }

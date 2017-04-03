@@ -66,6 +66,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 				int g = (argb>>8)&0xFF;
 				int b = (argb>>0)&0xFF;
 				gc.setColor(i, j, Color.rgb(r, g, b));*/
+			
 				gc.setColor(i, j, img.pxImage[i][j]);
 			}
 			//System.out.println(img.pxImage.length-i);

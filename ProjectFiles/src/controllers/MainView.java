@@ -31,6 +31,7 @@ public class MainView extends AnchorPane implements Initializable {
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
 	@FXML
 	ToolView toolView;
+	LayerView layerView;
 	CanvasView canvasView;
 	
 	@FXML
@@ -59,7 +60,7 @@ public class MainView extends AnchorPane implements Initializable {
 		openImage.setOnAction(e -> {
 			FileChooser fileChooser = new FileChooser();
 			
-			fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
+			//fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
 			fileChooser.setTitle("Open a Image");
 			
 			File f = fileChooser.showOpenDialog(new Stage());
@@ -73,8 +74,9 @@ public class MainView extends AnchorPane implements Initializable {
 					Graphics2D g = newImage.createGraphics();
 					g.drawImage(in, 0, 0, null);
 					g.dispose();
-					
-					canvasView.drawImage(new LoadedImage (newImage));
+					LoadedImage ll = new LoadedImage (newImage);
+					System.out.println(canvasView.toString());
+					canvasView.drawImage(ll);
 			} catch (IOException e1) {
 				// On canceled fileopening
 			}
@@ -101,9 +103,12 @@ public class MainView extends AnchorPane implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		canvasView = new CanvasView();
+		toolView = new ToolView();
+		layerView = new LayerView();
 		
 		bottomContainer.getChildren().add(new ToolView());
-		canvasPane.getChildren().add(new CanvasView());
+		canvasPane.getChildren().add(canvasView);
 		layerPane.getChildren().add(new LayerView());
 	
 	}

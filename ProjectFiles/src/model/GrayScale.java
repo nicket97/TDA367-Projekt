@@ -2,7 +2,7 @@ package model;
 
 import javafx.scene.paint.Color;
 
-public class BlackAndWhite implements Layerable {
+public class GrayScale implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {

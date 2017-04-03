@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
-import model.BlackAndWhite;
+import model.GrayScale;
 import model.LoadedImage;
 
 public class CanvasView extends AnchorPane implements Initializable {

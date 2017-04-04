@@ -104,13 +104,13 @@ public class MainView extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		canvasView = new CanvasView();
-		toolView = new ToolView();
+		miniCanvasView = new MiniCanvasView();
 		layerView = new LayerView();
 		
 		bottomContainer.getChildren().add(new ToolView());
 		canvasPane.getChildren().add(canvasView);
-		layerPane.getChildren().add(new LayerView());
-		miniCanvas.getChildren().add(new MiniCanvasView());
+		miniCanvas.getChildren().add(miniCanvasView);
+		layerPane.getChildren().add(layerView);
 		
 	}
 	

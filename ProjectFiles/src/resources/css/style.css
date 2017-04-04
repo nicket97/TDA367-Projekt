@@ -6,6 +6,18 @@
 	-fx-accent: #02b192;
 }
 
+.list-view {
+	-fx-background-color: transparent;
+	-fx-control-inner-background: transparent;
+	-fx-control-inner-background-alt: transparent;
+	-fx-cell-hover-color: transparent;
+	-fx-margin: 0px;
+	-fx-padding: 0 -7 0 -8;
+	-fx-border: none;
+	-fx-focus-color: transparent;
+	-fx-accent: transparent;
+}
+
 /** LABELS **/
 
 #clickable {
@@ -16,6 +28,11 @@
 }
 
 /** PANES **/
+
+#layerRowPane {
+	-fx-focus-color: transparent;
+}
+
 #mainPane {
 	-fx-background-color: #404040;
 }
@@ -142,7 +159,7 @@
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
     -fx-cursor: hand;
-    -fx-opacity: 0.6;
+    -fx-opacity: 0.8;
 }
 
 /**.button {

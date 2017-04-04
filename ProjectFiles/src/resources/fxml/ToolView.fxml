@@ -140,7 +140,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="blurIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
+                  <Label id="clickable" fx:id="blurIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Oskärpa">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -152,7 +152,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="sharpenIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Exponering">
+                  <Label id="clickable" fx:id="sharpenIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Skärpa">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -164,7 +164,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="textIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Kontrast">
+                  <Label id="clickable" fx:id="textIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Text">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -176,7 +176,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="flipIcon1" contentDisplay="TOP" graphicTextGap="10.0" text="Spegla">
+                  <Label id="clickable" fx:id="flipIcon1" contentDisplay="TOP" graphicTextGap="10.0" text="???">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -204,7 +204,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="colorFilterIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
+                  <Label id="clickable" fx:id="colorFilterIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Färgfilter">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -216,7 +216,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="bwIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Exponering">
+                  <Label id="clickable" fx:id="bwIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Gråskala">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -228,7 +228,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="whiteBalanceIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Kontrast">
+                  <Label id="clickable" fx:id="whiteBalanceIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Vitbalans">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -240,7 +240,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="flipIcon2" contentDisplay="TOP" graphicTextGap="10.0" text="Spegla">
+                  <Label id="clickable" fx:id="flipIcon2" contentDisplay="TOP" graphicTextGap="10.0" text="???">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -268,7 +268,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="matteIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Beskära">
+                  <Label id="clickable" fx:id="matteIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Matt">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -280,7 +280,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="vintageIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Exponering">
+                  <Label id="clickable" fx:id="vintageIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Vintage">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -292,7 +292,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="modernBWIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Kontrast">
+                  <Label id="clickable" fx:id="modernBWIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Modern svartvit">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -304,7 +304,7 @@
                         <Insets left="50.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label id="clickable" fx:id="flipIcon3" contentDisplay="TOP" graphicTextGap="10.0" text="Spegla">
+                  <Label id="clickable" fx:id="flipIcon3" contentDisplay="TOP" graphicTextGap="10.0" text="???">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>

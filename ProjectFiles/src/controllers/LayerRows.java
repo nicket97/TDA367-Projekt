@@ -7,14 +7,21 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class LayerRows extends AnchorPane implements Initializable {
 
 	@FXML
 	AnchorPane layerList;
+	@FXML
+	Label layerLabel;
 	
-	public LayerRows() {
+	private String name;
+	
+	public LayerRows(String name){
+		
+		this.name = name;
 
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/LayerRow.fxml"));
 		System.out.println("layerview");
@@ -25,14 +32,12 @@ public class LayerRows extends AnchorPane implements Initializable {
 			fxmlLoader.load();
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
-		}
-		
+		}	
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layerrow");
+		layerLabel.setText(name);
 	}
-	
-	
 }

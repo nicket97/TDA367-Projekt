@@ -5,17 +5,17 @@ package model;
  */
 public class ColorShiftFactory {
 
-    public ColorShift getColorShift(Color color) {
+    public ColorShift getColorShift(ColorShiftType color) {
         if(color == null) {
             return null;
         }
-        if(color == Color.BLUE) {
+        if(color == ColorShiftType.BLUE) {
             return new ColorShift(0.85, 0.85, 1.30);
         }
-        else if(color == Color.GREEN) {
+        else if(color == ColorShiftType.GREEN) {
 
         }
-        
+
         return null;
     }
 }

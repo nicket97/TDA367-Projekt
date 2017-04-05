@@ -4,9 +4,9 @@ import javafx.scene.paint.Color;
 
 public class ColorShift extends ColorFilter{
 
-		double r;
-		double g;
-		double b;
+		private double r;
+		private double g;
+		private double b;
 		 
 	     public ColorShift(double redFactor, double greenFactor, double blueFactor) {
 	         this.r = r;

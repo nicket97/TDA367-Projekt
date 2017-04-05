@@ -8,7 +8,7 @@ public class ColorShift extends ColorFilter{
 		double g;
 		double b;
 		 
-	     public ColorShift(double r, double g, double b) {
+	     public ColorShift(double redFactor, double greenFactor, double blueFactor) {
 	         this.r = r;
 	         this.g = g;
 	         this.b = b;

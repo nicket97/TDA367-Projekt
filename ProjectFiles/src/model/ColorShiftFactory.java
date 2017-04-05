@@ -10,7 +10,7 @@ public class ColorShiftFactory {
             return null;
         }
         if(color == ColorShiftType.BLUE) {
-            return new ColorShift(0.85, 0.85, 1.30);
+            return new ColorShift(, 0.85, 1.30);
         }
         else if(color == ColorShiftType.GREEN) {
 

@@ -1,5 +1,5 @@
 package model;
 
-public class ColorFilter {
+public abstract class ColorFilter implements Layerable {
 
 }

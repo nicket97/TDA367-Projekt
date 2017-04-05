@@ -10,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
+import model.ColorShift;
+import model.Layerable;
 import model.LoadedImage;
 
 public class CanvasView extends AnchorPane implements Initializable {
@@ -45,7 +47,11 @@ public class CanvasView extends AnchorPane implements Initializable {
 		
 	}
 	public void drawImage(LoadedImage img){
+		/*TestCase för red color shift
+		 * Layerable k = new ColorShift(100,1,1);
+		img = k.transform(img);
 		
+		*/
 		imagePane = new Canvas(img.width, img.heigth);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		

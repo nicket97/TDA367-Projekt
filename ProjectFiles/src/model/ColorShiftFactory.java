@@ -1,8 +1,6 @@
 package model;
 
-/**
- * Created by anton on 05/04/17.
- */
+
 public class ColorShiftFactory {
 
     public ColorShift getColorShift(ColorShiftType color) {

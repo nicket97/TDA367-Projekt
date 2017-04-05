@@ -44,7 +44,7 @@ public class LayerView extends AnchorPane implements Initializable {
 		
 		for(String name : listOfLayers){
 			//String[] strings=name.split("\t");
-			layerList.getItems().add(new LayerRows(name));
+			//layerList.getItems().add(new LayerRows(name));
 		}
 
 		

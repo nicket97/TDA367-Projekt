@@ -2,7 +2,7 @@ package model;
 
 import javafx.scene.paint.Color;
 
-public class GrayScale implements Layerable {
+public class GrayScale extends ColorFilter {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {

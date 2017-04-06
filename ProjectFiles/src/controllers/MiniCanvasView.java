@@ -26,14 +26,11 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
 		
-		
-		
 		try {
 			fxmlLoader.load();
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
-		}
-		
+		}	
 	}
 
 	@Override
@@ -56,6 +53,5 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 		canvasPane.getChildren().add(imagePane);
 		System.out.println(canvasPane.getChildren().toString());
 	}
-	
 	
 }

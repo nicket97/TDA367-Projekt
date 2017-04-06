@@ -9,10 +9,14 @@
    <children>
       <CheckBox mnemonicParsing="false" selected="true" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="4.0" />
       <Label fx:id="layerLabel" text="Label" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="2.0" />
-      <ImageView id="trashCan" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="4.0">
-         <image>
-            <Image url="@../icons/garbage.png" />
-         </image>
-      </ImageView>
+      <Label id="trashCan" fx:id="trashCan" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="4.0">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/garbage.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
    </children>
 </fx:root>

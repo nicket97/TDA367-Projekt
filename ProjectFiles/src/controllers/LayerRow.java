@@ -9,17 +9,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import model.Layer;
 
-public class LayerRows extends AnchorPane implements Initializable {
+public class LayerRow extends AnchorPane implements Initializable {
 
 	@FXML
 	AnchorPane layerList;
 	@FXML
-	Label layerLabel;
+	Label layerLabel, trashCan;
 	
-	private String name;
+	private Layer name;
 	
-	public LayerRows(String name){
+	public LayerRow(Layer name){
 		
 		this.name = name;
 
@@ -38,6 +39,11 @@ public class LayerRows extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layerrow");
-		layerLabel.setText(name);
+		layerLabel.setText(Layer.class.getName());
+		
+		trashCan.setOnMouseClicked(e -> {
+			LayerView.remove(this);
+			//layerList.getParent().remove(this);
+		});
 	}
 }

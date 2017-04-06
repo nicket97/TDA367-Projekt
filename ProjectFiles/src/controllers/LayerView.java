@@ -6,19 +6,25 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import main.Layers;
+import model.Layer;
 
 public class LayerView extends AnchorPane implements Initializable {
 
 	@FXML
 	AnchorPane layerListHolder;
 	@FXML
+	ListView<LayerRow> layerList;
 	
-	List<String> listOfLayers = new ArrayList<String>();
+	List<Layer> listOfLayers = new ArrayList<Layer>();
 	
 	public LayerView() {
 
@@ -39,15 +45,23 @@ public class LayerView extends AnchorPane implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layers");
 		
-		listOfLayers.add("Layer 1");
-		listOfLayers.add("Layer 2");
+		listOfLayers.addAll(Layers.getLayerStack());
 		
-		for(String name : listOfLayers){
+		for(Layer layer : listOfLayers){
 			//String[] strings=name.split("\t");
-			//layerList.getItems().add(new LayerRows(name));
+			layerList.getItems().add(new LayerRow(layer));
 		}
 
-		
+		layerList.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				Platform.runLater(new Runnable() {
+					public void run() {
+						layerList.getSelectionModel().select(-1);
+
+					}
+				});
+			}
+		});
 	}
 	
 	

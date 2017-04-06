@@ -52,6 +52,7 @@
                <items>
                   <MenuItem fx:id="menuColorFilter" mnemonicParsing="false" text="Färgfilter" />
                   <MenuItem fx:id="menuBlackWhite" mnemonicParsing="false" text="Svartvitt" />
+                  <MenuItem fx:id="menuGrayScale" mnemonicParsing="false" text="Grå Skala" />
                   <MenuItem fx:id="menuWhitebalance" mnemonicParsing="false" text="Vitbalans" />
                </items>
             </Menu>

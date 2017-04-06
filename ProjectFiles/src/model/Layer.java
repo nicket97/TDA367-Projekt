@@ -10,7 +10,7 @@ public class Layer {
 		this.visable = true;
 	}
 
-	public Layerable getL() {
+	public Layerable getAction() {
 		return action;
 	}
 

@@ -21,6 +21,8 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import main.Layers;
 import main.Main;
+import model.GrayScale;
+import model.Layer;
 import model.LoadedImage;
 
 public class MainView extends AnchorPane implements Initializable {
@@ -28,20 +30,29 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	TilePane bottomContainer;
 	@FXML
-	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
+	AnchorPane bottomPane, 
+	canvasPane, 
+	miniCanvas, 
+	layerPane;
 	@FXML
 	ToolView toolView;
+	
 	LayerView layerView;
 	CanvasView canvasView;
 	MiniCanvasView miniCanvasView; 
+	
 	@FXML
 	MenuItem openImage;
 	@FXML
 	MenuItem menuClose;
 	@FXML
-	Button closeButton, miniButton, maxiButton;
+	MenuItem menuGrayScale;
+	@FXML
+	Button closeButton,miniButton, maxiButton ;
 	
 	Layers layerstack = new Layers();
+	
+	private static LoadedImage backgroundImage;
 
 	public MainView() {
 
@@ -76,7 +87,8 @@ public class MainView extends AnchorPane implements Initializable {
 					g.dispose();
 					LoadedImage ll = new LoadedImage (newImage);
 					System.out.println(canvasView.toString());
-					canvasView.drawImage(ll);
+					setBackgroundImage(ll);
+					canvasView.repaint();
 			} catch (IOException e1) {
 				// On canceled fileopening
 			}
@@ -99,6 +111,10 @@ public class MainView extends AnchorPane implements Initializable {
 			Main.getPrimaryStage().setMaximized(true);
 		}
 		});
+		menuGrayScale.setOnAction(e ->{
+			layerstack.addLayer(new Layer(new GrayScale()));
+			canvasView.repaint();
+		});
 }
 	
 	@Override
@@ -112,6 +128,14 @@ public class MainView extends AnchorPane implements Initializable {
 		miniCanvas.getChildren().add(miniCanvasView);
 		layerPane.getChildren().add(layerView);
 		
+	}
+
+	public static LoadedImage getBackgroundImage() {
+		return backgroundImage;
+	}
+
+	public static void setBackgroundImage(LoadedImage backgroundImage) {
+		MainView.backgroundImage = backgroundImage;
 	}
 	
 }

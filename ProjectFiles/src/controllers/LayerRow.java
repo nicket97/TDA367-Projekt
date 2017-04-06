@@ -42,7 +42,7 @@ public class LayerRow extends AnchorPane implements Initializable {
 		layerLabel.setText(Layer.class.getName());
 		
 		trashCan.setOnMouseClicked(e -> {
-			LayerView.remove(this);
+			//LayerView.remove(this);
 			//layerList.getParent().remove(this);
 		});
 	}

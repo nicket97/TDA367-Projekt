@@ -39,7 +39,7 @@ public class MainView extends AnchorPane implements Initializable {
 	ToolView toolView;
 	
 	LayerView layerView;
-	CanvasView canvasView;
+	static CanvasView canvasView;
 	MiniCanvasView miniCanvasView; 
 	
 	@FXML
@@ -169,5 +169,7 @@ public class MainView extends AnchorPane implements Initializable {
 	public static void setBackgroundImage(LoadedImage backgroundImage) {
 		MainView.backgroundImage = backgroundImage;
 	}
-	
+	public static CanvasView getCanvas(){
+		return canvasView;
+	}
 }

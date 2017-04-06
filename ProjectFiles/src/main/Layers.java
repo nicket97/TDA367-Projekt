@@ -3,6 +3,8 @@ package main;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import controllers.CanvasView;
+import controllers.MainView;
 import model.Layer;
 
 public class Layers {
@@ -20,5 +22,8 @@ public class Layers {
 	}
 	public static ArrayList<Layer> getLayerStack(){
 		return layerStack;
+	}
+	public static void update(){
+		MainView.getCanvas().repaint();
 	}
 }

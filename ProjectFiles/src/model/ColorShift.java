@@ -8,7 +8,9 @@ public class ColorShift extends ColorFilter{
 		private double g;
 		private double b;
 		 
-	     public ColorShift(double redFactor, double greenFactor, double blueFactor) {
+	    
+
+		public ColorShift(double redFactor, double greenFactor, double blueFactor) {
 	         this.r = redFactor;
 	         this.g = greenFactor;
 	         this.b = blueFactor;
@@ -27,6 +29,29 @@ public class ColorShift extends ColorFilter{
 	         }
 	         return newImage;
 	     }
+	     public double getR() {
+				return r;
+		}
+
+		public void setR(double r) {
+			this.r = r;
+		}
+
+		public double getG() {
+			return g;
+		}
+
+		public void setG(double g) {
+			this.g = g;
+		}
+
+		public double getB() {
+			return b;
+		}
+
+		public void setB(double b) {
+			this.b = b;
+		}
 	 
 
 }

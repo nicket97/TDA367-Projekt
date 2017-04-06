@@ -21,6 +21,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import main.Layers;
 import main.Main;
+import model.ColorShift;
 import model.GrayScale;
 import model.Layer;
 import model.LoadedImage;
@@ -47,6 +48,33 @@ public class MainView extends AnchorPane implements Initializable {
 	MenuItem menuClose;
 	@FXML
 	MenuItem menuGrayScale;
+	@FXML
+	MenuItem menuCrop;
+	@FXML
+	MenuItem menuExposure;
+	@FXML
+	MenuItem menuContrast;
+	@FXML
+	MenuItem menuReflect;
+	@FXML
+	MenuItem menuBlur;
+	@FXML
+	MenuItem menuSharpen;
+	@FXML
+	MenuItem menuTextFilter;
+	@FXML
+	MenuItem menuColorFilter;
+	@FXML
+	MenuItem menuBlackWhite;
+	@FXML
+	MenuItem menuWhitebalance;
+	@FXML
+	MenuItem menuFMatte;
+	@FXML
+	MenuItem menuFBW;
+	@FXML
+	MenuItem menuFVintage;
+
 	@FXML
 	Button closeButton,miniButton, maxiButton ;
 	
@@ -113,6 +141,10 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		menuGrayScale.setOnAction(e ->{
 			layerstack.addLayer(new Layer(new GrayScale()));
+			canvasView.repaint();
+		});
+		menuColorFilter.setOnAction( e->{
+			layerstack.addLayer(new Layer(new ColorShift(2,1,1)));
 			canvasView.repaint();
 		});
 }

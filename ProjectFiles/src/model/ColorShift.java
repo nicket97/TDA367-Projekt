@@ -10,10 +10,10 @@ public class ColorShift extends ColorFilter{
 		 
 	    
 
-		public ColorShift(double redFactor, double greenFactor, double blueFactor) {
-	         this.r = redFactor;
-	         this.g = greenFactor;
-	         this.b = blueFactor;
+		public ColorShift(double redAddend, double greenAddend, double blueAddend) {
+	         this.r = redAddend;
+	         this.g = greenAddend;
+	         this.b = blueAddend;
 	     }
 	 
 	     public LoadedImage transform(LoadedImage img) {
@@ -23,7 +23,7 @@ public class ColorShift extends ColorFilter{
 	             for(int j = 0; j < newImage.pxImage[i].length; j++){
 	 
 	                 Color pxColor = newImage.pxImage[i][j];
-	                 pxColor = Color.rgb((int) (pxColor.getRed() * r), (int) (pxColor.getGreen() * g), (int) (pxColor.getBlue() * b));
+	                 pxColor = Color.rgb((int) (pxColor.getRed() + r), (int) (pxColor.getGreen() + g), (int) (pxColor.getBlue() + b));
 	                 newImage.pxImage[i][j] = pxColor;
 	             }
 	         }

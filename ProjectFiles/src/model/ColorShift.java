@@ -23,7 +23,10 @@ public class ColorShift extends ColorFilter{
 	             for(int j = 0; j < newImage.pxImage[i].length; j++){
 	 
 	                 Color pxColor = newImage.pxImage[i][j];
-	                 pxColor = Color.rgb((int) (pxColor.getRed() + r), (int) (pxColor.getGreen() + g), (int) (pxColor.getBlue() + b));
+					 double red = pxColor.getRed() * 255;
+					 double green = pxColor.getGreen() * 255;
+					 double blue = pxColor.getBlue() * 255;
+	                 pxColor = Color.rgb((int) (((red + r) > 255) ? 255 : red + r), (int) (((green + g) > 255) ? 255 : green + g), (int) (((blue + b) > 255) ? 255 : blue + b));
 	                 newImage.pxImage[i][j] = pxColor;
 	             }
 	         }

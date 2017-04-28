@@ -21,6 +21,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import main.Layers;
 import main.Main;
+import model.Blur;
 import model.ColorShift;
 import model.GrayScale;
 import model.Layer;
@@ -139,12 +140,16 @@ public class MainView extends AnchorPane implements Initializable {
 			Main.getPrimaryStage().setMaximized(true);
 		}
 		});
+		menuBlur.setOnAction(e ->{
+			layerstack.addLayer(new Layer(new Blur()));
+			canvasView.repaint();
+		});
 		menuGrayScale.setOnAction(e ->{
 			layerstack.addLayer(new Layer(new GrayScale()));
 			canvasView.repaint();
 		});
 		menuColorFilter.setOnAction( e->{
-			layerstack.addLayer(new Layer(new ColorShift(2,1,1)));
+			layerstack.addLayer(new Layer(new ColorShift(50,1,1)));
 			canvasView.repaint();
 		});
 }

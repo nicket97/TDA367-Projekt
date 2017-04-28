@@ -36,4 +36,7 @@ public class LoadedImage {
 		}
 		
 	}
+	public BufferedImage getBufferedImg(LoadedImage img){
+		return lImg;
+	}
 }

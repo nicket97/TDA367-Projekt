@@ -3,12 +3,12 @@ package model;
 
 public class Layer {
 	private Layerable action;
-	private boolean visable;
+	private boolean visible;
 	private String name = "";
 	
 	public Layer(Layerable l){
 		this.action = l;
-		this.visable = true;
+		this.visible = true;
 	}
 
 	public Layerable getAction() {
@@ -19,7 +19,7 @@ public class Layer {
 		this.action = l;
 	}
 	public void changeVisable(){
-		this.visable = !this.visable;
+		this.visible = !this.visible;
 	}
 
 	public String getName() {

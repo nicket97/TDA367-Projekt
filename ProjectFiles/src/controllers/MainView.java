@@ -26,7 +26,9 @@ import model.ColorShift;
 import model.GaussianBlur;
 import model.GrayScale;
 import model.Layer;
+import model.Layerable;
 import model.LoadedImage;
+import model.Sharpen;
 
 public class MainView extends AnchorPane implements Initializable {
 	
@@ -116,23 +118,19 @@ public class MainView extends AnchorPane implements Initializable {
 		}
 		});
 		
-		menuBlur.setOnAction(e ->{
-			layerstack.addLayer(new Layer(new Blur()));
-			canvasView.repaint();
-		});
-		menuGaussianBlur.setOnAction(e ->{
-			layerstack.addLayer(new Layer(new GaussianBlur()));
-			canvasView.repaint();
-		});
-		menuGrayScale.setOnAction(e ->{
-			layerstack.addLayer(new Layer(new GrayScale()));
-			canvasView.repaint();
-		});
-		menuColorFilter.setOnAction( e->{
-			layerstack.addLayer(new Layer(new ColorShift(50,1,1)));
-			canvasView.repaint();
-		});
+		menuClicked(menuBlur, (new Blur()));
+		menuClicked(menuGaussianBlur, (new GaussianBlur()));
+		menuClicked(menuSharpen, (new Sharpen()));
+		menuClicked(menuGrayScale, (new GrayScale()));
+		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
 }
+	private void menuClicked(MenuItem name, Layerable layerType){
+		name.setOnAction( e->{
+			layerstack.addLayer(new Layer(layerType));
+			canvasView.repaint();
+		});
+		return;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

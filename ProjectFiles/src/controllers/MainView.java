@@ -23,58 +23,33 @@ import main.Layers;
 import main.Main;
 import model.Blur;
 import model.ColorShift;
+import model.GaussianBlur;
 import model.GrayScale;
 import model.Layer;
 import model.LoadedImage;
 
 public class MainView extends AnchorPane implements Initializable {
 	
-	@FXML
-	TilePane bottomContainer;
-	@FXML
-	AnchorPane bottomPane, 
-	canvasPane, 
-	miniCanvas, 
-	layerPane;
-	@FXML
 	ToolView toolView;
-	
 	LayerView layerView;
 	static CanvasView canvasView;
 	MiniCanvasView miniCanvasView; 
 	
 	@FXML
-	MenuItem openImage;
+	TilePane bottomContainer;
 	@FXML
-	MenuItem menuClose;
+	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
+
 	@FXML
-	MenuItem menuGrayScale;
+	MenuItem openImage, menuClose;
 	@FXML
-	MenuItem menuCrop;
+	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance;
 	@FXML
-	MenuItem menuExposure;
+	MenuItem menuCrop, menuExposure, menuContrast, menuReflect;
 	@FXML
-	MenuItem menuContrast;
+	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter;
 	@FXML
-	MenuItem menuReflect;
-	@FXML
-	MenuItem menuBlur;
-	@FXML
-	MenuItem menuSharpen;
-	@FXML
-	MenuItem menuTextFilter;
-	@FXML
-	MenuItem menuColorFilter;
-	@FXML
-	MenuItem menuBlackWhite;
-	@FXML
-	MenuItem menuWhitebalance;
-	@FXML
-	MenuItem menuFMatte;
-	@FXML
-	MenuItem menuFBW;
-	@FXML
-	MenuItem menuFVintage;
+	MenuItem menuFMatte, menuFBW, menuFVintage;
 
 	@FXML
 	Button closeButton,miniButton, maxiButton ;
@@ -101,7 +76,7 @@ public class MainView extends AnchorPane implements Initializable {
 			FileChooser fileChooser = new FileChooser();
 			
 			//fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
-			fileChooser.setTitle("Open a Image");
+			fileChooser.setTitle("Välj en bild");
 			
 			File f = fileChooser.showOpenDialog(new Stage());
 			
@@ -140,8 +115,13 @@ public class MainView extends AnchorPane implements Initializable {
 			Main.getPrimaryStage().setMaximized(true);
 		}
 		});
+		
 		menuBlur.setOnAction(e ->{
 			layerstack.addLayer(new Layer(new Blur()));
+			canvasView.repaint();
+		});
+		menuGaussianBlur.setOnAction(e ->{
+			layerstack.addLayer(new Layer(new GaussianBlur()));
 			canvasView.repaint();
 		});
 		menuGrayScale.setOnAction(e ->{

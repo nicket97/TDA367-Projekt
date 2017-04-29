@@ -44,6 +44,7 @@
             <Menu mnemonicParsing="false" text="Effekter">
                <items>
                   <MenuItem fx:id="menuBlur" mnemonicParsing="false" text="Oskärpa" />
+                  <MenuItem fx:id="menuGaussianBlur" mnemonicParsing="false" text="Gaussisk Oskärpa" />
                   <MenuItem fx:id="menuSharpen" mnemonicParsing="false" text="Skärpa" />
                   <MenuItem fx:id="menuTextFilter" mnemonicParsing="false" text="Text" />
                </items>
@@ -59,7 +60,7 @@
             <Menu mnemonicParsing="false" text="Filter">
                <items>
                   <MenuItem fx:id="menuFMatte" mnemonicParsing="false" text="Matt" />
-                  <MenuItem fx:id="menuFBW" mnemonicParsing="false" text="Modern svartvit" />
+                  <MenuItem fx:id="menuFBW" mnemonicParsing="false" text="Modern Svartvit" />
                   <MenuItem fx:id="menuFVintage" mnemonicParsing="false" text="Vintage" />
                </items>
             </Menu>

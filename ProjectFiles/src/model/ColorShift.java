@@ -16,23 +16,36 @@ public class ColorShift extends ColorFilter{
 	         this.b = blueAddend;
 	     }
 	 
-	     public LoadedImage transform(LoadedImage img) {
+		public LoadedImage transform(LoadedImage img) {
 	    	 LoadedImage newImage = new LoadedImage(img);
 	 
 	         for(int i = 0; i < newImage.pxImage.length; i++){
 	             for(int j = 0; j < newImage.pxImage[i].length; j++){
 	 
 	                 Color pxColor = newImage.pxImage[i][j];
-					 double red = pxColor.getRed() * 255;
-					 double green = pxColor.getGreen() * 255;
-					 double blue = pxColor.getBlue() * 255;
-	                 pxColor = Color.rgb((int) (((red + r) > 255) ? 255 : red + r), (int) (((green + g) > 255) ? 255 : green + g), (int) (((blue + b) > 255) ? 255 : blue + b));
-	                 newImage.pxImage[i][j] = pxColor;
+					 double newRed = pxColor.getRed() * 255 + r;
+					 double newGreen = pxColor.getGreen() * 255 + g;
+					 double newBlue = pxColor.getBlue() * 255 + b;
+	                 //pxColor = Color.rgb((int) (((newRed) > 255) ? 255 : ((newRed) < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 : newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue + b));
+					 pxColor = Color.rgb(getAllowedValue(newRed), getAllowedValue(newGreen), getAllowedValue(newBlue));
+					 newImage.pxImage[i][j] = pxColor;
 	             }
 	         }
 	         return newImage;
-	     }
-	     public double getR() {
+		}
+
+		private int getAllowedValue(double newColor) {
+			if (newColor > 255) {
+				newColor = 255;
+			}
+			else if (newColor < 0) {
+				newColor = 0;
+			}
+			return (int) newColor;
+
+		}
+
+		public double getR() {
 				return r;
 		}
 

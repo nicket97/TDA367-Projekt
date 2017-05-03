@@ -22,10 +22,10 @@ public class Blur implements Layerable {
 
 		LoadedImage newImage = new LoadedImage(img);
 		
-		BufferedImage blurredImg = filter(newImage.getBufferedImg(newImage), null);
+		BufferedImage blurredImg = filter(newImage.getBufferedImg(), newImage.getBufferedImg());
 	
-		LoadedImage finalImg = new LoadedImage(blurredImg);
-		return finalImg;
+		
+		return new LoadedImage(blurredImg);
 	}
 	
     public BufferedImage filter(BufferedImage src, BufferedImage dst) {

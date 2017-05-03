@@ -51,11 +51,6 @@ public class CanvasView extends AnchorPane implements Initializable {
 	}
 	public void drawImage(LoadedImage img){
 		
-		/*TestCase f�r red color shift
-		 * Layerable k = new ColorShift(100,1,1);
-		img = k.transform(img);
-		
-		*/
 		LoadedImage newImage = new LoadedImage(img);
 		
 		for(Layer layer : Layers.getLayerStack()){
@@ -67,17 +62,8 @@ public class CanvasView extends AnchorPane implements Initializable {
 		
 		for(int i = 0; i < newImage.pxImage.length && i < canvasPane.getWidth(); i++){
 			for(int j = 0; j < newImage.pxImage[i].length && j < canvasPane.getHeight(); j++){
-				//String hexColor = String.format("#%06X", (0xFFFFFF & img.pxImage[i][j]));
-				//System.out.println(img.pxImage[i][j]);
-				/*int argb = img.pxImage[i][j];
-				int r = (argb>>16)&0xFF;
-				int g = (argb>>8)&0xFF;
-				int b = (argb>>0)&0xFF;
-				gc.setColor(i, j, Color.rgb(r, g, b));*/
-			
 				gc.setColor(i, j, newImage.pxImage[i][j]);
 			}
-			//System.out.println(img.pxImage.length-i);
 		}
 		
 				canvasPane.getChildren().clear();
@@ -86,6 +72,9 @@ public class CanvasView extends AnchorPane implements Initializable {
 		System.out.println(canvasPane.getChildren().toString());
 	}
 	public void repaint(){
+		for(int i = 0; i < Layers.getLayerStack().size(); i++){
+			System.out.println(Layers.getLayerStack().size());
+		}
 		this.drawImage(MainView.getBackgroundImage());
 	}
 	

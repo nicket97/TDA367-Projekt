@@ -37,10 +37,10 @@ public class GaussianBlur implements Layerable {
 		public LoadedImage transform(LoadedImage img) {
 			LoadedImage newImage = new LoadedImage(img);
 			
-			BufferedImage blurredImg = blur(newImage.getBufferedImg(newImage), null);
+			BufferedImage blurredImg = blur(newImage.getBufferedImg(), newImage.getBufferedImg());
 		
 			LoadedImage finalImg = new LoadedImage(blurredImg);
-			return finalImg;
+			return newImage;
 		}
 
 	    public BufferedImage blur(BufferedImage src, BufferedImage dst) {

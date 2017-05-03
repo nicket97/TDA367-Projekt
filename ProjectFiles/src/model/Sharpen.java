@@ -14,10 +14,10 @@ public class Sharpen extends GaussianBlur {
 		public LoadedImage transform(LoadedImage img) {
 			LoadedImage newImage = new LoadedImage(img);
 			
-			BufferedImage blurredImg = filter(newImage.getBufferedImg(newImage), null);
+			BufferedImage blurredImg = filter(newImage.getBufferedImg(), newImage.getBufferedImg());
 		
 			LoadedImage finalImg = new LoadedImage(blurredImg);
-			return finalImg;
+			return newImage;
 		}
 		
 	    public BufferedImage filter( BufferedImage src, BufferedImage dst ) {

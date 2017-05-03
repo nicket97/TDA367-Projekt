@@ -23,6 +23,8 @@
                      </accelerator></MenuItem>
               <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Avsluta" />
               <MenuItem fx:id="menuExport" mnemonicParsing="false" text="Exportera" />
+              <MenuItem fx:id="menuSaveProject" mnemonicParsing="false" text="Spara Projekt" />
+              <MenuItem fx:id="menuOpenProject" mnemonicParsing="false" text="Öppna Projekt" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Verktyg">

@@ -29,6 +29,7 @@ import model.GrayScale;
 import model.Layer;
 import model.Layerable;
 import model.LoadedImage;
+import model.SaveProject;
 import model.Sharpen;
 
 public class MainView extends AnchorPane implements Initializable {
@@ -44,7 +45,7 @@ public class MainView extends AnchorPane implements Initializable {
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
 
 	@FXML
-	MenuItem openImage, menuClose, menuExport;
+	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject;
 	@FXML
 	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance;
 	@FXML
@@ -120,6 +121,12 @@ public class MainView extends AnchorPane implements Initializable {
 			} catch (IOException e1) {
 			   
 			}
+		});
+		menuSaveProject.setOnAction(e -> {
+			SaveProject.saveProject();
+		});
+		menuOpenProject.setOnAction(e -> {
+			
 		});
 		
 		closeButton.setOnAction(e ->{

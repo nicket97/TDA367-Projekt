@@ -71,14 +71,15 @@ public class ColorShift extends ColorFilter{
 
 		@Override
 		public String saveLayer() {
-			// TODO Auto-generated method stub
-			return null;
+			String output = "ColorShift?" + r + "?" + g + "?" + b + "?"; 
+			return output;
 		}
 
 		@Override
 		public Layer openSavedLayer(String loadString) {
-			// TODO Auto-generated method stub
-			return null;
+			String[] data = loadString.split("?");
+			ColorShift cs = new ColorShift(Double.parseDouble(data[1]), Double.parseDouble(data[2]), Double.parseDouble(data[3]));
+			return new Layer(cs);
 		}
 
 		

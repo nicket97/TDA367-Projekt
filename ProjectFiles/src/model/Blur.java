@@ -11,6 +11,7 @@ public class Blur implements Layerable {
 	
 	public Blur() {
 		this(5);
+		//make it possible to change value?
 	}
 
 	public Blur(int radius) {
@@ -147,13 +148,15 @@ public class Blur implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "Blur?" + hRadius + "?" + vRadius + "?" + iterations + "?";
+		return output;
 	}
 
 	@Override
 	public Layer openSavedLayer(String loadString) {
-		// TODO Auto-generated method stub
+		String[] data = loadString.split("?");
+		Blur bl = new Blur();
+		//rewrite so that blur level isn't always 5
 		return null;
 	}
 

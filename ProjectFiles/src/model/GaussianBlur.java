@@ -19,6 +19,7 @@ public class GaussianBlur implements Layerable {
 		
 		public GaussianBlur() {
 			this(10);
+			//make it possible to change
 		}
 
 		public GaussianBlur(float radius) {
@@ -139,13 +140,15 @@ public class GaussianBlur implements Layerable {
 
 		@Override
 		public String saveLayer() {
-			// TODO Auto-generated method stub
-			return null;
+			String output = "GaussianBlur?" + radius + "?" + kernel + "?";
+			return output;
 		}
 
 		@Override
 		public Layer openSavedLayer(String loadString) {
-			// TODO Auto-generated method stub
-			return null;
+			String[] data = loadString.split("?");
+			GaussianBlur gb = new GaussianBlur();
+			return new Layer(gb);
+		
 		}
 	}

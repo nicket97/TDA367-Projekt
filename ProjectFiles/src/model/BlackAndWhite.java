@@ -18,15 +18,16 @@ public class BlackAndWhite extends ColorFilter {
 
     @Override
     public String saveLayer() {
-        // TODO Auto-generated method stub
-        return null;
+        String output = "BlackAndWhite?" + threshold + "?";
+        return output;
     }
 
     
 
 	@Override
 	public Layer openSavedLayer(String loadString) {
-		// TODO Auto-generated method stub
-		return null;
+		String[] data = loadString.split("?");
+		BlackAndWhite bw = new BlackAndWhite(Integer.parseInt(data[1]));
+		return new Layer(bw);
 	}
 }

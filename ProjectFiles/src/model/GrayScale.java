@@ -18,16 +18,15 @@ public class GrayScale extends ColorFilter {
 
 	@Override
 	public String saveLayer() {
-		
-		return null;
+		String output = "GreyScale?";
+		return output;
 	}
 
 	
 
 	@Override
 	public Layer openSavedLayer(String loadString) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Layer(new GrayScale());
 	}
 
 }

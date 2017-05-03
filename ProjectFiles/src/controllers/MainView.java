@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,7 +44,7 @@ public class MainView extends AnchorPane implements Initializable {
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
 
 	@FXML
-	MenuItem openImage, menuClose;
+	MenuItem openImage, menuClose, menuExport;
 	@FXML
 	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance;
 	@FXML
@@ -78,7 +79,7 @@ public class MainView extends AnchorPane implements Initializable {
 			FileChooser fileChooser = new FileChooser();
 			
 			//fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
-			fileChooser.setTitle("Välj en bild");
+			fileChooser.setTitle("Vï¿½lj en bild");
 			
 			File f = fileChooser.showOpenDialog(new Stage());
 			
@@ -101,6 +102,24 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		menuClose.setOnAction(e ->{
 			System.exit(0);
+		});
+		menuExport.setOnAction(e ->{
+			
+			try {
+			    LoadedImage export = MainView.backgroundImage;
+			    for(Layer layer : Layers.getLayerStack()){
+					export = layer.getAction().transform(export);
+				}
+			    FileChooser fileChooser = new FileChooser();
+			   
+			      File outputfile =  fileChooser.showSaveDialog(new Stage());			  
+			      BufferedImage bufferedExport = export.getBufferedImg();
+			      ImageIO.write(bufferedExport, "png", outputfile);
+			    
+			    
+			} catch (IOException e1) {
+			   
+			}
 		});
 		
 		closeButton.setOnAction(e ->{

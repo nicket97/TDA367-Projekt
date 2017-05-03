@@ -72,9 +72,6 @@ public class CanvasView extends AnchorPane implements Initializable {
 		System.out.println(canvasPane.getChildren().toString());
 	}
 	public void repaint(){
-		for(int i = 0; i < Layers.getLayerStack().size(); i++){
-			System.out.println(Layers.getLayerStack().size());
-		}
 		this.drawImage(MainView.getBackgroundImage());
 	}
 	

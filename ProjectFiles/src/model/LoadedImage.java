@@ -18,15 +18,13 @@ public class LoadedImage {
 		this.pxImage = new Color[width][heigth];
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < heigth; j++){
-				int argb =  img.getRGB(i, j);
-				int r = (argb>>16)&0xFF;
-				int g = (argb>>8)&0xFF;
-				int b = (argb>>0)&0xFF;
-				pxImage[i][j] = Color.rgb(r, g, b);
+				pxImage[i][j] = getColorFromInt(img.getRGB(i, j));
 			}
 		}
 		System.out.println("hej" + pxImage[0][0].getRed()*255 + " eller " + ((img.getRGB(0, 0)>>16)&0xFF));
 	}
+	
+	
 	public LoadedImage(LoadedImage img){
 		this.width = img.width;
 		this.heigth = img.heigth;
@@ -45,9 +43,20 @@ public class LoadedImage {
         this.lImg = image;
 		System.out.println("heja" + pxImage[0][0].getRed()*255 + " eller " + ((lImg.getRGB(0, 0)>>16)&0xFF));
 	}
+	
 	public BufferedImage getBufferedImg(){
 		return lImg;
 	}
+	
+	public Color getColorFromInt(int color){
+		int argb =  color;
+		int r = (argb>>16)&0xFF;
+		int g = (argb>>8)&0xFF;
+		int b = (argb>>0)&0xFF;
+		return Color.rgb(r, g, b);
+		
+	}
+	
 	public int getIntFromColor(Color rgb){
 		
 	    int R = (int) Math.round(255 * rgb.getRed());

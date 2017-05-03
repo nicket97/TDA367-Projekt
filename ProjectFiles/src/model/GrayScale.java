@@ -23,4 +23,16 @@ public class GrayScale extends ColorFilter {
 		return newImage;
 	}
 
+	@Override
+	public String saveLayer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void openSavedLayer() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -68,6 +68,18 @@ public class ColorShift extends ColorFilter{
 		public void setB(double b) {
 			this.b = b;
 		}
+
+		@Override
+		public String saveLayer() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void openSavedLayer() {
+			// TODO Auto-generated method stub
+			
+		}
 	 
 
 }

@@ -144,4 +144,16 @@ public class Blur implements Layerable {
 		else
 			image.setRGB(x, y, width, height, pixels, 0, width);
     }
+
+	@Override
+	public String saveLayer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void openSavedLayer() {
+		// TODO Auto-generated method stub
+		
+	}
 }

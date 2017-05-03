@@ -136,4 +136,16 @@ public class GaussianBlur implements Layerable {
 
 			return new Kernel(rows, 1, matrix);
 		}
+
+		@Override
+		public String saveLayer() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void openSavedLayer() {
+			// TODO Auto-generated method stub
+			
+		}
 	}

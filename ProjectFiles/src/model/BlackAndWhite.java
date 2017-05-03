@@ -1,8 +1,6 @@
 package model;
 
-/**
- * Created by anton on 03/05/17.
- */
+
 public class BlackAndWhite extends ColorFilter {
     private int threshold;
 
@@ -24,9 +22,11 @@ public class BlackAndWhite extends ColorFilter {
         return null;
     }
 
-    @Override
-    public void openSavedLayer() {
-        // TODO Auto-generated method stub
+    
 
-    }
+	@Override
+	public Layer openSavedLayer(String loadString) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

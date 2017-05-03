@@ -29,10 +29,12 @@ public class GrayScale extends ColorFilter {
 		return null;
 	}
 
+	
+
 	@Override
-	public void openSavedLayer() {
+	public Layer openSavedLayer(String loadString) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

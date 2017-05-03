@@ -22,6 +22,7 @@
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
               <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Avsluta" />
+              <MenuItem fx:id="menuExport" mnemonicParsing="false" text="Exportera" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Verktyg">

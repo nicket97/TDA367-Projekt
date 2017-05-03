@@ -152,8 +152,10 @@ public class Blur implements Layerable {
 	}
 
 	@Override
-	public void openSavedLayer() {
+	public Layer openSavedLayer(String loadString) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
+
+	
 }

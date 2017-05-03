@@ -19,12 +19,25 @@ public class SaveProject {
 			File outputfile =  fileChooser.showSaveDialog(new Stage());
 			PrintWriter out = new PrintWriter(outputfile.getName() + ".nh");
 			System.out.println("sparar " +  outputfile.getName());
-			out.println("Detta är en sparfile för vår fina sak");
+			
 		    for(Layer layer : Layers.getLayerStack()){
 		    	out.println(layer.getAction().saveLayer());
 			}
+		    LoadedImage img = MainView.getBackgroundImage();
+		    out.println("??????????");
+		    out.print(img.getBufferedImg().getWidth());
+		    out.print("?");
+		    out.print(img.getBufferedImg().getHeight());
+		    out.println();
+		    out.println("??????????");
+		    for(int i = 0; i < img.getBufferedImg().getWidth(); i++){
+		    	for(int j = 0; j < img.getBufferedImg().getHeight(); j++){
+		    		out.print(img.getBufferedImg().getRGB(i, j) + "?");
+		    	}
+		    	out.println();
+		    }
+		    out.println("??????????");
 		    out.close();
-		    
 		    
 		    
 		    

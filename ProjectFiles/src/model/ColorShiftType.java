@@ -2,5 +2,12 @@ package model;
 
 
 public enum ColorShiftType {
-        RED, GREEN, BLUE, PURPLE, YELLOW;
+        YELLOW,
+        ORANGE,
+        BLUE,
+        RED,
+        PINK,
+        PURPLE,
+        TURQUOISE,
+        GREEN;
 }

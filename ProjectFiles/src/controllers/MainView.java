@@ -29,6 +29,7 @@ import model.GrayScale;
 import model.Layer;
 import model.Layerable;
 import model.LoadedImage;
+import model.OpenProject;
 import model.SaveProject;
 import model.Sharpen;
 
@@ -126,7 +127,7 @@ public class MainView extends AnchorPane implements Initializable {
 			SaveProject.saveProject();
 		});
 		menuOpenProject.setOnAction(e -> {
-			
+			OpenProject.openFile();
 		});
 		
 		closeButton.setOnAction(e ->{

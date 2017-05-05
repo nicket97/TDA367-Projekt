@@ -144,11 +144,11 @@ public class GaussianBlur implements Layerable {
 			return output;
 		}
 
-		@Override
+		/*@Override
 		public Layer openSavedLayer(String loadString) {
 			String[] data = loadString.split("?");
 			GaussianBlur gb = new GaussianBlur();
 			return new Layer(gb);
 		
-		}
+		}*/
 	}

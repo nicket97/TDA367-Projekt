@@ -152,13 +152,13 @@ public class Blur implements Layerable {
 		return output;
 	}
 
-	@Override
+	/*@Override
 	public Layer openSavedLayer(String loadString) {
 		String[] data = loadString.split("?");
 		Blur bl = new Blur();
 		//rewrite so that blur level isn't always 5
 		return null;
-	}
+	}*/
 
 	
 }

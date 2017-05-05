@@ -15,6 +15,13 @@ public class ColorShift extends ColorFilter{
 	         this.g = greenAddend;
 	         this.b = blueAddend;
 	     }
+		
+		public ColorShift(String[] arg) {
+			this.r = Double.parseDouble(arg[1]);
+			this.g = Double.parseDouble(arg[2]);
+			this.b = Double.parseDouble(arg[3]);
+			
+		}
 	 
 		public LoadedImage transform(LoadedImage img) {
 	    	 LoadedImage newImage = new LoadedImage(img);
@@ -75,12 +82,12 @@ public class ColorShift extends ColorFilter{
 			return output;
 		}
 
-		@Override
+	/*	@Override
 		public Layer openSavedLayer(String loadString) {
 			String[] data = loadString.split("?");
 			ColorShift cs = new ColorShift(Double.parseDouble(data[1]), Double.parseDouble(data[2]), Double.parseDouble(data[3]));
 			return new Layer(cs);
-		}
+		} */
 
 		
 	 

@@ -7,6 +7,10 @@ public class BlackAndWhite extends ColorFilter {
     public BlackAndWhite(int threshold) {
         this.threshold = threshold;
     }
+    
+    public BlackAndWhite(String[] arg){
+    	this.threshold = Integer.parseInt(arg[1]);
+    }
 
     public LoadedImage transform(LoadedImage img) {
         LoadedImage newImage = new LoadedImage(img);
@@ -24,10 +28,10 @@ public class BlackAndWhite extends ColorFilter {
 
     
 
-	@Override
+	/* @Override
 	public Layer openSavedLayer(String loadString) {
 		String[] data = loadString.split("?");
-		BlackAndWhite bw = new BlackAndWhite(Integer.parseInt(data[1]));
+		BlackAndWhite bw = new BlackAndWhite();
 		return new Layer(bw);
-	}
+	} */
 }

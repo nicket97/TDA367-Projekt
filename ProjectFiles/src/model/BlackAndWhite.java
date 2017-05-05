@@ -40,6 +40,14 @@ public class BlackAndWhite extends ColorFilter {
         this.threshold = threshold;
     }
 
+    public int getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
+    }
+
     @Override
     public String saveLayer() {
         String output = "BlackAndWhite?" + threshold + "?";

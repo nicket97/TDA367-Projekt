@@ -48,7 +48,7 @@ public class LoadedImage {
 		return lImg;
 	}
 	
-	public Color getColorFromInt(int color){
+	public static Color getColorFromInt(int color){
 		int argb =  color;
 		int r = (argb>>16)&0xFF;
 		int g = (argb>>8)&0xFF;
@@ -57,7 +57,7 @@ public class LoadedImage {
 		
 	}
 	
-	public int getIntFromColor(Color rgb){
+	public static int getIntFromColor(Color rgb){
 		
 	    int R = (int) Math.round(255 * rgb.getRed());
 	    int G = (int) Math.round(255 * rgb.getGreen());

@@ -1,4 +1,4 @@
-package test;
+package model;
 
 import javafx.scene.paint.Color;
 import model.ColorShift;
@@ -27,7 +27,7 @@ public class ColorShiftTest {
         LoadedImage newImage = colorShift.transform(loadedImage);
 
         assertTrue((int) (newImage.pxImage[0][0].getRed() * 255) == 10);
-        assertTrue((int) (newImage.pxImage[0][0].getGreen() * 255) == 0);
+        assertTrue((int) (newImage.pxImage[0][0].getGreen() * 255) == 0);   //min 0
         assertTrue((int) (newImage.pxImage[0][0].getBlue() * 255) == 50);
 
         assertTrue((int) (newImage.pxImage[0][1].getRed() * 255) == 110);
@@ -40,7 +40,7 @@ public class ColorShiftTest {
 
         assertTrue((int) (newImage.pxImage[1][1].getRed() * 255) == 210);
         assertTrue((int) (newImage.pxImage[1][1].getGreen() * 255) == 200);
-        assertTrue((int) (newImage.pxImage[1][1].getBlue() * 255) == 255);
+        assertTrue((int) (newImage.pxImage[1][1].getBlue() * 255) == 255);  //max 255
     }
 
 }

@@ -47,7 +47,35 @@ public class LayerView extends AnchorPane implements Initializable, ActionListen
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("init layers");
+		/*System.out.println("init layers");
+		
+		for(Layer layer : listOfLayers){
+			layerList.getItems().add(new LayerRow(layer));
+		}
+
+		layerList.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				Platform.runLater(new Runnable() {
+					public void run() {
+						layerList.getSelectionModel().select(-1);
+
+					}
+				});
+			}
+		});*/
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+	}
+
+	public void update() {
+		listOfLayers.clear();
+		layerList.getItems().clear();
+		for(Layer l: Layers.getLayerStack()){
+			listOfLayers.add(l);
+		}
 		
 		for(Layer layer : listOfLayers){
 			layerList.getItems().add(new LayerRow(layer));
@@ -63,13 +91,7 @@ public class LayerView extends AnchorPane implements Initializable, ActionListen
 				});
 			}
 		});
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		listOfLayers.clear();
-		listOfLayers.addAll(Layers.getLayerStack());
-		System.out.print("actionperf");
+		
 	}
 	
 	

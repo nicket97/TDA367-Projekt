@@ -60,8 +60,8 @@ public class CanvasView extends AnchorPane implements Initializable {
 		imagePane = new Canvas(newImage.width, newImage.heigth);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		
-		for(int i = 0; i < newImage.pxImage.length && i < canvasPane.getWidth(); i++){
-			for(int j = 0; j < newImage.pxImage[i].length && j < canvasPane.getHeight(); j++){
+		for(int i = 0; i < newImage.pxImage.length; i++){
+			for(int j = 0; j < newImage.pxImage[i].length; j++){
 				gc.setColor(i, j, newImage.pxImage[i][j]);
 			}
 		}

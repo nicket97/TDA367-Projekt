@@ -8,15 +8,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import main.Layers;
 import model.Layer;
 
-public class LayerRow extends AnchorPane implements Initializable {
+public class LayerRow extends ListCell<Layer> implements Initializable {
 
 	@FXML
 	AnchorPane layerList;
 	@FXML
 	Label layerLabel, trashCan;
+	@FXML
+	AnchorPane layerRowPane;
 	
 	private Layer name;
 	
@@ -39,11 +43,16 @@ public class LayerRow extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layerrow");
-		layerLabel.setText(Layer.class.getName());
 		
-		trashCan.setOnMouseClicked(e -> {
-			//LayerView.remove(this);
-			//layerList.getParent().remove(this);
-		});
+	}
+	@Override
+	 protected void updateItem(Layer item, boolean empty){
+        super.updateItem(item, empty);
+        layerLabel.setText(item.getName());
+        trashCan.setOnMouseClicked(e-> {
+        	Layers.remove(item);
+        });
+        setGraphic(layerRowPane);
+
 	}
 }

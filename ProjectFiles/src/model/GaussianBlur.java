@@ -144,6 +144,11 @@ public class GaussianBlur implements Layerable {
 			return output;
 		}
 
+		@Override
+		public String getName() {
+			return "Gaussisk Oskärpa";
+		}
+
 		/*@Override
 		public Layer openSavedLayer(String loadString) {
 			String[] data = loadString.split("?");

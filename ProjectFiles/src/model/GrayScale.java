@@ -29,4 +29,9 @@ public class GrayScale extends ColorFilter {
 		return new Layer(new GrayScale());
 	}
 
+	@Override
+	public String getName() {
+		return "Gråskala";
+	}
+
 }

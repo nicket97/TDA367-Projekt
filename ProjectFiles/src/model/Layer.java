@@ -9,6 +9,7 @@ public class Layer {
 	public Layer(Layerable l){
 		this.action = l;
 		this.visible = true;
+		this.name = l.getName();
 	}
 
 	public Layerable getAction() {

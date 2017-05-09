@@ -17,7 +17,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import main.Layers;
+import model.Blur;
 import model.Layer;
+import model.Sharpen;
 
 public class LayerView extends AnchorPane implements Initializable, ActionListener {
 
@@ -47,8 +49,11 @@ public class LayerView extends AnchorPane implements Initializable, ActionListen
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layers");
 		
-		listOfLayers.addAll(Layers.getLayerStack());
+		listOfLayers.add(new Layer(new Blur()));
+		listOfLayers.add(new Layer(new Sharpen()));
 		
+		/**listOfLayers.addAll(Layers.getLayerStack());
+		*/
 		for(Layer layer : listOfLayers){
 			//String[] strings=name.split("\t");
 			layerList.getItems().add(new LayerRow(layer));

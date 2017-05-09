@@ -82,6 +82,12 @@ public class ColorShift extends ColorFilter{
 			return output;
 		}
 
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+			return "Color Shift";
+		}
+
 	/*	@Override
 		public Layer openSavedLayer(String loadString) {
 			String[] data = loadString.split("?");

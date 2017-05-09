@@ -9,6 +9,7 @@ public class Layer {
 	public Layer(Layerable l){
 		this.action = l;
 		this.visible = true;
+		this.name = l.getName();
 	}
 
 	public Layerable getAction() {
@@ -18,7 +19,7 @@ public class Layer {
 	public void setaction(Layerable l) {
 		this.action = l;
 	}
-	public void changeVisable(){
+	public void changeVisible(){
 		this.visible = !this.visible;
 	}
 

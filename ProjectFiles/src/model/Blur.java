@@ -152,6 +152,11 @@ public class Blur implements Layerable {
 		return output;
 	}
 
+	@Override
+	public String getName() {
+		return "Oskärpa";
+	}
+
 	/*@Override
 	public Layer openSavedLayer(String loadString) {
 		String[] data = loadString.split("?");

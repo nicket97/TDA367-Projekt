@@ -1,8 +1,6 @@
 package controllers;
 
 import java.util.List;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import main.Layers;
 import model.Layer;
 
-public class LayerView extends AnchorPane implements Initializable, ActionListener {
+public class LayerView extends AnchorPane implements Initializable {
 
 	@FXML
 	AnchorPane layerListHolder;
@@ -40,17 +38,20 @@ public class LayerView extends AnchorPane implements Initializable, ActionListen
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
-		
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("init layers");
-		
-		listOfLayers.addAll(Layers.getLayerStack());
+	}
+
+	public void update() {
+		listOfLayers.clear();
+		layerList.getItems().clear();
+		for(Layer l: Layers.getLayerStack()){
+			listOfLayers.add(l);
+		}
 		
 		for(Layer layer : listOfLayers){
-			//String[] strings=name.split("\t");
 			layerList.getItems().add(new LayerRow(layer));
 		}
 
@@ -64,14 +65,6 @@ public class LayerView extends AnchorPane implements Initializable, ActionListen
 				});
 			}
 		});
+		
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		listOfLayers.clear();
-		listOfLayers.addAll(Layers.getLayerStack());
-	}
-	
-	
-	
 }

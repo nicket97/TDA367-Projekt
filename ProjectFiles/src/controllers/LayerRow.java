@@ -7,29 +7,33 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import main.Layers;
 import model.Layer;
 
-public class LayerRow extends ListCell<Layer> implements Initializable {
+public class LayerRow extends AnchorPane implements Initializable {
 
+	//ListCell<Layer> 
 	@FXML
 	AnchorPane layerList;
 	@FXML
 	Label layerLabel, trashCan;
 	@FXML
+	CheckBox visibleBox;
+	@FXML
 	AnchorPane layerRowPane;
 	
-	private Layer name;
+	private String name;
+	private Layer layer;
 	
-	public LayerRow(Layer name){
+	public LayerRow(Layer layer){
 		
-		this.name = name;
+		this.layer = layer;
+		this.name = layer.getName();
 
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/LayerRow.fxml"));
-		System.out.println("layerview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
 		
@@ -43,16 +47,10 @@ public class LayerRow extends ListCell<Layer> implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layerrow");
-		
-	}
-	@Override
-	 protected void updateItem(Layer item, boolean empty){
-        super.updateItem(item, empty);
-        layerLabel.setText(item.getName());
-        trashCan.setOnMouseClicked(e-> {
-        	Layers.remove(item);
-        });
-        setGraphic(layerRowPane);
-
+		layerLabel.setText(name);
+		trashCan.setOnMouseClicked(e -> {Layers.remove(layer);
+		MainView.canvasView.repaint();});
+		visibleBox.setOnMouseClicked(e -> {layer.changeVisible();
+		MainView.canvasView.repaint();});
 	}
 }

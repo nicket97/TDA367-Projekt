@@ -1,5 +1,7 @@
 package controllers;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +25,8 @@ public class CanvasView extends AnchorPane implements Initializable {
 	
 	double zoomFactor = 1;
 
-
+	int topX = 0;
+	int topY = 0;
 	
 	
 	
@@ -48,6 +51,12 @@ public class CanvasView extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init canvas");
+		canvasPane.setOnMousePressed(e ->{
+			System.out.println("klicka X = " +  e.getX() + " Y = " + e.getY());
+		});
+		canvasPane.setOnMouseReleased(e -> {
+			System.out.println("Släpp X = " +  e.getX() + " Y = " + e.getY());
+		});
 		
 	}
 	public void drawImage(LoadedImage img, double zoomFactor){
@@ -103,6 +112,8 @@ public class CanvasView extends AnchorPane implements Initializable {
 	public double getZoomFactor () {
 		return zoomFactor;
 	}
+
+	
 	
 	
 }

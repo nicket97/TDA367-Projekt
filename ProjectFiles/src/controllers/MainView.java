@@ -55,6 +55,8 @@ public class MainView extends AnchorPane implements Initializable {
 	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter;
 	@FXML
 	MenuItem menuFMatte, menuFBW, menuFVintage;
+	@FXML
+	MenuItem menuZoomIn, menuZoomOut;
 
 	@FXML
 	Button closeButton,miniButton, maxiButton ;
@@ -145,6 +147,17 @@ public class MainView extends AnchorPane implements Initializable {
 		}
 		});
 		
+		menuZoomOut.setOnAction(e ->{
+			canvasView.setZoomFactor((canvasView.getZoomFactor() * 1.5));
+			canvasView.repaint();
+			});
+		
+		menuZoomIn.setOnAction(e ->{
+			canvasView.setZoomFactor((canvasView.getZoomFactor() * 0.5));
+			System.out.println("zooooom" + canvasView.getZoomFactor());
+			canvasView.repaint();
+			});
+		
 		menuClicked(menuBlur, (new Blur()));
 		menuClicked(menuGaussianBlur, (new GaussianBlur()));
 		menuClicked(menuSharpen, (new Sharpen()));
@@ -182,4 +195,8 @@ public class MainView extends AnchorPane implements Initializable {
 	public static CanvasView getCanvas(){
 		return canvasView;
 	}
+	
+		
+		
+	
 }

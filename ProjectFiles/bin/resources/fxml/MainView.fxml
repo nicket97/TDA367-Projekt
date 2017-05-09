@@ -35,6 +35,8 @@
                         <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
               <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem fx:id="menuZoomIn" mnemonicParsing="false" text="Zooma in" />
+                  <MenuItem fx:id="menuZoomOut" mnemonicParsing="false" text="Zooma ut" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Anpassa">

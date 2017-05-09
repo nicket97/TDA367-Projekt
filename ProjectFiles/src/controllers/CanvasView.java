@@ -24,6 +24,10 @@ public class CanvasView extends AnchorPane implements Initializable {
 	
 	Canvas imagePane;
 	
+	double zoomFactor = 1;
+
+
+	
 	
 	
 	public CanvasView() {
@@ -49,7 +53,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 		System.out.println("init canvas");
 		
 	}
-	public void drawImage(LoadedImage img){
+	public void drawImage(LoadedImage img, double zoomFactor){
 		
 		LoadedImage newImage = new LoadedImage(img);
 		
@@ -60,19 +64,43 @@ public class CanvasView extends AnchorPane implements Initializable {
 		imagePane = new Canvas(newImage.width, newImage.heigth);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		
-		for(int i = 0; i < newImage.pxImage.length; i++){
-			for(int j = 0; j < newImage.pxImage[i].length; j++){
-				gc.setColor(i, j, newImage.pxImage[i][j]);
+		if (zoomFactor >= 1) {
+		for(int i = 0; i < newImage.pxImage.length/zoomFactor; i++){
+			for(int j = 0; j < newImage.pxImage[i].length/zoomFactor; j++){
+				gc.setColor(i, j, newImage.pxImage[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
 			}
+		}
+		}
+		else if (zoomFactor < 1) {
+			
+			double zoom = 1-zoomFactor;
+			double y = 1;
+			//System.out.println("testa x =" + x + "Y = " + y);
+			for(int i = 0; i < newImage.pxImage.length; i++){
+				double x = 1;
+				y += zoom;
+				for(int j = 0; j < newImage.pxImage[i].length; j++){
+					gc.setColor(i, j, newImage.pxImage[(int)(y)][(int) (x += zoom)]);
+					//System.out.println((int)(x + zoom) + " and  " + (int) (y));
+				}
+		}
 		}
 		
 				canvasPane.getChildren().clear();
 		canvasPane.getChildren().add(imagePane);
 		
-		System.out.println(canvasPane.getChildren().toString());
-	}
+		System.out.println(canvasPane.getChildren().toString());}
+	
 	public void repaint(){
-		this.drawImage(MainView.getBackgroundImage());
+		this.drawImage(MainView.getBackgroundImage(), zoomFactor);
+	}
+	
+	public void setZoomFactor (double zoomFactor) {
+		this.zoomFactor = zoomFactor;
+	}
+		
+	public double getZoomFactor () {
+		return zoomFactor;
 	}
 	
 	

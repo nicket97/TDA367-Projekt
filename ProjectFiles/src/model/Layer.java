@@ -19,6 +19,9 @@ public class Layer {
 	public void setaction(Layerable l) {
 		this.action = l;
 	}
+	public boolean getVisible(){
+		return visible;
+	}
 	public void changeVisible(){
 		this.visible = !this.visible;
 	}

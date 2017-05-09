@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -12,9 +11,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import main.Layers;
-import model.ColorShift;
 import model.Layer;
-import model.Layerable;
 import model.LoadedImage;
 
 public class CanvasView extends AnchorPane implements Initializable {
@@ -58,7 +55,9 @@ public class CanvasView extends AnchorPane implements Initializable {
 		LoadedImage newImage = new LoadedImage(img);
 		
 		for(Layer layer : Layers.getLayerStack()){
-			newImage = layer.getAction().transform(newImage);
+			if (layer.getVisible()){
+				newImage = layer.getAction().transform(newImage);	
+			}
 		}
 		
 		imagePane = new Canvas(newImage.width, newImage.heigth);

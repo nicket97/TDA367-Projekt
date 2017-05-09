@@ -29,6 +29,7 @@ public class LayerRow extends AnchorPane implements Initializable {
 	private Layer layer;
 	
 	public LayerRow(Layer layer){
+		
 		this.layer = layer;
 		this.name = layer.getName();
 
@@ -47,7 +48,9 @@ public class LayerRow extends AnchorPane implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layerrow");
 		layerLabel.setText(name);
-		trashCan.setOnMouseClicked(e -> {Layers.remove(layer);});
-		visibleBox.setOnMouseClicked(e -> {layer.changeVisable();});
+		trashCan.setOnMouseClicked(e -> {Layers.remove(layer);
+		MainView.canvasView.repaint();});
+		visibleBox.setOnMouseClicked(e -> {layer.changeVisible();
+		MainView.canvasView.repaint();});
 	}
 }

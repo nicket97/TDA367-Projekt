@@ -49,13 +49,7 @@ public class LayerView extends AnchorPane implements Initializable, ActionListen
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layers");
 		
-		listOfLayers.add(new Layer(new Blur()));
-		listOfLayers.add(new Layer(new Sharpen()));
-		
-		/**listOfLayers.addAll(Layers.getLayerStack());
-		*/
 		for(Layer layer : listOfLayers){
-			//String[] strings=name.split("\t");
 			layerList.getItems().add(new LayerRow(layer));
 		}
 
@@ -75,6 +69,7 @@ public class LayerView extends AnchorPane implements Initializable, ActionListen
 	public void actionPerformed(ActionEvent arg0) {
 		listOfLayers.clear();
 		listOfLayers.addAll(Layers.getLayerStack());
+		System.out.print("actionperf");
 	}
 	
 	

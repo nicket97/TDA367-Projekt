@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import main.Layers;
 import model.Layer;
@@ -21,15 +21,16 @@ public class LayerRow extends AnchorPane implements Initializable {
 	@FXML
 	Label layerLabel, trashCan;
 	@FXML
+	CheckBox visibleBox;
+	@FXML
 	AnchorPane layerRowPane;
 	
 	private String name;
+	private Layer layer;
 	
-	public LayerRow(Layer layerName){
-		//this.name = "hej";
-		this.name = layerName.getName();
-		System.out.println(name);
-		//layerLabel.setText("hej");
+	public LayerRow(Layer layer){
+		this.layer = layer;
+		this.name = layer.getName();
 
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/LayerRow.fxml"));
 		fxmlLoader.setRoot(this);
@@ -45,6 +46,8 @@ public class LayerRow extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init layerrow");
-		
+		layerLabel.setText(name);
+		trashCan.setOnMouseClicked(e -> {Layers.remove(layer);});
+		visibleBox.setOnMouseClicked(e -> {layer.changeVisable();});
 	}
 }

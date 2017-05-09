@@ -97,7 +97,7 @@ public class MainView extends AnchorPane implements Initializable {
 					g.drawImage(in, 0, 0, null);
 					g.dispose();
 					LoadedImage ll = new LoadedImage (newImage);
-					System.out.println(canvasView.toString());
+					//System.out.println(canvasView.toString());
 					setBackgroundImage(ll);
 					canvasView.repaint();
 			} catch (IOException e1) {
@@ -149,12 +149,13 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		menuZoomOut.setOnAction(e ->{
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 1.5));
+			System.out.println("zooooomOUT  " + canvasView.getZoomFactor());
 			canvasView.repaint();
 			});
 		
 		menuZoomIn.setOnAction(e ->{
-			canvasView.setZoomFactor((canvasView.getZoomFactor() * 0.5));
-			System.out.println("zooooom" + canvasView.getZoomFactor());
+			canvasView.setZoomFactor((canvasView.getZoomFactor() * 0.75));
+			System.out.println("zooooomIN  " + canvasView.getZoomFactor());
 			canvasView.repaint();
 			});
 		

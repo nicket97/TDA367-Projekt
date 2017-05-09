@@ -21,7 +21,7 @@ public class LoadedImage {
 				pxImage[i][j] = getColorFromInt(img.getRGB(i, j));
 			}
 		}
-		System.out.println("hej" + pxImage[0][0].getRed()*255 + " eller " + ((img.getRGB(0, 0)>>16)&0xFF));
+		//System.out.println("hej" + pxImage[0][0].getRed()*255 + " eller " + ((img.getRGB(0, 0)>>16)&0xFF));
 	}
 	
 	
@@ -41,7 +41,7 @@ public class LoadedImage {
         	}
         }
         this.lImg = image;
-		System.out.println("heja" + pxImage[0][0].getRed()*255 + " eller " + ((lImg.getRGB(0, 0)>>16)&0xFF));
+		//System.out.println("heja" + pxImage[0][0].getRed()*255 + " eller " + ((lImg.getRGB(0, 0)>>16)&0xFF));
 	}
 	
 	public BufferedImage getBufferedImg(){

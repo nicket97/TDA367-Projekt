@@ -72,15 +72,16 @@ public class CanvasView extends AnchorPane implements Initializable {
 		}
 		else if (zoomFactor < 1) {
 			
-			double zoom = 1-zoomFactor;
+			double zoom = zoomFactor;
+			System.out.println(zoom);
 			double y = 1;
 			//System.out.println("testa x =" + x + "Y = " + y);
 			for(int i = 0; i < newImage.pxImage.length; i++){
 				double x = 1;
 				y += zoom;
 				for(int j = 0; j < newImage.pxImage[i].length; j++){
-					gc.setColor(i, j, newImage.pxImage[(int)(y)][(int) (x += zoom)]);
-					//System.out.println((int)(x + zoom) + " and  " + (int) (y));
+					gc.setColor(i, j, newImage.pxImage[(int) Math.floor(y)][(int)Math.floor( (x += zoom))]);
+					//System.out.println((x) + " and  " + (y));
 				}
 		}
 		}
@@ -88,7 +89,8 @@ public class CanvasView extends AnchorPane implements Initializable {
 				canvasPane.getChildren().clear();
 		canvasPane.getChildren().add(imagePane);
 		
-		System.out.println(canvasPane.getChildren().toString());}
+		//System.out.println(canvasPane.getChildren().toString());
+		}
 	
 	public void repaint(){
 		this.drawImage(MainView.getBackgroundImage(), zoomFactor);

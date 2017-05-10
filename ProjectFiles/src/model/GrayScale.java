@@ -1,5 +1,8 @@
 package model;
 
+import java.util.List;
+
+import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class GrayScale extends ColorFilter {
@@ -31,7 +34,13 @@ public class GrayScale extends ColorFilter {
 
 	@Override
 	public String getName() {
-		return "Gråskala";
+		return "Grï¿½skala";
+	}
+
+	@Override
+	public List<Slider> getSliders() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

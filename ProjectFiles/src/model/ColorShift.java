@@ -1,5 +1,10 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import controllers.MainView;
+import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class ColorShift extends ColorFilter{
@@ -86,6 +91,44 @@ public class ColorShift extends ColorFilter{
 		public String getName() {
 			// TODO Auto-generated method stub
 			return "Color Shift";
+		}
+		public List<Slider> getSliders(){
+			List<Slider> sliders = new ArrayList<>();
+			Slider redSlider = new Slider();
+			redSlider.setMin(0);
+			redSlider.setMax(255);
+			redSlider.setValue(r);
+			redSlider.setOnDragDone(e -> {
+				r = redSlider.getValue();
+				MainView.getCanvas().repaint();
+				System.out.println("Röd " + redSlider.getValue());
+			});
+			
+			Slider blueSlider = new Slider();
+			blueSlider.setMin(0);
+			blueSlider.setMax(255);
+			blueSlider.setValue(r);
+			blueSlider.setOnDragDone(e -> {
+				b = blueSlider.getValue();
+				MainView.getCanvas().repaint();
+				System.out.println("Blå " + blueSlider.getValue());
+			});
+			
+			Slider greenSlider = new Slider();
+			greenSlider.setMin(0);
+			greenSlider.setMax(255);
+			greenSlider.setValue(r);
+			greenSlider.setOnDragDone(e -> {
+				g = greenSlider.getValue();
+				MainView.getCanvas().repaint();
+				System.out.println("grön" + greenSlider.getValue());
+			});
+			
+			sliders.add(redSlider);
+			sliders.add(greenSlider);
+			sliders.add(blueSlider);
+			return sliders;
+			
 		}
 
 	/*	@Override

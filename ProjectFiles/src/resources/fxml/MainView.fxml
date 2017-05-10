@@ -22,10 +22,10 @@
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-              <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Avsluta" />
-              <MenuItem fx:id="menuExport" mnemonicParsing="false" text="Exportera" />
-              <MenuItem fx:id="menuSaveProject" mnemonicParsing="false" text="Spara Projekt" />
               <MenuItem fx:id="menuOpenProject" mnemonicParsing="false" text="Öppna Projekt" />
+              <MenuItem fx:id="menuSaveProject" mnemonicParsing="false" text="Spara Projekt" />
+              <MenuItem fx:id="menuExport" mnemonicParsing="false" text="Exportera" />
+              <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Avsluta" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Verktyg">
@@ -44,7 +44,12 @@
                   <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Beskära" />
                   <MenuItem fx:id="menuExposure" mnemonicParsing="false" text="Exponering" />
                   <MenuItem fx:id="menuContrast" mnemonicParsing="false" text="Kontrast" />
-                  <MenuItem fx:id="menuReflect" mnemonicParsing="false" text="Spegla" />
+                  <MenuItem fx:id="menuReflect" mnemonicParsing="false" text="Spegla horisontellt" />
+                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Spegla vertikalt" />
+                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Rotera 90 grader höger" />
+                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Rotera 90 grader vänster" />
+                  
+                  
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Effekter">

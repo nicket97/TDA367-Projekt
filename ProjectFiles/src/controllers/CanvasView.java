@@ -67,12 +67,13 @@ public class CanvasView extends AnchorPane implements Initializable {
 			this.releasedX = e.getX();
 			this.releasedY = e.getY();
 			moveCanvas(distanceDragged());
+			
 		});
 		
 		
 	}
 	public void drawImage(LoadedImage img, double zoomFactor){
-		
+		System.out.println(System.nanoTime());
 		LoadedImage newImage = new LoadedImage(img);
 		
 		for(Layer layer : Layers.getLayerStack()){
@@ -110,6 +111,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 				}
 		}
 		}
+		System.out.println(System.nanoTime());
 		
 				canvasPane.getChildren().clear();
 		canvasPane.getChildren().add(imagePane);
@@ -131,8 +133,8 @@ public class CanvasView extends AnchorPane implements Initializable {
 	
 	public Point distanceDragged() {
 		Point distanceDiffernce = new Point();
-		distanceDiffernce.x = (int) (releasedX - pressedX);
-		distanceDiffernce.y = (int) (releasedY - pressedY);
+		distanceDiffernce.x = (int) (releasedX - pressedX)*(-1);
+		distanceDiffernce.y = (int) (releasedY - pressedY)*(-1);
 		System.out.println("Distance dragged method run" + distanceDiffernce.x);
 		return distanceDiffernce;
 	}
@@ -148,19 +150,16 @@ public class CanvasView extends AnchorPane implements Initializable {
 	public void moveCanvas(Point distanceDifference){
 		this.topX = getTopX() + distanceDifference.x;
 		this.topY = getTopY() + distanceDifference.y;
-		if(topX > 0 && topY > 0) {
-			repaint();
-		}
-		else if (topX < 0) {
+		
+			
+		if (topX < 0) {
 			this.topX = 0;
 		}
-		else if (topY < 0){
+		if (topY < 0){
 			this.topY = 0;
 		}
-		else if (topX < 0 && topY < 0) {
-			this.topX = 0;
-			this.topY = 0;
-		}
+		repaint();
+		
 	}
 	
 

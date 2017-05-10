@@ -2,9 +2,9 @@ package model;
 
 import java.awt.image.BufferedImage;
 
-public class Sharpen extends GaussianBlur {
+public class Sharpen {
 
-		private float amount = 0.1f;
+	/*	private float amount = 0.1f;
 		private int threshold = 1;
 		
 		public Sharpen() {
@@ -81,5 +81,5 @@ public class Sharpen extends GaussianBlur {
 	
 	public float getAmount() {
 		return amount;
-	}
+	} */
 }

@@ -1,180 +1,99 @@
 package model;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.Kernel;
 import java.util.ArrayList;
 import java.util.List;
 
 import controllers.MainView;
 import javafx.scene.control.Slider;
+import javafx.scene.paint.Color;
 
 public class GaussianBlur implements Layerable {
-
-		protected float radius;
-		protected Kernel kernel;
+	int radius;
+	double[][] kernel;
+	
+	public GaussianBlur(int r){
 		
-		public static int ZERO_EDGES = 0;
-		public static int CLAMP_EDGES = 1;
-		public static int WRAP_EDGES = 2;
-
-		protected Kernel kernelTwo = null;
-		public boolean alpha = true;
-		private int edgeAction = CLAMP_EDGES;
+		radius = r;
+		if (radius % 2 == 0) {
+			radius++;
+		}
+		 kernel = new double[2*radius+1][2*radius+1];
+		 
+		 int[] factors = new int[2*radius+1];
+		 
+		 for(int k = 0; k < radius+1; k++){
+			 factors[k]= (int) Math.pow(2, k);
+			 factors[factors.length-k-1] = (int) Math.pow(2, k);
+		 }
 		
-		public GaussianBlur() {
-			this(10);
-			//make it possible to change
-		}
-
-		public GaussianBlur(float radius) {
-			setRadius(radius);
-		}
-
-		public void setRadius(float radius) {
-			this.radius = radius;
-			kernel = makeKernel(radius);
+		for (int i = 0; i < 2*radius+1; i++) {
+			for (int j = 0; j < 2*radius+1; j++ ) {
+				kernel[i][j] = factors[i] * factors[j];
+			}
 		}
 		
-		public float getRadius() {
-			return radius;
-		}
+	}
+
+	@Override
+	public LoadedImage transform(LoadedImage img) {
+LoadedImage newImage = new LoadedImage(img);
 		
-		public LoadedImage transform(LoadedImage img) {
-			
-			LoadedImage newImage = new LoadedImage(img);
-			BufferedImage blurredImg = blur(newImage.getBufferedImg(), newImage.getBufferedImg());
-			LoadedImage finalImg = new LoadedImage(blurredImg);
-			
-			return finalImg;
-		}
-
-	    public BufferedImage blur(BufferedImage src, BufferedImage dst) {
-	        int width = src.getWidth();
-	        int height = src.getHeight();
-
-	        if (dst == null)
-	            dst = createDestImage(src, null);
-
-	        int[] inPixels = new int[width*height];
-	        int[] outPixels = new int[width*height];
-	        src.getRGB(0, 0, width, height, inPixels, 0, width);
-
-			convolveAndTranspose(kernel, inPixels, outPixels, width, height, alpha, CLAMP_EDGES);
-			convolveAndTranspose(kernel, outPixels, inPixels, height, width, alpha, CLAMP_EDGES);
-
-	        dst.setRGB(0, 0, width, height, inPixels, 0, width);
-	        return dst;
-	    }
-
-	    public BufferedImage createDestImage(BufferedImage src, ColorModel dstCM) {
-	        if (dstCM == null)
-	            dstCM = src.getColorModel();
-	        return new BufferedImage(dstCM, dstCM.createCompatibleWritableRaster(src.getWidth(), src.getHeight()), dstCM.isAlphaPremultiplied(), null);
-	    }
-	    
-		public static void convolveAndTranspose(Kernel kernel, int[] inPixels, int[] outPixels, int width, int height, boolean alpha, int edgeAction) {
-			float[] matrix = kernel.getKernelData( null );
-			int cols = kernel.getWidth();
-			int cols2 = cols/2;
-
-			for (int y = 0; y < height; y++) {
-				int index = y;
-				int ioffset = y*width;
-				for (int x = 0; x < width; x++) {
-					float r = 0, g = 0, b = 0, a = 0;
-					int moffset = cols2;
-					for (int col = -cols2; col <= cols2; col++) {
-						float f = matrix[moffset+col];
-
-						if (f != 0) {
-							int ix = x+col;
-							if (ix < 0) {
-								if (edgeAction == CLAMP_EDGES)
-									ix = 0;
-								else if (edgeAction == WRAP_EDGES)
-									ix = (x+width) % width;
-							} else if ( ix >= width) {
-								if (edgeAction == CLAMP_EDGES)
-									ix = width-1;
-								else if (edgeAction == WRAP_EDGES)
-									ix = (x+width) % width;
-							}
-							int rgb = inPixels[ioffset+ix];
-							a += f * ((rgb >> 24) & 0xff);
-							r += f * ((rgb >> 16) & 0xff);
-							g += f * ((rgb >> 8) & 0xff);
-							b += f * (rgb & 0xff);
+		for(int i = 0; i < img.pxImage.length; i++) {
+			for(int j = 0; j < img.pxImage[i].length; j++) {
+				int sumRed = 0;
+				int sumGreen = 0;
+				int sumBlue = 0;
+				int count = 0;
+				for(int k = -1*radius; k < radius; k++) {
+					for (int l = -1*radius; l < radius; l++) {
+						if((i+k) >= 0 && (j+l) >= 0 && (i+k) < img.pxImage.length && (j+l) < img.pxImage[i].length ){
+						sumRed += img.pxImage[i+k][j+l].getRed()*255;
+						sumGreen += img.pxImage[i+k][j+l].getGreen()*255;
+						sumBlue += img.pxImage[i+k][j+l].getBlue()*255;
+						count++;
 						}
 					}
-					int ia = alpha ? PixelUtils.clamp((int)(a+0.5)) : 0xff;
-					int ir = PixelUtils.clamp((int)(r+0.5));
-					int ig = PixelUtils.clamp((int)(g+0.5));
-					int ib = PixelUtils.clamp((int)(b+0.5));
-					outPixels[index] = (ia << 24) | (ir << 16) | (ig << 8) | ib;
-	                index += height;
 				}
-			}
+				newImage.pxImage[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
+				}
 		}
-
-		public static Kernel makeKernel(float radius) {
-			int r = (int)Math.ceil(radius);
-			int rows = r*2+1;
-			float[] matrix = new float[rows];
-			float sigma = radius/3;
-			float sigma22 = 2*sigma*sigma;
-			float sigmaPi2 = 2*ImageMath.PI*sigma;
-			float sqrtSigmaPi2 = (float)Math.sqrt(sigmaPi2);
-			float radius2 = radius*radius;
-			float total = 0;
-			int index = 0;
-			for (int row = -r; row <= r; row++) {
-				float distance = row*row;
-				if (distance > radius2)
-					matrix[index] = 0;
-				else
-					matrix[index] = (float)Math.exp(-(distance)/sigma22) / sqrtSigmaPi2;
-				total += matrix[index];
-				index++;
-			}
-			for (int i = 0; i < rows; i++)
-				matrix[i] /= total;
-
-			return new Kernel(rows, 1, matrix);
-		}
-
-		@Override
-		public String saveLayer() {
-			String output = "GaussianBlur?" + radius + "?" + kernel + "?";
-			return output;
-		}
-
-		@Override
-		public String getName() {
-			return "Gaussisk Oskärpa";
-		}
-
-		@Override
-		public List<Slider> getSliders() {
-			List<Slider> sliders = new ArrayList<>();
-			Slider radiusSlider = new Slider();
-			radiusSlider.setMin(0);
-			radiusSlider.setMax(255);
-			radiusSlider.setValue(this.getRadius());
-			radiusSlider.setOnDragDone(e -> {
-				this.setRadius((int)radiusSlider.getValue());
-				MainView.getCanvas().repaint();
-				System.out.println("Radie " + radiusSlider.getValue());
-			});
-			sliders.add(radiusSlider);
-			return sliders;
-		}
-
-		/*@Override
-		public Layer openSavedLayer(String loadString) {
-			String[] data = loadString.split("?");
-			GaussianBlur gb = new GaussianBlur();
-			return new Layer(gb);
-		
-		}*/
+		return newImage;
 	}
+
+	@Override
+	public String saveLayer() {
+		String output = "GaussianBlur?" + radius + "?";
+		return output;
+		
+	}
+
+	@Override
+	public String getName() {
+		return "Gaussian Blur";
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+	
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	@Override
+	public List<Slider> getSliders() {
+		List<Slider> sliders = new ArrayList<>();
+		Slider radiusSlider = new Slider();
+		radiusSlider.setMin(0);
+		radiusSlider.setMax(255);
+		radiusSlider.setValue(this.getRadius());
+		radiusSlider.setOnDragDone(e -> {
+			this.setRadius((int)radiusSlider.getValue());
+			MainView.getCanvas().repaint();
+			System.out.println("Radie " + radiusSlider.getValue());
+		});
+		sliders.add(radiusSlider);
+		return sliders;
+	}
+	
+	
+}

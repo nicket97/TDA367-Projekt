@@ -171,8 +171,8 @@ public class MainView extends AnchorPane implements Initializable {
 			});
 		
 		menuClicked(menuBlur, (new Blur(4)));
-		menuClicked(menuGaussianBlur, (new GaussianBlur()));
-		menuClicked(menuSharpen, (new Sharpen()));
+		menuClicked(menuGaussianBlur, (new GaussianBlur(3)));
+		//menuClicked(menuSharpen, (new Sharpen()));
 		menuClicked(menuGrayScale, (new GrayScale()));
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
 

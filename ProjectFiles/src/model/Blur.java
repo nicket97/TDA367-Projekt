@@ -1,13 +1,16 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import controllers.MainView;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class Blur implements Layerable {
 	int radius;
 	double[][] kernel;
+	
 	public Blur(int r){
 		radius = r;
 		if (radius % 2 == 0) {
@@ -52,8 +55,8 @@ public class Blur implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "Blur?" + radius + "?";
+		return output;
 	}
 
 	@Override
@@ -64,8 +67,26 @@ public class Blur implements Layerable {
 
 	@Override
 	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Slider> sliders = new ArrayList<>();
+		Slider radiusSlider = new Slider();
+		radiusSlider.setMin(0);
+		radiusSlider.setMax(255);
+		radiusSlider.setValue(this.getRadius());
+		radiusSlider.setOnDragDone(e -> {
+			this.setRadius((int)radiusSlider.getValue());
+			MainView.getCanvas().repaint();
+			System.out.println("Radie " + radiusSlider.getValue());
+		});
+		sliders.add(radiusSlider);
+		return sliders;
+	}
+	
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	
+	public int getRadius(){
+		return radius;
 	}
 	
 }

@@ -162,6 +162,15 @@
     -fx-opacity: 0.8;
 }
 
+#colorButton {
+	-fx-background-radius: 10, 10, 10, 10;
+	-fx-min-width: 20px;
+	-fx-min-height: 20px;
+	-fx-max-width: 20px;
+	-fx-max-height: 20px;
+	-fx-cursor: hand;
+}
+
 /**.button {
     -fx-padding: 5 22 5 22;   
     -fx-border-color: #e2e2e2;

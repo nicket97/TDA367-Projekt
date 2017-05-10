@@ -273,6 +273,160 @@
                         </Label>
                      </children>
                   </HBox>
+                  <HBox id="hbox" fx:id="blurLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="aBackIcon1" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="blurRadius" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Radie">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="blurIntensity" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button fx:id="blurUpdate" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                  </HBox>
+                  <HBox id="hbox" fx:id="gBlurLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="aBackIcon11" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="gBlurRadius" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Radie">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="gBlurIntensity" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button fx:id="gBlurUpdate" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                  </HBox>
+                  <HBox id="hbox" fx:id="sharpenLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="aBackIcon111" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="sharpenRadius" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Radie">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="sharpenThreshold" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Tröskelvärde">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="sharpenIntensity" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button fx:id="gBlurUpdate1" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                  </HBox>
                   <HBox id="hbox" fx:id="colorLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>
                         <Label id="clickable" fx:id="cBackIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Tillbaka">
@@ -336,6 +490,201 @@
                            </padding>
                         </Label>
                      </children>
+                  </HBox>
+                  <HBox id="hbox" fx:id="colorFilterLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="aBackIcon1111" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="27.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <Button id="colorButton" fx:id="yellowButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: yellow;" />
+                                    <Button id="colorButton" fx:id="orangeButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: orange;" />
+                                    <Button id="colorButton" fx:id="blueButton" alignment="CENTER" layoutX="26.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" />
+                                    <Button id="colorButton" fx:id="redButton" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: red;" />
+                                    <Button id="colorButton" fx:id="pinkButton" alignment="CENTER" layoutX="58.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: hotpink;" />
+                                    <Button id="colorButton" fx:id="purpleButton" alignment="CENTER" layoutX="74.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: blueviolet;" />
+                                    <Button id="colorButton" fx:id="turquoiseButton" alignment="CENTER" layoutX="90.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: cyan;" />
+                                    <Button id="colorButton" fx:id="greenButton" alignment="CENTER" layoutX="106.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: limegreen;" />
+                                 </children>
+                              </HBox>
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj färg">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="23.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <ColorPicker fx:id="customColor" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj egen...">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="17.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="colorIntensity" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button fx:id="gBlurUpdate11" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                  </HBox>
+                  <HBox id="hbox" fx:id="grayLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="aBackIcon12" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="greyIntensity" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button fx:id="greyUpdate" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                  </HBox>
+                  <HBox id="hbox" fx:id="bwLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="aBackIcon1112" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="bwThreshHold" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Tröskelvärde">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="bwIntensity" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button fx:id="bwUpdate" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                  </HBox>
+                  <HBox id="hbox" fx:id="wbLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="aBackIcon11121" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="wbWarm" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Tröskelvärde">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                           <children>
+                              <Slider fx:id="wbIntensity" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="32.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button fx:id="wbUpdate" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
                   </HBox>
                   <HBox id="hbox" fx:id="filterLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>

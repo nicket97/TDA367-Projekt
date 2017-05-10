@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.Slider;
@@ -22,20 +23,19 @@ public class Mirroring implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "Mirroring?"; 
+		return output;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Mirroring";
 	}
 
 	@Override
 	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Slider> emptyList = new ArrayList();
+		return emptyList;
 	}
 	
 }

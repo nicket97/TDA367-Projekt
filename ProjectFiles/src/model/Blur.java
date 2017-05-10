@@ -2,6 +2,11 @@ package model;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
+import java.util.ArrayList;
+import java.util.List;
+
+import controllers.MainView;
+import javafx.scene.control.Slider;
 
 public class Blur implements Layerable {
 	
@@ -154,7 +159,23 @@ public class Blur implements Layerable {
 
 	@Override
 	public String getName() {
-		return "Oskärpa";
+		return "Oskï¿½rpa";
+	}
+
+	@Override
+	public List<Slider> getSliders() {
+		List<Slider> sliders = new ArrayList<>();
+		Slider radiusSlider = new Slider();
+		radiusSlider.setMin(0);
+		radiusSlider.setMax(255);
+		radiusSlider.setValue(this.getRadius());
+		radiusSlider.setOnDragDone(e -> {
+			this.setRadius((int)radiusSlider.getValue());
+			MainView.getCanvas().repaint();
+			System.out.println("Radie " + radiusSlider.getValue());
+		});
+		sliders.add(radiusSlider);
+		return sliders;
 	}
 
 	/*@Override

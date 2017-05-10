@@ -1,6 +1,9 @@
 package model;
 
 
+import java.util.List;
+
+import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class BlackAndWhite extends ColorFilter {
@@ -51,6 +54,12 @@ public class BlackAndWhite extends ColorFilter {
 	public String getName() {
 		// TODO Auto-generated method stub
 		return "Black And White";
+	}
+
+	@Override
+	public List<Slider> getSliders() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
     

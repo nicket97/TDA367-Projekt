@@ -10,15 +10,21 @@ import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.util.Duration;
 import javafx.stage.Stage;
 import main.Layers;
 import main.Main;
@@ -44,7 +50,6 @@ public class MainView extends AnchorPane implements Initializable {
 	TilePane bottomContainer;
 	@FXML
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
-
 	@FXML
 	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject;
 	@FXML
@@ -57,9 +62,16 @@ public class MainView extends AnchorPane implements Initializable {
 	MenuItem menuFMatte, menuFBW, menuFVintage;
 	@FXML
 	MenuItem menuZoomIn, menuZoomOut;
-
 	@FXML
-	Button closeButton,miniButton, maxiButton ;
+	Button closeButton,miniButton, maxiButton;
+	@FXML
+	StackPane toolContainer;
+	@FXML
+	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel;
+	@FXML
+	Label adjustIcon, colorIcon, effectIcon, filterIcon;
+	@FXML
+	Label aBackIcon, cBackIcon, eBackIcon, fBackIcon;
 	
 	Layers layerstack = new Layers();
 	
@@ -164,7 +176,31 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuSharpen, (new Sharpen()));
 		menuClicked(menuGrayScale, (new GrayScale()));
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
-}
+
+	}
+	
+	private FadeTransition fadeIn = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeAdjust = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeColor = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeEffect = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeFilter = new FadeTransition(Duration.millis(150));
+	
+	private void fadeSettings(FadeTransition name, Node node){
+		name.setNode(node);
+		name.setFromValue(0.0);
+		name.setToValue(1.0);
+		name.setCycleCount(1);
+		name.setAutoReverse(false);
+		return;
+	}
+	
+	private void mouseClicked(Node begin, Node end, FadeTransition fade){
+		begin.setVisible(false);
+		end.setVisible(true);
+		fade.playFromStart();
+		return;
+	}
+	
 	private void menuClicked(MenuItem name, Layerable layerType){
 		name.setOnAction( e->{
 			layerstack.addLayer(new Layer(layerType));
@@ -179,11 +215,41 @@ public class MainView extends AnchorPane implements Initializable {
 		miniCanvasView = new MiniCanvasView();
 		layerView = new LayerView();
 		
-		bottomContainer.getChildren().add(new ToolView());
+		//bottomContainer.getChildren().add(new ToolView());
 		canvasPane.getChildren().add(canvasView);
 		miniCanvas.getChildren().add(miniCanvasView);
 		layerPane.getChildren().add(layerView);
-		
+	
+		fadeSettings(fadeIn, topLevel);
+		fadeSettings(fadeAdjust, adjustLevel);
+		fadeSettings(fadeColor, colorLevel);
+		fadeSettings(fadeEffect, effectLevel);
+		fadeSettings(fadeFilter, filterLevel);
+
+		adjustIcon.setOnMouseClicked(e -> {
+			mouseClicked(topLevel, adjustLevel, fadeAdjust);
+		});
+		aBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(adjustLevel, topLevel, fadeIn);
+		});
+		colorIcon.setOnMouseClicked(e -> {
+			mouseClicked(topLevel, colorLevel, fadeColor);
+		});
+		cBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(colorLevel, topLevel, fadeIn);
+		});
+		effectIcon.setOnMouseClicked(e -> {
+			mouseClicked(topLevel, effectLevel, fadeEffect);
+		});	
+		eBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(effectLevel, topLevel, fadeIn);
+		});		
+		filterIcon.setOnMouseClicked(e -> {
+			mouseClicked(topLevel, filterLevel, fadeFilter);
+		});	
+		fBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(filterLevel, topLevel, fadeIn);
+		});
 	}
 
 	public static LoadedImage getBackgroundImage() {
@@ -195,9 +261,5 @@ public class MainView extends AnchorPane implements Initializable {
 	}
 	public static CanvasView getCanvas(){
 		return canvasView;
-	}
-	
-		
-		
-	
+	}	
 }

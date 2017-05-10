@@ -1,5 +1,6 @@
 package controllers;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -27,6 +28,10 @@ public class CanvasView extends AnchorPane implements Initializable {
 
 	int topX = 0;
 	int topY = 0;
+	double pressedX;
+	double pressedY;
+	double releasedX;
+	double releasedY;
 	
 	
 	
@@ -52,11 +57,18 @@ public class CanvasView extends AnchorPane implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init canvas");
 		canvasPane.setOnMousePressed(e ->{
-			System.out.println("klicka X = " +  e.getX() + " Y = " + e.getY());
+			System.out.println("Klicka X = " +  e.getX() + " Y = " + e.getY());
+			this.pressedX = e.getX();
+			this.pressedY = e.getY();
+		
 		});
 		canvasPane.setOnMouseReleased(e -> {
 			System.out.println("Släpp X = " +  e.getX() + " Y = " + e.getY());
+			this.releasedX = e.getX();
+			this.releasedY = e.getY();
+			moveCanvas(distanceDragged());
 		});
+		
 		
 	}
 	public void drawImage(LoadedImage img, double zoomFactor){
@@ -73,10 +85,14 @@ public class CanvasView extends AnchorPane implements Initializable {
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		
 		if (zoomFactor >= 1) {
-		for(int i = 0; i < newImage.pxImage.length/zoomFactor; i++){
-			for(int j = 0; j < newImage.pxImage[i].length/zoomFactor; j++){
-				gc.setColor(i, j, newImage.pxImage[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
+			int screenX = 0;
+		for(int i = topX; i < newImage.pxImage.length/zoomFactor; i++){
+			int screenY = 0;
+			for(int j = topY; j < newImage.pxImage[i].length/zoomFactor; j++){
+				gc.setColor(screenX, screenY, newImage.pxImage[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
+				screenY++;
 			}
+			screenX++;
 		}
 		}
 		else if (zoomFactor < 1) {
@@ -85,10 +101,10 @@ public class CanvasView extends AnchorPane implements Initializable {
 			System.out.println(zoom);
 			double y = 1;
 			//System.out.println("testa x =" + x + "Y = " + y);
-			for(int i = 0; i < newImage.pxImage.length; i++){
+			for(int i = topX; i < newImage.pxImage.length; i++){
 				double x = 1;
 				y += zoom;
-				for(int j = 0; j < newImage.pxImage[i].length; j++){
+				for(int j = topY; j < newImage.pxImage[i].length; j++){
 					gc.setColor(i, j, newImage.pxImage[(int) Math.floor(y)][(int)Math.floor( (x += zoom))]);
 					//System.out.println((x) + " and  " + (y));
 				}
@@ -112,6 +128,41 @@ public class CanvasView extends AnchorPane implements Initializable {
 	public double getZoomFactor () {
 		return zoomFactor;
 	}
+	
+	public Point distanceDragged() {
+		Point distanceDiffernce = new Point();
+		distanceDiffernce.x = (int) (releasedX - pressedX);
+		distanceDiffernce.y = (int) (releasedY - pressedY);
+		System.out.println("Distance dragged method run" + distanceDiffernce.x);
+		return distanceDiffernce;
+	}
+	
+	public int getTopX(){
+		return topX;
+	}
+	
+	public int getTopY(){
+		return topY;
+	}
+	
+	public void moveCanvas(Point distanceDifference){
+		this.topX = getTopX() + distanceDifference.x;
+		this.topY = getTopY() + distanceDifference.y;
+		if(topX > 0 && topY > 0) {
+			repaint();
+		}
+		else if (topX < 0) {
+			this.topX = 0;
+		}
+		else if (topY < 0){
+			this.topY = 0;
+		}
+		else if (topX < 0 && topY < 0) {
+			this.topX = 0;
+			this.topY = 0;
+		}
+	}
+	
 
 	
 	

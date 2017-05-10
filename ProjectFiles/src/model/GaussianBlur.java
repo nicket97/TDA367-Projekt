@@ -41,12 +41,12 @@ public class GaussianBlur implements Layerable {
 		}
 		
 		public LoadedImage transform(LoadedImage img) {
-			LoadedImage newImage = new LoadedImage(img);
 			
+			LoadedImage newImage = new LoadedImage(img);
 			BufferedImage blurredImg = blur(newImage.getBufferedImg(), newImage.getBufferedImg());
-		
 			LoadedImage finalImg = new LoadedImage(blurredImg);
-			return newImage;
+			
+			return finalImg;
 		}
 
 	    public BufferedImage blur(BufferedImage src, BufferedImage dst) {
@@ -151,7 +151,7 @@ public class GaussianBlur implements Layerable {
 
 		@Override
 		public String getName() {
-			return "Gaussisk Oskï¿½rpa";
+			return "Gaussisk Oskärpa";
 		}
 
 		@Override

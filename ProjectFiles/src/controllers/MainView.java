@@ -41,7 +41,6 @@ import model.Sharpen;
 
 public class MainView extends AnchorPane implements Initializable {
 	
-	ToolView toolView;
 	public static LayerView layerView;
 	static CanvasView canvasView;
 	MiniCanvasView miniCanvasView; 

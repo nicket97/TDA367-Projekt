@@ -44,15 +44,21 @@ LoadedImage newImage = new LoadedImage(img);
 				int sumGreen = 0;
 				int sumBlue = 0;
 				int count = 0;
+				int cx = 0;
+				
 				for(int k = -1*radius; k < radius; k++) {
+					int cy = 0;
 					for (int l = -1*radius; l < radius; l++) {
 						if((i+k) >= 0 && (j+l) >= 0 && (i+k) < img.pxImage.length && (j+l) < img.pxImage[i].length ){
-						sumRed += img.pxImage[i+k][j+l].getRed()*255;
-						sumGreen += img.pxImage[i+k][j+l].getGreen()*255;
-						sumBlue += img.pxImage[i+k][j+l].getBlue()*255;
-						count++;
+						sumRed += img.pxImage[i+k][j+l].getRed()*255*kernel[cx][cy];
+						sumGreen += img.pxImage[i+k][j+l].getGreen()*255*kernel[cx][cy];
+						sumBlue += img.pxImage[i+k][j+l].getBlue()*255*kernel[cx][cy];
+						count += kernel[cx][cy];
+						cy++;
 						}
+						
 					}
+					cx++;
 				}
 				newImage.pxImage[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
 				}

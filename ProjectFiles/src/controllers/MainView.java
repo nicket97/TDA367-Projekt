@@ -29,6 +29,7 @@ import javafx.util.Duration;
 import javafx.stage.Stage;
 import main.Layers;
 import main.Main;
+import model.BlackAndWhite;
 import model.Blur;
 import model.ColorShift;
 import model.Contrast;
@@ -196,6 +197,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuLevels, (new Levels(100,40)));
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));
+		menuClicked(menuBlackWhite, (new BlackAndWhite(123)));
 
 
 

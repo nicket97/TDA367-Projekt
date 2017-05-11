@@ -58,6 +58,19 @@ public class OpenProject {
 				break;
 			case "Blur": Layers.addLayer(new Layer(new Blur(1)));
 				break;
+			case "HMirroring": Layers.addLayer(new Layer(new HMirroring()));
+				break;
+			case "VMirroring": Layers.addLayer(new Layer(new VMirroring()));
+				break;
+			case "Contrast": Layers.addLayer(new Layer(new Contrast(3,3)));
+				break;
+			case "Levels": Layers.addLayer(new Layer(new Levels(3,3)));
+				break;
+			case "RotateR": Layers.addLayer(new Layer(new RotateR()));
+				break;
+			case "RotateL": Layers.addLayer(new Layer(new RotateL()));
+				break;
+			case "WhiteBalance": Layers.addLayer(new Layer(new WhiteBalance(3)));
 			}
 		}
 		if(stage == 2){

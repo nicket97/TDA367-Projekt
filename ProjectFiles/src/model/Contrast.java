@@ -60,8 +60,8 @@ public class Contrast implements Layerable{
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "Contrast?" + threshold + "?" + factor + "?";
+		return output;
 	}
 
 	@Override

@@ -69,8 +69,8 @@ LoadedImage newImage = new LoadedImage(img);
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "Sharpen?" + radius + "?";
+		return output;
 	}
 
 	@Override

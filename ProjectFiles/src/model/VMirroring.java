@@ -20,8 +20,8 @@ public class VMirroring implements Layerable{
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "VMirroring?";
+		return output;
 	}
 
 	@Override

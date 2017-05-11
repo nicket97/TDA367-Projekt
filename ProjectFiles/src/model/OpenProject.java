@@ -54,7 +54,7 @@ public class OpenProject {
 				break;
 			case "GrayScale": Layers.addLayer(new Layer(new GrayScale()));
 				break;
-			case "Sharpen": Layers.addLayer(new Layer(/*new Sharpen()*/ null));
+			case "Sharpen": Layers.addLayer(new Layer(new Sharpen()));
 				break;
 			case "Blur": Layers.addLayer(new Layer(new Blur(1)));
 				break;

@@ -31,6 +31,7 @@ import main.Layers;
 import main.Main;
 import model.Blur;
 import model.ColorShift;
+import model.Contrast;
 import model.GaussianBlur;
 import model.GrayScale;
 import model.Layer;
@@ -182,6 +183,8 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuSharpen, (new Sharpen()));
 		menuClicked(menuGrayScale, (new GrayScale()));
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
+		menuClicked(menuContrast, (new Contrast(200, 5)));
+
 
 	}
 	

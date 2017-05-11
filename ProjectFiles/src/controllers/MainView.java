@@ -36,6 +36,7 @@ import model.GaussianBlur;
 import model.GrayScale;
 import model.Layer;
 import model.Layerable;
+import model.Levels;
 import model.LoadedImage;
 import model.OpenProject;
 import model.SaveProject;
@@ -54,7 +55,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject;
 	@FXML
-	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance;
+	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels;
 	@FXML
 	MenuItem menuCrop, menuExposure, menuContrast, menuReflect;
 	@FXML
@@ -183,6 +184,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuSharpen, (new Sharpen()));
 		menuClicked(menuGrayScale, (new GrayScale()));
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
+		menuClicked(menuLevels, (new Levels(100,40)));
 		menuClicked(menuContrast, (new Contrast(200, 5)));
 
 

@@ -8,8 +8,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
-
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -17,14 +15,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
 import javafx.stage.Stage;
 import main.Layers;
@@ -73,11 +72,33 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Button closeButton,miniButton, maxiButton;
 	@FXML
+	Button blurUpdate, gBlurUpdate, sharpenUpdate;
+	@FXML
+	Button cfUpdate, grayUpdate, bwUpdate, wbUpdate;
+	@FXML
+	Button yellowButton, orangeButton, blueButton, redButton, pinkButton;
+	@FXML
+	Button purpleButton, turquoiseButton, greenButton;
+	@FXML
+	ColorPicker customColor;
+	@FXML
+	Slider blurRadius, gBlurRadius, gBlurIntensity;
+	@FXML
+	Slider colorIntensity, bwThreshold, bwIntensity, wbWarm, wbIntensity;
+	@FXML
 	StackPane toolContainer;
 	@FXML
 	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel;
 	@FXML
+	HBox blurLevel, gBlurLevel, sharpenLevel;
+	@FXML
+	HBox colorFilterLevel, grayLevel, bwLevel, wbLevel;
+	@FXML
 	Label adjustIcon, colorIcon, effectIcon, filterIcon;
+	@FXML
+	Label colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon, whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon;
+	@FXML
+	Label blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon, sharpenIcon, sharpenBackIcon;
 	@FXML
 	Label aBackIcon, cBackIcon, eBackIcon, fBackIcon;
 	
@@ -203,13 +224,18 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuRotateR, (new RotateR()));
 		menuClicked(menuBlackWhite, (new BlackAndWhite(123)));
 
-
-
 	}
 	
 	private FadeTransition fadeIn = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeAdjust = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeBlur = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeGBlur = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeSharpen = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeColor = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeColorFilter = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeGray = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeBW = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeWB = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeEffect = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeFilter = new FadeTransition(Duration.millis(150));
 	
@@ -253,7 +279,14 @@ public class MainView extends AnchorPane implements Initializable {
 	
 		fadeSettings(fadeIn, topLevel);
 		fadeSettings(fadeAdjust, adjustLevel);
+		fadeSettings(fadeBlur, blurLevel);
+		fadeSettings(fadeGBlur, gBlurLevel);
+		fadeSettings(fadeSharpen, sharpenLevel);
 		fadeSettings(fadeColor, colorLevel);
+		fadeSettings(fadeColorFilter, colorFilterLevel);
+		fadeSettings(fadeGray, grayLevel);
+		fadeSettings(fadeBW, bwLevel);
+		fadeSettings(fadeWB, wbLevel);
 		fadeSettings(fadeEffect, effectLevel);
 		fadeSettings(fadeFilter, filterLevel);
 
@@ -263,18 +296,60 @@ public class MainView extends AnchorPane implements Initializable {
 		aBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, topLevel, fadeIn);
 		});
-		colorIcon.setOnMouseClicked(e -> {
-			mouseClicked(topLevel, colorLevel, fadeColor);
-		});
-		cBackIcon.setOnMouseClicked(e -> {
-			mouseClicked(colorLevel, topLevel, fadeIn);
-		});
 		effectIcon.setOnMouseClicked(e -> {
 			mouseClicked(topLevel, effectLevel, fadeEffect);
 		});	
 		eBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, topLevel, fadeIn);
-		});		
+		});	
+		blurIcon.setOnMouseClicked(e -> {
+			mouseClicked(effectLevel, blurLevel, fadeBlur);
+		});
+		blurBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(blurLevel, effectLevel, fadeEffect);
+		});
+		gBlurIcon.setOnMouseClicked(e -> {
+			mouseClicked(effectLevel, gBlurLevel, fadeGBlur);
+		});
+		gBlurBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(gBlurLevel, effectLevel, fadeEffect);
+		});
+		sharpenIcon.setOnMouseClicked(e -> {
+			mouseClicked(effectLevel, sharpenLevel, fadeSharpen);
+		});
+		sharpenBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(sharpenLevel, effectLevel, fadeEffect);
+		});
+		colorIcon.setOnMouseClicked(e -> {
+			mouseClicked(topLevel, colorLevel, fadeColor);
+		});
+		colorFilterIcon.setOnMouseClicked(e -> {
+			mouseClicked(colorLevel, colorFilterLevel, fadeColorFilter);
+		});
+		cfBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(colorFilterLevel, colorLevel, fadeColor);
+		});
+		grayIcon.setOnMouseClicked(e -> {
+			mouseClicked(colorLevel, grayLevel, fadeGray);
+		});
+		grayBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(grayLevel, colorLevel, fadeColor);
+		});
+		bwIcon.setOnMouseClicked(e -> {
+			mouseClicked(colorLevel, bwLevel, fadeBW);
+		});
+		bwBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(bwLevel, colorLevel, fadeColor);
+		});
+		whiteBalanceIcon.setOnMouseClicked(e -> {
+			mouseClicked(colorLevel, wbLevel, fadeWB);
+		});
+		wbBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(wbLevel, colorLevel, fadeColor);
+		});
+		cBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(colorLevel, topLevel, fadeIn);
+		});	
 		filterIcon.setOnMouseClicked(e -> {
 			mouseClicked(topLevel, filterLevel, fadeFilter);
 		});	

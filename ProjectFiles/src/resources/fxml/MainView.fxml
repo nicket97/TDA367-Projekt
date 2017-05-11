@@ -36,7 +36,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Verktyg">
             <items>
-              <MenuItem text="Ångra" fx:id="menuUndo">
+              <MenuItem fx:id="menuUndo" text="Ångra">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
@@ -50,8 +50,8 @@
                   <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Beskära" />
                   <MenuItem fx:id="menuExposure" mnemonicParsing="false" text="Exponering" />
                   <MenuItem fx:id="menuContrast" mnemonicParsing="false" text="Kontrast" />
-                  <MenuItem fx:id="menuHReflect" mnemonicParsing="false" text="Spegla horisontellt" />
-                  <MenuItem fx:id="menuVReflect" mnemonicParsing="false" text="Spegla vertikalt" />
+                  <MenuItem fx:id="menuVReflect" mnemonicParsing="false" text="Spegla horisontellt" />
+                  <MenuItem fx:id="menuHReflect" mnemonicParsing="false" text="Spegla vertikalt" />
                   <MenuItem fx:id="menuRotateR" mnemonicParsing="false" text="Rotera 90 grader höger" />
                   <MenuItem fx:id="menuRotateL" mnemonicParsing="false" text="Rotera 90 grader vänster" />
                   
@@ -73,8 +73,6 @@
                   <MenuItem fx:id="menuGrayScale" mnemonicParsing="false" text="Gråskala" />
                   <MenuItem fx:id="menuWhitebalance" mnemonicParsing="false" text="Vitbalans" />
                   <MenuItem fx:id="menuLevels" mnemonicParsing="false" text="Nivåer" />
-                  
-                  
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Filter">
@@ -238,7 +236,7 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <Label id="clickable" fx:id="sharpenIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Skärpa">
+                        <Label id="clickable" fx:id="gBlurIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Gaussisk Oskärpa">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -250,7 +248,7 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <Label id="clickable" fx:id="textIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Text">
+                        <Label id="clickable" fx:id="sharpenIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Skärpa">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -262,7 +260,7 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <Label id="clickable" fx:id="flipIcon1" contentDisplay="TOP" graphicTextGap="10.0" text="???">
+                        <Label id="clickable" fx:id="textIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Text">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -278,7 +276,7 @@
                   </HBox>
                   <HBox id="hbox" fx:id="blurLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>
-                        <Label id="clickable" fx:id="aBackIcon1" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                        <Label id="clickable" fx:id="blurBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -324,7 +322,7 @@
                   </HBox>
                   <HBox id="hbox" fx:id="gBlurLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>
-                        <Label id="clickable" fx:id="aBackIcon11" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                        <Label id="clickable" fx:id="gBlurBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -373,7 +371,7 @@
                   </HBox>
                   <HBox id="hbox" fx:id="sharpenLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>
-                        <Label id="clickable" fx:id="aBackIcon111" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                        <Label id="clickable" fx:id="sharpenBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -424,7 +422,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="gBlurUpdate1" mnemonicParsing="false" text="Uppdatera" />
+                        <Button fx:id="sharpenUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -456,7 +454,7 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <Label id="clickable" fx:id="bwIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Gråskala">
+                        <Label id="clickable" fx:id="bwIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Svartvitt">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -468,7 +466,7 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <Label id="clickable" fx:id="whiteBalanceIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Vitbalans">
+                        <Label id="clickable" fx:id="grayIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Gråskala">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -480,7 +478,7 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <Label id="clickable" fx:id="flipIcon2" contentDisplay="TOP" graphicTextGap="10.0" text="???">
+                        <Label id="clickable" fx:id="whiteBalanceIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Vitbalans">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -496,7 +494,7 @@
                   </HBox>
                   <HBox id="hbox" fx:id="colorFilterLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>
-                        <Label id="clickable" fx:id="aBackIcon1111" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                        <Label id="clickable" fx:id="cfBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -558,7 +556,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="gBlurUpdate11" mnemonicParsing="false" text="Uppdatera" />
+                        <Button fx:id="cfUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -566,7 +564,7 @@
                   </HBox>
                   <HBox id="hbox" fx:id="grayLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>
-                        <Label id="clickable" fx:id="aBackIcon12" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                        <Label id="clickable" fx:id="grayBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -591,7 +589,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="greyUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button fx:id="grayUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -599,7 +597,7 @@
                   </HBox>
                   <HBox id="hbox" fx:id="bwLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>
-                        <Label id="clickable" fx:id="aBackIcon1112" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                        <Label id="clickable" fx:id="bwBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -645,7 +643,7 @@
                   </HBox>
                   <HBox id="hbox" fx:id="wbLevel" alignment="CENTER" prefHeight="120.0" spacing="50.0" visible="false">
                      <children>
-                        <Label id="clickable" fx:id="aBackIcon11121" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                        <Label id="clickable" fx:id="wbBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

@@ -41,6 +41,7 @@ import model.HMirroring;
 import model.OpenProject;
 import model.SaveProject;
 import model.Sharpen;
+import model.WhiteBalance;
 
 public class MainView extends AnchorPane implements Initializable {
 	
@@ -186,6 +187,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
 		menuClicked(menuContrast, (new Contrast(200, 1.4)));
 		menuClicked(menuReflect, (new HMirroring()));
+		menuClicked(menuWhitebalance, (new WhiteBalance(20)));
 
 
 	}

@@ -37,6 +37,7 @@ import model.GrayScale;
 import model.Layer;
 import model.Layerable;
 import model.LoadedImage;
+import model.HMirroring;
 import model.OpenProject;
 import model.SaveProject;
 import model.Sharpen;
@@ -184,6 +185,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuGrayScale, (new GrayScale()));
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
 		menuClicked(menuContrast, (new Contrast(200, 1.4)));
+		menuClicked(menuReflect, (new HMirroring()));
 
 
 	}

@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -116,7 +117,8 @@ public class MainView extends AnchorPane implements Initializable {
 			}
 		});
 		menuClose.setOnAction(e ->{
-			System.exit(0);
+			Platform.exit();
+			//System.exit(0);
 		});
 		menuExport.setOnAction(e ->{
 			
@@ -144,7 +146,8 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		
 		closeButton.setOnAction(e ->{
-			System.exit(0);
+			Platform.exit();
+			//System.exit(0);
 		});
 		
 		miniButton.setOnAction(e ->{

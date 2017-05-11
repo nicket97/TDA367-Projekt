@@ -20,34 +20,34 @@ public class Contrast implements Layerable{
 		LoadedImage newImage = new LoadedImage(img);
 		for (int i = 0; i < img.getpxImage().length; i++) {
 			for (int j = 0; j < img.getpxImage()[1].length; j++){
-				int pixRed = 0;
-				int pixGreen = 0;
-				int pixBlue = 0;
+				int pixRed = (int) (img.getpxImage()[i][j].getRed()*255);
+				int pixGreen = (int) (img.getpxImage()[i][j].getGreen()*255);
+				int pixBlue = (int) (img.getpxImage()[i][j].getBlue()*255);
 				
-				if (img.getpxImage()[i][j].getRed()*255 < threshold) {
-					pixRed = 0;
+				if (pixRed < threshold) {
+					pixRed = (int) (pixRed/1.2);
 				}
-				else if (img.getpxImage()[i][j].getRed()*255 >= threshold){
-					pixRed = 255;
+				if (pixRed >= threshold){
+					pixRed = (int) (pixRed*1.2);
 					
 				}
-				if (img.getpxImage()[i][j].getGreen()*255 < threshold) {
-					pixGreen = 0;
+				if (pixGreen < threshold) {
+					pixGreen = (int) (pixGreen/1.2);
 					
 				}
-				else if (img.getpxImage()[i][j].getGreen()*255 >= threshold) {
-					pixGreen = 255;
+				if (pixGreen >= threshold) {
+					pixGreen = (int) (pixGreen*1.2);
 					
 				}
-				if (img.getpxImage()[i][j].getBlue()*255 < threshold) {
-					pixBlue = 0;
+				if (pixBlue < threshold) {
+					pixBlue = (int) (pixBlue/1.2);
 					
 				}
-				else if (img.getpxImage()[i][j].getBlue()*255 >= threshold) {
-					pixBlue = 255;
+				if (pixBlue >= threshold) {
+					pixBlue = (int) (pixBlue*1.2);
 					
 				}
-				System.out.println("red: " + pixRed + "blue: " + pixBlue + "green: " + pixGreen);
+				//System.out.println("red: " + pixRed + "blue: " + pixBlue + "green: " + pixGreen);
 				newImage.getpxImage()[i][j]= Color.rgb(pixRed, pixGreen, pixBlue);
 			}
 			

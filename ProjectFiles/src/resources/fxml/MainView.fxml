@@ -72,6 +72,8 @@
                   <MenuItem fx:id="menuBlackWhite" mnemonicParsing="false" text="Svartvitt" />
                   <MenuItem fx:id="menuGrayScale" mnemonicParsing="false" text="Gråskala" />
                   <MenuItem fx:id="menuWhitebalance" mnemonicParsing="false" text="Vitbalans" />
+                  <MenuItem fx:id="menuLevels" mnemonicParsing="false" text="Nivåer" />
+                  
                   
                </items>
             </Menu>

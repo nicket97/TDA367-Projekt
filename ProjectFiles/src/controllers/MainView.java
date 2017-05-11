@@ -90,15 +90,19 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel;
 	@FXML
+	HBox exposureLevel, contrastLevel, levelsLevel;
+	@FXML
 	HBox blurLevel, gBlurLevel, sharpenLevel;
 	@FXML
 	HBox colorFilterLevel, grayLevel, bwLevel, wbLevel;
 	@FXML
 	Label adjustIcon, colorIcon, effectIcon, filterIcon;
 	@FXML
-	Label colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon, whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon;
+	Label exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon, levelsIcon, levelsBackIcon;
 	@FXML
 	Label blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon, sharpenIcon, sharpenBackIcon;
+	@FXML
+	Label colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon, whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon;
 	@FXML
 	Label aBackIcon, cBackIcon, eBackIcon, fBackIcon;
 	
@@ -228,6 +232,10 @@ public class MainView extends AnchorPane implements Initializable {
 	
 	private FadeTransition fadeIn = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeAdjust = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeExposure = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeContrast = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeLevels = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeEffect = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeBlur = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeGBlur = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeSharpen = new FadeTransition(Duration.millis(150));
@@ -236,7 +244,6 @@ public class MainView extends AnchorPane implements Initializable {
 	private FadeTransition fadeGray = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeBW = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeWB = new FadeTransition(Duration.millis(150));
-	private FadeTransition fadeEffect = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeFilter = new FadeTransition(Duration.millis(150));
 	
 	private void fadeSettings(FadeTransition name, Node node){
@@ -279,6 +286,10 @@ public class MainView extends AnchorPane implements Initializable {
 	
 		fadeSettings(fadeIn, topLevel);
 		fadeSettings(fadeAdjust, adjustLevel);
+		fadeSettings(fadeExposure, exposureLevel);
+		fadeSettings(fadeContrast, contrastLevel);
+		fadeSettings(fadeLevels, levelsLevel);
+		fadeSettings(fadeEffect, effectLevel);
 		fadeSettings(fadeBlur, blurLevel);
 		fadeSettings(fadeGBlur, gBlurLevel);
 		fadeSettings(fadeSharpen, sharpenLevel);
@@ -287,7 +298,6 @@ public class MainView extends AnchorPane implements Initializable {
 		fadeSettings(fadeGray, grayLevel);
 		fadeSettings(fadeBW, bwLevel);
 		fadeSettings(fadeWB, wbLevel);
-		fadeSettings(fadeEffect, effectLevel);
 		fadeSettings(fadeFilter, filterLevel);
 
 		adjustIcon.setOnMouseClicked(e -> {
@@ -295,6 +305,24 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		aBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, topLevel, fadeIn);
+		});	
+		exposureIcon.setOnMouseClicked(e -> {
+			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
+		});
+		exposureBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(exposureLevel, adjustLevel, fadeAdjust);
+		});
+		contrastIcon.setOnMouseClicked(e -> {
+			mouseClicked(adjustLevel, contrastLevel, fadeContrast);
+		});
+		contrastBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(contrastLevel, adjustLevel, fadeAdjust);
+		});
+		levelsIcon.setOnMouseClicked(e -> {
+			mouseClicked(adjustLevel, levelsLevel, fadeLevels);
+		});
+		levelsBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(levelsLevel, adjustLevel, fadeAdjust);
 		});
 		effectIcon.setOnMouseClicked(e -> {
 			mouseClicked(topLevel, effectLevel, fadeEffect);

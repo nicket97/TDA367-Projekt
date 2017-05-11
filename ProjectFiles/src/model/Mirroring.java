@@ -12,9 +12,9 @@ public class Mirroring implements Layerable {
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
-		for(int i = 0; i < newImage.pxImage.length; i++){
-            for(int j = 0; j < newImage.pxImage[i].length; j++){
-            	newImage.pxImage[i][j] = img.pxImage[newImage.pxImage.length - i][newImage.pxImage[i].length - j];
+		for(int i = 0; i < newImage.getpxImage().length; i++){
+            for(int j = 0; j < newImage.getpxImage()[i].length; j++){
+            	newImage.getpxImage()[i][j] = img.getpxImage()[newImage.getpxImage().length - i][newImage.getpxImage()[i].length - j];
             }
         }
 		

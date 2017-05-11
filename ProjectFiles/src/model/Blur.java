@@ -31,23 +31,23 @@ public class Blur implements Layerable {
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
 		
-		for(int i = 0; i < img.pxImage.length; i++) {
-			for(int j = 0; j < img.pxImage[i].length; j++) {
+		for(int i = 0; i < img.getpxImage().length; i++) {
+			for(int j = 0; j < img.getpxImage()[i].length; j++) {
 				int sumRed = 0;
 				int sumGreen = 0;
 				int sumBlue = 0;
 				int count = 0;
 				for(int k = -1*radius; k < radius; k++) {
 					for (int l = -1*radius; l < radius; l++) {
-						if((i+k) >= 0 && (j+l) >= 0 && (i+k) < img.pxImage.length && (j+l) < img.pxImage[i].length ){
-						sumRed += img.pxImage[i+k][j+l].getRed()*255;
-						sumGreen += img.pxImage[i+k][j+l].getGreen()*255;
-						sumBlue += img.pxImage[i+k][j+l].getBlue()*255;
+						if((i+k) >= 0 && (j+l) >= 0 && (i+k) < img.getpxImage().length && (j+l) < img.getpxImage()[i].length ){
+						sumRed += img.getpxImage()[i+k][j+l].getRed()*255;
+						sumGreen += img.getpxImage()[i+k][j+l].getGreen()*255;
+						sumBlue += img.getpxImage()[i+k][j+l].getBlue()*255;
 						count++;
 						}
 					}
 				}
-				newImage.pxImage[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
+				newImage.getpxImage()[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
 				}
 		}
 		return newImage;

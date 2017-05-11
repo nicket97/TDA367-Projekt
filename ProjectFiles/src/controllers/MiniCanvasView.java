@@ -40,12 +40,12 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 	}
 	public void drawImage(LoadedImage img){
 		
-		imagePane = new Canvas(img.width, img.heigth);
+		imagePane = new Canvas(img.getWidth(), img.getHeigth());
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		
-		for(int i = 0; i < img.pxImage.length && i < canvasPane.getWidth(); i++){
-			for(int j = 0; j < img.pxImage[i].length && j < canvasPane.getHeight(); j++){
-				gc.setColor(i, j, img.pxImage[i][j]);
+		for(int i = 0; i < img.getpxImage().length && i < canvasPane.getWidth(); i++){
+			for(int j = 0; j < img.getpxImage()[i].length && j < canvasPane.getHeight(); j++){
+				gc.setColor(i, j, img.getpxImage()[i][j]);
 			}
 		}
 		

@@ -82,15 +82,15 @@ public class CanvasView extends AnchorPane implements Initializable {
 			}
 		}
 		
-		imagePane = new Canvas(newImage.width, newImage.heigth);
+		imagePane = new Canvas(newImage.getWidth(), newImage.getHeigth());
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		
 		if (zoomFactor >= 1) {
 			int screenX = 0;
-		for(int i = topX; i < newImage.pxImage.length/zoomFactor; i++){
+		for(int i = topX; i < newImage.getpxImage().length/zoomFactor; i++){
 			int screenY = 0;
-			for(int j = topY; j < newImage.pxImage[i].length/zoomFactor; j++){
-				gc.setColor(screenX, screenY, newImage.pxImage[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
+			for(int j = topY; j < newImage.getpxImage()[i].length/zoomFactor; j++){
+				gc.setColor(screenX, screenY, newImage.getpxImage()[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
 				screenY++;
 			}
 			screenX++;
@@ -102,11 +102,11 @@ public class CanvasView extends AnchorPane implements Initializable {
 			System.out.println(zoom);
 			double y = 1;
 			//System.out.println("testa x =" + x + "Y = " + y);
-			for(int i = topX; i < newImage.pxImage.length; i++){
+			for(int i = topX; i < newImage.getpxImage().length; i++){
 				double x = 1;
 				y += zoom;
-				for(int j = topY; j < newImage.pxImage[i].length; j++){
-					gc.setColor(i, j, newImage.pxImage[(int) Math.floor(y)][(int)Math.floor( (x += zoom))]);
+				for(int j = topY; j < newImage.getpxImage()[i].length; j++){
+					gc.setColor(i, j, newImage.getpxImage()[(int) Math.floor(y)][(int)Math.floor( (x += zoom))]);
 					//System.out.println((x) + " and  " + (y));
 				}
 		}

@@ -6,10 +6,10 @@ import java.awt.image.WritableRaster;
 import javafx.scene.paint.Color;
 
 public class LoadedImage {
-	public final Color[][] pxImage;
-	public final BufferedImage lImg;
-	public final int width;
-	public final int heigth;
+	private final Color[][] pxImage;
+	private final BufferedImage lImg;
+	private final int width;
+	private final int heigth;
 	
 	public LoadedImage(BufferedImage img){
 		this.lImg = img;
@@ -68,5 +68,15 @@ public class LoadedImage {
 	    B = B & 0x000000FF;
 
 	    return 0xFF000000 | R | G | B;
+	}
+	public Color[][] getpxImage(){
+		return pxImage;
+		
+	}
+	public int getWidth(){
+		return width;
+	}
+	public int getHeigth(){
+		return heigth;
 	}
 }

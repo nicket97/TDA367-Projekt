@@ -188,7 +188,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
 		menuClicked(menuContrast, (new Contrast(200, 1.4)));
 		menuClicked(menuReflect, (new HMirroring()));
-		menuClicked(menuWhitebalance, (new WhiteBalance(20)));
+		menuClicked(menuWhitebalance, (new WhiteBalance(90)));
 		menuClicked(menuLevels, (new Levels(100,40)));
 
 

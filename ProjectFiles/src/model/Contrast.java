@@ -7,9 +7,9 @@ import javafx.scene.paint.Color;
 
 public class Contrast implements Layerable{
 	int threshold;
-	int factor;
+	double factor;
 	
-	public Contrast(int threshold, int factor) {
+	public Contrast(int threshold, double factor) {
 		this.threshold = threshold;
 		this.factor = factor;
 		
@@ -25,29 +25,32 @@ public class Contrast implements Layerable{
 				int pixBlue = (int) (img.getpxImage()[i][j].getBlue()*255);
 				
 				if (pixRed < threshold) {
-					pixRed = (int) (pixRed/1.2);
+					pixRed = (int) (pixRed/factor);
 				}
 				if (pixRed >= threshold){
-					pixRed = (int) (pixRed*1.2);
+					pixRed = (int) (pixRed*factor);
 					
 				}
 				if (pixGreen < threshold) {
-					pixGreen = (int) (pixGreen/1.2);
+					pixGreen = (int) (pixGreen/factor);
 					
 				}
 				if (pixGreen >= threshold) {
-					pixGreen = (int) (pixGreen*1.2);
+					pixGreen = (int) (pixGreen*factor);
 					
 				}
 				if (pixBlue < threshold) {
-					pixBlue = (int) (pixBlue/1.2);
+					pixBlue = (int) (pixBlue/factor);
 					
 				}
 				if (pixBlue >= threshold) {
-					pixBlue = (int) (pixBlue*1.2);
+					pixBlue = (int) (pixBlue*factor);
 					
 				}
 				//System.out.println("red: " + pixRed + "blue: " + pixBlue + "green: " + pixGreen);
+				if(pixRed > 255) pixRed = 255;
+				if(pixGreen > 255) pixGreen = 255;
+				if(pixBlue > 255) pixBlue = 255;
 				newImage.getpxImage()[i][j]= Color.rgb(pixRed, pixGreen, pixBlue);
 			}
 			

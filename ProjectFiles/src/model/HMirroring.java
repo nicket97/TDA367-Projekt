@@ -7,14 +7,14 @@ import java.util.List;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
-public class Mirroring implements Layerable {
+public class HMirroring implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
 		for(int i = 0; i < newImage.getpxImage().length; i++){
             for(int j = 0; j < newImage.getpxImage()[i].length; j++){
-            	newImage.getpxImage()[i][j] = img.getpxImage()[newImage.getpxImage().length - i][j];
+            	newImage.getpxImage()[i][j] = img.getpxImage()[img.getpxImage().length-1-i][j];
             }
         }
 		

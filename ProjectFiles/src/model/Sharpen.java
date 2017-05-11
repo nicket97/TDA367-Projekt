@@ -1,85 +1,73 @@
 package model;
 
 import java.awt.image.BufferedImage;
+import java.util.List;
 
-public class Sharpen {
+import javafx.scene.control.Slider;
+import javafx.scene.paint.Color;
 
-	/*	private float amount = 0.1f;
-		private int threshold = 1;
+public class Sharpen implements Layerable {
+	int radius;
+	double[][] kernel;
+
+	public Sharpen(){
 		
-		public Sharpen() {
-			radius = 1;
-		}
+		 kernel = new double[3][3];
+		 kernel[0][0] = 0;
+		 kernel[0][1] = -2;
+		 kernel[0][2] = 0;
+		 kernel[1][0] = -2;
+		 kernel[1][1] = 10;
+		 kernel[1][2] = -2;
+		 kernel[2][0] = 0;
+		 kernel[2][1] = -2;
+		 kernel[2][2] = 0;
+	
 		
-		public LoadedImage transform(LoadedImage img) {
-			LoadedImage newImage = new LoadedImage(img);
-			
-			BufferedImage blurredImg = filter(newImage.getBufferedImg(), newImage.getBufferedImg());
+	}
+
+	@Override
+	public LoadedImage transform(LoadedImage img) {
+LoadedImage newImage = new LoadedImage(img);
+		radius = 1;
 		
-			LoadedImage finalImg = new LoadedImage(blurredImg);
-			return newImage;
-		}
-		
-	    public BufferedImage filter( BufferedImage src, BufferedImage dst ) {
-	        int width = src.getWidth();
-	        int height = src.getHeight();
-
-	        if ( dst == null )
-	            dst = createDestImage( src, null );
-
-	        int[] inPixels = new int[width*height];
-	        int[] outPixels = new int[width*height];
-	        src.getRGB( 0, 0, width, height, inPixels, 0, width );
-
-			convolveAndTranspose(kernel, inPixels, outPixels, width, height, alpha, CLAMP_EDGES);
-			convolveAndTranspose(kernel, outPixels, inPixels, height, width, alpha, CLAMP_EDGES);
-
-	        src.getRGB( 0, 0, width, height, outPixels, 0, width );
-
-			float a = 4*amount;
-
-			int index = 0;
-			for ( int y = 0; y < height; y++ ) {
-				for ( int x = 0; x < width; x++ ) {
-					int rgb1 = outPixels[index];
-					int r1 = (rgb1 >> 16) & 0xff;
-					int g1 = (rgb1 >> 8) & 0xff;
-					int b1 = rgb1 & 0xff;
-
-					int rgb2 = inPixels[index];
-					int r2 = (rgb2 >> 16) & 0xff;
-					int g2 = (rgb2 >> 8) & 0xff;
-					int b2 = rgb2 & 0xff;
-
-					if ( Math.abs( r1 -  r2 ) >= threshold )
-						r1 = PixelUtils.clamp( (int)((a+1) * (r1-r2) + r2) );
-					if ( Math.abs( g1 -  g2 ) >= threshold )
-						g1 = PixelUtils.clamp( (int)((a+1) * (g1-g2) + g2) );
-					if ( Math.abs( b1 -  b2 ) >= threshold )
-						b1 = PixelUtils.clamp( (int)((a+1) * (b1-b2) + b2) );
-
-					inPixels[index] = (rgb1 & 0xff000000) | (r1 << 16) | (g1 << 8) | b1;
-					index++;
+		for(int i = 0; i < img.getpxImage().length; i++) {
+			for(int j = 0; j < img.getpxImage()[i].length; j++) {
+				int sumRed = 0;
+				int sumGreen = 0;
+				int sumBlue = 0;
+				int count = 0;
+				for(int k = -1*radius; k < radius; k++) {
+					for (int l = -1*radius; l < radius; l++) {
+						if((i+k) >= 0 && (j+l) >= 0 && (i+k) < img.getpxImage().length && (j+l) < img.getpxImage()[i].length ){
+						sumRed += img.getpxImage()[i+k][j+l].getRed()*255;
+						sumGreen += img.getpxImage()[i+k][j+l].getGreen()*255;
+						sumBlue += img.getpxImage()[i+k][j+l].getBlue()*255;
+						count++;
+						}
+					}
 				}
-			}
+				newImage.getpxImage()[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
+				}
+		}
+		return newImage;
+	}
 
-	        dst.setRGB( 0, 0, width, height, inPixels, 0, width );
-	        return dst;
-	    }
-	    
-    public void setThreshold( int threshold ) {
-		this.threshold = threshold;
+	@Override
+	public String saveLayer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		return "Sharpen";
+	}
+
+	@Override
+	public List<Slider> getSliders() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	public int getThreshold() {
-		return threshold;
-	}
-	
-	public void setAmount( float amount ) {
-		this.amount = amount;
-	}
-	
-	public float getAmount() {
-		return amount;
-	} */
 }

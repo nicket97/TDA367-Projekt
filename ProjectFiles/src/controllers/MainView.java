@@ -69,7 +69,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuFMatte, menuFBW, menuFVintage;
 	@FXML
-	MenuItem menuZoomIn, menuZoomOut;
+	MenuItem menuZoomIn, menuZoomOut, menuUndo;
 	@FXML
 	Button closeButton,miniButton, maxiButton;
 	@FXML
@@ -184,6 +184,10 @@ public class MainView extends AnchorPane implements Initializable {
 			System.out.println("zooooomIN  " + canvasView.getZoomFactor());
 			canvasView.repaint();
 			});
+		menuUndo.setOnAction(e -> {
+			Layers.remove(Layers.getLayerStack().get(Layers.getLayerStack().size()-1));
+			canvasView.repaint();
+		});
 		
 		menuClicked(menuBlur, (new Blur(4)));
 		menuClicked(menuGaussianBlur, (new GaussianBlur(3)));

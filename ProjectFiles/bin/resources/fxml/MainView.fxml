@@ -36,7 +36,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Verktyg">
             <items>
-              <MenuItem text="Ångra">
+              <MenuItem text="Ångra" fx:id="menuUndo">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>

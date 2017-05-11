@@ -42,6 +42,7 @@ import model.HMirroring;
 import model.OpenProject;
 import model.SaveProject;
 import model.Sharpen;
+import model.VMirroring;
 import model.WhiteBalance;
 
 public class MainView extends AnchorPane implements Initializable {
@@ -59,7 +60,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels;
 	@FXML
-	MenuItem menuCrop, menuExposure, menuContrast, menuReflect;
+	MenuItem menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect;
 	@FXML
 	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter;
 	@FXML
@@ -187,7 +188,8 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuGrayScale, (new GrayScale()));
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
 		menuClicked(menuContrast, (new Contrast(200, 1.4)));
-		menuClicked(menuReflect, (new HMirroring()));
+		menuClicked(menuHReflect, (new HMirroring()));
+		menuClicked(menuVReflect, (new VMirroring()));
 		menuClicked(menuWhitebalance, (new WhiteBalance(20)));
 		menuClicked(menuLevels, (new Levels(100,40)));
 

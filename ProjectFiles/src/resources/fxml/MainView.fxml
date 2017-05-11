@@ -50,8 +50,8 @@
                   <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Beskära" />
                   <MenuItem fx:id="menuExposure" mnemonicParsing="false" text="Exponering" />
                   <MenuItem fx:id="menuContrast" mnemonicParsing="false" text="Kontrast" />
-                  <MenuItem fx:id="menuReflect" mnemonicParsing="false" text="Spegla horisontellt" />
-                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Spegla vertikalt" />
+                  <MenuItem fx:id="menuHReflect" mnemonicParsing="false" text="Spegla horisontellt" />
+                  <MenuItem fx:id="menuVReflect" mnemonicParsing="false" text="Spegla vertikalt" />
                   <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Rotera 90 grader höger" />
                   <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Rotera 90 grader vänster" />
                   

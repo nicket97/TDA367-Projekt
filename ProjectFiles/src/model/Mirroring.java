@@ -14,7 +14,7 @@ public class Mirroring implements Layerable {
 		LoadedImage newImage = new LoadedImage(img);
 		for(int i = 0; i < newImage.getpxImage().length; i++){
             for(int j = 0; j < newImage.getpxImage()[i].length; j++){
-            	newImage.getpxImage()[i][j] = img.getpxImage()[newImage.getpxImage().length - i][newImage.getpxImage()[i].length - j];
+            	newImage.getpxImage()[i][j] = img.getpxImage()[newImage.getpxImage().length - i][j];
             }
         }
 		

@@ -115,6 +115,8 @@ public class MainView extends AnchorPane implements Initializable {
 			} catch (IOException e1) {
 				// On canceled fileopening
 			}
+			menuExport.setDisable(false);
+			menuSaveProject.setDisable(false);
 		});
 		menuClose.setOnAction(e ->{
 			Platform.exit();
@@ -143,6 +145,8 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		menuOpenProject.setOnAction(e -> {
 			OpenProject.openFile();
+			menuExport.setDisable(false);
+			menuSaveProject.setDisable(false);
 		});
 		
 		closeButton.setOnAction(e ->{
@@ -213,6 +217,9 @@ public class MainView extends AnchorPane implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		menuExport.setDisable(true);
+		menuSaveProject.setDisable(true);
+
 		canvasView = new CanvasView();
 		miniCanvasView = new MiniCanvasView();
 		layerView = new LayerView();

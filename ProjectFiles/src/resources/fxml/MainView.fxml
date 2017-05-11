@@ -52,8 +52,8 @@
                   <MenuItem fx:id="menuContrast" mnemonicParsing="false" text="Kontrast" />
                   <MenuItem fx:id="menuHReflect" mnemonicParsing="false" text="Spegla horisontellt" />
                   <MenuItem fx:id="menuVReflect" mnemonicParsing="false" text="Spegla vertikalt" />
-                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Rotera 90 grader höger" />
-                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Rotera 90 grader vänster" />
+                  <MenuItem fx:id="menuRotateR" mnemonicParsing="false" text="Rotera 90 grader höger" />
+                  <MenuItem fx:id="menuRotateL" mnemonicParsing="false" text="Rotera 90 grader vänster" />
                   
                   
                </items>

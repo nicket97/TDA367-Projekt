@@ -11,7 +11,7 @@ public class VMirroring implements Layerable{
 		LoadedImage newImage = new LoadedImage(img);
 		for(int i = 0; i < newImage.getpxImage().length; i++){
             for(int j = 0; j < newImage.getpxImage()[i].length; j++){
-            	newImage.getpxImage()[i][j] = img.getpxImage()[i][j];
+            	newImage.getpxImage()[i][j] = img.getpxImage()[i][img.getpxImage()[1].length-1-j];
             }
         }
 		

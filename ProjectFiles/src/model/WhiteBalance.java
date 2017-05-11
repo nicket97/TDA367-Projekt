@@ -26,10 +26,10 @@ public class WhiteBalance implements Layerable {
 					pixGreen = 0;
 					pixBlue = 0;
 				}
-				if((pixRed + pixGreen + pixBlue) > 255-this.threshold){
-					pixRed = 255;
-					pixGreen = 255;
-					pixBlue = 255;
+				if((pixRed + pixGreen + pixBlue) > 255*3-this.threshold){
+					pixRed = (int) (((pixRed - 255)*0.5) + 255);
+					pixGreen = (int) (((pixGreen - 255)*0.5) + 255);
+					pixBlue = (int) (((pixBlue - 255)*0.5) + 255);
 				}
 				newImage.getpxImage()[i][j]= Color.rgb(pixRed, pixGreen, pixBlue);
                 

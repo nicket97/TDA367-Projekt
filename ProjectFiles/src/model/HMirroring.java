@@ -23,7 +23,7 @@ public class HMirroring implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		String output = "Mirroring?"; 
+		String output = "HMirroring?"; 
 		return output;
 	}
 

@@ -20,8 +20,8 @@ public class RotateR implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "RotateR?";
+		return output;
 	}
 
 	@Override

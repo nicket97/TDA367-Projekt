@@ -40,8 +40,8 @@ public class WhiteBalance implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "WhiteBalance?" + threshold + "?";
+		return output;
 	}
 
 	@Override

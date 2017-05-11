@@ -193,7 +193,6 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuHReflect, (new HMirroring()));
 		menuClicked(menuVReflect, (new VMirroring()));
 		menuClicked(menuWhitebalance, (new WhiteBalance(20)));
-		menuClicked(menuWhitebalance, (new WhiteBalance(90)));
 		menuClicked(menuLevels, (new Levels(100,40)));
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));

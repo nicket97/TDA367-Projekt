@@ -159,7 +159,10 @@ public class MainView extends AnchorPane implements Initializable {
 					Graphics2D g = newImage.createGraphics();
 					g.drawImage(in, 0, 0, null);
 					g.dispose();
+					
+					long time = System.nanoTime();
 					LoadedImage ll = new LoadedImage (newImage);
+					System.out.println("Open Image" +  (double)(System.nanoTime() - time)/1000000000);
 					//System.out.println(canvasView.toString());
 					setBackgroundImage(ll);
 					canvasView.repaint();

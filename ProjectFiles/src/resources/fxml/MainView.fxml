@@ -80,6 +80,7 @@
                   <MenuItem fx:id="menuBlur" mnemonicParsing="false" text="Oskärpa" />
                   <MenuItem fx:id="menuGaussianBlur" mnemonicParsing="false" text="Gaussisk Oskärpa" />
                   <MenuItem fx:id="menuSharpen" mnemonicParsing="false" text="Skärpa" />
+                  <MenuItem fx:id="menuEdge" mnemonicParsing="false" text="Kanter" />
                   <MenuItem fx:id="menuTextFilter" mnemonicParsing="false" text="Text" />
                </items>
             </Menu>

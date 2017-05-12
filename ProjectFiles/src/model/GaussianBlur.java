@@ -34,6 +34,10 @@ public class GaussianBlur implements Layerable {
 		
 	}
 
+	public GaussianBlur(String[] args) {
+		this(Integer.parseInt(args[1]));
+	}
+
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 LoadedImage newImage = new LoadedImage(img);

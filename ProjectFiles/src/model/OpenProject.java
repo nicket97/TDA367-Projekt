@@ -50,29 +50,29 @@ public class OpenProject {
 				break;
 			case "BlackAndWhite": Layers.addLayer(new Layer(new BlackAndWhite(information)));
 				break;
-			case "GaussianBlur": Layers.addLayer(new Layer(new GaussianBlur(3)));
+			case "GaussianBlur": Layers.addLayer(new Layer(new GaussianBlur(information)));
 				break;
 			case "GrayScale": Layers.addLayer(new Layer(new GrayScale()));
 				break;
 			case "Sharpen": Layers.addLayer(new Layer(new Sharpen()));
 				break;
-			case "Blur": Layers.addLayer(new Layer(new Blur(1)));
+			case "Blur": Layers.addLayer(new Layer(new Blur(information)));
 				break;
 			case "HMirroring": Layers.addLayer(new Layer(new HMirroring()));
 				break;
 			case "VMirroring": Layers.addLayer(new Layer(new VMirroring()));
 				break;
-			case "Contrast": Layers.addLayer(new Layer(new Contrast(3,3)));
+			case "Contrast": Layers.addLayer(new Layer(new Contrast(information)));
 				break;
-			case "Levels": Layers.addLayer(new Layer(new Levels(3,3)));
+			case "Levels": Layers.addLayer(new Layer(new Levels(information)));
 				break;
 			case "RotateR": Layers.addLayer(new Layer(new RotateR()));
 				break;
 			case "RotateL": Layers.addLayer(new Layer(new RotateL()));
 				break;
-			case "WhiteBalance": Layers.addLayer(new Layer(new WhiteBalance(3)));
+			case "WhiteBalance": Layers.addLayer(new Layer(new WhiteBalance(information)));
 				break;
-			case "Exposure": Layers.addLayer(new Layer(new Exposure(50)));
+			case "Exposure": Layers.addLayer(new Layer(new Exposure(information)));
 			break;
 			}
 		}

@@ -11,6 +11,11 @@ public class Exposure implements Layerable{
 		this.factor = factor;
 		
 	}
+	
+		public Exposure(String[] args){
+			this.factor = Integer.parseInt(args[1]);
+			
+		}
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		 LoadedImage newImage = new LoadedImage(img);

@@ -15,6 +15,11 @@ public class Contrast implements Layerable{
 		
 	}
 
+	public Contrast(String[] args) {
+		threshold = Integer.parseInt(args[1]);
+		factor = Double.parseDouble(args[2]);
+	}
+
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);

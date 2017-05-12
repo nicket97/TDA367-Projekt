@@ -27,6 +27,10 @@ public class Blur implements Layerable {
 	
 	}
 
+	public Blur(String[] args) {
+		this(Integer.parseInt(args[1]));
+	}
+
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		long time = System.nanoTime();

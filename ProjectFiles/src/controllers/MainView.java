@@ -1,6 +1,7 @@
 package controllers;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -52,6 +54,8 @@ public class MainView extends AnchorPane implements Initializable {
 	public static LayerView layerView;
 	static CanvasView canvasView;
 	MiniCanvasView miniCanvasView; 
+	private Point topLeft = new Point (0,0);
+	private Point bottomRight = new Point (0,0);
 	
 	@FXML
 	TilePane bottomContainer;
@@ -214,6 +218,15 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasView.repaint();
 		});
 		
+		menuCrop.setOnAction(e ->{
+			setTopLeftCrop();
+			System.out.println("Top left corner: ");
+			setBottomRightCrop();
+			
+			canvasView.repaint();
+			});
+	
+		
 		menuClicked(menuBlur, (new Blur(7)));
 		menuClicked(menuGaussianBlur, (new GaussianBlur(3)));
 		menuClicked(menuSharpen, (new Sharpen()));
@@ -227,9 +240,45 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));
 		menuClicked(menuBlackWhite, (new BlackAndWhite(123)));
+		
+	
 
 	}
+public Point setTopLeftCrop() {
+	Point topLeft = new Point();
+	canvasView.setOnMouseClicked(e ->{
+		topLeft.setLocation(e.getX(), e.getY());
+	});
+	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+	alert.setTitle("Beskärning");
+	alert.setHeaderText("Välj önskat övre vänstra hörn");
+	alert.showAndWait();
+	/*while (topLeft.getX() == 0 && topLeft.getY() == 0) {
+		if (topLeft.getX() != 0 || topLeft.getY() != 0) {
+			break;
+		}
+	}*/
 	
+	return topLeft;
+}
+	
+	public Point setBottomRightCrop() {
+		Point bottomRight = new Point();
+		canvasView.setOnMouseClicked(e ->{
+			bottomRight.setLocation(e.getX(), e.getY());
+		});
+		Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+		alert2.setTitle("Beskärning");
+		alert2.setHeaderText("Välj önskat nedre högra hörn");
+		alert2.showAndWait();
+		/*while (topLeft.getX() == 0 && topLeft.getY() == 0) {
+			if (topLeft.getX() != 0 || topLeft.getY() != 0) {
+				break;
+			}
+		}*/
+		
+		return bottomRight;
+	}
 	private FadeTransition fadeIn = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeAdjust = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeExposure = new FadeTransition(Duration.millis(150));

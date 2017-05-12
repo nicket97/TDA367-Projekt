@@ -8,8 +8,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
+
+
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,15 +20,17 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.Layers;
 import main.Main;
 import model.BlackAndWhite;
@@ -36,11 +41,11 @@ import model.Edge;
 import model.Exposure;
 import model.GaussianBlur;
 import model.GrayScale;
+import model.HMirroring;
 import model.Layer;
 import model.Layerable;
 import model.Levels;
 import model.LoadedImage;
-import model.HMirroring;
 import model.OpenProject;
 import model.RotateL;
 import model.RotateR;
@@ -53,7 +58,8 @@ public class MainView extends AnchorPane implements Initializable {
 	
 	public static LayerView layerView;
 	static CanvasView canvasView;
-	MiniCanvasView miniCanvasView; 
+	MiniCanvasView miniCanvasView;
+	Stage primaryStage;
 	
 	@FXML
 	TilePane bottomContainer;
@@ -61,7 +67,7 @@ public class MainView extends AnchorPane implements Initializable {
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
 	
 	@FXML
-	Menu menuBar;
+	AnchorPane menuBar;
 	@FXML
 	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject;
 	@FXML
@@ -115,8 +121,8 @@ public class MainView extends AnchorPane implements Initializable {
 	
 	private static LoadedImage backgroundImage;
 
-	public MainView() {
-
+	public MainView(Stage pstage) {
+		primaryStage = pstage;
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/MainView.fxml"));
 
 		System.out.println("mainview");
@@ -233,6 +239,22 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuBlackWhite, (new BlackAndWhite(123)));
 		menuClicked(menuExposure, (new Exposure(40)));
 		menuClicked(menuEdge, (new Edge()));
+		
+		final Delta dragDelta = new Delta();
+		
+		menuBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+			  @Override public void handle(MouseEvent mouseEvent) {
+			    // record a delta distance for the drag and drop operation.
+			    dragDelta.x = pstage.getX() - mouseEvent.getScreenX();
+			    dragDelta.y = pstage.getY() - mouseEvent.getScreenY();
+			  }
+			});
+			menuBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			  @Override public void handle(MouseEvent mouseEvent) {
+			    pstage.setX(mouseEvent.getScreenX() + dragDelta.x);
+			    pstage.setY(mouseEvent.getScreenY() + dragDelta.y);
+			  }
+			});
 
 	}
 	
@@ -427,5 +449,8 @@ public class MainView extends AnchorPane implements Initializable {
 	}
 	public static CanvasView getCanvas(){
 		return canvasView;
-	}	
+	}
+	
+	
 }
+class Delta { double x, y; } 

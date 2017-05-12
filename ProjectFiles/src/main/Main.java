@@ -27,7 +27,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		this.primaryStage = primaryStage;
-		Parent root = new MainView();
+		Parent root = new MainView(primaryStage);
 		
         Scene scene = new Scene(root, 1280, 720);
         primaryStage.initStyle(StageStyle.TRANSPARENT);

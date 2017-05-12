@@ -20,7 +20,7 @@
 <fx:root id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane id="mainPane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" />
-      <MenuBar id="menuBar" fx:id="menuBar" layoutX="26.0" layoutY="2.0" prefHeight="30.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar id="menuBar" layoutX="26.0" layoutY="2.0" prefHeight="30.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="Arkiv">
             <items>
@@ -43,7 +43,8 @@
               <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Avsluta" />
             </items>
           </Menu>
-          <Menu fx:id="menuBar" mnemonicParsing="false" text="Verktyg">
+           
+          <Menu  mnemonicParsing="false" text="Verktyg">
             <items>
               <MenuItem fx:id="menuUndo" text="Ångra">
                      <accelerator>
@@ -932,9 +933,9 @@
                </children>
             </HBox>
          </children></AnchorPane>
-      <AnchorPane prefHeight="35.0" prefWidth="94.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="menuBar" prefHeight="35.0" prefWidth="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" layoutX="98.0" prefHeight="35.0" prefWidth="192.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER" layoutX="900.0" prefHeight="35.0" prefWidth="192.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button id="interfaceButton" fx:id="maxiButton" mnemonicParsing="false">
                      <graphic>

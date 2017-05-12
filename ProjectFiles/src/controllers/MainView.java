@@ -407,6 +407,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuGaussianBlur.setDisable(b);
 		menuSharpen.setDisable(b);
 		menuTextFilter.setDisable(b);
+		menuEdge.setDisable(b);
 		menuFMatte.setDisable(b);
 		menuFBW.setDisable(b);
 		menuFVintage.setDisable(b);

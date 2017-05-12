@@ -29,6 +29,7 @@ public class Blur implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
+		long time = System.nanoTime();
 		LoadedImage newImage = new LoadedImage(img);
 		
 		for(int i = 0; i < img.getpxImage().length; i++) {
@@ -50,6 +51,7 @@ public class Blur implements Layerable {
 				newImage.getpxImage()[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
 				}
 		}
+		System.out.println("Blur" + (System.nanoTime() - time)/1000000000);
 		return newImage;
 	}
 

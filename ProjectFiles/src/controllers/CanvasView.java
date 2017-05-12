@@ -23,6 +23,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 	AnchorPane canvasPane;
 	
 	Canvas imagePane;
+	CanvasView canvasView = this;
 	
 	double zoomFactor = 1;
 
@@ -74,7 +75,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 		
 	}
 	public void drawImage(LoadedImage img, double zoomFactor){
-		System.out.println(System.nanoTime());
+		long time = System.nanoTime();
 		LoadedImage newImage = new LoadedImage(img);
 		
 		for(Layer layer : Layers.getLayerStack()){
@@ -82,10 +83,88 @@ public class CanvasView extends AnchorPane implements Initializable {
 				newImage = layer.getAction().transform(newImage);	
 			}
 		}
-		
+		LoadedImage newsImage = newImage;
 		imagePane = new Canvas(newImage.getWidth(), newImage.getHeigth());
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		//Zoom Out
+		/*Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run(){
+            	if (zoomFactor >= 1) {
+        			int screenX = 0;
+        		for(int i = topX+1; i < canvasView.getWidth() ; i+=2){
+        			int screenY = 0;
+        			for(int j = topY; j < canvasView.getHeight(); j++){
+        				if((zoomFactor*i) >= newsImage.getpxImage().length || (int) (zoomFactor*j) >= newsImage.getpxImage()[1].length)continue;
+        				gc.setColor(screenX, screenY, newsImage.getpxImage()[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
+        				screenY++;
+        			}
+        			screenX++;
+        		}
+        		}
+        		//zoom in
+        		else if (zoomFactor < 1) {
+        			int screenX = 0;
+        			double zoom = zoomFactor;
+        			System.out.println(zoom);
+        			double y = topX;
+        			//System.out.println("testa x =" + x + "Y = " + y);
+        			for(int i = topX+1; i < canvasView.getWidth()-1; i+=2){
+        				double x = topY;
+        				int screenY = 0;
+        				y += zoom;
+        				for(int j = topY; j < canvasView.getHeight(); j++){
+        					if(((int) Math.floor(y) >= newsImage.getpxImage().length) || ((int)Math.floor( (x + zoom)) >= newsImage.getpxImage()[1].length))continue;
+        					gc.setColor(screenX, screenY, newsImage.getpxImage()[(int) Math.floor(y)][(int)Math.floor( (x += zoom))]);
+        					//System.out.println((x) + " and  " + (y));
+        					screenY++;
+        				}
+        				screenX++;
+        		}
+            }
+            }
+        });
+		Thread thread2 = new Thread(new Runnable() {
+			
+            @Override
+            public void run(){
+            	if (zoomFactor >= 1) {
+        			int screenX = 0;
+        		for(int i = topX; i < canvasView.getWidth() ; i+=2){
+        			int screenY = 0;
+        			for(int j = topY; j < canvasView.getHeight(); j++){
+        				if((zoomFactor*i) >= newsImage.getpxImage().length || (int) (zoomFactor*j) >= newsImage.getpxImage()[1].length)continue;
+        				gc.setColor(screenX, screenY, newsImage.getpxImage()[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
+        				screenY++;
+        			}
+        			screenX++;
+        		}
+        		}
+        		//zoom in
+        		else if (zoomFactor < 1) {
+        			int screenX = 0;
+        			double zoom = zoomFactor;
+        			System.out.println(zoom);
+        			double y = topX;
+        			//System.out.println("testa x =" + x + "Y = " + y);
+        			for(int i = topX; i < canvasView.getWidth(); i+=2){
+        				double x = topY;
+        				int screenY = 0;
+        				y += zoom;
+        				for(int j = topY; j < canvasView.getHeight(); j++){
+        					if(((int) Math.floor(y) >= newsImage.getpxImage().length) || ((int)Math.floor( (x + zoom)) >= newsImage.getpxImage()[1].length))continue;
+        					gc.setColor(screenX, screenY, newsImage.getpxImage()[(int) Math.floor(y)][(int)Math.floor( (x += zoom))]);
+        					//System.out.println((x) + " and  " + (y));
+        					screenY++;
+        				}
+        				screenX++;
+        		}
+            }
+            }
+		});
+		thread1.start();
+		thread2.start();
+		*/
 		if (zoomFactor >= 1) {
 			int screenX = 0;
 		for(int i = topX; i < this.getWidth() ; i++){
@@ -118,7 +197,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 				screenX++;
 		}
 		}
-		System.out.println(System.nanoTime());
+		System.out.println("canvasView" +  (double)(System.nanoTime() - time)/1000000000);
 		
 				canvasPane.getChildren().clear();
 		canvasPane.getChildren().add(imagePane);

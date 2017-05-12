@@ -214,7 +214,7 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasView.repaint();
 		});
 		
-		menuClicked(menuBlur, (new Blur(4)));
+		menuClicked(menuBlur, (new Blur(7)));
 		menuClicked(menuGaussianBlur, (new GaussianBlur(3)));
 		menuClicked(menuSharpen, (new Sharpen()));
 		menuClicked(menuGrayScale, (new GrayScale()));

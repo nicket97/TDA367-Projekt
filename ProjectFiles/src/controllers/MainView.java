@@ -32,6 +32,7 @@ import model.BlackAndWhite;
 import model.Blur;
 import model.ColorShift;
 import model.Contrast;
+import model.Exposure;
 import model.GaussianBlur;
 import model.GrayScale;
 import model.Layer;
@@ -227,6 +228,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));
 		menuClicked(menuBlackWhite, (new BlackAndWhite(123)));
+		menuClicked(menuExposure, (new Exposure(40)));
 
 	}
 	

@@ -71,6 +71,9 @@ public class OpenProject {
 			case "RotateL": Layers.addLayer(new Layer(new RotateL()));
 				break;
 			case "WhiteBalance": Layers.addLayer(new Layer(new WhiteBalance(3)));
+				break;
+			case "Exposure": Layers.addLayer(new Layer(new Exposure(50)));
+			break;
 			}
 		}
 		if(stage == 2){

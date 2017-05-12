@@ -150,8 +150,8 @@ public class MainView extends AnchorPane implements Initializable {
 			} catch (IOException e1) {
 				// On canceled fileopening
 			}
-			menuExport.setDisable(false);
-			menuSaveProject.setDisable(false);
+			setDisableMenuItems(false);
+
 		});
 		menuClose.setOnAction(e ->{
 			Platform.exit();
@@ -180,8 +180,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		menuOpenProject.setOnAction(e -> {
 			OpenProject.openFile();
-			menuExport.setDisable(false);
-			menuSaveProject.setDisable(false);
+			setDisableMenuItems(false);
 		});
 		
 		closeButton.setOnAction(e ->{
@@ -276,8 +275,7 @@ public class MainView extends AnchorPane implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		menuExport.setDisable(true);
-		menuSaveProject.setDisable(true);
+		setDisableMenuItems(true);
 
 		canvasView = new CanvasView();
 		miniCanvasView = new MiniCanvasView();
@@ -388,6 +386,32 @@ public class MainView extends AnchorPane implements Initializable {
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
+	}
+
+	private void setDisableMenuItems(boolean b) {
+		menuExport.setDisable(b);
+		menuSaveProject.setDisable(b);
+		menuGrayScale.setDisable(b);
+		menuColorFilter.setDisable(b);
+		menuBlackWhite.setDisable(b);
+		menuWhitebalance.setDisable(b);
+		menuLevels.setDisable(b);
+		menuCrop.setDisable(b);
+		menuExposure.setDisable(b);
+		menuContrast.setDisable(b);
+		menuHReflect.setDisable(b);
+		menuVReflect.setDisable(b);
+		menuRotateL.setDisable(b);
+		menuRotateR.setDisable(b);
+		menuBlur.setDisable(b);
+		menuGaussianBlur.setDisable(b);
+		menuSharpen.setDisable(b);
+		menuTextFilter.setDisable(b);
+		menuFMatte.setDisable(b);
+		menuFBW.setDisable(b);
+		menuFVintage.setDisable(b);
+		menuZoomIn.setDisable(b);
+		menuZoomOut.setDisable(b);
 	}
 
 	public static LoadedImage getBackgroundImage() {

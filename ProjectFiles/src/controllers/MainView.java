@@ -59,6 +59,9 @@ public class MainView extends AnchorPane implements Initializable {
 	TilePane bottomContainer;
 	@FXML
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
+	
+	@FXML
+	Menu menuBar;
 	@FXML
 	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject;
 	@FXML

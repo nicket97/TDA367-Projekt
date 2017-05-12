@@ -43,7 +43,7 @@
               <MenuItem fx:id="menuClose" mnemonicParsing="false" text="Avsluta" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Verktyg">
+          <Menu fx:id="menuBar" mnemonicParsing="false" text="Verktyg">
             <items>
               <MenuItem fx:id="menuUndo" text="Ångra">
                      <accelerator>

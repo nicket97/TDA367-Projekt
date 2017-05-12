@@ -30,7 +30,7 @@ public class Main extends Application {
 		Parent root = new MainView();
 		
         Scene scene = new Scene(root, 1280, 720);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("TO BE DECIDED");
         primaryStage.setScene(scene);
         primaryStage.show();

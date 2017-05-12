@@ -10,8 +10,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
+
+
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,28 +23,32 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.Layers;
 import main.Main;
 import model.BlackAndWhite;
 import model.Blur;
 import model.ColorShift;
 import model.Contrast;
+import model.Edge;
+import model.Exposure;
 import model.GaussianBlur;
 import model.GrayScale;
+import model.HMirroring;
 import model.Layer;
 import model.Layerable;
 import model.Levels;
 import model.LoadedImage;
-import model.HMirroring;
 import model.OpenProject;
 import model.RotateL;
 import model.RotateR;
@@ -54,14 +61,20 @@ public class MainView extends AnchorPane implements Initializable {
 	
 	public static LayerView layerView;
 	static CanvasView canvasView;
+
 	MiniCanvasView miniCanvasView; 
 	private Point topLeft = new Point (0,0);
 	private Point bottomRight = new Point (0,0);
+	Stage primaryStage;
+
 	
 	@FXML
 	TilePane bottomContainer;
 	@FXML
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
+	
+	@FXML
+	AnchorPane menuBar;
 	@FXML
 	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject;
 	@FXML
@@ -69,7 +82,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR;
 	@FXML
-	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter;
+	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge;
 	@FXML
 	MenuItem menuFMatte, menuFBW, menuFVintage;
 	@FXML
@@ -115,8 +128,8 @@ public class MainView extends AnchorPane implements Initializable {
 	
 	private static LoadedImage backgroundImage;
 
-	public MainView() {
-
+	public MainView(Stage pstage) {
+		primaryStage = pstage;
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/MainView.fxml"));
 
 		System.out.println("mainview");
@@ -153,8 +166,8 @@ public class MainView extends AnchorPane implements Initializable {
 			} catch (IOException e1) {
 				// On canceled fileopening
 			}
-			menuExport.setDisable(false);
-			menuSaveProject.setDisable(false);
+			setDisableMenuItems(false);
+
 		});
 		menuClose.setOnAction(e ->{
 			Platform.exit();
@@ -183,8 +196,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		menuOpenProject.setOnAction(e -> {
 			OpenProject.openFile();
-			menuExport.setDisable(false);
-			menuSaveProject.setDisable(false);
+			setDisableMenuItems(false);
 		});
 		
 		closeButton.setOnAction(e ->{
@@ -244,7 +256,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuSharpen, (new Sharpen()));
 		menuClicked(menuGrayScale, (new GrayScale()));
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
-		menuClicked(menuContrast, (new Contrast(200, 1.4)));
+		menuClicked(menuContrast, (new Contrast(100, 1.4)));
 		menuClicked(menuHReflect, (new HMirroring()));
 		menuClicked(menuVReflect, (new VMirroring()));
 		menuClicked(menuWhitebalance, (new WhiteBalance(20)));
@@ -252,8 +264,26 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));
 		menuClicked(menuBlackWhite, (new BlackAndWhite(123)));
+
+		menuClicked(menuExposure, (new Exposure(40)));
+		menuClicked(menuEdge, (new Edge()));
 		
-	
+		final Delta dragDelta = new Delta();
+		
+		menuBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+			  @Override public void handle(MouseEvent mouseEvent) {
+			    // record a delta distance for the drag and drop operation.
+			    dragDelta.x = pstage.getX() - mouseEvent.getScreenX();
+			    dragDelta.y = pstage.getY() - mouseEvent.getScreenY();
+			  }
+			});
+			menuBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			  @Override public void handle(MouseEvent mouseEvent) {
+			    pstage.setX(mouseEvent.getScreenX() + dragDelta.x);
+			    pstage.setY(mouseEvent.getScreenY() + dragDelta.y);
+			  }
+			});
+
 
 	}
 public Point setTopLeftCrop() {
@@ -340,8 +370,7 @@ public Point setTopLeftCrop() {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		menuExport.setDisable(true);
-		menuSaveProject.setDisable(true);
+		setDisableMenuItems(true);
 
 		canvasView = new CanvasView();
 		miniCanvasView = new MiniCanvasView();
@@ -454,6 +483,33 @@ public Point setTopLeftCrop() {
 		});
 	}
 
+	private void setDisableMenuItems(boolean b) {
+		menuExport.setDisable(b);
+		menuSaveProject.setDisable(b);
+		menuGrayScale.setDisable(b);
+		menuColorFilter.setDisable(b);
+		menuBlackWhite.setDisable(b);
+		menuWhitebalance.setDisable(b);
+		menuLevels.setDisable(b);
+		menuCrop.setDisable(b);
+		menuExposure.setDisable(b);
+		menuContrast.setDisable(b);
+		menuHReflect.setDisable(b);
+		menuVReflect.setDisable(b);
+		menuRotateL.setDisable(b);
+		menuRotateR.setDisable(b);
+		menuBlur.setDisable(b);
+		menuGaussianBlur.setDisable(b);
+		menuSharpen.setDisable(b);
+		menuTextFilter.setDisable(b);
+		menuEdge.setDisable(b);
+		menuFMatte.setDisable(b);
+		menuFBW.setDisable(b);
+		menuFVintage.setDisable(b);
+		menuZoomIn.setDisable(b);
+		menuZoomOut.setDisable(b);
+	}
+
 	public static LoadedImage getBackgroundImage() {
 		return backgroundImage;
 	}
@@ -463,5 +519,8 @@ public Point setTopLeftCrop() {
 	}
 	public static CanvasView getCanvas(){
 		return canvasView;
-	}	
+	}
+	
+	
 }
+class Delta { double x, y; } 

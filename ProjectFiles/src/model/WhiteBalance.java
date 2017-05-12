@@ -11,6 +11,9 @@ public class WhiteBalance implements Layerable {
 	public WhiteBalance (int threshold){
 		this.threshold = threshold;
 	}
+	public WhiteBalance (String[] args){
+		this.threshold = Integer.parseInt(args[1]);
+	}
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);

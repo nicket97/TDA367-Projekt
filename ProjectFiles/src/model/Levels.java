@@ -19,6 +19,13 @@ public class Levels implements Layerable{
 		
 	}
 
+	public Levels(String[] args) {
+		this.maxLevel = Integer.parseInt(args[1]);
+		this.minLevel = Integer.parseInt(args[2]);
+		this.midLevel = (maxLevel + minLevel)/2;
+		this.changeLevel = ((minLevel/midLevel) + (midLevel/maxLevel))/2;
+	}
+
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
@@ -36,7 +43,7 @@ public class Levels implements Layerable{
 
 	@Override
 	public String saveLayer() {
-		String output = "Levels?";
+		String output = "Levels?"+maxLevel + "?" + minLevel + "?";
 		return output;
 	}
 

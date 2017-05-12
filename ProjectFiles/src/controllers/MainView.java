@@ -1,5 +1,6 @@
 package controllers;
 
+import java.awt.Event;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -219,11 +220,22 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		
 		menuCrop.setOnAction(e ->{
-			setTopLeftCrop();
-			System.out.println("Top left corner: ");
-			setBottomRightCrop();
+			canvasView.setOnMouseClicked(null);
+			Platform.runLater(new Runnable() {
+			    
+				@Override
+				public void run() {
+					
+					setTopLeftCrop();
+					System.out.println("Top left corner: ");
+					setBottomRightCrop();
+					
+					canvasView.repaint();
+				}
+				
+			});
+
 			
-			canvasView.repaint();
 			});
 	
 		
@@ -253,12 +265,16 @@ public Point setTopLeftCrop() {
 	alert.setTitle("Beskärning");
 	alert.setHeaderText("Välj önskat övre vänstra hörn");
 	alert.showAndWait();
-	/*while (topLeft.getX() == 0 && topLeft.getY() == 0) {
-		if (topLeft.getX() != 0 || topLeft.getY() != 0) {
-			break;
+	//alert.get
+	while (topLeft.getX() == 0 && topLeft.getY() == 0) {
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-	}*/
-	
+	}
+	System.out.println(topLeft.toString());
 	return topLeft;
 }
 	
@@ -271,11 +287,14 @@ public Point setTopLeftCrop() {
 		alert2.setTitle("Beskärning");
 		alert2.setHeaderText("Välj önskat nedre högra hörn");
 		alert2.showAndWait();
-		/*while (topLeft.getX() == 0 && topLeft.getY() == 0) {
-			if (topLeft.getX() != 0 || topLeft.getY() != 0) {
-				break;
+		while (topLeft.getX() == 0 && topLeft.getY() == 0) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-		}*/
+		}
 		
 		return bottomRight;
 	}

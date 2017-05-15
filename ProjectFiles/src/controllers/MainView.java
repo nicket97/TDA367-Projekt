@@ -25,6 +25,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -94,9 +95,9 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Button cfUpdate, grayUpdate, bwUpdate, wbUpdate;
 	@FXML
-	Button yellowButton, orangeButton, blueButton, redButton, pinkButton;
+	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton;
 	@FXML
-	Button purpleButton, turquoiseButton, greenButton;
+	RadioButton purpleButton, turquoiseButton, greenButton;
 	@FXML
 	ColorPicker customColor;
 	@FXML

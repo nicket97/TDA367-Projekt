@@ -182,11 +182,17 @@
 	-fx-cursor: hand;
 }
 
-#colorButton:pressed {
+#colorButton:selected {
+	-fx-border-radius: 10, 10, 10, 10;
 	-fx-border-color: #FFF;
 	-fx-border-width: 2px;
 }
-
+.radio-button .dot, .radio-button -radio:determinate,
+.radio-button -radio:indeterminate, 
+.radio-button .radio:selected, .radio-button:selected .radio,
+.radio-button .radio {
+	-fx-background-color: transparent;
+}
 /**.button {
     -fx-padding: 5 22 5 22;   
     -fx-border-color: #e2e2e2;

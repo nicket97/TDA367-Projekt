@@ -695,14 +695,18 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0" spacing="5.0">
                                  <children>
-                                    <Button id="colorButton" fx:id="yellowButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: yellow;" />
-                                    <Button id="colorButton" fx:id="orangeButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: orange;" />
-                                    <Button id="colorButton" fx:id="blueButton" alignment="CENTER" layoutX="26.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" />
-                                    <Button id="colorButton" fx:id="redButton" alignment="CENTER" layoutX="42.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: red;" />
-                                    <Button id="colorButton" fx:id="pinkButton" alignment="CENTER" layoutX="58.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: hotpink;" />
-                                    <Button id="colorButton" fx:id="purpleButton" alignment="CENTER" layoutX="74.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: blueviolet;" />
-                                    <Button id="colorButton" fx:id="turquoiseButton" alignment="CENTER" layoutX="90.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: cyan;" />
-                                    <Button id="colorButton" fx:id="greenButton" alignment="CENTER" layoutX="106.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: limegreen;" />
+                                    <RadioButton id="colorButton" fx:id="yellowButton" mnemonicParsing="false" style="-fx-background-color: yellow;" text="RadioButton">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="colorGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton id="colorButton" fx:id="orangeButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="RadioButton" toggleGroup="$colorGroup" />
+                                    <RadioButton id="colorButton" fx:id="blueButton" layoutX="185.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="RadioButton" toggleGroup="$colorGroup" />
+                                    <RadioButton id="colorButton" fx:id="redButton" layoutX="185.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: red;" text="RadioButton" toggleGroup="$colorGroup" />
+                                    <RadioButton id="colorButton" fx:id="pinkButton" layoutX="185.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: hotpink;" text="RadioButton" toggleGroup="$colorGroup" />
+                                    <RadioButton id="colorButton" fx:id="purpleButton" layoutX="185.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: blueviolet;" text="RadioButton" toggleGroup="$colorGroup" />
+                                    <RadioButton id="colorButton" fx:id="turquoiseButton" layoutX="185.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: cyan;" text="RadioButton" toggleGroup="$colorGroup" />
+                                    <RadioButton id="colorButton" fx:id="greenButton" layoutX="160.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: limegreen;" text="RadioButton" toggleGroup="$colorGroup" />
                                  </children>
                               </HBox>
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj färg">

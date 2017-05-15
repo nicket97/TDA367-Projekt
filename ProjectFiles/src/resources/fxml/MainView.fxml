@@ -116,6 +116,8 @@
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
+                  <MenuItem fx:id="menuGrain" mnemonicParsing="false" text="GrainFilter">
+                  </MenuItem>
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Färg">

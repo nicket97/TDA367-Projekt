@@ -44,6 +44,7 @@ import model.Contrast;
 import model.Edge;
 import model.Exposure;
 import model.GaussianBlur;
+import model.Grain;
 import model.GrayScale;
 import model.HMirroring;
 import model.Layer;
@@ -83,7 +84,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR;
 	@FXML
-	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge;
+	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain;
 	@FXML
 	MenuItem menuFMatte, menuFBW, menuFVintage;
 	@FXML
@@ -281,7 +282,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));
 		menuClicked(menuBlackWhite, (new BlackAndWhite(123)));
-
+		menuClicked(menuGrain, new Grain(20));
 		menuClicked(menuExposure, (new Exposure(40)));
 		menuClicked(menuEdge, (new Edge()));
 		

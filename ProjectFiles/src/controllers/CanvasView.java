@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import main.Layers;
 import model.Layer;
 import model.LoadedImage;
@@ -34,15 +35,19 @@ public class CanvasView extends AnchorPane implements Initializable {
 	double releasedX;
 	double releasedY;
 	
+	private double canvasWidth;
+	private double canvasHeight;
 	
 	
-	public CanvasView() {
+	public CanvasView(double width, double height) {
 
 		
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/CanvasView.fxml"));
 		System.out.println("canvasview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
+		this.canvasWidth = width;
+		this.canvasHeight = height;
 		
 		
 		
@@ -70,7 +75,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 			moveCanvas(distanceDragged());
 			
 		});
-		this.setPrefSize(2000,2000);
+		this.setPrefSize(canvasWidth, canvasHeight);
 		
 		
 	}
@@ -84,7 +89,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 			}
 		}
 		LoadedImage newsImage = newImage;
-		imagePane = new Canvas(newImage.getWidth(), newImage.getHeigth());
+		imagePane = new Canvas(1000, 1000);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		//Zoom Out
 		/*Thread thread1 = new Thread(new Runnable() {
@@ -167,10 +172,11 @@ public class CanvasView extends AnchorPane implements Initializable {
 		*/
 		
 		if (zoomFactor >= 1) {
-			int screenX = 0;
-		for(int i = topX; i < this.getWidth() ; i++){
+			int screenX = getMargins(img);
+			System.out.println("screenX " + screenX + " Width and Heigthjhdj " + this.getWidth() + "  " + this.getHeight());
+		for(int i = topX; i < img.getWidth() ; i++){
 			int screenY = 0;
-			for(int j = topY; j < this.getHeight(); j++){
+			for(int j = topY; j < img.getHeigth(); j++){
 				if((zoomFactor*i) >= newImage.getpxImage().length || (int) (zoomFactor*j) >= newImage.getpxImage()[1].length)break;
 				gc.setColor(screenX, screenY, newImage.getpxImage()[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
 				screenY++;
@@ -181,7 +187,8 @@ public class CanvasView extends AnchorPane implements Initializable {
 		}
 		//zoom in
 		else if (zoomFactor < 1) {
-			int screenX = 0;
+			int screenX = getMargins(img);
+			
 			double zoom = zoomFactor;
 			System.out.println(zoom);
 			double y = topX;
@@ -260,6 +267,32 @@ public class CanvasView extends AnchorPane implements Initializable {
 		repaint();
 		
 	}
+	
+	
+	public int getMargins(LoadedImage img) {
+		System.out.println(imagePane.getWidth() + "jkjijhjhj" + img.getWidth());
+		int margins = (int) ((canvasWidth - img.getWidth()) /2);
+		System.out.println("marginal" + margins);
+		//if(margins < 0) margins = 0;
+		return margins;
+	}
+	public double getCanvasWidth() {
+		return canvasWidth;
+	}
+
+	public void setCanvasWidth(double canvasWidth) {
+		this.canvasWidth = canvasWidth;
+	}
+
+	public double getCanvasHeight() {
+		return canvasHeight;
+	}
+
+	public void setCanvasHeight(double canvasHeight) {
+		this.canvasHeight = canvasHeight;
+	}
+
+
 	
 
 	

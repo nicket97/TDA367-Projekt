@@ -3,11 +3,13 @@ package main;
 import controllers.MainView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.SaveProject;
@@ -34,6 +36,11 @@ public class Main extends Application {
         primaryStage.setTitle("TO BE DECIDED");
         primaryStage.setScene(scene);
         primaryStage.show();
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+        primaryStage.setWidth(primaryScreenBounds.getWidth());
+        primaryStage.setHeight(primaryScreenBounds.getHeight());
+        System.out.println();
 }
 	public static Stage getPrimaryStage(){
 		return primaryStage;

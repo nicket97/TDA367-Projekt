@@ -144,6 +144,9 @@ public class MainView extends AnchorPane implements Initializable {
 		}
 		
 		openImage.setOnAction(e -> {
+			canvasView.setPrefSize(this.getPrimaryStageHeight(), this.getPrimaryStageWidth());
+			canvasView.setCanvasWidth(this.getPrimaryStageWidth());
+			canvasView.setCanvasHeight(this.getPrimaryStageHeight());
 			FileChooser fileChooser = new FileChooser();
 			
 			//fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
@@ -388,7 +391,7 @@ public Point setTopLeftCrop() {
 	public void initialize(URL location, ResourceBundle resources) {
 		setDisableMenuItems(true);
 
-		canvasView = new CanvasView();
+		canvasView = new CanvasView(getPrimaryStageWidth(),getPrimaryStageHeight());
 		miniCanvasView = new MiniCanvasView();
 		layerView = new LayerView();
 		
@@ -535,6 +538,16 @@ public Point setTopLeftCrop() {
 	}
 	public static CanvasView getCanvas(){
 		return canvasView;
+	}
+	
+	public double getPrimaryStageWidth() {
+		double width = primaryStage.getWidth();
+		
+		return width;
+	}
+	public double getPrimaryStageHeight() {
+		double height = primaryStage.getHeight();
+		return height;
 	}
 	
 	

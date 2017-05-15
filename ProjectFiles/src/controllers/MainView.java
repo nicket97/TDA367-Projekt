@@ -527,6 +527,8 @@ public Point setTopLeftCrop() {
 		menuFVintage.setDisable(b);
 		menuZoomIn.setDisable(b);
 		menuZoomOut.setDisable(b);
+		menuUndo.setDisable(b);
+		
 	}
 
 	public static LoadedImage getBackgroundImage() {

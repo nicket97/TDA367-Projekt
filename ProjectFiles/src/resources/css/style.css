@@ -57,6 +57,10 @@
 
 /** MENU **/
 
+#topBar {
+	-fx-background-color: #1d1d1d;
+}
+
 #menuBar {
 	-fx-background-color: #1d1d1d;
 }
@@ -178,8 +182,9 @@
 	-fx-cursor: hand;
 }
 
-#colorButton:active {
-	
+#colorButton:pressed {
+	-fx-border-color: #FFF;
+	-fx-border-width: 2px;
 }
 
 /**.button {

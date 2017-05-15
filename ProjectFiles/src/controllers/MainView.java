@@ -170,6 +170,7 @@ public class MainView extends AnchorPane implements Initializable {
 					//System.out.println(canvasView.toString());
 					setBackgroundImage(ll);
 					canvasView.repaint();
+					miniCanvasView.repaint();
 			} catch (IOException e1) {
 				// On canceled fileopening
 			}
@@ -383,6 +384,7 @@ public Point setTopLeftCrop() {
 		name.setOnAction( e->{
 			layerstack.addLayer(new Layer(layerType));
 			canvasView.repaint();
+			miniCanvasView.repaint();
 		});
 		return;
 	}

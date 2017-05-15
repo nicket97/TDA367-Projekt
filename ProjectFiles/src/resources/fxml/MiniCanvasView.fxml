@@ -6,6 +6,6 @@
 
 <fx:root type="AnchorPane" fx:id="canvasPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <!-- <Canvas fx:id="imagePane" layoutX="135.0" layoutY="46.0" prefHeight="135.0" prefWidth="180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" /> -->
+      <AnchorPane fx:id="imgPane" layoutX="135.0" layoutY="46.0" prefHeight="135.0" prefWidth="180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" /> 
    </children>
 </fx:root>

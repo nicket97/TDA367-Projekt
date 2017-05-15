@@ -49,7 +49,7 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 				newImage = layer.getAction().transform(newImage);	
 			}
 		}
-		imagePane = new Canvas(180, 135);
+		
 		double zoomFactor = 1;
 		if(img.getWidth()/180 >= img.getHeigth()/135){
 			zoomFactor = img.getWidth()/180;
@@ -57,6 +57,7 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 		else{
 			zoomFactor = img.getHeigth()/135;
 		}
+		imagePane = new Canvas(img.getWidth()*zoomFactor, 135);
 		
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		

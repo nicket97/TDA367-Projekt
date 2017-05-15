@@ -8,8 +8,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class Blur implements Layerable {
-	int radius;
-	double[][] kernel;
+	private int radius;
+	private double[][] kernel;
 	
 	public Blur(int r){
 		radius = r;

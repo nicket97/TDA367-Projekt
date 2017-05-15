@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 
 public class WhiteBalance implements Layerable {
 	
-	int threshold;
+	private int threshold;
 	public WhiteBalance (int threshold){
 		this.threshold = threshold;
 	}

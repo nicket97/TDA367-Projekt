@@ -6,10 +6,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class Levels implements Layerable{
-	int maxLevel;
-	int minLevel;
-	int midLevel;
-	double changeLevel;
+	private int maxLevel;
+	private int minLevel;
+	private int midLevel;
+	private double changeLevel;
 	
 	public Levels(int maxLevel, int minLevel) {
 		this.maxLevel = maxLevel;

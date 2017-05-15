@@ -6,7 +6,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class Exposure implements Layerable{
-	int factor;
+	private int factor;
 	public Exposure(int factor){
 		this.factor = factor;
 		

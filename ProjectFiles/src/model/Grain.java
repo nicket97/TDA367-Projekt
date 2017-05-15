@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 public class Grain implements Layerable {
 	
 	private int diviation;
+	
 	public Grain(int diviation){
 		this.diviation = diviation;
 	}

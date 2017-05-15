@@ -7,8 +7,8 @@ import javafx.scene.paint.Color;
 
 public class Edge implements Layerable{
 	
-	double[][] kernel;
-	int radius;
+	private double[][] kernel;
+	private int radius;
 	public Edge(){
 		radius = 1;
 		kernel = new double[3][3];

@@ -7,8 +7,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class Sharpen implements Layerable {
-	int radius;
-	double[][] kernel;
+	private int radius;
+	private double[][] kernel;
 
 	public Sharpen(){
 		

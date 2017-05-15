@@ -6,8 +6,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
 public class Contrast implements Layerable{
-	int threshold;
-	double factor;
+	private int threshold;
+	private double factor;
 	
 	public Contrast(int threshold, double factor) {
 		this.threshold = threshold;

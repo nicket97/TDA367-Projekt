@@ -281,7 +281,7 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.remove(Layers.getLayerStack().get(Layers.getLayerStack().size()-1));
 			canvasView.repaint();
 		});
-		slideZoom.setValue(canvasView.getZoomFactor());
+		slideZoom.setValue(50);
 		slideZoom.setOnMouseClicked(e->{
 			System.out.println("zooma " + slideZoom.getValue());
 			canvasView.setZoomFactor((Math.pow(2, slideZoom.getValue()/20-2.5)));
@@ -544,6 +544,8 @@ public Point setTopLeftCrop() {
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
+		slideZoom.setValue(50);
+		
 	}
 
 	private void setDisableMenuItems(boolean b) {

@@ -89,7 +89,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 		}
 		LoadedImage newsImage = newImage;
 		imagePane = new Canvas(newImage.getWidth()/zoomFactor, newImage.getHeigth()/zoomFactor);
-		imagePane.setTranslateX((primaryStage.getWidth()-200-newImage.getWidth()/zoomFactor)/2);
+		imagePane.setTranslateX((primaryStage.getWidth()-240-newImage.getWidth()/zoomFactor)/2);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		//Zoom Out
 		/*Thread thread1 = new Thread(new Runnable() {

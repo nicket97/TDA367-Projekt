@@ -323,7 +323,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="exposureUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="exposureUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -356,7 +356,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="contrastUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="contrastUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -389,7 +389,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="levelsUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="levelsUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -499,7 +499,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="blurUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="blurUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -545,7 +545,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="gBlurUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="gBlurUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <StackPane.margin>
                         <Insets />
@@ -607,7 +607,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="sharpenUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="sharpenUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -745,7 +745,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="cfUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="cfUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -778,7 +778,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="grayUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="grayUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -824,7 +824,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="bwUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="bwUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />
@@ -870,7 +870,7 @@
                               <Insets top="32.0" />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="wbUpdate" mnemonicParsing="false" text="Uppdatera" />
+                        <Button id="updateButton" fx:id="wbUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />

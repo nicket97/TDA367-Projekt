@@ -50,14 +50,23 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 			}
 		}
 		imagePane = new Canvas(180, 135);
+		double zoomFactor = img.getWidth()/150;
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		
-		for(int i = 0; i < 180 && i < canvasPane.getWidth(); i++){
-			 			for(int j = 0; j < 180 && j < canvasPane.getHeight(); j++){
-			  				
-			 				gc.setColor(i, j, img.getpxImage()[i][j]);
-			 			}
-			 		}
+		int screenX = 0;
+		for(int i = 0; i < 180 ; i++){
+			int screenY = 0;
+			for(int j = 0; j < 135; j++){
+				if((zoomFactor*i) >= newImage.getpxImage().length || (int) (zoomFactor*j) >= newImage.getpxImage()[1].length ||
+						(zoomFactor*i) <= 0 || (int) (zoomFactor*j) <= 0);
+				else{
+				gc.setColor(screenX, screenY, newImage.getpxImage()[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
+				}
+				screenY++;
+			}
+			screenX++;
+			//System.out.println("screeny" + screenY);
+		}
 			 					 	
 		
 		System.out.println("minicanvasView");

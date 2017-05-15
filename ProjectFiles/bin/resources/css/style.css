@@ -57,6 +57,10 @@
 
 /** MENU **/
 
+#topBar {
+	-fx-background-color: #1d1d1d;
+}
+
 #menuBar {
 	-fx-background-color: #1d1d1d;
 }
@@ -178,11 +182,18 @@
 	-fx-cursor: hand;
 }
 
-#colorButton:active {
-	
+#colorButton:selected {
+	-fx-border-radius: 10, 10, 10, 10;
+	-fx-border-color: #FFF;
+	-fx-border-width: 2px;
 }
-
-/**.button {
+.radio-button .dot, .radio-button -radio:determinate,
+.radio-button -radio:indeterminate, 
+.radio-button .radio:selected, .radio-button:selected .radio,
+.radio-button .radio {
+	-fx-background-color: transparent;
+}
+#updateButton {
     -fx-padding: 5 22 5 22;   
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
@@ -192,7 +203,7 @@
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
-}**/
+}
 
 .button:hover {
     -fx-background-color: #3a3a3a;

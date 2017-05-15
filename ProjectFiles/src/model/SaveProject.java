@@ -17,7 +17,7 @@ public class SaveProject {
 		try {
 			FileChooser fileChooser = new FileChooser();
 			File outputfile =  fileChooser.showSaveDialog(new Stage());
-			PrintWriter out = new PrintWriter(outputfile.getName() + ".nh");
+			PrintWriter out = new PrintWriter(outputfile.getAbsolutePath() +  ".nh");
 			System.out.println("sparar " +  outputfile.getName());
 			
 		    for(Layer layer : Layers.getLayerStack()){

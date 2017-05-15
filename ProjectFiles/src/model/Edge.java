@@ -16,7 +16,7 @@ public class Edge implements Layerable{
 		 kernel[0][1] = -1;
 		 kernel[0][2] = -1;
 		 kernel[1][0] = -1;
-		 kernel[1][1] = 8;
+		 kernel[1][1] = -8;
 		 kernel[1][2] = -1;
 		 kernel[2][0] = -1;
 		 kernel[2][1] = -1;
@@ -55,12 +55,12 @@ LoadedImage newImage = new LoadedImage(img);
 						}
 					}
 				}
-				if(sumRed < 0) sumRed = 255;
-				if(sumRed > 255) sumRed = 0;
-				if(sumGreen < 0) sumGreen = 255;
-				if(sumGreen > 255) sumGreen = 0;
-				if(sumBlue < 0) sumBlue = 255;
-				if(sumBlue > 255) sumBlue = 0;
+				if(sumRed < 0) sumRed = 0;
+				if(sumRed > 255) sumRed = 255;
+				if(sumGreen < 0) sumGreen = 0;
+				if(sumGreen > 255) sumGreen = 255;
+				if(sumBlue < 0) sumBlue = 0;
+				if(sumBlue > 255) sumBlue = 255;
 				newImage.getpxImage()[i][j]= Color.rgb(sumRed, sumGreen, sumBlue);
 				
 				}

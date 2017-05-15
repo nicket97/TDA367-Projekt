@@ -693,9 +693,9 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="27.0">
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="20.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0" spacing="5.0">
+                              <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0" spacing="4.0">
                                  <children>
                                     <RadioButton id="colorButton" fx:id="yellowButton" mnemonicParsing="false" style="-fx-background-color: yellow;" text="RadioButton">
                                        <toggleGroup>
@@ -710,6 +710,9 @@
                                     <RadioButton id="colorButton" fx:id="turquoiseButton" layoutX="185.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: cyan;" text="RadioButton" toggleGroup="$colorGroup" />
                                     <RadioButton id="colorButton" fx:id="greenButton" layoutX="160.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: limegreen;" text="RadioButton" toggleGroup="$colorGroup" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="6.0" />
+                                 </VBox.margin>
                               </HBox>
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj färg">
                                  <padding>
@@ -718,12 +721,12 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="23.0" />
+                              <Insets top="20.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="15.0">
                            <children>
-                              <ColorPicker fx:id="customColor" />
+                              <ColorPicker fx:id="customColor" prefWidth="125.0" />
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj egen...">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
@@ -731,7 +734,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="17.0" />
+                              <Insets top="21.0" />
                            </HBox.margin>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">

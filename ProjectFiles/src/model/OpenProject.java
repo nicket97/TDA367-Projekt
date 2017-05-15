@@ -73,7 +73,9 @@ public class OpenProject {
 			case "WhiteBalance": Layers.addLayer(new Layer(new WhiteBalance(information)));
 				break;
 			case "Exposure": Layers.addLayer(new Layer(new Exposure(information)));
-			break;
+				break;
+			case "Grain": Layers.addLayer(new Layer(new Grain(information)));
+				break;
 			}
 		}
 		if(stage == 2){

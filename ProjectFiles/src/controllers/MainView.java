@@ -147,7 +147,8 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		openImage.setOnAction(e -> {
 			FileChooser fileChooser = new FileChooser();
-			
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(" Bildfiler", "*.png", "*.jpg" , "*.jpeg");
+			fileChooser.getExtensionFilters().add(extFilter);;
 			//fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
 			fileChooser.setTitle("V�lj en bild");
 			

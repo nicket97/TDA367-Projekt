@@ -202,7 +202,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 					gc.setColor(screenX, screenY, newImage.getpxImage()[(int) Math.floor(y)][(int)Math.floor( (x))]);
 					
 					}
-					System.out.println(screenX + "hej " + screenY);
+					//System.out.println(screenX + "hej " + screenY);
 					//System.out.println((x) + " and  " + (y));
 					
 				}

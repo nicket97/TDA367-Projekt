@@ -393,7 +393,7 @@ public Point setTopLeftCrop() {
 	public void initialize(URL location, ResourceBundle resources) {
 		setDisableMenuItems(true);
 
-		canvasView = new CanvasView();
+		canvasView = new CanvasView(primaryStage);
 		miniCanvasView = new MiniCanvasView();
 		layerView = new LayerView();
 		

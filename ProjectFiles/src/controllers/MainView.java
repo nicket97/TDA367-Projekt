@@ -201,7 +201,9 @@ public class MainView extends AnchorPane implements Initializable {
 				}
 
 			}
-			
+			else{
+				Platform.exit();
+			}
 			//System.exit(0);
 		});
 		menuExport.setOnAction(e ->{
@@ -252,7 +254,9 @@ public class MainView extends AnchorPane implements Initializable {
 				}
 
 			}
-			//System.exit(0);
+			else{
+			Platform.exit();
+			}
 		});
 		
 		miniButton.setOnAction(e ->{

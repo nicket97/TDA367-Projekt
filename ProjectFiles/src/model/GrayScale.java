@@ -34,7 +34,7 @@ public class GrayScale extends ColorFilter {
 
 	@Override
 	public String getName() {
-		return "Gr�skala";
+		return "Gråskala";
 	}
 
 	@Override

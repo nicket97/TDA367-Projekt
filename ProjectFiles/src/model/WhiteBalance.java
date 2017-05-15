@@ -50,7 +50,7 @@ public class WhiteBalance implements Layerable {
 	@Override
 	public String getName() {
 		
-		return "VitBalans";
+		return "Vitbalans";
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class HMirroring implements Layerable {
 
 	@Override
 	public String getName() {
-		return "Horizonral mirroring";
+		return "Spegla Vertikalt";
 	}
 
 	@Override

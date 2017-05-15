@@ -27,7 +27,7 @@ public class RotateR implements Layerable {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "Rotera 90 grader Höger";
+		return "Rotera 90\u00b0 höger";
 	}
 
 	@Override

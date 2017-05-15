@@ -78,7 +78,7 @@ LoadedImage newImage = new LoadedImage(img);
 
 	@Override
 	public String getName() {
-		return "Gaussian Blur";
+		return "Gaussisk Oskärpa";
 	}
 
 	public int getRadius() {

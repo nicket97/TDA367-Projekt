@@ -26,7 +26,7 @@ public class VMirroring implements Layerable{
 
 	@Override
 	public String getName() {
-		return "Vertical mirroring";
+		return "Spegla Horisontellt";
 	}
 
 	@Override

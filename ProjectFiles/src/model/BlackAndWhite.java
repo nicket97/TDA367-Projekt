@@ -52,8 +52,7 @@ public class BlackAndWhite extends ColorFilter {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return "Black And White";
+		return "Svartvitt";
 	}
 
 	@Override

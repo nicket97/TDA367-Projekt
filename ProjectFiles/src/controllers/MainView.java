@@ -70,7 +70,7 @@ public class MainView extends AnchorPane implements Initializable {
 	MiniCanvasView miniCanvasView; 
 	private Point topLeft = new Point (0,0);
 	private Point bottomRight = new Point (0,0);
-	Stage primaryStage;
+	private Stage primaryStage;
 
 	
 	@FXML

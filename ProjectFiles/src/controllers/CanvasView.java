@@ -30,13 +30,13 @@ public class CanvasView extends AnchorPane implements Initializable {
 	
 	double zoomFactor = 1;
 
-	int topX = 0;
-	int topY = 0;
-	double pressedX;
-	double pressedY;
-	double releasedX;
-	double releasedY;
-	Stage primaryStage;
+	private int topX = 0;
+	private int topY = 0;
+	private double pressedX;
+	private double pressedY;
+	private double releasedX;
+	private double releasedY;
+	private Stage primaryStage;
 	
 	
 	

@@ -24,7 +24,7 @@ public class LayerView extends AnchorPane implements Initializable {
 	@FXML
 	ListView<LayerRow> layerList;
 	
-	List<Layer> listOfLayers = new ArrayList<Layer>();
+	private List<Layer> listOfLayers = new ArrayList<Layer>();
 	
 	public LayerView() {
 

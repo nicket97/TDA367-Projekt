@@ -7,12 +7,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sun.glass.ui.Screen;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import main.Layers;
 import model.Layer;
 import model.LoadedImage;
@@ -33,12 +36,13 @@ public class CanvasView extends AnchorPane implements Initializable {
 	double pressedY;
 	double releasedX;
 	double releasedY;
+	Stage primaryStage;
 	
 	
 	
-	public CanvasView() {
+	public CanvasView(Stage pStage) {
 
-		
+		primaryStage = pStage;
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/CanvasView.fxml"));
 		System.out.println("canvasview");
 		fxmlLoader.setRoot(this);
@@ -85,7 +89,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 		}
 		LoadedImage newsImage = newImage;
 		imagePane = new Canvas(newImage.getWidth()/zoomFactor, newImage.getHeigth()/zoomFactor);
-		imagePane.setTranslateX((1000-newImage.getWidth()/zoomFactor)/2);
+		imagePane.setTranslateX((primaryStage.getWidth()-200-newImage.getWidth()/zoomFactor)/2);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		//Zoom Out
 		/*Thread thread1 = new Thread(new Runnable() {

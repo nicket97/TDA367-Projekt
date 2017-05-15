@@ -5,7 +5,7 @@ import java.util.List;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
-public class GrayScale extends ColorFilter {
+public class GrayScale implements Layerable{
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
@@ -27,10 +27,6 @@ public class GrayScale extends ColorFilter {
 
 	
 
-	@Override
-	public Layer openSavedLayer(String loadString) {
-		return new Layer(new GrayScale());
-	}
 
 	@Override
 	public String getName() {

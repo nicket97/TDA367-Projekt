@@ -6,10 +6,11 @@ import java.util.List;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
-public class BlackAndWhite extends ColorFilter {
+public class BlackAndWhite implements Layerable{
+
     private int threshold;
 
-    public BlackAndWhite(int threshold) {
+	public BlackAndWhite(int threshold) {
         this.threshold = threshold;
     }
     

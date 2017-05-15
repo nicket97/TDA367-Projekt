@@ -7,7 +7,7 @@ import controllers.MainView;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
-public class ColorShift extends ColorFilter{
+public class ColorShift implements Layerable{
 
 		private double r;
 		private double g;

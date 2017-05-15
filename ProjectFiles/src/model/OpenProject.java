@@ -7,6 +7,7 @@ import java.io.FileReader;
 
 import controllers.MainView;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import main.Layers;
 
@@ -22,6 +23,8 @@ public class OpenProject {
 	public static void openFile(){
 	try {
 	FileChooser fileChooser = new FileChooser();
+	FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("NH files (*.nh)", "*.nh");
+	fileChooser.getExtensionFilters().add(extFilter);;
 	File f = fileChooser.showOpenDialog(new Stage());
 	BufferedReader br = new BufferedReader(new FileReader(f));
 	String line;
@@ -120,6 +123,7 @@ public class OpenProject {
 	
 	}
 	catch(Exception e) {
+		e.printStackTrace();
 	}
 	}
 	

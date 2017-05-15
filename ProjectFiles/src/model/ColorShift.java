@@ -90,7 +90,7 @@ public class ColorShift extends ColorFilter{
 		@Override
 		public String getName() {
 			// TODO Auto-generated method stub
-			return "Color Shift";
+			return "Färgfilter";
 		}
 		public List<Slider> getSliders(){
 			List<Slider> sliders = new ArrayList<>();

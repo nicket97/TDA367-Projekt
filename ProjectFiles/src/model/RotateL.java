@@ -26,8 +26,7 @@ public class RotateL implements Layerable{
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return "Rotera 90 graders Vänster";
+		return "Rotera 90\u00b0 vänster";
 	}
 
 	@Override

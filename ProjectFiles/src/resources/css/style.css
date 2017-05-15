@@ -178,6 +178,10 @@
 	-fx-cursor: hand;
 }
 
+#colorButton:active {
+	
+}
+
 /**.button {
     -fx-padding: 5 22 5 22;   
     -fx-border-color: #e2e2e2;

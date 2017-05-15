@@ -75,7 +75,7 @@ LoadedImage newImage = new LoadedImage(img);
 
 	@Override
 	public String getName() {
-		return "Sharpen";
+		return "Skärpa";
 	}
 
 	@Override

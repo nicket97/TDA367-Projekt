@@ -149,6 +149,8 @@ public class MainView extends AnchorPane implements Initializable {
 		}
 		
 		openImage.setOnAction(e -> {
+			Layers.clear();
+			canvasView.setZoomFactor(1);
 			FileChooser fileChooser = new FileChooser();
 			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(" Bildfiler", "*.png", "*.jpg" , "*.jpeg");
 			fileChooser.getExtensionFilters().add(extFilter);;

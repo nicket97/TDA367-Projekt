@@ -26,4 +26,8 @@ public class Layers {
 	public static void update(){
 		MainView.getCanvas().repaint();
 	}
+	public static void clear() {
+		layerStack.clear();
+		
+	}
 }

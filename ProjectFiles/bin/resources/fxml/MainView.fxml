@@ -908,7 +908,7 @@
          <children>
             <AnchorPane id="miniCanvas" fx:id="miniCanvas" layoutX="-4.0" layoutY="-30.0" prefHeight="135.0" prefWidth="180.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <AnchorPane id="layerPane" fx:id="layerPane" prefHeight="382.0" prefWidth="180.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-            <Slider layoutX="14.0" layoutY="167.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="150.0" />
+            <Slider fx:id="slideZoom" layoutX="14.0" layoutY="167.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="150.0" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="86.0" layoutY="196.0" prefHeight="21.0" prefWidth="58.0" style="-fx-font-weight: bold;" text="Verktyg" textAlignment="CENTER" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" />
             <HBox alignment="CENTER" layoutY="231.0" prefWidth="200.0" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>

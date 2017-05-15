@@ -185,18 +185,28 @@ public class CanvasView extends AnchorPane implements Initializable {
 			double zoom = zoomFactor;
 			System.out.println(zoom);
 			double y = topX;
-			//System.out.println("testa x =" + x + "Y = " + y);
+			System.out.println("testa x =" + this.getHeight() + "Y = " + this.getWidth());
 			for(int i = topX; i < this.getWidth(); i++){
 				double x = topY;
 				int screenY = 0;
 				y += zoom;
-				for(int j = topY; j < this.getHeight(); j++){
-					if(((int) Math.floor(y) >= newImage.getpxImage().length) || ((int)Math.floor( (x + zoom)) >= newImage.getpxImage()[1].length))break;
-					gc.setColor(screenX, screenY, newImage.getpxImage()[(int) Math.floor(y)][(int)Math.floor( (x += zoom))]);
-					//System.out.println((x) + " and  " + (y));
-					screenY++;
-				}
 				screenX++;
+				for(int j = topY; j < this.getHeight(); j++){
+					 x += zoom;
+					 screenY++;
+					if(((int) y >= newImage.getpxImage().length ) || ((int)(x) >= newImage.getpxImage()[1].length)){
+						//System.out.println(((int) Math.floor(y) >= newImage.getpxImage().length) + " " + ((int)Math.floor( (x)) >= newImage.getpxImage()[1].length));
+						
+					}
+					else{
+					gc.setColor(screenX, screenY, newImage.getpxImage()[(int) Math.floor(y)][(int)Math.floor( (x))]);
+					
+					}
+					System.out.println(screenX + "hej " + screenY);
+					//System.out.println((x) + " and  " + (y));
+					
+				}
+				
 				
 		}
 		}

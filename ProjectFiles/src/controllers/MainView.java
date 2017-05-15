@@ -123,7 +123,8 @@ public class MainView extends AnchorPane implements Initializable {
 	Label colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon, whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon;
 	@FXML
 	Label aBackIcon, cBackIcon, eBackIcon, fBackIcon;
-	
+	@FXML
+	Slider slideZoom;
 	Layers layerstack = new Layers();
 	
 	private static LoadedImage backgroundImage;
@@ -179,6 +180,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuExport.setOnAction(e ->{
 			
 			try {
+				
 			    LoadedImage export = MainView.backgroundImage;
 			    for(Layer layer : Layers.getLayerStack()){
 					export = layer.getAction().transform(export);
@@ -233,6 +235,17 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.remove(Layers.getLayerStack().get(Layers.getLayerStack().size()-1));
 			canvasView.repaint();
 		});
+		slideZoom.setValue(canvasView.getZoomFactor());
+		slideZoom.setOnMouseClicked(e->{
+			System.out.println("zooma " + slideZoom.getValue());
+			canvasView.setZoomFactor((Math.pow(2, slideZoom.getValue()/20-2.5)));
+			canvasView.repaint();
+		});
+		slideZoom.setOnMouseDragOver(e -> {
+			System.out.println("zooma " + slideZoom.getValue());
+			
+		});
+		
 		
 		menuCrop.setOnAction(e ->{
 			canvasView.setOnMouseClicked(null);

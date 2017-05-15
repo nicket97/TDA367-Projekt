@@ -203,10 +203,24 @@
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-cursor: hand;
 }
 
-.button:hover {
+#updateButton:hover {
     -fx-background-color: #3a3a3a;
+}
+
+#updateButton:pressed {
+  -fx-background-color: white;
+  -fx-text-fill: #1d1d1d;
+}
+
+#updateButton:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
 }
 
 .color-picker {   
@@ -219,19 +233,6 @@
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
-
-/**.button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}**/
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
@@ -386,9 +387,9 @@
     -fx-background-color: white;
     -fx-background-insets: 0;
     -fx-background-radius: 0em;
-    -fx-padding: 0.333333em; /* 4 */
-
+    -fx-padding: 0.333333em; 
     -fx-effect: null;
+    -fx-cursor: hand;
 }
 .slider:focused .thumb {
     -fx-background-radius: 0em;
@@ -398,12 +399,12 @@
     -fx-background-color: #6c6c6c;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
-    -fx-padding: 0.333333em; /* This value must be equal to ".slider .thumb" padding */
+    -fx-padding: 0.333333em;
 }
 
 .slider .fill {
     -fx-background-color: #008287;
-    -fx-padding: 0.333333em; /* This value must be equal to ".slider .thumb" padding */
+    -fx-padding: 0.333333em;
 }
 
 .slider .fill:hover {

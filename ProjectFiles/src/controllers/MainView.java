@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -21,6 +22,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -178,7 +181,27 @@ public class MainView extends AnchorPane implements Initializable {
 
 		});
 		menuClose.setOnAction(e ->{
-			Platform.exit();
+			if (MainView.getBackgroundImage() != null) {
+
+				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+				alert.setTitle("Varning");
+				alert.setHeaderText("Vill du spara projektet innan du avslutar?");
+
+				ButtonType buttonTypeYes = new ButtonType("Spara");
+				ButtonType buttonTypeNo = new ButtonType("Avsluta", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+				alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == buttonTypeYes){
+					SaveProject.saveProject();
+				}
+				if(result.get() == buttonTypeNo){
+					Platform.exit();
+				}
+
+			}
+			
 			//System.exit(0);
 		});
 		menuExport.setOnAction(e ->{
@@ -209,7 +232,26 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		
 		closeButton.setOnAction(e ->{
-			Platform.exit();
+			if (MainView.getBackgroundImage() != null) {
+
+				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+				alert.setTitle("Varning");
+				alert.setHeaderText("Vill du spara projektet innan du avslutar?");
+
+				ButtonType buttonTypeYes = new ButtonType("Spara");
+				ButtonType buttonTypeNo = new ButtonType("Avsluta", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+				alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == buttonTypeYes){
+					SaveProject.saveProject();
+				}
+				if(result.get() == buttonTypeNo){
+					Platform.exit();
+				}
+
+			}
 			//System.exit(0);
 		});
 		

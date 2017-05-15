@@ -45,22 +45,6 @@ public class Main extends Application {
 	 */
 	@Override
 	public void stop() throws Exception {
-		if (MainView.getBackgroundImage() != null) {
-
-			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			alert.setTitle("Varning");
-			alert.setHeaderText("Vill du spara projektet innan du avslutar?");
-
-			ButtonType buttonTypeYes = new ButtonType("Spara");
-			ButtonType buttonTypeNo = new ButtonType("Avsluta", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-			alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
-			Optional<ButtonType> result = alert.showAndWait();
-			if (result.get() == buttonTypeYes){
-				SaveProject.saveProject();
-			}
-
-		}
+		
 	}
 }

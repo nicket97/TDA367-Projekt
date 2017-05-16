@@ -44,6 +44,7 @@ import main.Layers;
 import main.Main;
 import model.*;
 
+
 public class MainView extends AnchorPane implements Initializable {
 	
 	public static LayerView layerView;
@@ -52,7 +53,7 @@ public class MainView extends AnchorPane implements Initializable {
 	MiniCanvasView miniCanvasView; 
 	private Point topLeft = new Point (0,0);
 	private Point bottomRight = new Point (0,0);
-	private Stage primaryStage;
+	private static Stage primaryStage;
 
 	
 	@FXML
@@ -283,20 +284,12 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		
 		menuCrop.setOnAction(e ->{
-			canvasView.setOnMouseClicked(null);
-			Platform.runLater(new Runnable() {
-			    
-				@Override
-				public void run() {
-					
-					setTopLeftCrop();
-					System.out.println("Top left corner: ");
-					setBottomRightCrop();
-					
-					canvasView.repaint();
-				}
+			CropView cropView = new CropView();
+			canvasPane.getChildren().add(cropView);
+			canvasView.repaint();
 				
-			});
+				
+			
 
 			
 			});
@@ -336,23 +329,30 @@ public class MainView extends AnchorPane implements Initializable {
 			  }
 			});
 	}
-	public Point setTopLeftCrop() {
-		Point topLeft = new Point();
-		canvasView.setOnMouseClicked(e ->{
-			topLeft.setLocation(e.getX(), e.getY());
-		});
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setTitle("Beskärning");
-		alert.setHeaderText("Välj önskat övre vänstra hörn");
-		alert.showAndWait();
-		//alert.get
-		while (topLeft.getX() == 0 && topLeft.getY() == 0) {
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+
+public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+	}
+public Point setTopLeftCrop() {
+	Point topLeft = new Point();
+	canvasView.setOnMouseClicked(e ->{
+		topLeft.setLocation(e.getX(), e.getY());
+	});
+	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+	alert.setTitle("Beskärning");
+	alert.setHeaderText("Välj önskat övre vänstra hörn");
+	alert.showAndWait();
+	//alert.get
+	while (topLeft.getX() == 0 && topLeft.getY() == 0) {
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+
 		}
 		System.out.println(topLeft.toString());
 		return topLeft;
@@ -610,7 +610,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuBlackWhite.setDisable(b);
 		menuWhitebalance.setDisable(b);
 		menuLevels.setDisable(b);
-		menuCrop.setDisable(b);
+		//menuCrop.setDisable(b);
 		menuExposure.setDisable(b);
 		menuContrast.setDisable(b);
 		menuHReflect.setDisable(b);

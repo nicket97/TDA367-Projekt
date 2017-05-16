@@ -476,9 +476,6 @@ public class MainView extends AnchorPane implements Initializable {
 						canvasUpdate();
 					}
 			});
-			if (colorGroup.getSelectedToggle() != null){
-				customColor.setDisable(true);
-			}
 			grayUpdate.setOnAction(e -> {
 				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
 				canvasUpdate();

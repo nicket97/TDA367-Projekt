@@ -1,6 +1,5 @@
 package controllers;
 
-import java.awt.Event;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -15,7 +14,6 @@ import javax.imageio.ImageIO;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +25,6 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
@@ -55,6 +52,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private Point bottomRight = new Point (0,0);
 	private static Stage primaryStage;
 
+	private Layer latestLayer;
 	
 	@FXML
 	TilePane bottomContainer;
@@ -463,7 +461,7 @@ public Point setTopLeftCrop() {
 			});
 		//Effects
 			blurUpdate.setOnAction(e -> {
-				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRadius(blurRadius.valueProperty().intValue());
 				canvasUpdate();
 			});
 			gBlurUpdate.setOnAction(e -> {
@@ -554,12 +552,16 @@ public Point setTopLeftCrop() {
 		});	
 		blurIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, blurLevel, fadeBlur);
+			layerstack.addLayer(new Layer(new Blur(2)));
+			canvasUpdate();
 		});
 		blurBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(blurLevel, effectLevel, fadeEffect);
 		});
 		gBlurIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, gBlurLevel, fadeGBlur);
+			layerstack.addLayer(new Layer(new GaussianBlur(2)));
+			canvasUpdate();
 		});
 		gBlurBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(gBlurLevel, effectLevel, fadeEffect);

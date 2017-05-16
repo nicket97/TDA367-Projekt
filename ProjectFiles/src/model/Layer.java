@@ -33,6 +33,10 @@ public class Layer {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public void setRadius(int intValue) {
+		((Blur) action).setRadius(intValue);
+	}
 	
 	
 }

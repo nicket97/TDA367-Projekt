@@ -79,5 +79,18 @@ LoadedImage newImage = new LoadedImage(img);
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public double[][] getKernel() {
+		return kernel;
+	}
+	public void setKernel(double[][] kernel) {
+		this.kernel = kernel;
+	}
+	public int getRadius() {
+		return radius;
+	}
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	
 
 }

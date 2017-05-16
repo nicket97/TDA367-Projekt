@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 public class Crop implements Layerable {
 	private Point topLeft;
 	private Point bottomRight;
-	
 	private int width;
 	private int height;
 	
@@ -52,6 +51,45 @@ public class Crop implements Layerable {
 	public List<Slider> getSliders() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public Point getTopLeft() {
+		return topLeft;
+	}
+
+	public void setTopLeft(Point topLeft) {
+		this.topLeft = topLeft;
+	}
+
+	public Point getBottomRight() {
+		return bottomRight;
+	}
+
+	public void setBottomRight(Point bottomRight) {
+		this.bottomRight = bottomRight;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public Rectangle getR() {
+		return r;
+	}
+
+	public void setR(Rectangle r) {
+		this.r = r;
 	}
 
 }

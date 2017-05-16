@@ -1,5 +1,6 @@
 package model;
 
+import main.Layers;
 
 public class ColorShiftFactory {
 
@@ -9,30 +10,29 @@ public class ColorShiftFactory {
         }
 
         if(color.equals("yellow")) {
-            return new ColorShift(0, 0, 0);
+        	Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(25,25,0);
         }
         else if(color.equals("orange")) {
-            return new ColorShift(0, 0, 0);
+        	Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(25,0,-25);
         }
         else if(color.equals("blue")) {
-            return new ColorShift(-25, -25, 50);
+        	Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(-25,-25,50);
         }
         else if(color.equals("red")) {
-            return new ColorShift(50, -25, -25);
+        	Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(25,-25,-25);
         }
         else if(color.equals("pink")) {
-            return new ColorShift(0, 0, 0);
+        	Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(35,10,15);
         }
         else if(color.equals("purple")) {
-            return new ColorShift(0, 0, 0);
+        	Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(25,-10,30);
         }
         else if(color.equals("turquoise")){
-            return new ColorShift(0, 0, 0);
+        	Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(0,25,25);
         }
         else if(color.equals("green")) {
-            return new ColorShift(-25, 50, -25);
+        	Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(-25,50,-25);
         }
-
         return null;
     }
 }

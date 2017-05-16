@@ -58,5 +58,12 @@ public class WhiteBalance implements Layerable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public int getThreshold() {
+		return threshold;
+	}
+	public void setThreshold(int threshold) {
+		this.threshold = threshold;
+	}
+	
 
 }

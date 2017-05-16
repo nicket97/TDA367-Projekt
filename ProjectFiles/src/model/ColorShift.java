@@ -71,6 +71,12 @@ public class ColorShift implements Layerable{
 		public void setB(double b) {
 			this.b = b;
 		}
+		
+		public void setRGB(double r, double g, double b){
+			this.r = r;
+			this.g = g;
+			this.b = b;
+		}
 
 		@Override
 		public String saveLayer() {

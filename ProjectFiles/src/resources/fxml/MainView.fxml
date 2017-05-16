@@ -314,9 +314,9 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="exposureIntensity" />
+                              <Slider fx:id="exposureIntensity" min="-100.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
                               <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
                                  <padding>
                                     <Insets left="50.0" right="50.0" />
@@ -324,7 +324,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="exposureUpdate" mnemonicParsing="false" text="Uppdatera" />
@@ -766,9 +766,12 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="bwThreshHold" />
+                              <Slider fx:id="bwThreshold" blockIncrement="1.0" majorTickUnit="15.0" max="255.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" value="1.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></Slider>
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Tröskelvärde">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
@@ -776,20 +779,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
-                           <children>
-                              <Slider fx:id="bwIntensity" />
-                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
-                                 <padding>
-                                    <Insets left="50.0" right="50.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="bwUpdate" mnemonicParsing="false" text="Uppdatera" />
@@ -812,30 +802,17 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="wbWarm" />
-                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Tröskelvärde">
+                              <Slider fx:id="wbWarm" minorTickCount="0" showTickLabels="true" showTickMarks="true" value="50.0" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Värme">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
-                           <children>
-                              <Slider fx:id="wbIntensity" />
-                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
-                                 <padding>
-                                    <Insets left="50.0" right="50.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="wbUpdate" mnemonicParsing="false" text="Uppdatera" />
@@ -914,10 +891,10 @@
       <AnchorPane id="rightPane" fx:id="rightPane" layoutX="1021.0" layoutY="5.0" prefHeight="659.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
             <AnchorPane id="miniCanvas" fx:id="miniCanvas" layoutX="-4.0" layoutY="-30.0" prefHeight="135.0" prefWidth="180.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <AnchorPane id="layerPane" fx:id="layerPane" prefHeight="382.0" prefWidth="180.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-            <Slider fx:id="slideZoom" layoutX="14.0" layoutY="167.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="150.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="86.0" layoutY="196.0" prefHeight="21.0" prefWidth="58.0" style="-fx-font-weight: bold;" text="Verktyg" textAlignment="CENTER" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" />
-            <HBox alignment="CENTER" layoutY="231.0" prefWidth="200.0" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane id="layerPane" fx:id="layerPane" prefHeight="382.0" prefWidth="180.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="293.0" />
+            <Slider fx:id="slideZoom" layoutX="14.0" layoutY="167.0" majorTickUnit="50.0" max="175.0" min="25.0" minorTickCount="1" showTickMarks="true" snapToTicks="true" value="100.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="150.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="189.0" prefHeight="21.0" prefWidth="58.0" style="-fx-font-weight: bold;" text="Verktyg" textAlignment="CENTER" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" />
+            <HBox alignment="CENTER" layoutY="223.0" prefWidth="200.0" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label id="clickable" fx:id="zoomIcon" contentDisplay="TOP" text="Zoom">
                      <graphic>

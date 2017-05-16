@@ -428,10 +428,21 @@ public Point setTopLeftCrop() {
 		miniCanvasView = new MiniCanvasView();
 		layerView = new LayerView();
 		
-		
 		canvasPane.getChildren().add(canvasView);
 		miniCanvas.getChildren().add(miniCanvasView);
 		layerPane.getChildren().add(layerView);
+		
+		/***
+		 * Adding color button values.
+		 */
+		yellowButton.setUserData("yellow");
+		orangeButton.setUserData("orange");
+		blueButton.setUserData("blue");
+		redButton.setUserData("red");
+		pinkButton.setUserData("pink");
+		purpleButton.setUserData("purple");
+		turquoiseButton.setUserData("turquoise");
+		greenButton.setUserData("green");
 		
 		/***
 		 * Functionality for adding filters via toolbar.
@@ -464,17 +475,18 @@ public Point setTopLeftCrop() {
 			});
 		//Colors
 			cfUpdate.setOnAction(e -> {
+				/**
 				if (customColor.getValue() != null){
 					colorGroup.selectToggle(null);
 					layerstack.addLayer(new Layer(new ColorShift(customColor.getValue().getRed(), 
 							customColor.getValue().getGreen(), customColor.getValue().getBlue())));
 					System.out.println(customColor.getValue().getRed());
 					customColor.setValue(null);
-					canvasUpdate();} else {
-						layerstack.addLayer(new Layer(ColorShiftFactory.getColorShift(colorGroup.getSelectedToggle().toString())));
-						System.out.print(colorGroup.getSelectedToggle().toString() + "colorbutton");
+					canvasUpdate();} else {*/
+						layerstack.addLayer(new Layer(ColorShiftFactory.getColorShift(
+								(String) colorGroup.getSelectedToggle().getUserData())));
 						canvasUpdate();
-					}
+					
 			});
 			grayUpdate.setOnAction(e -> {
 				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));

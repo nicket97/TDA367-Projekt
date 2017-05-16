@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="522.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="AnchorPane" fx:id="canvasPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="63.0" layoutY="181.0" stylesheets="@../css/style.css">
         <columnConstraints>
@@ -44,4 +44,4 @@
       <Label layoutX="62.0" layoutY="62.0" text="Namnge lager" />
       <Label layoutX="62.0" layoutY="153.0" text="Fyll kernel" />
    </children>
-</AnchorPane>
+   </fx:root>

@@ -44,6 +44,7 @@ import model.BlackAndWhite;
 import model.Blur;
 import model.ColorShift;
 import model.Contrast;
+import model.Crop;
 import model.Edge;
 import model.Exposure;
 import model.GaussianBlur;
@@ -70,7 +71,7 @@ public class MainView extends AnchorPane implements Initializable {
 	MiniCanvasView miniCanvasView; 
 	private Point topLeft = new Point (0,0);
 	private Point bottomRight = new Point (0,0);
-	private Stage primaryStage;
+	private static Stage primaryStage;
 
 	
 	@FXML
@@ -300,20 +301,14 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		
 		menuCrop.setOnAction(e ->{
-			canvasView.setOnMouseClicked(null);
-			Platform.runLater(new Runnable() {
-			    
-				@Override
-				public void run() {
-					
-					setTopLeftCrop();
-					System.out.println("Top left corner: ");
-					setBottomRightCrop();
-					
-					canvasView.repaint();
-				}
+			CropView cropView = new CropView();
+			canvasPane.getChildren().add(cropView);
+			Layers.addLayer(new Layer( new Crop(cropView.getStartPoint(), cropView.getEndPoint())));
+			canvasView.repaint();
+					//canvasView.repaint();
 				
-			});
+				
+			
 
 			
 			});
@@ -353,6 +348,12 @@ public class MainView extends AnchorPane implements Initializable {
 			});
 
 
+	}
+public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
 	}
 public Point setTopLeftCrop() {
 	Point topLeft = new Point();
@@ -562,7 +563,7 @@ public Point setTopLeftCrop() {
 		menuBlackWhite.setDisable(b);
 		menuWhitebalance.setDisable(b);
 		menuLevels.setDisable(b);
-		menuCrop.setDisable(b);
+		//menuCrop.setDisable(b);
 		menuExposure.setDisable(b);
 		menuContrast.setDisable(b);
 		menuHReflect.setDisable(b);

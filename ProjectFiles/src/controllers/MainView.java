@@ -40,27 +40,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.Layers;
 import main.Main;
-import model.BlackAndWhite;
-import model.Blur;
-import model.ColorShift;
-import model.Contrast;
-import model.Edge;
-import model.Exposure;
-import model.GaussianBlur;
-import model.Grain;
-import model.GrayScale;
-import model.HMirroring;
-import model.Layer;
-import model.Layerable;
-import model.Levels;
-import model.LoadedImage;
-import model.OpenProject;
-import model.RotateL;
-import model.RotateR;
-import model.SaveProject;
-import model.Sharpen;
-import model.VMirroring;
-import model.WhiteBalance;
+import model.*;
 
 public class MainView extends AnchorPane implements Initializable {
 	
@@ -335,6 +315,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuGrain, new Grain(20));
 		menuClicked(menuExposure, (new Exposure(40)));
 		menuClicked(menuEdge, (new Edge()));
+		menuClicked(menuTextFilter, (new TextFilter()));
 		
 		final Delta dragDelta = new Delta();
 		

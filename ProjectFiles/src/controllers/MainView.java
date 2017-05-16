@@ -354,6 +354,7 @@ public Point setTopLeftCrop() {
 			e1.printStackTrace();
 
 		}
+	}
 		System.out.println(topLeft.toString());
 		return topLeft;
 	}

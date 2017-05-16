@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +31,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -40,28 +42,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.Layers;
 import main.Main;
-import model.BlackAndWhite;
-import model.Blur;
-import model.ColorShift;
-import model.Contrast;
-import model.Crop;
-import model.Edge;
-import model.Exposure;
-import model.GaussianBlur;
-import model.Grain;
-import model.GrayScale;
-import model.HMirroring;
-import model.Layer;
-import model.Layerable;
-import model.Levels;
-import model.LoadedImage;
-import model.OpenProject;
-import model.RotateL;
-import model.RotateR;
-import model.SaveProject;
-import model.Sharpen;
-import model.VMirroring;
-import model.WhiteBalance;
+import model.*;
+
 
 public class MainView extends AnchorPane implements Initializable {
 	
@@ -78,7 +60,6 @@ public class MainView extends AnchorPane implements Initializable {
 	TilePane bottomContainer;
 	@FXML
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
-	
 	@FXML
 	AnchorPane menuBar;
 	@FXML
@@ -96,17 +77,19 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Button closeButton,miniButton, maxiButton;
 	@FXML
-	Button blurUpdate, gBlurUpdate, sharpenUpdate;
+	Button exposureUpdate, contrastUpdate, levelsUpdate;
 	@FXML
-	Button cfUpdate, grayUpdate, bwUpdate, wbUpdate;
+	Button blurUpdate, gBlurUpdate, sharpenUpdate,
+	cfUpdate, grayUpdate, bwUpdate, wbUpdate;
 	@FXML
-	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton;
+	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton,
+	purpleButton, turquoiseButton, greenButton;
 	@FXML
-	RadioButton purpleButton, turquoiseButton, greenButton;
+	ToggleGroup colorGroup;
 	@FXML
 	ColorPicker customColor;
 	@FXML
-	Slider blurRadius, gBlurRadius, gBlurIntensity;
+	Slider blurRadius, gBlurRadius, sharpenIntensity, sharpenThreshold;
 	@FXML
 	Slider colorIntensity, bwThreshold, bwIntensity, wbWarm, wbIntensity;
 	@FXML
@@ -328,6 +311,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuGrain, new Grain(20));
 		menuClicked(menuExposure, (new Exposure(40)));
 		menuClicked(menuEdge, (new Edge()));
+		menuClicked(menuTextFilter, (new TextFilter()));
 		
 		final Delta dragDelta = new Delta();
 		
@@ -344,9 +328,8 @@ public class MainView extends AnchorPane implements Initializable {
 			    pstage.setY(mouseEvent.getScreenY() + dragDelta.y);
 			  }
 			});
-
-
 	}
+
 public Stage getPrimaryStage() {
 		return primaryStage;
 	}
@@ -369,11 +352,11 @@ public Point setTopLeftCrop() {
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+
 		}
+		System.out.println(topLeft.toString());
+		return topLeft;
 	}
-	System.out.println(topLeft.toString());
-	return topLeft;
-}
 	
 	public Point setBottomRightCrop() {
 		Point bottomRight = new Point();
@@ -395,6 +378,7 @@ public Point setTopLeftCrop() {
 		
 		return bottomRight;
 	}
+	
 	private FadeTransition fadeIn = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeAdjust = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeExposure = new FadeTransition(Duration.millis(150));
@@ -444,11 +428,71 @@ public Point setTopLeftCrop() {
 		miniCanvasView = new MiniCanvasView();
 		layerView = new LayerView();
 		
-		//bottomContainer.getChildren().add(new ToolView());
+		
 		canvasPane.getChildren().add(canvasView);
 		miniCanvas.getChildren().add(miniCanvasView);
 		layerPane.getChildren().add(layerView);
-	
+		
+		/***
+		 * Functionality for adding filters via toolbar.
+		 */
+		//Adjustments
+			exposureUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			contrastUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			levelsUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+		//Effects
+			blurUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			gBlurUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new GaussianBlur((int) gBlurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			sharpenUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Sharpen()));
+				canvasUpdate();
+			});
+		//Colors
+			cfUpdate.setOnAction(e -> {
+				if (customColor.getValue() != null){
+					colorGroup.selectToggle(null);
+					layerstack.addLayer(new Layer(new ColorShift(customColor.getValue().getRed(), 
+							customColor.getValue().getGreen(), customColor.getValue().getBlue())));
+					System.out.println(customColor.getValue().getRed());
+					customColor.setValue(null);
+					canvasUpdate();} else {
+						layerstack.addLayer(new Layer(ColorShiftFactory.getColorShift(colorGroup.getSelectedToggle().toString())));
+						System.out.print(colorGroup.getSelectedToggle().toString() + "colorbutton");
+						canvasUpdate();
+					}
+			});
+			grayUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			bwUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			wbUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+		//Custom filters
+
+		/***
+		 *  Handles fade transitions on mouseclick for the toolbar.
+		 */
 		fadeSettings(fadeIn, topLevel);
 		fadeSettings(fadeAdjust, adjustLevel);
 		fadeSettings(fadeExposure, exposureLevel);
@@ -552,6 +596,11 @@ public Point setTopLeftCrop() {
 		slideZoom.setValue(50);
 		
 	}
+	
+	private void canvasUpdate(){
+		canvasView.repaint();
+		miniCanvasView.repaint();
+	}
 
 	private void setDisableMenuItems(boolean b) {
 		menuExport.setDisable(b);
@@ -579,20 +628,24 @@ public Point setTopLeftCrop() {
 		menuZoomIn.setDisable(b);
 		menuZoomOut.setDisable(b);
 		menuUndo.setDisable(b);
-		
+		disableToolbarButtons(b);
+	}
+	private void disableToolbarButtons(boolean b){
+		blurUpdate.setDisable(b);
+		gBlurUpdate.setDisable(b);
+		sharpenUpdate.setDisable(b);
+		cfUpdate.setDisable(b);
 	}
 
 	public static LoadedImage getBackgroundImage() {
 		return backgroundImage;
 	}
-
 	public static void setBackgroundImage(LoadedImage backgroundImage) {
 		MainView.backgroundImage = backgroundImage;
 	}
 	public static CanvasView getCanvas(){
 		return canvasView;
 	}
-	
-	
 }
+
 class Delta { double x, y; } 

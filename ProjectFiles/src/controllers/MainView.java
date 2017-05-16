@@ -51,8 +51,6 @@ public class MainView extends AnchorPane implements Initializable {
 	private Point topLeft = new Point (0,0);
 	private Point bottomRight = new Point (0,0);
 	private static Stage primaryStage;
-
-	private Layer latestLayer;
 	
 	@FXML
 	TilePane bottomContainer;
@@ -465,15 +463,21 @@ public Point setTopLeftCrop() {
 				canvasUpdate();
 			});
 			gBlurUpdate.setOnAction(e -> {
-				layerstack.addLayer(new Layer(new GaussianBlur((int) gBlurRadius.valueProperty().intValue())));
+				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRadius(gBlurRadius.valueProperty().intValue());
+				//layerstack.addLayer(new Layer(new GaussianBlur((int) gBlurRadius.valueProperty().intValue())));
 				canvasUpdate();
 			});
 			sharpenUpdate.setOnAction(e -> {
-				layerstack.addLayer(new Layer(new Sharpen()));
+				//Layers.getLayerStack().get(Layers.getLayerStack().size()-1.setRadiusAndThreshold(
+					//sharpenRadius.valueProperty().intValue(), sharpenThreshold.valueProperty().intValue()));
 				canvasUpdate();
 			});
 		//Colors
 			cfUpdate.setOnAction(e -> {
+				//Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(
+					//	customColor.getValue().getRed(), customColor.getValue().getGreen(), customColor.getValue().getBlue());
+				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setColor(
+						(String) colorGroup.getSelectedToggle().getUserData());
 				/**
 				if (customColor.getValue() != null){
 					colorGroup.selectToggle(null);
@@ -482,8 +486,7 @@ public Point setTopLeftCrop() {
 					System.out.println(customColor.getValue().getRed());
 					customColor.setValue(null);
 					canvasUpdate();} else {*/
-						layerstack.addLayer(new Layer(ColorShiftFactory.getColorShift(
-								(String) colorGroup.getSelectedToggle().getUserData())));
+						
 						canvasUpdate();
 					
 			});
@@ -552,22 +555,30 @@ public Point setTopLeftCrop() {
 		});	
 		blurIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, blurLevel, fadeBlur);
-			layerstack.addLayer(new Layer(new Blur(2)));
-			canvasUpdate();
+			if (backgroundImage != null) {
+				layerstack.addLayer(new Layer(new Blur(2)));
+				canvasUpdate();
+			}
 		});
 		blurBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(blurLevel, effectLevel, fadeEffect);
 		});
 		gBlurIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, gBlurLevel, fadeGBlur);
-			layerstack.addLayer(new Layer(new GaussianBlur(2)));
-			canvasUpdate();
+			if (backgroundImage != null) {
+				layerstack.addLayer(new Layer(new GaussianBlur(2)));
+				canvasUpdate();
+			}
 		});
 		gBlurBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(gBlurLevel, effectLevel, fadeEffect);
 		});
 		sharpenIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, sharpenLevel, fadeSharpen);
+			if (backgroundImage != null) {
+				layerstack.addLayer(new Layer(new Sharpen()));
+				canvasUpdate();
+			}
 		});
 		sharpenBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(sharpenLevel, effectLevel, fadeEffect);
@@ -577,6 +588,10 @@ public Point setTopLeftCrop() {
 		});
 		colorFilterIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorLevel, colorFilterLevel, fadeColorFilter);
+			if (backgroundImage != null){
+				layerstack.addLayer(new Layer(new ColorShift(1,1,50)));
+				canvasUpdate();
+			}
 		});
 		cfBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorFilterLevel, colorLevel, fadeColor);

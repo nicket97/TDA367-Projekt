@@ -33,10 +33,23 @@ public class Layer {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public void setRadius(int intValue) {
-		((Blur) action).setRadius(intValue);
-	}
 	
+	/***
+	 * Methods for changing values of current layer.
+	 * @param intValue
+	 */
+	public void setRadius(int intValue) {
+		if (name.equals("Blur")){
+			((Blur) action).setRadius(intValue);	
+		} else {
+			((GaussianBlur) action).setRadius(intValue);
+		}
+	}
+	public void setRGB(double r, double g, double b){
+		((ColorShift) action).setRGB(r, g, b);
+	}
+	public void setColor(String color){
+		ColorShiftFactory.getColorShift(color);
+	}
 	
 }

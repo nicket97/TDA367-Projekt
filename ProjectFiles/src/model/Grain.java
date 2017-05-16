@@ -55,5 +55,12 @@ public class Grain implements Layerable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public int getDiviation() {
+		return diviation;
+	}
+	public void setDiviation(int diviation) {
+		this.diviation = diviation;
+	}
+	
 
 }

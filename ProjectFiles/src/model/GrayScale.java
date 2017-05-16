@@ -38,5 +38,6 @@ public class GrayScale implements Layerable{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }

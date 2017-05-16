@@ -61,4 +61,13 @@ public class Exposure implements Layerable{
 		return null;
 	}
 
+	public int getFactor() {
+		return factor;
+	}
+
+	public void setFactor(int factor) {
+		this.factor = factor;
+	}
+	
+
 }

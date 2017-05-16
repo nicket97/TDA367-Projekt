@@ -103,6 +103,15 @@ LoadedImage newImage = new LoadedImage(img);
 		sliders.add(radiusSlider);
 		return sliders;
 	}
+
+	public double[][] getKernel() {
+		return kernel;
+	}
+
+	public void setKernel(double[][] kernel) {
+		this.kernel = kernel;
+	}
+	
 	
 	
 }

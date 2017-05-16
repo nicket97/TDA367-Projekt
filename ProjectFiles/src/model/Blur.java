@@ -11,6 +11,7 @@ public class Blur implements Layerable {
 	private int radius;
 	private double[][] kernel;
 	
+
 	public Blur(int r){
 		radius = r;
 		if (radius % 2 == 0) {
@@ -94,5 +95,12 @@ LoadedImage newImage = new LoadedImage(img);
 	public int getRadius(){
 		return radius;
 	}
-	
+
+	public double[][] getKernel() {
+		return kernel;
+	}
+
+	public void setKernel(double[][] kernel) {
+		this.kernel = kernel;
+	}
 }

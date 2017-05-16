@@ -79,6 +79,21 @@ public class Contrast implements Layerable{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public int getThreshold() {
+		return threshold;
+	}
+
+	public void setThreshold(int threshold) {
+		this.threshold = threshold;
+	}
+
+	public double getFactor() {
+		return factor;
+	}
+
+	public void setFactor(double factor) {
+		this.factor = factor;
+	}
 	
 
 }

@@ -58,4 +58,36 @@ public class Levels implements Layerable{
 		return null;
 	}
 
+	public int getMaxLevel() {
+		return maxLevel;
+	}
+
+	public void setMaxLevel(int maxLevel) {
+		this.maxLevel = maxLevel;
+	}
+
+	public int getMinLevel() {
+		return minLevel;
+	}
+
+	public void setMinLevel(int minLevel) {
+		this.minLevel = minLevel;
+	}
+
+	public int getMidLevel() {
+		return midLevel;
+	}
+
+	public void setMidLevel(int midLevel) {
+		this.midLevel = midLevel;
+	}
+
+	public double getChangeLevel() {
+		return changeLevel;
+	}
+
+	public void setChangeLevel(double changeLevel) {
+		this.changeLevel = changeLevel;
+	}
+	
 }

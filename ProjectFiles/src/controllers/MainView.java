@@ -19,6 +19,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -35,6 +37,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import main.Layers;
@@ -65,7 +68,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR;
 	@FXML
-	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain;
+	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter;
 	@FXML
 	MenuItem menuFMatte, menuFBW, menuFVintage;
 	@FXML
@@ -117,6 +120,8 @@ public class MainView extends AnchorPane implements Initializable {
 
 	public MainView(Stage pstage) {
 		primaryStage = pstage;
+		NewFilterHandeler.loadFilters();
+		
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/MainView.fxml"));
 
 		System.out.println("mainview");
@@ -142,6 +147,7 @@ public class MainView extends AnchorPane implements Initializable {
 			
 			BufferedImage in;
 			try {
+				if(ImageIO.read(f) != null){
 				in = ImageIO.read(f);
 				BufferedImage newImage = new BufferedImage(
 					    in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -157,6 +163,7 @@ public class MainView extends AnchorPane implements Initializable {
 					setBackgroundImage(ll);
 					canvasView.repaint();
 					miniCanvasView.repaint();
+					}
 			} catch (IOException e1) {
 				// On canceled fileopening
 			}
@@ -164,6 +171,9 @@ public class MainView extends AnchorPane implements Initializable {
 
 		});
 		menuClose.setOnAction(e ->{
+			if(NewFilterHandeler.getFilters().size() > 0){
+				NewFilterHandeler.saveFilters();
+			}
 			if (MainView.getBackgroundImage() != null) {
 
 				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -217,6 +227,9 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		
 		closeButton.setOnAction(e ->{
+			if(NewFilterHandeler.getFilters().size() > 0){
+				NewFilterHandeler.saveFilters();
+			}
 			if (MainView.getBackgroundImage() != null) {
 
 				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -285,10 +298,21 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasPane.getChildren().add(cropView);
 			canvasView.repaint();
 				
-				
+			});
+		
+		menuNewFilter.setOnAction(e ->{
+			Stage window = new Stage();
+			AnchorPane pane = new AnchorPane();
+			window.initModality(Modality.APPLICATION_MODAL);
+			window.initOwner(primaryStage);
+			pane.getChildren().add(new NewFilterView(window));
+			Parent root = pane;
 			
-
+			Scene s = new Scene(root);
 			
+			
+			window.setScene(s);
+			window.show();
 			});
 	
 		
@@ -351,11 +375,16 @@ public Point setTopLeftCrop() {
 			e1.printStackTrace();
 
 		}
+
 	}
 		System.out.println(topLeft.toString());
 		return topLeft;
+
 	}
-	
+	System.out.println(topLeft.toString());
+	return topLeft;
+}
+
 	public Point setBottomRightCrop() {
 		Point bottomRight = new Point();
 		canvasView.setOnMouseClicked(e ->{
@@ -480,6 +509,7 @@ public Point setTopLeftCrop() {
 			});
 		//Colors
 			cfUpdate.setOnAction(e -> {
+
 				if (colorGroup.getSelectedToggle().equals(null)){
 					Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRGB(
 							customColor.getValue().getRed(), customColor.getValue().getGreen(), customColor.getValue().getBlue());
@@ -488,6 +518,7 @@ public Point setTopLeftCrop() {
 						(String) colorGroup.getSelectedToggle().getUserData());
 				}
 				canvasUpdate();	
+
 			});
 			/**grayUpdate.setOnAction(e -> {
 				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));

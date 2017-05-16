@@ -145,6 +145,8 @@
                   <MenuItem fx:id="menuFMatte" mnemonicParsing="false" text="Matt" />
                   <MenuItem fx:id="menuFBW" mnemonicParsing="false" text="Modern Svartvit" />
                   <MenuItem fx:id="menuFVintage" mnemonicParsing="false" text="Vintage" />
+                  <MenuItem fx:id="menuNewFilter" mnemonicParsing="false" text="Eget filter..." />
+                  
                </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Hjälp">

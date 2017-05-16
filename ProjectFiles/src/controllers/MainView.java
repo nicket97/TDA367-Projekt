@@ -123,6 +123,8 @@ public class MainView extends AnchorPane implements Initializable {
 
 	public MainView(Stage pstage) {
 		primaryStage = pstage;
+		NewFilterHandeler.loadFilters();
+		
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/MainView.fxml"));
 
 		System.out.println("mainview");
@@ -170,6 +172,9 @@ public class MainView extends AnchorPane implements Initializable {
 
 		});
 		menuClose.setOnAction(e ->{
+			if(NewFilterHandeler.getFilters().size() > 0){
+				NewFilterHandeler.saveFilters();
+			}
 			if (MainView.getBackgroundImage() != null) {
 
 				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -223,6 +228,9 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		
 		closeButton.setOnAction(e ->{
+			if(NewFilterHandeler.getFilters().size() > 0){
+				NewFilterHandeler.saveFilters();
+			}
 			if (MainView.getBackgroundImage() != null) {
 
 				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

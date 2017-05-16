@@ -359,7 +359,7 @@ public Point setTopLeftCrop() {
 	System.out.println(topLeft.toString());
 	return topLeft;
 }
-	
+
 	public Point setBottomRightCrop() {
 		Point bottomRight = new Point();
 		canvasView.setOnMouseClicked(e ->{
@@ -472,7 +472,8 @@ public Point setTopLeftCrop() {
 							customColor.getValue().getGreen(), customColor.getValue().getBlue())));
 					System.out.println(customColor.getValue().getRed());
 					customColor.setValue(null);
-					canvasUpdate();} else {
+					canvasUpdate();} 
+				else {
 						layerstack.addLayer(new Layer(ColorShiftFactory.getColorShift(colorGroup.getSelectedToggle().toString())));
 						System.out.print(colorGroup.getSelectedToggle().toString() + "colorbutton");
 						canvasUpdate();

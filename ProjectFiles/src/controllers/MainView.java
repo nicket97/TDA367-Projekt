@@ -31,6 +31,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -75,13 +76,15 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Button closeButton,miniButton, maxiButton;
 	@FXML
-	Button blurUpdate, gBlurUpdate, sharpenUpdate;
+	Button exposureUpdate, contrastUpdate, levelsUpdate;
 	@FXML
-	Button cfUpdate, grayUpdate, bwUpdate, wbUpdate;
+	Button blurUpdate, gBlurUpdate, sharpenUpdate,
+	cfUpdate, grayUpdate, bwUpdate, wbUpdate;
 	@FXML
-	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton;
+	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton,
+	purpleButton, turquoiseButton, greenButton;
 	@FXML
-	RadioButton purpleButton, turquoiseButton, greenButton;
+	ToggleGroup colorGroup;
 	@FXML
 	ColorPicker customColor;
 	@FXML
@@ -433,22 +436,63 @@ public class MainView extends AnchorPane implements Initializable {
 		/***
 		 * Functionality for adding filters via toolbar.
 		 */
+		//Adjustments
+			exposureUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			contrastUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			levelsUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+		//Effects
 			blurUpdate.setOnAction(e -> {
 				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
-				canvasView.repaint();
-				miniCanvasView.repaint();
+				canvasUpdate();
 			});
 			gBlurUpdate.setOnAction(e -> {
 				layerstack.addLayer(new Layer(new GaussianBlur((int) gBlurRadius.valueProperty().intValue())));
-				canvasView.repaint();
-				miniCanvasView.repaint();
+				canvasUpdate();
 			});
 			sharpenUpdate.setOnAction(e -> {
 				layerstack.addLayer(new Layer(new Sharpen()));
-				canvasView.repaint();
-				miniCanvasView.repaint();
+				canvasUpdate();
 			});
-			
+		//Colors
+			cfUpdate.setOnAction(e -> {
+				if (customColor.getValue() != null){
+					colorGroup.selectToggle(null);
+					layerstack.addLayer(new Layer(new ColorShift(customColor.getValue().getRed(), 
+							customColor.getValue().getGreen(), customColor.getValue().getBlue())));
+					System.out.println(customColor.getValue().getRed());
+					customColor.setValue(null);
+					canvasUpdate();} else {
+						layerstack.addLayer(new Layer(ColorShiftFactory.getColorShift(colorGroup.getSelectedToggle().toString())));
+						System.out.print(colorGroup.getSelectedToggle().toString() + "colorbutton");
+						canvasUpdate();
+					}
+			});
+			if (colorGroup.getSelectedToggle() != null){
+				customColor.setDisable(true);
+			}
+			grayUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			bwUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+			wbUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasUpdate();
+			});
+		//Custom filters
+
 		/***
 		 *  Handles fade transitions on mouseclick for the toolbar.
 		 */
@@ -555,6 +599,11 @@ public class MainView extends AnchorPane implements Initializable {
 		slideZoom.setValue(50);
 		
 	}
+	
+	private void canvasUpdate(){
+		canvasView.repaint();
+		miniCanvasView.repaint();
+	}
 
 	private void setDisableMenuItems(boolean b) {
 		menuExport.setDisable(b);
@@ -588,6 +637,7 @@ public class MainView extends AnchorPane implements Initializable {
 		blurUpdate.setDisable(b);
 		gBlurUpdate.setDisable(b);
 		sharpenUpdate.setDisable(b);
+		cfUpdate.setDisable(b);
 	}
 
 	public static LoadedImage getBackgroundImage() {

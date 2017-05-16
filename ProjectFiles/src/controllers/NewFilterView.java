@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.CreatedFilter;
 import model.Layer;
 import model.NewFilterHandeler;
@@ -21,10 +22,11 @@ public class NewFilterView extends AnchorPane implements Initializable {
 	@FXML TextField grid00, grid01, grid02, grid10, grid11, grid12, grid20, grid21, grid22, nameInput;
 	@FXML Button newFilterCancelButton, newFilterSaveButton;
 	
+	private Stage stage;
 	
 	
-	
-	public NewFilterView() {
+	public NewFilterView(Stage window) {
+		stage = window;
 		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/NewFilterView.fxml"));
 		System.out.println("new filter view");
 		fxmlLoader.setController(this);
@@ -58,8 +60,13 @@ public class NewFilterView extends AnchorPane implements Initializable {
 			NewFilterHandeler.addFilter(new CreatedFilter(filterName, gridValues));
 			
 			System.out.println("DONE!");
+			stage.hide();
 
 		});
+		newFilterCancelButton.setOnAction(e -> {
+			stage.hide();
+		});
+		
 		
 	}
 	

@@ -25,10 +25,11 @@ public class NewFilterHandeler {
 	}
 	
 	public static void saveFilters(){
-	
+		System.out.println("saving filters" + filters.size());
 		try {
-			File outputfile =  new File("");
-			PrintWriter out = new PrintWriter(outputfile.getPath() +  ".nh");
+			File outputfile =  new File("filters.txt");
+			PrintWriter out = new PrintWriter(outputfile.getPath());
+			out.flush();
 			for(CreatedFilter f: filters){
 				out.println(f.getName());
 				for(int i = 0; i < f.getKernel().length; i++){
@@ -41,16 +42,18 @@ public class NewFilterHandeler {
 				}
 				out.println("??????????");
 			}
-		} catch (FileNotFoundException e) {
+			out.close();
+		} 
+		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 	}
 	public static void loadFilters(){
 		
 		try {
-			File f = new File("");
+			File f = new File("filters.txt");
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line;
 			int c = 0;
@@ -78,7 +81,9 @@ public class NewFilterHandeler {
 					
 				
 			} 
-		} catch (IOException e) {
+			System.out.println("filters" + filters.size());	
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

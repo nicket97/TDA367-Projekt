@@ -150,6 +150,7 @@ public class MainView extends AnchorPane implements Initializable {
 			
 			BufferedImage in;
 			try {
+				if(ImageIO.read(f) != null){
 				in = ImageIO.read(f);
 				BufferedImage newImage = new BufferedImage(
 					    in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -165,6 +166,7 @@ public class MainView extends AnchorPane implements Initializable {
 					setBackgroundImage(ll);
 					canvasView.repaint();
 					miniCanvasView.repaint();
+					}
 			} catch (IOException e1) {
 				// On canceled fileopening
 			}
@@ -306,7 +308,7 @@ public class MainView extends AnchorPane implements Initializable {
 			AnchorPane pane = new AnchorPane();
 			window.initModality(Modality.APPLICATION_MODAL);
 			window.initOwner(primaryStage);
-			pane.getChildren().add(new NewFilterView());
+			pane.getChildren().add(new NewFilterView(window));
 			Parent root = pane;
 			
 			Scene s = new Scene(root);

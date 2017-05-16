@@ -5,14 +5,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.sun.glass.ui.Screen;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -20,8 +25,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.Layers;
 import main.Main;
+import model.Crop;
 import model.Layer;
 import model.LoadedImage;
+import model.SaveProject;
 
 public class CropView extends AnchorPane implements Initializable {
 	
@@ -42,6 +49,8 @@ public class CropView extends AnchorPane implements Initializable {
 	
 	private Point pressedPoint;
 	private Point releasedPoint;
+	private int width;
+	private int height;
 	
 	
 	private Stage primaryStage;
@@ -68,17 +77,42 @@ public class CropView extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		primaryStage = Main.getPrimaryStage();
-		canvasPane.setOnMousePressed(e ->{
+		this.setOnMousePressed(e ->{
 			this.pressedPoint = new Point((int)e.getX(), (int)e.getY());
 			
 		});
-		canvasPane.setOnMouseReleased(e -> {
+		this.setOnMouseReleased(e -> {
 			this.releasedPoint = new Point((int) e.getX(), (int) e.getY());
 			drawImage(pressedPoint, releasedPoint);
 			
-		});
+			Alert cropAlert = new Alert(Alert.AlertType.CONFIRMATION);
+			cropAlert.setTitle("Beskärning");
+			cropAlert.setHeaderText("Vill du endast behålla denna del av bilden?");
+
+			ButtonType buttonTypeYes = new ButtonType("Ja");
+			ButtonType buttonTypeNo = new ButtonType("Avbryt", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+			cropAlert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+			Optional<ButtonType> result = cropAlert.showAndWait();
 		
-		
+			if (result.get() == buttonTypeYes){
+				Layers.addLayer(new Layer( new Crop(getStartPoint(), getEndPoint(), width, height)));
+				canvasView.repaint();
+				this.getChildren().clear();
+				
+				
+			}
+			if(result.get() == buttonTypeNo){
+				cropAlert.close();
+				this.getChildren().clear();
+			}
+		else{
+		cropAlert.close();
+		this.getChildren().clear();
+		}
+	});
+			
 	}
 	public void drawImage(Point topLeft, Point bottomRight){
 		if (pressedPoint == null){
@@ -88,13 +122,12 @@ public class CropView extends AnchorPane implements Initializable {
 			int posY = 0;
 		}
 		else {
-			System.out.println("drawImagge else is printed");
-			int width = (int) distanceDragged(pressedPoint, releasedPoint).getX();
-			int heigth = (int) distanceDragged(pressedPoint, releasedPoint).getY();
+			this.width = (int) distanceDragged(pressedPoint, releasedPoint).getX();
+			this.height = (int) distanceDragged(pressedPoint, releasedPoint).getY();
 			int posX = (int) pressedPoint.getX();
 			int posY = (int) pressedPoint.getY();
-			System.out.println(posX + " hej " + posY + "       " + width + " X " + heigth);
-			Rectangle r = new Rectangle(width, heigth, posX, posY);
+			System.out.println(posX + " hej " + posY + "       " + width + " X " + height);
+			Rectangle r = new Rectangle(posX, posY, width, height);
 			r.setStroke(Color.BLACK);
 			r.setStrokeWidth(10);
 			this.getChildren().add(r);

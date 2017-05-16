@@ -303,9 +303,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuCrop.setOnAction(e ->{
 			CropView cropView = new CropView();
 			canvasPane.getChildren().add(cropView);
-			Layers.addLayer(new Layer( new Crop(cropView.getStartPoint(), cropView.getEndPoint())));
 			canvasView.repaint();
-					//canvasView.repaint();
 				
 				
 			

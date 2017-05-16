@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,7 +58,6 @@ public class MainView extends AnchorPane implements Initializable {
 	TilePane bottomContainer;
 	@FXML
 	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
-	
 	@FXML
 	AnchorPane menuBar;
 	@FXML
@@ -85,7 +85,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ColorPicker customColor;
 	@FXML
-	Slider blurRadius, gBlurRadius, gBlurIntensity;
+	Slider blurRadius, gBlurRadius, sharpenIntensity, sharpenThreshold;
 	@FXML
 	Slider colorIntensity, bwThreshold, bwIntensity, wbWarm, wbIntensity;
 	@FXML
@@ -332,30 +332,28 @@ public class MainView extends AnchorPane implements Initializable {
 			    pstage.setY(mouseEvent.getScreenY() + dragDelta.y);
 			  }
 			});
-
-
 	}
-public Point setTopLeftCrop() {
-	Point topLeft = new Point();
-	canvasView.setOnMouseClicked(e ->{
-		topLeft.setLocation(e.getX(), e.getY());
-	});
-	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-	alert.setTitle("Beskärning");
-	alert.setHeaderText("Välj önskat övre vänstra hörn");
-	alert.showAndWait();
-	//alert.get
-	while (topLeft.getX() == 0 && topLeft.getY() == 0) {
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+	public Point setTopLeftCrop() {
+		Point topLeft = new Point();
+		canvasView.setOnMouseClicked(e ->{
+			topLeft.setLocation(e.getX(), e.getY());
+		});
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Beskärning");
+		alert.setHeaderText("Välj önskat övre vänstra hörn");
+		alert.showAndWait();
+		//alert.get
+		while (topLeft.getX() == 0 && topLeft.getY() == 0) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
+		System.out.println(topLeft.toString());
+		return topLeft;
 	}
-	System.out.println(topLeft.toString());
-	return topLeft;
-}
 	
 	public Point setBottomRightCrop() {
 		Point bottomRight = new Point();
@@ -377,6 +375,7 @@ public Point setTopLeftCrop() {
 		
 		return bottomRight;
 	}
+	
 	private FadeTransition fadeIn = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeAdjust = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeExposure = new FadeTransition(Duration.millis(150));
@@ -426,11 +425,33 @@ public Point setTopLeftCrop() {
 		miniCanvasView = new MiniCanvasView();
 		layerView = new LayerView();
 		
-		//bottomContainer.getChildren().add(new ToolView());
+		
 		canvasPane.getChildren().add(canvasView);
 		miniCanvas.getChildren().add(miniCanvasView);
 		layerPane.getChildren().add(layerView);
-	
+		
+		/***
+		 * Functionality for adding filters via toolbar.
+		 */
+			blurUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Blur((int) blurRadius.valueProperty().intValue())));
+				canvasView.repaint();
+				miniCanvasView.repaint();
+			});
+			gBlurUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new GaussianBlur((int) gBlurRadius.valueProperty().intValue())));
+				canvasView.repaint();
+				miniCanvasView.repaint();
+			});
+			sharpenUpdate.setOnAction(e -> {
+				layerstack.addLayer(new Layer(new Sharpen()));
+				canvasView.repaint();
+				miniCanvasView.repaint();
+			});
+			
+		/***
+		 *  Handles fade transitions on mouseclick for the toolbar.
+		 */
 		fadeSettings(fadeIn, topLevel);
 		fadeSettings(fadeAdjust, adjustLevel);
 		fadeSettings(fadeExposure, exposureLevel);
@@ -561,20 +582,23 @@ public Point setTopLeftCrop() {
 		menuZoomIn.setDisable(b);
 		menuZoomOut.setDisable(b);
 		menuUndo.setDisable(b);
-		
+		disableToolbarButtons(b);
+	}
+	private void disableToolbarButtons(boolean b){
+		blurUpdate.setDisable(b);
+		gBlurUpdate.setDisable(b);
+		sharpenUpdate.setDisable(b);
 	}
 
 	public static LoadedImage getBackgroundImage() {
 		return backgroundImage;
 	}
-
 	public static void setBackgroundImage(LoadedImage backgroundImage) {
 		MainView.backgroundImage = backgroundImage;
 	}
 	public static CanvasView getCanvas(){
 		return canvasView;
 	}
-	
-	
 }
+
 class Delta { double x, y; } 

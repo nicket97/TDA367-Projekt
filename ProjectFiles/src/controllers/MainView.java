@@ -381,9 +381,8 @@ public Point setTopLeftCrop() {
 		return topLeft;
 
 	}
-	System.out.println(topLeft.toString());
-	return topLeft;
-}
+	
+
 
 	public Point setBottomRightCrop() {
 		Point bottomRight = new Point();

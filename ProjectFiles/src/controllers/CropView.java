@@ -121,18 +121,20 @@ public class CropView extends AnchorPane implements Initializable {
 	}
 	public void drawImage(Point topLeft, Point bottomRight){
 		if (pressedPoint == null){
-			int width = 0;
-			int heigth = 0;
-			int posX = 0;
-			int posY = 0;
+			
 		}
 		else {
-			this.width = (int) distanceDragged(pressedPoint, releasedPoint).getX();
-			this.height = (int) distanceDragged(pressedPoint, releasedPoint).getY();
+			this.width = (int) ( distanceDragged(pressedPoint, releasedPoint).getX());
+			this.height = (int) ( distanceDragged(pressedPoint, releasedPoint).getY());
 			int posX = (int) pressedPoint.getX();
 			int posY = (int) pressedPoint.getY();
 			System.out.println(posX + " hej " + posY + "       " + width + " X " + height);
 			Rectangle r = new Rectangle(posX, posY, width, height);
+			posX = (int) (posX *MainView.getCanvas().getZoomFactor());
+			posY = (int) (posY *MainView.getCanvas().getZoomFactor());
+			this.pressedPoint = new Point(posX, posY);
+			this.width = (int) (this.width *MainView.getCanvas().getZoomFactor());
+			this.height = (int) (this.height *MainView.getCanvas().getZoomFactor());
 			r.setStroke(Color.BLACK);
 			r.setStrokeWidth(10);
 			this.getChildren().add(r);

@@ -312,9 +312,9 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="exposureIntensity" />
+                              <Slider fx:id="exposureIntensity" min="-100.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
                               <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
                                  <padding>
                                     <Insets left="50.0" right="50.0" />
@@ -322,7 +322,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="exposureUpdate" mnemonicParsing="false" text="Uppdatera" />
@@ -764,9 +764,12 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="bwThreshHold" />
+                              <Slider fx:id="bwThreshold" blockIncrement="1.0" majorTickUnit="15.0" max="255.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" value="1.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></Slider>
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Tröskelvärde">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
@@ -774,20 +777,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
-                           <children>
-                              <Slider fx:id="bwIntensity" />
-                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
-                                 <padding>
-                                    <Insets left="50.0" right="50.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="bwUpdate" mnemonicParsing="false" text="Uppdatera" />
@@ -810,30 +800,17 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="wbWarm" />
-                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Tröskelvärde">
+                              <Slider fx:id="wbWarm" minorTickCount="0" showTickLabels="true" showTickMarks="true" value="50.0" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Värme">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
-                           <children>
-                              <Slider fx:id="wbIntensity" />
-                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
-                                 <padding>
-                                    <Insets left="50.0" right="50.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="wbUpdate" mnemonicParsing="false" text="Uppdatera" />

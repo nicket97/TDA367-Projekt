@@ -38,11 +38,11 @@ public class Layer {
 	 * Methods for changing values of current layer.
 	 * @param intValue
 	 */
-	public void setRadius(int intValue) {
+	public void setRadius(int value) {
 		if (name.equals("Blur")){
-			((Blur) action).setRadius(intValue);	
+			((Blur) action).setRadius(value);	
 		} else {
-			((GaussianBlur) action).setRadius(intValue);
+			((GaussianBlur) action).setRadius(value);
 		}
 	}
 	public void setRGB(double r, double g, double b){
@@ -51,5 +51,21 @@ public class Layer {
 	public void setColor(String color){
 		ColorShiftFactory.getColorShift(color);
 	}
-	
+	public void setThreshold(int value){
+		if (name.equals("Svartvitt")){
+			((BlackAndWhite) action).setThreshold(value);
+		}
+		else if (name.equals("Vitbalans")){
+			((WhiteBalance) action).setThreshold(value);		
+		}
+	}
+	public void setFactor(int value){
+		if (name.equals("Exponering")){
+			((Exposure) action).setFactor(value);
+		} else if (name.equals("Kontrast")){
+			((Contrast) action).setFactor(value);
+		} else {
+			((Levels) action).setChangeLevel(value);
+		}
+	}
 }

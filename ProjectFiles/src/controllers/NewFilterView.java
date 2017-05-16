@@ -10,9 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import model.CreatedFilter;
 import model.Layer;
+import model.NewFilterHandeler;
 
 public class NewFilterView extends AnchorPane implements Initializable {
 	
@@ -42,6 +43,8 @@ public class NewFilterView extends AnchorPane implements Initializable {
 		System.out.println("init newFilter");
 		double[][] gridValues = new double[3][3];
 		newFilterSaveButton.setOnAction( e->{
+			
+			String filterName = nameInput.getText();
 			gridValues[0][0] = Double.parseDouble(grid00.getText());
 			gridValues[0][1] = Double.parseDouble(grid01.getText());
 			gridValues[0][2] = Double.parseDouble(grid02.getText());
@@ -52,11 +55,10 @@ public class NewFilterView extends AnchorPane implements Initializable {
 			gridValues[2][1] = Double.parseDouble(grid21.getText());
 			gridValues[2][2] = Double.parseDouble(grid22.getText());
 			
-			for (int i = 0; i < gridValues.length; i++) {
-				for (int j = 0; j < gridValues[0].length;j++) {
-					System.out.println(gridValues[i][j]);
-				}
-			}
+			NewFilterHandeler.addFilter(new CreatedFilter(filterName, gridValues));
+			
+			System.out.println("DONE!");
+
 		});
 		
 	}

@@ -77,6 +77,11 @@ public class CropView extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		primaryStage = Main.getPrimaryStage();
+		this.setPrefWidth(MainView.getCanvas().imagePane.getWidth());
+		this.setPrefHeight(MainView.getCanvas().imagePane.getHeight());
+		this.setTranslateX(MainView.getCanvas().imagePane.getTranslateX());
+		System.out.println();
+		//this.setStyle("-fx-background-color:#FFF;");
 		this.setOnMousePressed(e ->{
 			this.pressedPoint = new Point((int)e.getX(), (int)e.getY());
 			

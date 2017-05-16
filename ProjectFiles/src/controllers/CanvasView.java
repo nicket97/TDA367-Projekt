@@ -25,7 +25,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 	@FXML
 	AnchorPane canvasPane;
 	
-	Canvas imagePane;
+	public Canvas imagePane;
 	CanvasView canvasView = this;
 	
 	double zoomFactor = 1;
@@ -92,7 +92,9 @@ public class CanvasView extends AnchorPane implements Initializable {
 			}
 		}
 		LoadedImage newsImage = newImage;
+
 		imagePane = new Canvas(newImage.getWidth()/zoomFactor, newImage.getHeigth()/zoomFactor);
+		System.out.println("imagePaneSize" + imagePane.getWidth() + "     " + imagePane.getHeight());
 		imagePane.setTranslateX((primaryStage.getWidth()-240-newImage.getWidth()/zoomFactor)/2);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		//Zoom Out

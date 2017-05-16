@@ -354,9 +354,11 @@ public Point setTopLeftCrop() {
 			e1.printStackTrace();
 
 		}
-		System.out.println(topLeft.toString());
-		return topLeft;
+		
 	}
+	System.out.println(topLeft.toString());
+	return topLeft;
+}
 	
 	public Point setBottomRightCrop() {
 		Point bottomRight = new Point();

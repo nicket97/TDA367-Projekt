@@ -475,9 +475,9 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="blurRadius" />
+                              <Slider fx:id="blurRadius" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Radie">
                                  <padding>
                                     <Insets left="50.0" right="50.0" />
@@ -485,20 +485,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
-                           <children>
-                              <Slider fx:id="blurIntensity" />
-                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
-                                 <padding>
-                                    <Insets left="50.0" right="50.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="blurUpdate" mnemonicParsing="false" text="Uppdatera" />
@@ -521,9 +508,9 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="gBlurRadius" />
+                              <Slider fx:id="gBlurRadius" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Radie">
                                  <padding>
                                     <Insets left="50.0" right="50.0" />
@@ -531,20 +518,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
-                           <children>
-                              <Slider fx:id="gBlurIntensity" />
-                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
-                                 <padding>
-                                    <Insets left="50.0" right="50.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="gBlurUpdate" mnemonicParsing="false" text="Uppdatera" />
@@ -570,9 +544,9 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="sharpenRadius" />
+                              <Slider fx:id="sharpenRadius" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Radie">
                                  <padding>
                                     <Insets left="50.0" right="50.0" />
@@ -580,12 +554,12 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="42.0" prefHeight="88.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="sharpenThreshold" />
+                              <Slider fx:id="sharpenThreshold" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Tröskelvärde">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
@@ -593,20 +567,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
-                           <children>
-                              <Slider fx:id="sharpenIntensity" />
-                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
-                                 <padding>
-                                    <Insets left="50.0" right="50.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="sharpenUpdate" mnemonicParsing="false" text="Uppdatera" />

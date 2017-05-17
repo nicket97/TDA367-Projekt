@@ -65,7 +65,7 @@ public class Layer {
 	public void setFactorAndThreshold(int value, double d){
 		((Contrast) action).setFactorAndThreshold(value, d);
 	}
-	public void setLevels(int min, int max, int mid, double changeLevel){
-		((Levels) action).setLevels(min, max, mid, changeLevel);
+	public void setLevels(int min, int max){
+		((Levels) action).setLevels(min, max);
 	}
 }

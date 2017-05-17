@@ -86,8 +86,8 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ColorPicker customColor;
 	@FXML
-	Slider exposureIntensity, contrastThreshold, contrastIntensity, levelsIntensity,
-	blurRadius, gBlurRadius, sharpenIntensity, sharpenThreshold;
+	Slider exposureIntensity, contrastThreshold, contrastIntensity, levelsMin,
+	levelsMax, blurRadius, gBlurRadius, sharpenIntensity, sharpenThreshold;
 	@FXML
 	Slider colorIntensity, bwThreshold, bwIntensity, wbWarm;
 	@FXML
@@ -491,11 +491,11 @@ public Point setTopLeftCrop() {
 						contrastIntensity.valueProperty().intValue(), contrastThreshold.valueProperty().doubleValue());
 				canvasUpdate();
 			});
-			/**levelsUpdate.setOnAction(e -> {
+			levelsUpdate.setOnAction(e -> {
 				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setLevels(
-						levelsIntensity.valueProperty().intValue());
+						levelsMin.valueProperty().intValue(), levelsMax.valueProperty().intValue());
 				canvasUpdate();
-			});*/
+			});
 		//Effects
 			blurUpdate.setOnAction(e -> {
 				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRadius(

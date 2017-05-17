@@ -74,8 +74,8 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Button closeButton,miniButton, maxiButton;
 	@FXML
-	Button exposureUpdate, contrastUpdate, levelsUpdate, blurUpdate, gBlurUpdate, 
-	sharpenUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate;
+	Button exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, 
+	gBlurUpdate, sharpenUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate;
 	@FXML
 	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton,
 	purpleButton, turquoiseButton, greenButton;
@@ -84,8 +84,8 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ColorPicker customColor;
 	@FXML
-	Slider exposureIntensity, contrastThreshold, contrastIntensity, levelsMin,
-	levelsMax, blurRadius, gBlurRadius, sharpenIntensity, sharpenThreshold;
+	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, 
+	levelsMin, levelsMax, blurRadius, gBlurRadius, sharpenIntensity, sharpenThreshold;
 	@FXML
 	Slider colorIntensity, bwThreshold, bwIntensity, wbWarm;
 	@FXML
@@ -93,7 +93,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel;
 	@FXML
-	HBox exposureLevel, contrastLevel, levelsLevel;
+	HBox exposureLevel, contrastLevel, levelsLevel, grainLevel;
 	@FXML
 	HBox blurLevel, gBlurLevel, sharpenLevel;
 	@FXML
@@ -101,7 +101,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Label adjustIcon, colorIcon, effectIcon, filterIcon;
 	@FXML
-	Label exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon, levelsIcon, levelsBackIcon;
+	Label exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon, levelsIcon, levelsBackIcon, grainIcon, grainBackIcon;
 	@FXML
 	Label blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon, sharpenIcon, sharpenBackIcon;
 	@FXML
@@ -415,6 +415,7 @@ public Point setTopLeftCrop() {
 	private FadeTransition fadeExposure = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeContrast = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeLevels = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeGrain = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeEffect = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeBlur = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeGBlur = new FadeTransition(Duration.millis(150));
@@ -494,6 +495,12 @@ public Point setTopLeftCrop() {
 						levelsMin.valueProperty().intValue(), levelsMax.valueProperty().intValue());
 				canvasUpdate();
 			});
+			grainUpdate.setOnAction(e -> {
+				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setDeviation(
+						grainDeviation.valueProperty().intValue());
+				canvasUpdate();
+			});
+			
 		//Effects
 			blurUpdate.setOnAction(e -> {
 				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRadius(
@@ -548,6 +555,7 @@ public Point setTopLeftCrop() {
 		fadeSettings(fadeExposure, exposureLevel);
 		fadeSettings(fadeContrast, contrastLevel);
 		fadeSettings(fadeLevels, levelsLevel);
+		fadeSettings(fadeGrain, grainLevel);
 		fadeSettings(fadeEffect, effectLevel);
 		fadeSettings(fadeBlur, blurLevel);
 		fadeSettings(fadeGBlur, gBlurLevel);
@@ -597,6 +605,16 @@ public Point setTopLeftCrop() {
 		});
 		levelsBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(levelsLevel, adjustLevel, fadeAdjust);
+		});
+		grainIcon.setOnMouseClicked(e -> {
+			mouseClicked(adjustLevel, grainLevel, fadeGrain);
+			if (backgroundImage != null){
+				layerstack.addLayer(new Layer(new Grain(10)));
+				canvasUpdate();
+			}
+		});
+		grainBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(grainLevel, adjustLevel, fadeAdjust);
 		});
 		effectIcon.setOnMouseClicked(e -> {
 			mouseClicked(topLevel, effectLevel, fadeEffect);
@@ -730,6 +748,7 @@ public Point setTopLeftCrop() {
 		exposureUpdate.setDisable(b);
 		contrastUpdate.setDisable(b);
 		levelsUpdate.setDisable(b);
+		grainUpdate.setDisable(b);
 		blurUpdate.setDisable(b);
 		gBlurUpdate.setDisable(b);
 		sharpenUpdate.setDisable(b);

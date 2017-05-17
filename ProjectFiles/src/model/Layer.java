@@ -68,4 +68,7 @@ public class Layer {
 	public void setLevels(int min, int max){
 		((Levels) action).setLevels(min, max);
 	}
+	public void setDeviation(int value){
+		((Grain) action).setDiviation(value);
+	}
 }

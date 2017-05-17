@@ -297,6 +297,18 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
+                        <Label id="clickable" fx:id="grainIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="790.0" layoutY="25.0" text="Brus">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/filterIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
                      </children>
                   </HBox>
                   <HBox id="hbox" fx:id="exposureLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
@@ -419,6 +431,39 @@
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="levelsUpdate" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                     <padding>
+                        <Insets right="100.0" />
+                     </padding>
+                  </HBox>
+                  <HBox id="hbox" fx:id="grainLevel" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="120.0" spacing="50.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="grainBackIcon" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="27.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" right="50.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="10.0">
+                           <children>
+                              <Slider fx:id="grainDeviation" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Avvikelse">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button id="updateButton" fx:id="grainUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                      <padding>
                         <Insets right="100.0" />

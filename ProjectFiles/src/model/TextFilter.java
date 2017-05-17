@@ -11,37 +11,41 @@ import java.util.List;
 public class TextFilter implements Layerable{
 
     private String text = "Your text";
-    private int size = 18;
-    private String position = "up";
-    private Color color = Color.WHITE;
+    private String font = "Helvetica";
+    private int size = 40;
+    private int yPosition = 100;
+    private int r = 255;
+    private int g = 255;
+    private int b = 255;
 
-    public TextFilter(String text, int size, Color color) {
+    public TextFilter(String text, int size, int yPosition, int r, int g, int b) {
         this.text = text;
         this.size = size;
-        this.position = position;
-        this.color = color;
+        this.yPosition = yPosition;
+        this.r = r;
+        this.g = g;
+        this.b = b;
     }
 
     public TextFilter() {}
 
     @Override
     public LoadedImage transform(LoadedImage img) {
-
         BufferedImage BImg = img.getBufferedImg();
 
+        Graphics2D g2 = BImg.createGraphics();
+        FontMetrics metrics = g2.getFontMetrics(new Font(font, Font.BOLD, size));
+        g2.setColor(new java.awt.Color(r, g, b));
+        g2.setFont(new Font(font, Font.BOLD, size));
+        int xPosition = (img.getWidth() - metrics.stringWidth(text)) / 2;
+        g2.drawString(text, xPosition, yPosition);
 
-        Graphics2D g = BImg.createGraphics();
-        //g.setColor(color);
-        g.setFont(new Font( "SansSerif", Font.BOLD, 12 ));
-        g.drawString(text, 10, 10);
-        System.err.println(this.text+10+10);
         return new LoadedImage(BImg);
-
     }
 
     @Override
     public String saveLayer() {
-        String output = "TextFilter?" + text + "?" + size + "?" + position + "?" + color.getRed() + "?" + color.getGreen() + "?" + color.getBlue() + "?";
+        String output = "TextFilter?" + text + "?" + size + "?" + yPosition + "?" + r + "?" + g + "?" + b + "?";
         return output;
     }
 
@@ -72,19 +76,35 @@ public class TextFilter implements Layerable{
         this.size = size;
     }
 
-    public String getPosition() {
-        return position;
+    public int getPosition() {
+        return yPosition;
     }
 
     public void setPosition(String position) {
-        this.position = position;
+        this.yPosition = yPosition;
     }
 
-    public Color getColor() {
-        return color;
+    public int getR() {
+        return r;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setR(int r) {
+        this.r = r;
+    }
+
+    public int getG() {
+        return g;
+    }
+
+    public void setG(int g) {
+        this.g = g;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
     }
 }

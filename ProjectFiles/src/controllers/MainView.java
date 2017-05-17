@@ -39,7 +39,7 @@ public class MainView extends AnchorPane implements Initializable {
 	public static LayerView layerView;
 	static CanvasView canvasView;
 
-	MiniCanvasView miniCanvasView;
+	static MiniCanvasView miniCanvasView;
 	private Point topLeft = new Point(0, 0);
 	private Point bottomRight = new Point(0, 0);
 	private static Stage primaryStage;
@@ -319,7 +319,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClickedOptions(menuGaussianBlur, gBlurLevel, (new GaussianBlur(6)));
 		menuClickedOptions(menuSharpen, sharpenLevel, (new Sharpen()));
 		menuClickedOptions(menuGrayScale, grayLevel, (new GrayScale()));
-		menuClickedOptions(menuColorFilter, colorLevel, (new ColorShift(50, 1, 1)));
+		menuClickedOptions(menuColorFilter, colorFilterLevel, (new ColorShift(50, 1, 1)));
 		menuClickedOptions(menuContrast, contrastLevel, (new Contrast(100, 1.4)));
 		menuClickedOptions(menuWhitebalance, wbLevel, (new WhiteBalance(40)));
 		menuClickedOptions(menuLevels, levelsLevel, (new Levels(100, 40)));
@@ -744,7 +744,7 @@ public class MainView extends AnchorPane implements Initializable {
 
 	}
 
-	private void canvasUpdate() {
+	static void canvasUpdate() {
 		canvasView.repaint();
 		miniCanvasView.repaint();
 	}

@@ -72,7 +72,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuFMatte, menuFBW, menuFVintage;
 	@FXML
-	MenuItem menuZoomIn, menuZoomOut, menuUndo;
+	MenuItem menuZoomIn, menuZoomOut, menuUndo, menuResetWindow;
 	@FXML
 	Button closeButton,miniButton, maxiButton;
 	@FXML
@@ -281,10 +281,10 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.remove(Layers.getLayerStack().get(Layers.getLayerStack().size()-1));
 			canvasView.repaint();
 		});
-		slideZoom.setValue(50);
+		slideZoom.setValue(100);
 		slideZoom.setOnMouseClicked(e->{
 			System.out.println("zooma " + slideZoom.getValue());
-			canvasView.setZoomFactor((Math.pow(2, slideZoom.getValue()/20-2.5)));
+			canvasView.setZoomFactor((Math.pow(2, slideZoom.getValue()/20-5)));
 			canvasView.repaint();
 		});
 		slideZoom.setOnMouseDragOver(e -> {
@@ -314,17 +314,23 @@ public class MainView extends AnchorPane implements Initializable {
 			window.setScene(s);
 			window.show();
 			});
+		menuResetWindow.setOnAction(e -> {
+			canvasView.setTopX(0);
+			canvasView.setTopY(0);
+			canvasView.repaint();
+			
+		});
 	
 		
 		menuClicked(menuBlur, (new Blur(7)));
-		menuClicked(menuGaussianBlur, (new GaussianBlur(3)));
+		menuClicked(menuGaussianBlur, (new GaussianBlur(6)));
 		menuClicked(menuSharpen, (new Sharpen()));
 		menuClicked(menuGrayScale, (new GrayScale()));
 		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
 		menuClicked(menuContrast, (new Contrast(100, 1.4)));
 		menuClicked(menuHReflect, (new HMirroring()));
 		menuClicked(menuVReflect, (new VMirroring()));
-		menuClicked(menuWhitebalance, (new WhiteBalance(20)));
+		menuClicked(menuWhitebalance, (new WhiteBalance(40)));
 		menuClicked(menuLevels, (new Levels(100,40)));
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));

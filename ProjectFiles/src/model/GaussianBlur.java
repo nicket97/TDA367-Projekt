@@ -14,9 +14,9 @@ public class GaussianBlur implements Layerable {
 	public GaussianBlur(int r){
 		
 		radius = r;
-		if (radius % 2 == 0) {
+		/*if (radius % 2 == 0) {
 			radius++;
-		}
+		}*/
 		 kernel = new double[2*radius+1][2*radius+1];
 		 
 		 int[] factors = new int[2*radius+1];
@@ -87,7 +87,31 @@ LoadedImage newImage = new LoadedImage(img);
 	
 	public void setRadius(int radius) {
 		this.radius = radius;
+		uppdateKernel(radius);
+		
 	}
+	private void uppdateKernel(int r) {
+		radius = r;
+		/*if (radius % 2 == 0) {
+			radius++;
+		}*/
+		 kernel = new double[2*radius+1][2*radius+1];
+		 
+		 int[] factors = new int[2*radius+1];
+		 
+		 for(int k = 0; k < radius+1; k++){
+			 factors[k]= (int) Math.pow(2, k);
+			 factors[factors.length-k-1] = (int) Math.pow(2, k);
+		 }
+		
+		for (int i = 0; i < 2*radius+1; i++) {
+			for (int j = 0; j < 2*radius+1; j++ ) {
+				kernel[i][j] = factors[i] * factors[j];
+			}
+		}
+		
+	}
+
 	@Override
 	public List<Slider> getSliders() {
 		List<Slider> sliders = new ArrayList<>();

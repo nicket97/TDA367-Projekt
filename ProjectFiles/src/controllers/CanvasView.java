@@ -198,6 +198,16 @@ public class CanvasView extends AnchorPane implements Initializable {
 		repaint();
 		
 	}
+
+	public void setTopX(int i) {
+		topX = i;
+		
+	}
+
+	public void setTopY(int i) {
+		topY = i;
+		
+	}
 	
 
 	

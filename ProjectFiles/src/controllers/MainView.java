@@ -51,7 +51,7 @@ public class MainView extends AnchorPane implements Initializable {
 	public static LayerView layerView;
 	static CanvasView canvasView;
 
-	MiniCanvasView miniCanvasView; 
+	static MiniCanvasView miniCanvasView; 
 	private Point topLeft = new Point (0,0);
 	private Point bottomRight = new Point (0,0);
 	private static Stage primaryStage;
@@ -712,7 +712,7 @@ public Point setTopLeftCrop() {
 		
 	}
 	
-	private void canvasUpdate(){
+	static void canvasUpdate(){
 		canvasView.repaint();
 		miniCanvasView.repaint();
 	}

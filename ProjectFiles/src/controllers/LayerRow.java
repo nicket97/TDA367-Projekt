@@ -49,10 +49,11 @@ public class LayerRow extends AnchorPane implements Initializable {
 		System.out.println("init layerrow");
 		layerLabel.setText(name);
 		trashCan.setOnMouseClicked(e -> {Layers.remove(layer);
-		MainView.canvasView.repaint();});
+		MainView.canvasUpdate();;});
 		visibleBox.setSelected(layer.getVisible());
 		visibleBox.setOnMouseClicked(e -> {layer.changeVisible();
-		MainView.canvasView.repaint();});
+		MainView.canvasUpdate();
+		;});
 		this.setOnMouseClicked(e ->{
 			
 		});

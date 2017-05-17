@@ -320,22 +320,24 @@ public class MainView extends AnchorPane implements Initializable {
 			
 		});
 	
-		
-		menuClicked(menuBlur, (new Blur(7)));
-		menuClicked(menuGaussianBlur, (new GaussianBlur(6)));
-		menuClicked(menuSharpen, (new Sharpen()));
-		menuClicked(menuGrayScale, (new GrayScale()));
-		menuClicked(menuColorFilter, (new ColorShift(50,1,1)));
-		menuClicked(menuContrast, (new Contrast(100, 1.4)));
+		/***
+		 * Connecting menu options and filters.
+		 */
 		menuClicked(menuHReflect, (new HMirroring()));
 		menuClicked(menuVReflect, (new VMirroring()));
-		menuClicked(menuWhitebalance, (new WhiteBalance(40)));
-		menuClicked(menuLevels, (new Levels(100,40)));
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));
-		menuClicked(menuBlackWhite, (new BlackAndWhite(123)));
-		menuClicked(menuGrain, new Grain(20));
-		menuClicked(menuExposure, (new Exposure(40)));
+		menuClickedOptions(menuBlur, blurLevel, (new Blur(7)));
+		menuClickedOptions(menuGaussianBlur, gBlurLevel, (new GaussianBlur(6)));
+		menuClickedOptions(menuSharpen, sharpenLevel, (new Sharpen()));
+		menuClickedOptions(menuGrayScale, grayLevel, (new GrayScale()));
+		menuClickedOptions(menuColorFilter, colorLevel, (new ColorShift(50,1,1)));
+		menuClickedOptions(menuContrast, contrastLevel, (new Contrast(100, 1.4)));
+		menuClickedOptions(menuWhitebalance, wbLevel, (new WhiteBalance(40)));
+		menuClickedOptions(menuLevels, levelsLevel, (new Levels(100,40)));
+		menuClickedOptions(menuBlackWhite, bwLevel, (new BlackAndWhite(123)));
+		menuClickedOptions(menuGrain, grainLevel, new Grain(20));
+		menuClickedOptions(menuExposure, exposureLevel, (new Exposure(40)));
 		menuClicked(menuEdge, (new Edge()));
 		menuClicked(menuTextFilter, (new TextFilter()));
 		
@@ -441,6 +443,7 @@ public Point setTopLeftCrop() {
 	
 	private void mouseClicked(Node begin, Node end, FadeTransition fade){
 		begin.setVisible(false);
+		end.toFront();
 		end.setVisible(true);
 		fade.playFromStart();
 		return;
@@ -448,9 +451,22 @@ public Point setTopLeftCrop() {
 	
 	private void menuClicked(MenuItem name, Layerable layerType){
 		name.setOnAction( e->{
-			layerstack.addLayer(new Layer(layerType));
-			canvasView.repaint();
-			miniCanvasView.repaint();
+			if (backgroundImage != null) {
+				layerstack.addLayer(new Layer(layerType));
+				canvasUpdate();
+			}
+		});
+		return;
+	}
+	private void menuClickedOptions(MenuItem name, HBox level, Layerable layerType){
+		name.setOnAction( e->{
+			toolContainer.getChildren().get(toolContainer.getChildren().size()-1).setVisible(false);
+			level.toFront();
+			level.setVisible(true);
+			if (backgroundImage != null) {
+				layerstack.addLayer(new Layer(layerType));
+				canvasUpdate();
+			}
 		});
 		return;
 	}
@@ -466,6 +482,8 @@ public Point setTopLeftCrop() {
 		canvasPane.getChildren().add(canvasView);
 		miniCanvas.getChildren().add(miniCanvasView);
 		layerPane.getChildren().add(layerView);
+		
+		topLevel.toFront();
 		
 		/***
 		 * Adding color button values.

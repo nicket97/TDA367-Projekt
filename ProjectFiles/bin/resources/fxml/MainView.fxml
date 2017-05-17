@@ -68,6 +68,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Justera">
                <items>
+                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Beskära" />
                   <MenuItem fx:id="menuHReflect" mnemonicParsing="false" text="Spegla vertikalt">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="M" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -88,10 +89,11 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Anpassa">
                <items>
-                  <MenuItem fx:id="menuCrop" mnemonicParsing="false" text="Beskära" />
                   <MenuItem fx:id="menuExposure" mnemonicParsing="false" text="Exponering" />
                   <MenuItem fx:id="menuContrast" mnemonicParsing="false" text="Kontrast" />
                   <MenuItem fx:id="menuLevels" mnemonicParsing="false" text="Nivåer" />
+                  <MenuItem fx:id="menuGrain" mnemonicParsing="false" text="Brus">
+                  </MenuItem>
                   
                   
                </items>
@@ -118,8 +120,6 @@
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem fx:id="menuGrain" mnemonicParsing="false" text="GrainFilter">
-                  </MenuItem>
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Färg">
@@ -142,12 +142,9 @@
                      </accelerator></MenuItem>
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Filter">
+            <Menu mnemonicParsing="false" text="Egna filter">
                <items>
-                  <MenuItem fx:id="menuFMatte" mnemonicParsing="false" text="Matt" />
-                  <MenuItem fx:id="menuFBW" mnemonicParsing="false" text="Modern Svartvit" />
-                  <MenuItem fx:id="menuFVintage" mnemonicParsing="false" text="Vintage" />
-                  <MenuItem fx:id="menuNewFilter" mnemonicParsing="false" text="Eget filter..." />
+                  <MenuItem fx:id="menuNewFilter" mnemonicParsing="false" text="Lägg till eget filter..." />
                   
                </items>
             </Menu>
@@ -158,9 +155,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane id="topBar" fx:id="menuBar" prefHeight="35.0" prefWidth="400.0" AnchorPane.leftAnchor="550.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="topBar" fx:id="menuBar" prefHeight="35.0" prefWidth="380.0" AnchorPane.leftAnchor="580.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_RIGHT" layoutX="900.0" prefHeight="35.0" prefWidth="192.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="900.0" prefHeight="35.0" prefWidth="172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button id="interfaceButton" fx:id="maxiButton" mnemonicParsing="false">
                      <graphic>

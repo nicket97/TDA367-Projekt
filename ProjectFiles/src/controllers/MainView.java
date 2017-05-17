@@ -70,8 +70,6 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter;
 	@FXML
-	MenuItem menuFMatte, menuFBW, menuFVintage;
-	@FXML
 	MenuItem menuZoomIn, menuZoomOut, menuUndo, menuResetWindow;
 	@FXML
 	Button closeButton,miniButton, maxiButton;
@@ -713,6 +711,7 @@ public Point setTopLeftCrop() {
 		//menuCrop.setDisable(b);
 		menuExposure.setDisable(b);
 		menuContrast.setDisable(b);
+		menuGrain.setDisable(b);
 		menuHReflect.setDisable(b);
 		menuVReflect.setDisable(b);
 		menuRotateL.setDisable(b);
@@ -722,9 +721,6 @@ public Point setTopLeftCrop() {
 		menuSharpen.setDisable(b);
 		menuTextFilter.setDisable(b);
 		menuEdge.setDisable(b);
-		menuFMatte.setDisable(b);
-		menuFBW.setDisable(b);
-		menuFVintage.setDisable(b);
 		menuZoomIn.setDisable(b);
 		menuZoomOut.setDisable(b);
 		menuUndo.setDisable(b);

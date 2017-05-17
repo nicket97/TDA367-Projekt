@@ -33,11 +33,11 @@ public class NewFilterHandeler {
 			for(CreatedFilter f: filters){
 				out.println(f.getName());
 				for(int i = 0; i < f.getKernel().length; i++){
-					out.print(f.getKernel()[i][0]);
+					out.print(f.getKernel()[0][i]);
 					out.print("?");
-					out.print(f.getKernel()[i][1]);
+					out.print(f.getKernel()[1][i]);
 					out.print("?");
-					out.print(f.getKernel()[i][2]);
+					out.print(f.getKernel()[2][i]);
 					out.println();
 				}
 				out.println("??????????");
@@ -76,6 +76,7 @@ public class NewFilterHandeler {
 							kernel[c-1][0] = Double.parseDouble(args[0]);
 							kernel[c-1][1] = Double.parseDouble(args[1]);
 							kernel[c-1][2] = Double.parseDouble(args[2]);
+							c++;
 						}
 					}
 					

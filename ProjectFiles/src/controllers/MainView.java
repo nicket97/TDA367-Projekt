@@ -25,6 +25,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -84,6 +85,8 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ColorPicker customColor;
 	@FXML
+	ChoiceBox filterBox;
+	@FXML
 	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, 
 	levelsMin, levelsMax, blurRadius, gBlurRadius, sharpenIntensity, sharpenThreshold;
 	@FXML
@@ -137,7 +140,7 @@ public class MainView extends AnchorPane implements Initializable {
 			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(" Bildfiler", "*.png", "*.jpg" , "*.jpeg");
 			fileChooser.getExtensionFilters().add(extFilter);;
 			//fileChooser.setSelectedExtensionFilter(new ExtensionFilter(".jpg", ".png" , ".jpeg"));
-			fileChooser.setTitle("V�lj en bild");
+			fileChooser.setTitle("Välj en bild");
 			
 			File f = fileChooser.showOpenDialog(new Stage());
 			

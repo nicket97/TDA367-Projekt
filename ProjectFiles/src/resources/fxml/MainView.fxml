@@ -905,54 +905,20 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <Label id="clickable" fx:id="matteIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Matt">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="/resources/icons/adjustIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="50.0" right="50.0" />
-                           </padding>
-                        </Label>
-                        <Label id="clickable" fx:id="vintageIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Vintage">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="/resources/icons/effectIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="50.0" right="50.0" />
-                           </padding>
-                        </Label>
-                        <Label id="clickable" fx:id="modernBWIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Modern svartvit">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="/resources/icons/colorIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="50.0" right="50.0" />
-                           </padding>
-                        </Label>
-                        <Label id="clickable" fx:id="flipIcon3" contentDisplay="TOP" graphicTextGap="10.0" text="???">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="/resources/icons/filterIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="50.0" right="50.0" />
-                           </padding>
-                        </Label>
+                        <VBox alignment="CENTER" prefHeight="88.0" prefWidth="161.0" spacing="20.0">
+                           <children>
+                              <ChoiceBox fx:id="filterBox" prefWidth="150.0" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj filter">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="25.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button id="updateButton" fx:id="filterUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                   </HBox>
                </children>

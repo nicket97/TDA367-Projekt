@@ -94,6 +94,9 @@ public class Contrast implements Layerable{
 	public void setFactor(double factor) {
 		this.factor = factor;
 	}
-	
+	public void setFactorAndThreshold(int threshold, double factor){
+		this.threshold = threshold;
+		this.factor = factor;
+	}
 
 }

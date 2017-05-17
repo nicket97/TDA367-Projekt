@@ -349,9 +349,22 @@
                               <Insets left="50.0" right="50.0" />
                            </padding>
                         </Label>
-                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="25.0">
+                        <VBox alignment="CENTER" layoutX="443.0" layoutY="42.0" prefHeight="120.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <Slider fx:id="contrastIntensity" />
+                              <Slider fx:id="contrastThreshold" blockIncrement="1.0" majorTickUnit="0.2" max="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Tröskelvärde">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="28.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="403.0" layoutY="10.0" prefHeight="120.0" prefWidth="161.0" spacing="10.0">
+                           <children>
+                              <Slider fx:id="contrastIntensity" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" value="1.0" />
                               <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Intensitet">
                                  <padding>
                                     <Insets left="50.0" right="50.0" />
@@ -359,7 +372,7 @@
                               </Label>
                            </children>
                            <HBox.margin>
-                              <Insets top="32.0" />
+                              <Insets top="28.0" />
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="contrastUpdate" mnemonicParsing="false" text="Uppdatera" />

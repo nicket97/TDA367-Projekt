@@ -60,12 +60,12 @@ public class Layer {
 		}
 	}
 	public void setFactor(int value){
-		if (name.equals("Exponering")){
-			((Exposure) action).setFactor(value);
-		} else if (name.equals("Kontrast")){
-			((Contrast) action).setFactor(value);
-		} else {
-			((Levels) action).setChangeLevel(value);
-		}
+		((Exposure) action).setFactor(value);
+		} 
+	public void setFactorAndThreshold(int value, double d){
+		((Contrast) action).setFactorAndThreshold(value, d);
+	}
+	public void setLevels(int min, int max, int mid, double changeLevel){
+		((Levels) action).setLevels(min, max, mid, changeLevel);
 	}
 }

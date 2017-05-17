@@ -76,10 +76,8 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Button closeButton,miniButton, maxiButton;
 	@FXML
-	Button exposureUpdate, contrastUpdate, levelsUpdate;
-	@FXML
-	Button blurUpdate, gBlurUpdate, sharpenUpdate,
-	cfUpdate, grayUpdate, bwUpdate, wbUpdate;
+	Button exposureUpdate, contrastUpdate, levelsUpdate, blurUpdate, gBlurUpdate, 
+	sharpenUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate;
 	@FXML
 	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton,
 	purpleButton, turquoiseButton, greenButton;
@@ -88,7 +86,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ColorPicker customColor;
 	@FXML
-	Slider exposureIntensity, contrastIntensity, levelsIntensity,
+	Slider exposureIntensity, contrastThreshold, contrastIntensity, levelsIntensity,
 	blurRadius, gBlurRadius, sharpenIntensity, sharpenThreshold;
 	@FXML
 	Slider colorIntensity, bwThreshold, bwIntensity, wbWarm;
@@ -411,6 +409,9 @@ public Point setTopLeftCrop() {
 		return bottomRight;
 	}
 	
+	/***
+	 * Creates fadetransitions to be used in the toolbar.
+	 */
 	private FadeTransition fadeIn = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeAdjust = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeExposure = new FadeTransition(Duration.millis(150));
@@ -486,15 +487,15 @@ public Point setTopLeftCrop() {
 				canvasUpdate();
 			});
 			contrastUpdate.setOnAction(e -> {
-				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setFactor(
-						contrastIntensity.valueProperty().intValue());
+				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setFactorAndThreshold(
+						contrastIntensity.valueProperty().intValue(), contrastThreshold.valueProperty().doubleValue());
 				canvasUpdate();
 			});
-			levelsUpdate.setOnAction(e -> {
-				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setFactor(
+			/**levelsUpdate.setOnAction(e -> {
+				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setLevels(
 						levelsIntensity.valueProperty().intValue());
 				canvasUpdate();
-			});
+			});*/
 		//Effects
 			blurUpdate.setOnAction(e -> {
 				Layers.getLayerStack().get(Layers.getLayerStack().size()-1).setRadius(
@@ -560,6 +561,9 @@ public Point setTopLeftCrop() {
 		fadeSettings(fadeWB, wbLevel);
 		fadeSettings(fadeFilter, filterLevel);
 
+		/***
+		 * Settings for all the different toolbar icons.
+		 */
 		adjustIcon.setOnMouseClicked(e -> {
 			mouseClicked(topLevel, adjustLevel, fadeAdjust);
 		});
@@ -694,6 +698,10 @@ public Point setTopLeftCrop() {
 		miniCanvasView.repaint();
 	}
 
+	/***
+	 * Method for disabling menu options and update buttons when no image is open.
+	 * @param b
+	 */
 	private void setDisableMenuItems(boolean b) {
 		menuExport.setDisable(b);
 		menuSaveProject.setDisable(b);
@@ -723,10 +731,15 @@ public Point setTopLeftCrop() {
 		disableToolbarButtons(b);
 	}
 	private void disableToolbarButtons(boolean b){
+		exposureUpdate.setDisable(b);
+		contrastUpdate.setDisable(b);
+		levelsUpdate.setDisable(b);
 		blurUpdate.setDisable(b);
 		gBlurUpdate.setDisable(b);
 		sharpenUpdate.setDisable(b);
 		cfUpdate.setDisable(b);
+		bwUpdate.setDisable(b);
+		wbUpdate.setDisable(b);
 	}
 
 	public static LoadedImage getBackgroundImage() {

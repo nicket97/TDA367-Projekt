@@ -89,5 +89,10 @@ public class Levels implements Layerable{
 	public void setChangeLevel(double changeLevel) {
 		this.changeLevel = changeLevel;
 	}
-	
+	public void setLevels(int min, int max, int mid, double changeLevel){
+		this.minLevel = min;
+		this.maxLevel = max;
+		this.midLevel = mid;
+		this.changeLevel = changeLevel;
+	}
 }

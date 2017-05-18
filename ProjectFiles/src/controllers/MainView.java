@@ -229,12 +229,16 @@ public class MainView extends AnchorPane implements Initializable {
 		menuZoomOut.setOnAction(e -> {
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 1.5));
 			System.out.println("zooooomOUT  " + canvasView.getZoomFactor());
+			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
 			canvasView.repaint();
 		});
 
 		menuZoomIn.setOnAction(e -> {
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 0.75));
 			System.out.println("zooooomIN  " + canvasView.getZoomFactor());
+			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
+			
+			System.out.println("slide" + slideZoom.getValue() + "              " + (Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
 			canvasView.repaint();
 		});
 		menuUndo.setOnAction(e -> {
@@ -866,5 +870,8 @@ public class MainView extends AnchorPane implements Initializable {
 
 class Delta {
 	double x, y;
-	
+	static int log(double x, int base)
+	{
+	    return (int) (Math.log(x) / Math.log(base));
+	}
 }

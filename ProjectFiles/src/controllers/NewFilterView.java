@@ -60,7 +60,6 @@ public class NewFilterView extends AnchorPane implements Initializable {
 		}
 		newFilterDropDown.getItems().addAll(options);
 		
-		//newFilterDropDown.setItems(NewFilterHandeler.getFilters());
 		newFilterDropDown.setOnAction(e -> {
 			
 			for(CreatedFilter f : NewFilterHandeler.getFilters()){
@@ -76,16 +75,12 @@ public class NewFilterView extends AnchorPane implements Initializable {
 					grid12.setText("" + gridValues[1][2]);
 					grid22.setText("" + gridValues[2][2]);
 					
-					System.out.println("Chosen filter: " + newFilterDropDown.getValue().toString());
 					nameInput.setText(newFilterDropDown.getValue().toString());
 					break;
 
 					}
 					
-					
-					
 				}
-			
 		});
 		
         

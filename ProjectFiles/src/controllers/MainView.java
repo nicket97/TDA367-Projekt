@@ -34,6 +34,10 @@ import main.Layers;
 import main.Main;
 import model.*;
 
+/**
+ * Main controller, distributes tasks
+ */
+
 public class MainView extends AnchorPane implements Initializable {
 
 	static MainView mainView;

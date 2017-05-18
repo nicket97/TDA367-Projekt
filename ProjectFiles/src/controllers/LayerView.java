@@ -23,6 +23,7 @@ import model.Layer;
 
 public class LayerView extends AnchorPane implements Initializable {
 
+	
 	@FXML
 	AnchorPane layerListHolder;
 	@FXML

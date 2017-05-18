@@ -29,6 +29,7 @@ import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.Layers;
 import main.Main;
@@ -260,12 +261,13 @@ public class MainView extends AnchorPane implements Initializable {
 			AnchorPane pane = new AnchorPane();
 			window.initModality(Modality.APPLICATION_MODAL);
 			window.initOwner(primaryStage);
+			window.initStyle(StageStyle.TRANSPARENT);
 			pane.getChildren().add(new NewFilterView(window));
 			Parent root = pane;
 
 			Scene s = new Scene(root);
 
-			window.setScene(s);
+	        window.setScene(s);
 			window.show();
 		});
 		menuResetWindow.setOnAction(e -> {

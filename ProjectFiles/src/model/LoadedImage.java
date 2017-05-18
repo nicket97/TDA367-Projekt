@@ -10,10 +10,10 @@ import javafx.scene.paint.Color;
  *
  */
 public class LoadedImage {
-	private final Color[][] pxImage;
-	private final BufferedImage lImg;
-	private final int width;
-	private final int heigth;
+	private Color[][] pxImage;
+	private BufferedImage lImg;
+	private int width;
+	private int heigth;
 	
 	public LoadedImage(BufferedImage img){
 		this.lImg = img;
@@ -118,5 +118,25 @@ public class LoadedImage {
 	}
 	public int getHeigth(){
 		return heigth;
+	}
+
+
+	public void setPxImage(Color[][] pxImage) {
+		this.pxImage = pxImage;
+	}
+
+
+	public void setlImg(BufferedImage lImg) {
+		this.lImg = lImg;
+	}
+
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+
+	public void setHeigth(int heigth) {
+		this.heigth = heigth;
 	}
 }

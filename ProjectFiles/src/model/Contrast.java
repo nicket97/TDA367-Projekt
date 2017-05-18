@@ -25,6 +25,7 @@ public class Contrast implements Layerable{
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
+		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		for (int i = 0; i < img.getpxImage().length; i++) {
 			for (int j = 0; j < img.getpxImage()[1].length; j++){
 				int pixRed = (int) (img.getpxImage()[i][j].getRed()*255);
@@ -58,10 +59,11 @@ public class Contrast implements Layerable{
 				if(pixRed > 255) pixRed = 255;
 				if(pixGreen > 255) pixGreen = 255;
 				if(pixBlue > 255) pixBlue = 255;
-				newImage.getpxImage()[i][j]= Color.rgb(pixRed, pixGreen, pixBlue);
+				pxImage[i][j]= Color.rgb(pixRed, pixGreen, pixBlue);
 			}
 			
 		}
+		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 

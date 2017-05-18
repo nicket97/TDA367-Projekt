@@ -22,6 +22,7 @@ public class NewKernel implements Layerable {
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
+		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		int radius = (kernel.length-1)/2;
 		
 		for(int i = 1; i < img.getpxImage().length-1; i++) {
@@ -54,9 +55,10 @@ public class NewKernel implements Layerable {
 				if(sumGreen > 255) sumGreen = 255;
 				if(sumBlue < 0) sumBlue = 0;
 				if(sumBlue > 255) sumBlue = 255;
-				newImage.getpxImage()[i][j]= Color.rgb(sumRed, sumGreen, sumBlue);
+				pxImage[i][j]= Color.rgb(sumRed, sumGreen, sumBlue);
 				}
 		}
+		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 

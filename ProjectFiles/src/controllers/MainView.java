@@ -244,7 +244,7 @@ public class MainView extends AnchorPane implements Initializable {
 		slideZoom.setValue(100);
 		slideZoom.setOnMouseClicked(e -> {
 			System.out.println("zooma " + slideZoom.getValue());
-			canvasView.setZoomFactor((Math.pow(2, slideZoom.getValue() / 20 - 5)));
+			canvasView.setZoomFactor(((Math.pow(2, (slideZoom.getValue() / 20 - 5)*-1))));
 			canvasView.repaint();
 		});
 		slideZoom.setOnMouseDragOver(e -> {
@@ -733,7 +733,6 @@ public class MainView extends AnchorPane implements Initializable {
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
-		slideZoom.setValue(50);
 
 	}
 
@@ -875,4 +874,5 @@ public class MainView extends AnchorPane implements Initializable {
 
 class Delta {
 	double x, y;
+	
 }

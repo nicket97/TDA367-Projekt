@@ -31,7 +31,7 @@ public class Main extends Application {
 
 		Scene scene = new Scene(root, 1280, 720);
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
-		primaryStage.setTitle("TO BE DECIDED");
+		primaryStage.setTitle("Layers");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

@@ -29,6 +29,7 @@ public class Sharpen implements Layerable {
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 LoadedImage newImage = new LoadedImage(img);
+Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		radius = 1;
 		
 		for(int i = 1; i < img.getpxImage().length-1; i++) {
@@ -61,9 +62,10 @@ LoadedImage newImage = new LoadedImage(img);
 				if(sumGreen > 255) sumGreen = 255;
 				if(sumBlue < 0) sumBlue = 0;
 				if(sumBlue > 255) sumBlue = 255;
-				newImage.getpxImage()[i][j]= Color.rgb(sumRed, sumGreen, sumBlue);
+				pxImage[i][j]= Color.rgb(sumRed, sumGreen, sumBlue);
 				}
 		}
+		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 

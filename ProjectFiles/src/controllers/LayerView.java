@@ -14,8 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import main.Layers;
-import model.Layer;
+import model.core.Layer;
+import model.core.Layers;
 
 /**
  * List of layers added

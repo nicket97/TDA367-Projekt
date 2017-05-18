@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import model.core.Layerable;
 import model.core.LoadedImage;
 
 /**
- * Filter that makes the picture grayscale
+ * Flips the image vertically
  *
  */
-public class GrayScale implements Layerable {
+public class VMirroring implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
@@ -19,10 +19,7 @@ public class GrayScale implements Layerable {
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		for (int i = 0; i < newImage.getpxImage().length; i++) {
 			for (int j = 0; j < newImage.getpxImage()[i].length; j++) {
-				int avr = (int) ((newImage.getpxImage()[i][j].getRed() * 255
-						+ newImage.getpxImage()[i][j].getGreen() * 255 + newImage.getpxImage()[i][j].getBlue() * 255)
-						/ 3);
-				pxImage[i][j] = Color.grayRgb(avr);
+				pxImage[i][j] = img.getpxImage()[i][img.getpxImage()[1].length - 1 - j];
 			}
 		}
 		newImage.setPxImage(pxImage);
@@ -31,13 +28,13 @@ public class GrayScale implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		String output = "GreyScale?";
+		String output = "VMirroring?";
 		return output;
 	}
 
 	@Override
 	public String getName() {
-		return "Gråskala";
+		return "Spegla Horisontellt";
 	}
 
 	@Override

@@ -1,35 +1,40 @@
-package model;
+package model.transformations;
 
 import java.util.List;
+import java.util.Random;
 
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
+import model.transformations.help.ColorTransformTest;
 
 /**
- * Filter that changes the exposure in the picture
+ * Filter that adds noise to the picture
  *
  */
-public class Exposure implements Layerable {
-	private int factor;
+public class Grain implements Layerable {
 
-	public Exposure(int factor) {
-		this.factor = factor;
+	private int diviation;
 
+	public Grain(int diviation) {
+		this.diviation = diviation;
 	}
 
-	public Exposure(String[] args) {
-		this.factor = Integer.parseInt(args[1]);
-
+	public Grain(String[] args) {
+		this.diviation = Integer.parseInt(args[1]);
 	}
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
+		Random r = new Random();
 		for (int i = 0; i < newImage.getpxImage().length; i++) {
 			for (int j = 0; j < newImage.getpxImage()[i].length; j++) {
+
+				int factor = r.nextInt(2);
+				factor = (factor - 1) * diviation;
 
 				Color pxColor = newImage.getpxImage()[i][j];
 				double newRed = pxColor.getRed() * 255 + factor;
@@ -39,7 +44,8 @@ public class Exposure implements Layerable {
 				// < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 :
 				// newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue +
 				// b));
-				pxColor = Color.rgb(getAllowedValue(newRed), getAllowedValue(newGreen), getAllowedValue(newBlue));
+				pxColor = Color.rgb(ColorTransformTest.getAllowedValue(newRed),
+						ColorTransformTest.getAllowedValue(newGreen), ColorTransformTest.getAllowedValue(newBlue));
 				pxImage[i][j] = pxColor;
 			}
 		}
@@ -47,25 +53,16 @@ public class Exposure implements Layerable {
 		return newImage;
 	}
 
-	private int getAllowedValue(double newColor) {
-		if (newColor > 255) {
-			newColor = 255;
-		} else if (newColor < 0) {
-			newColor = 0;
-		}
-		return (int) newColor;
-
-	}
-
 	@Override
 	public String saveLayer() {
-		String output = "Exposure?" + factor + "?";
-		return output;
+		// TODO Auto-generated method stub
+		return "Grain?" + diviation;
 	}
 
 	@Override
 	public String getName() {
-		return "Exponering";
+		// TODO Auto-generated method stub
+		return "Brus";
 	}
 
 	@Override
@@ -74,12 +71,12 @@ public class Exposure implements Layerable {
 		return null;
 	}
 
-	public int getFactor() {
-		return factor;
+	public int getDiviation() {
+		return diviation;
 	}
 
-	public void setFactor(int factor) {
-		this.factor = factor;
+	public void setDiviation(int diviation) {
+		this.diviation = diviation;
 	}
 
 }

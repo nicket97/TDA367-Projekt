@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
+import model.transformations.help.ColorTransformTest;
 /**
  * Shifts the colors in a picture
  *

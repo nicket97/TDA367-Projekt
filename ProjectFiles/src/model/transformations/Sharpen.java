@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 import java.util.List;
 
@@ -8,20 +8,25 @@ import model.core.Layerable;
 import model.core.LoadedImage;
 
 /**
- * Saving and storing new kernels
+ * Filter that sharpens the image
  *
  */
-public class NewKernel implements Layerable {
+public class Sharpen implements Layerable {
+	private int radius;
+	private double[][] kernel;
 
-	double[][] kernel;
-	String name;
+	public Sharpen() {
 
-	public NewKernel(double[][] kernel, String name) {
-		this.kernel = kernel;
-		this.name = name;
-	}
-
-	public NewKernel(String information) {
+		kernel = new double[3][3];
+		kernel[0][0] = 0;
+		kernel[0][1] = -1;
+		kernel[0][2] = 0;
+		kernel[1][0] = -1;
+		kernel[1][1] = 5;
+		kernel[1][2] = -1;
+		kernel[2][0] = 0;
+		kernel[2][1] = -1;
+		kernel[2][2] = 0;
 
 	}
 
@@ -29,10 +34,10 @@ public class NewKernel implements Layerable {
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
-		int radius = (kernel.length - 1) / 2;
+		radius = 1;
 
-		for (int i = 1; i < img.getpxImage().length - 1; i++) {
-			for (int j = 1; j < img.getpxImage()[i].length - 1; j++) {
+		for (int i = 0; i < img.getpxImage().length; i++) {
+			for (int j = 0; j < img.getpxImage()[i].length; j++) {
 				int sumRed = 0;
 				int sumGreen = 0;
 				int sumBlue = 0;
@@ -76,20 +81,35 @@ public class NewKernel implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		String output = "Sharpen?" + radius + "?";
+		return output;
 	}
 
 	@Override
 	public String getName() {
-
-		return name;
+		return "Skärpa";
 	}
 
 	@Override
 	public List<Slider> getSliders() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+
+	public double[][] getKernel() {
+		return kernel;
+	}
+
+	public void setKernel(double[][] kernel) {
+		this.kernel = kernel;
 	}
 
 }

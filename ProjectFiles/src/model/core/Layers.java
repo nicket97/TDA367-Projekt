@@ -1,9 +1,8 @@
-package main;
+package model.core;
 
 import java.util.ArrayList;
 
 import controllers.MainView;
-import model.Layer;
 
 /**
  * Handles the layer stack

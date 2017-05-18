@@ -12,8 +12,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import main.Layers;
-import model.Layer;
+import model.core.Layer;
+import model.core.Layers;
 import model.core.LoadedImage;
 
 /**

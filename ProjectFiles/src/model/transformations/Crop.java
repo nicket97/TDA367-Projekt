@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;

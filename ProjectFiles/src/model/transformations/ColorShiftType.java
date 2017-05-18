@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 /**
  * ENUM with different Colorshift-options

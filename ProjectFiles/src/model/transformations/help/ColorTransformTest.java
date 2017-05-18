@@ -1,4 +1,4 @@
-package model;
+package model.transformations.help;
 
 /**
  * Checks if color value is not higher or lower than accepted value

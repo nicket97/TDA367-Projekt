@@ -1,6 +1,15 @@
-package model;
+package model.core;
 
-import model.core.Layerable;
+import model.transformations.BlackAndWhite;
+import model.transformations.Blur;
+import model.transformations.ColorShift;
+import model.transformations.ColorShiftFactory;
+import model.transformations.Contrast;
+import model.transformations.Exposure;
+import model.transformations.GaussianBlur;
+import model.transformations.Grain;
+import model.transformations.Levels;
+import model.transformations.WhiteBalance;
 
 public class Layer {
 	private Layerable action;

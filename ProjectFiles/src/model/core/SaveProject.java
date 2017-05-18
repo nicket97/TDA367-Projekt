@@ -7,8 +7,6 @@ import java.io.PrintWriter;
 import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import main.Layers;
-import model.Layer;
 
 /**
  * Takes care of things related to saving projects

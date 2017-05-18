@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 import java.util.ArrayList;
 import java.util.List;

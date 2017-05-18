@@ -9,23 +9,21 @@ import java.io.FileReader;
 import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import main.Layers;
-import model.BlackAndWhite;
-import model.Blur;
-import model.ColorShift;
-import model.Contrast;
-import model.Exposure;
-import model.GaussianBlur;
-import model.Grain;
-import model.GrayScale;
-import model.HMirroring;
-import model.Layer;
-import model.Levels;
-import model.RotateL;
-import model.RotateR;
-import model.Sharpen;
-import model.VMirroring;
-import model.WhiteBalance;
+import model.transformations.BlackAndWhite;
+import model.transformations.Blur;
+import model.transformations.ColorShift;
+import model.transformations.Contrast;
+import model.transformations.Exposure;
+import model.transformations.GaussianBlur;
+import model.transformations.Grain;
+import model.transformations.GrayScale;
+import model.transformations.HMirroring;
+import model.transformations.Levels;
+import model.transformations.RotateL;
+import model.transformations.RotateR;
+import model.transformations.Sharpen;
+import model.transformations.VMirroring;
+import model.transformations.WhiteBalance;
 
 /**
  * Takes care of things related to opening previous saved projects

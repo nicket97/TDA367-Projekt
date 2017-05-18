@@ -30,14 +30,32 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.Layers;
 import main.Main;
 import model.*;
+import model.core.Layer;
 import model.core.Layerable;
+import model.core.Layers;
 import model.core.LoadedImage;
 import model.core.NewFilterHandeler;
 import model.core.OpenProject;
 import model.core.SaveProject;
+import model.transformations.BlackAndWhite;
+import model.transformations.Blur;
+import model.transformations.ColorShift;
+import model.transformations.Contrast;
+import model.transformations.Edge;
+import model.transformations.Exposure;
+import model.transformations.GaussianBlur;
+import model.transformations.Grain;
+import model.transformations.GrayScale;
+import model.transformations.HMirroring;
+import model.transformations.Levels;
+import model.transformations.RotateL;
+import model.transformations.RotateR;
+import model.transformations.Sharpen;
+import model.transformations.TextFilter;
+import model.transformations.VMirroring;
+import model.transformations.WhiteBalance;
 
 /**
  * Main controller, distributes tasks

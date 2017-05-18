@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 import javafx.scene.control.Slider;
 import model.core.Layerable;

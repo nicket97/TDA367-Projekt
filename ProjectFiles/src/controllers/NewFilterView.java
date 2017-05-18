@@ -14,11 +14,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import main.Layers;
-import model.CreatedFilter;
-import model.Layer;
-import model.NewKernel;
+import model.core.CreatedFilter;
+import model.core.Layer;
+import model.core.Layers;
 import model.core.NewFilterHandeler;
+import model.transformations.NewKernel;
 
 /**
  * Handles all input regarding creation of new filters by the user

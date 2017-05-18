@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -8,17 +8,17 @@ import model.core.Layerable;
 import model.core.LoadedImage;
 
 /**
- * Rotates the picture to the right
+ * Rotates the picture to the left
  *
  */
-public class RotateR implements Layerable {
+public class RotateL implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		BufferedImage newImage = new BufferedImage(img.getHeigth(), img.getWidth(), BufferedImage.TYPE_INT_ARGB);
-		for (int i = 0; i < img.getWidth(); i++) {
-			for (int j = 0; j < img.getHeigth(); j++) {
-				newImage.setRGB(img.getHeigth() - 1 - j, i, LoadedImage.getIntFromColor(img.getpxImage()[i][j]));
+		for (int i = 0; i < img.getHeigth(); i++) {
+			for (int j = 0; j < img.getWidth(); j++) {
+				newImage.setRGB(i, img.getWidth() - 1 - j, LoadedImage.getIntFromColor(img.getpxImage()[j][i]));
 			}
 		}
 		return new LoadedImage(newImage);
@@ -26,14 +26,13 @@ public class RotateR implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		String output = "RotateR?";
+		String output = "RotateL?";
 		return output;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return "Rotera 90\u00b0 höger";
+		return "Rotera 90\u00b0 vänster";
 	}
 
 	@Override

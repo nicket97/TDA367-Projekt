@@ -1,4 +1,4 @@
-package model;
+package model.transformations;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
+import model.transformations.help.ColorTransformTest;
 
 /**
  * Filter that makes the edges more visible and the rest less visible in the

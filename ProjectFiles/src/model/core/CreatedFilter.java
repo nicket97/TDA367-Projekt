@@ -1,4 +1,4 @@
-package model;
+package model.core;
 
 /**
  * Puts together new filters

@@ -1,13 +1,9 @@
 package controllers;
 
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.sun.glass.ui.Screen;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,13 +20,13 @@ import model.LoadedImage;
  * All input related to the canvas
  */
 public class CanvasView extends AnchorPane implements Initializable {
-	
+
 	@FXML
 	AnchorPane canvasPane;
-	
+
 	public Canvas imagePane;
 	CanvasView canvasView = this;
-	
+
 	double zoomFactor = 1;
 
 	private int topX = 0;
@@ -40,180 +36,172 @@ public class CanvasView extends AnchorPane implements Initializable {
 	private double releasedX;
 	private double releasedY;
 	private Stage primaryStage;
-	
-	
-	
+
 	public CanvasView(Stage pStage) {
 
 		primaryStage = pStage;
-		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/CanvasView.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/CanvasView.fxml"));
 		System.out.println("canvasview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
-		
-		
-		
+
 		try {
 			fxmlLoader.load();
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
-		
+
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init canvas");
-		canvasPane.setOnMousePressed(e ->{
-			System.out.println("Klicka X = " +  e.getX() + " Y = " + e.getY());
+		canvasPane.setOnMousePressed(e -> {
+			System.out.println("Klicka X = " + e.getX() + " Y = " + e.getY());
 			this.pressedX = e.getX();
 			this.pressedY = e.getY();
-		
+
 		});
 		canvasPane.setOnMouseReleased(e -> {
-			System.out.println("Släpp X = " +  e.getX() + " Y = " + e.getY());
+			System.out.println("Släpp X = " + e.getX() + " Y = " + e.getY());
 			this.releasedX = e.getX();
 			this.releasedY = e.getY();
-			
-			if(imagePane.getWidth() < primaryStage.getWidth()-240 ){}
-			else{
+
+			if (imagePane.getWidth() < primaryStage.getWidth() - 240) {
+			} else {
 				moveCanvas(distanceDragged());
 			}
-			
+
 		});
-		this.setPrefSize(2000,2000);
-		
-		
+		this.setPrefSize(2000, 2000);
+
 	}
-	public void drawImage(LoadedImage img, double zoomFactor){
+
+	public void drawImage(LoadedImage img, double zoomFactor) {
 		long time = System.nanoTime();
 		LoadedImage newImage = new LoadedImage(img);
-		
-		for(Layer layer : Layers.getLayerStack()){
-			if (layer.getVisible()){
-				newImage = layer.getAction().transform(newImage);	
+
+		for (Layer layer : Layers.getLayerStack()) {
+			if (layer.getVisible()) {
+				newImage = layer.getAction().transform(newImage);
 			}
 		}
 		LoadedImage newsImage = newImage;
 
-		imagePane = new Canvas(newImage.getWidth()/zoomFactor, newImage.getHeigth()/zoomFactor);
+		imagePane = new Canvas(newImage.getWidth() / zoomFactor, newImage.getHeigth() / zoomFactor);
 		System.out.println("imagePaneSize" + imagePane.getWidth() + "     " + imagePane.getHeight());
-		imagePane.setTranslateX((primaryStage.getWidth()-240-newImage.getWidth()/zoomFactor)/2);
+		imagePane.setTranslateX((primaryStage.getWidth() - 240 - newImage.getWidth() / zoomFactor) / 2);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
-		//Zoom Out
-		
-		
+		// Zoom Out
+
 		if (zoomFactor >= 1) {
 			int screenX = 0;
-		for(int i = topX; i < this.getWidth() ; i++){
-			int screenY = 0;
-			for(int j = topY; j < this.getHeight(); j++){
-				if((zoomFactor*i) >= newImage.getpxImage().length || (int) (zoomFactor*j) >= newImage.getpxImage()[1].length ||
-						(zoomFactor*i) <= 0 || (int) (zoomFactor*j) <= 0);
-				else{
-				gc.setColor(screenX, screenY, newImage.getpxImage()[(int) (zoomFactor*i)][(int) (zoomFactor*j)]);
+			for (int i = topX; i < this.getWidth(); i++) {
+				int screenY = 0;
+				for (int j = topY; j < this.getHeight(); j++) {
+					if ((zoomFactor * i) >= newImage.getpxImage().length
+							|| (int) (zoomFactor * j) >= newImage.getpxImage()[1].length || (zoomFactor * i) <= 0
+							|| (int) (zoomFactor * j) <= 0)
+						;
+					else {
+						gc.setColor(screenX, screenY,
+								newImage.getpxImage()[(int) (zoomFactor * i)][(int) (zoomFactor * j)]);
+					}
+					screenY++;
 				}
-				screenY++;
+				screenX++;
+				// System.out.println("screeny" + screenY);
 			}
-			screenX++;
-			//System.out.println("screeny" + screenY);
 		}
-		}
-		//zoom in
+		// zoom in
 		else if (zoomFactor < 1) {
 			int screenX = 0;
 			double zoom = zoomFactor;
 			System.out.println(zoom);
 			double y = topX;
 			System.out.println("testa x =" + this.getHeight() + "Y = " + this.getWidth());
-			for(int i = topX; i < this.getWidth(); i++){
+			for (int i = topX; i < this.getWidth(); i++) {
 				double x = topY;
 				int screenY = 0;
 				y += zoom;
 				screenX++;
-				for(int j = topY; j < this.getHeight(); j++){
-					 x += zoom;
-					 screenY++;
-					if(((int) y >= newImage.getpxImage().length ) || ((int)(x) >= newImage.getpxImage()[1].length || 
-							(x) <= 0 || (int) (y) <= 0)){
-						//System.out.println(((int) Math.floor(y) >= newImage.getpxImage().length) + " " + ((int)Math.floor( (x)) >= newImage.getpxImage()[1].length));
-						
+				for (int j = topY; j < this.getHeight(); j++) {
+					x += zoom;
+					screenY++;
+					if (((int) y >= newImage.getpxImage().length)
+							|| ((int) (x) >= newImage.getpxImage()[1].length || (x) <= 0 || (int) (y) <= 0)) {
+						// System.out.println(((int) Math.floor(y) >=
+						// newImage.getpxImage().length) + " " +
+						// ((int)Math.floor( (x)) >=
+						// newImage.getpxImage()[1].length));
+
+					} else {
+						gc.setColor(screenX, screenY,
+								newImage.getpxImage()[(int) Math.floor(y)][(int) Math.floor((x))]);
+
 					}
-					else{
-					gc.setColor(screenX, screenY, newImage.getpxImage()[(int) Math.floor(y)][(int)Math.floor( (x))]);
-					
-					}
-					//System.out.println(screenX + "hej " + screenY);
-					//System.out.println((x) + " and  " + (y));
-					
+					// System.out.println(screenX + "hej " + screenY);
+					// System.out.println((x) + " and " + (y));
+
 				}
-				
-				
+
+			}
 		}
-		}
-		System.out.println("canvasView" +  (double)(System.nanoTime() - time)/1000000000);
-		
-				canvasPane.getChildren().clear();
+		System.out.println("canvasView" + (double) (System.nanoTime() - time) / 1000000000);
+
+		canvasPane.getChildren().clear();
 		canvasPane.getChildren().add(imagePane);
-		
-		//System.out.println(canvasPane.getChildren().toString());
-		}
-	
-	public void repaint(){
+
+		// System.out.println(canvasPane.getChildren().toString());
+	}
+
+	public void repaint() {
 		this.drawImage(MainView.getBackgroundImage(), zoomFactor);
 	}
-	
-	public void setZoomFactor (double zoomFactor) {
+
+	public void setZoomFactor(double zoomFactor) {
 		this.zoomFactor = zoomFactor;
 	}
-		
-	public double getZoomFactor () {
+
+	public double getZoomFactor() {
 		return zoomFactor;
 	}
-	
+
 	public Point distanceDragged() {
 		Point distanceDiffernce = new Point();
-		distanceDiffernce.x = (int) (releasedX - pressedX)*(-1);
-		distanceDiffernce.y = (int) (releasedY - pressedY)*(-1);
+		distanceDiffernce.x = (int) (releasedX - pressedX) * (-1);
+		distanceDiffernce.y = (int) (releasedY - pressedY) * (-1);
 		System.out.println("Distance dragged method run" + distanceDiffernce.x);
 		return distanceDiffernce;
 	}
-	
-	public int getTopX(){
+
+	public int getTopX() {
 		return topX;
 	}
-	
-	public int getTopY(){
+
+	public int getTopY() {
 		return topY;
 	}
-	
-	public void moveCanvas(Point distanceDifference){
+
+	public void moveCanvas(Point distanceDifference) {
 		this.topX = getTopX() + distanceDifference.x;
 		this.topY = getTopY() + distanceDifference.y;
-		
-			
-		/*if (topX < 0) {
-			this.topX = 0;
-		}
-		if (topY < 0){
-			this.topY = 0;
-		}*/
+
+		/*
+		 * if (topX < 0) { this.topX = 0; } if (topY < 0){ this.topY = 0; }
+		 */
 		repaint();
-		
+
 	}
 
 	public void setTopX(int i) {
 		topX = i;
-		
+
 	}
 
 	public void setTopY(int i) {
 		topY = i;
-		
-	}
-	
 
-	
-	
-	
+	}
+
 }

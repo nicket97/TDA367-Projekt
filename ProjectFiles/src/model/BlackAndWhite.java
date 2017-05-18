@@ -35,7 +35,7 @@ public class BlackAndWhite implements Layerable{
                 }
             }
         }
-        newImage.setPxImage(pxImage);
+		newImage.setPxImage(pxImage);
         return newImage;
     }
 

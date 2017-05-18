@@ -1,16 +1,10 @@
 package model;
- /**
-  * ENUM with different Colorshift-options
-  *
-  */
+
+/**
+ * ENUM with different Colorshift-options
+ *
+ */
 
 public enum ColorShiftType {
-        YELLOW,
-        ORANGE,
-        BLUE,
-        RED,
-        PINK,
-        PURPLE,
-        TURQUOISE,
-        GREEN;
+	YELLOW, ORANGE, BLUE, RED, PINK, PURPLE, TURQUOISE, GREEN;
 }

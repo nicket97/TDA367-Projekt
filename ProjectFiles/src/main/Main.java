@@ -15,36 +15,38 @@ import model.SaveProject;
 import java.util.Optional;
 
 public class Main extends Application {
-	
+
 	public static Stage primaryStage;
-	
+
 	public static void main(String[] args) {
 
 		launch(args);
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		this.primaryStage = primaryStage;
 		Parent root = new MainView(primaryStage);
-		
-        Scene scene = new Scene(root, 1280, 720);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setTitle("TO BE DECIDED");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-}
-	public static Stage getPrimaryStage(){
+
+		Scene scene = new Scene(root, 1280, 720);
+		primaryStage.initStyle(StageStyle.TRANSPARENT);
+		primaryStage.setTitle("TO BE DECIDED");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	public static Stage getPrimaryStage() {
 		return primaryStage;
 	}
 
 	/**
 	 * Calls when the the application ends.
+	 * 
 	 * @throws Exception
 	 */
 	@Override
 	public void stop() throws Exception {
-		
+
 	}
 }

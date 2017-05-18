@@ -1,4 +1,5 @@
 package model;
+
 /**
  * Puts together new filters
  *
@@ -6,13 +7,12 @@ package model;
 public class CreatedFilter {
 	private double[][] kernel;
 	private String name;
-	
 
-	public CreatedFilter(String name, double[][] kernel){
+	public CreatedFilter(String name, double[][] kernel) {
 		this.kernel = kernel;
 		this.name = name;
 	}
-	
+
 	public double[][] getKernel() {
 		return kernel;
 	}

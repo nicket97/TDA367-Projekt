@@ -4,17 +4,18 @@ import java.util.List;
 
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
+
 /**
  * Filter that changes the contrast in the picture
  */
-public class Contrast implements Layerable{
+public class Contrast implements Layerable {
 	private int threshold;
 	private double factor;
-	
+
 	public Contrast(int threshold, double factor) {
 		this.threshold = threshold;
 		this.factor = factor;
-		
+
 	}
 
 	public Contrast(String[] args) {
@@ -27,41 +28,45 @@ public class Contrast implements Layerable{
 		LoadedImage newImage = new LoadedImage(img);
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		for (int i = 0; i < img.getpxImage().length; i++) {
-			for (int j = 0; j < img.getpxImage()[1].length; j++){
-				int pixRed = (int) (img.getpxImage()[i][j].getRed()*255);
-				int pixGreen = (int) (img.getpxImage()[i][j].getGreen()*255);
-				int pixBlue = (int) (img.getpxImage()[i][j].getBlue()*255);
-				
+			for (int j = 0; j < img.getpxImage()[1].length; j++) {
+				int pixRed = (int) (img.getpxImage()[i][j].getRed() * 255);
+				int pixGreen = (int) (img.getpxImage()[i][j].getGreen() * 255);
+				int pixBlue = (int) (img.getpxImage()[i][j].getBlue() * 255);
+
 				if (pixRed < threshold) {
-					pixRed = (int) (pixRed/factor);
+					pixRed = (int) (pixRed / factor);
 				}
-				if (pixRed >= threshold){
-					pixRed = (int) (pixRed*factor);
-					
+				if (pixRed >= threshold) {
+					pixRed = (int) (pixRed * factor);
+
 				}
 				if (pixGreen < threshold) {
-					pixGreen = (int) (pixGreen/factor);
-					
+					pixGreen = (int) (pixGreen / factor);
+
 				}
 				if (pixGreen >= threshold) {
-					pixGreen = (int) (pixGreen*factor);
-					
+					pixGreen = (int) (pixGreen * factor);
+
 				}
 				if (pixBlue < threshold) {
-					pixBlue = (int) (pixBlue/factor);
-					
+					pixBlue = (int) (pixBlue / factor);
+
 				}
 				if (pixBlue >= threshold) {
-					pixBlue = (int) (pixBlue*factor);
-					
+					pixBlue = (int) (pixBlue * factor);
+
 				}
-				//System.out.println("red: " + pixRed + "blue: " + pixBlue + "green: " + pixGreen);
-				if(pixRed > 255) pixRed = 255;
-				if(pixGreen > 255) pixGreen = 255;
-				if(pixBlue > 255) pixBlue = 255;
-				pxImage[i][j]= Color.rgb(pixRed, pixGreen, pixBlue);
+				// System.out.println("red: " + pixRed + "blue: " + pixBlue +
+				// "green: " + pixGreen);
+				if (pixRed > 255)
+					pixRed = 255;
+				if (pixGreen > 255)
+					pixGreen = 255;
+				if (pixBlue > 255)
+					pixBlue = 255;
+				pxImage[i][j] = Color.rgb(pixRed, pixGreen, pixBlue);
 			}
-			
+
 		}
 		newImage.setPxImage(pxImage);
 		return newImage;
@@ -83,6 +88,7 @@ public class Contrast implements Layerable{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	public int getThreshold() {
 		return threshold;
 	}
@@ -98,7 +104,8 @@ public class Contrast implements Layerable{
 	public void setFactor(double factor) {
 		this.factor = factor;
 	}
-	public void setFactorAndThreshold(int threshold, double factor){
+
+	public void setFactorAndThreshold(int threshold, double factor) {
 		this.threshold = threshold;
 		this.factor = factor;
 	}

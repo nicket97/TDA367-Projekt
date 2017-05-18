@@ -32,6 +32,7 @@ public class ColorShift implements Layerable{
 			
 		}
 	 
+		@Override
 		public LoadedImage transform(LoadedImage img) {
 	    	 LoadedImage newImage = new LoadedImage(img);
 	    	 Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
@@ -47,7 +48,7 @@ public class ColorShift implements Layerable{
 					 pxImage[i][j] = pxColor;
 	             }
 	         }
-	         newImage.setPxImage(pxImage);
+		newImage.setPxImage(pxImage);
 	         return newImage;
 		}
 
@@ -101,6 +102,7 @@ public class ColorShift implements Layerable{
 			// TODO Auto-generated method stub
 			return "Färgfilter";
 		}
+		@Override
 		public List<Slider> getSliders(){
 			List<Slider> sliders = new ArrayList<>();
 			Slider redSlider = new Slider();

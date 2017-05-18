@@ -68,8 +68,8 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Button closeButton, miniButton, maxiButton;
 	@FXML
-	Button exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate, cfUpdate,
-			grayUpdate, bwUpdate, wbUpdate;
+	Button exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate, textUpdate,
+		cfUpdate, grayUpdate, bwUpdate, wbUpdate;
 	@FXML
 	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton, purpleButton, turquoiseButton,
 			greenButton;
@@ -91,11 +91,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	HBox exposureLevel, contrastLevel, levelsLevel, grainLevel;
 	@FXML
-	HBox blurLevel;
-	@FXML
-	HBox gBlurLevel;
-	@FXML
-	HBox sharpenLevel;
+	HBox blurLevel, gBlurLevel, sharpenLevel, textLevel;
 	@FXML
 	HBox colorFilterLevel, grayLevel, bwLevel, wbLevel;
 	@FXML
@@ -104,7 +100,7 @@ public class MainView extends AnchorPane implements Initializable {
 	Label exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon, levelsIcon, levelsBackIcon, grainIcon,
 			grainBackIcon;
 	@FXML
-	Label blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon, sharpenIcon, sharpenBackIcon;
+	Label blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon, sharpenIcon, sharpenBackIcon, textIcon, textBackIcon;
 	@FXML
 	Label colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon, whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon;
 	@FXML
@@ -383,6 +379,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private FadeTransition fadeBlur = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeGBlur = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeSharpen = new FadeTransition(Duration.millis(150));
+	private FadeTransition fadeText = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeColor = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeColorFilter = new FadeTransition(Duration.millis(150));
 	private FadeTransition fadeGray = new FadeTransition(Duration.millis(150));
@@ -566,6 +563,7 @@ public class MainView extends AnchorPane implements Initializable {
 		fadeSettings(fadeBlur, blurLevel);
 		fadeSettings(fadeGBlur, gBlurLevel);
 		fadeSettings(fadeSharpen, sharpenLevel);
+		fadeSettings(fadeText, textLevel);
 		fadeSettings(fadeColor, colorLevel);
 		fadeSettings(fadeColorFilter, colorFilterLevel);
 		fadeSettings(fadeGray, grayLevel);
@@ -657,6 +655,16 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		sharpenBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(sharpenLevel, effectLevel, fadeEffect);
+		});
+		textIcon.setOnMouseClicked(e -> {
+			mouseClicked(effectLevel, textLevel, fadeText);
+			if (backgroundImage != null){
+				layerstack.addLayer(new Layer(new TextFilter()));
+				canvasUpdate();
+			}
+		});
+		textBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(textLevel, effectLevel, fadeEffect);
 		});
 		colorIcon.setOnMouseClicked(e -> {
 			mouseClicked(topLevel, colorLevel, fadeColor);
@@ -768,6 +776,7 @@ public class MainView extends AnchorPane implements Initializable {
 		blurUpdate.setDisable(b);
 		gBlurUpdate.setDisable(b);
 		sharpenUpdate.setDisable(b);
+		textUpdate.setDisable(b);
 		cfUpdate.setDisable(b);
 		bwUpdate.setDisable(b);
 		wbUpdate.setDisable(b);

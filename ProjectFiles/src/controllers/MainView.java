@@ -116,6 +116,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private static LoadedImage backgroundImage;
 
 	public MainView(Stage pstage) {
+		mainView = this;
 		primaryStage = pstage;
 		NewFilterHandeler.loadFilters();
 

@@ -79,10 +79,11 @@ public class ColorShift implements Layerable{
 
 		public void setIntesity(int intesity) { this.intensity = intesity; }
 		
-		public void setRGB(double r, double g, double b){
+		public void setRGB(double r, double g, double b, int value){
 			this.r = r;
 			this.g = g;
 			this.b = b;
+			this.intensity = value;
 		}
 
 		@Override

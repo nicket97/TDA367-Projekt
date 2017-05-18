@@ -45,13 +45,12 @@ public class Layer {
 			((GaussianBlur) action).setRadius(value);
 		}
 	}
-	public void setRGB(double r, double g, double b){
-		((ColorShift) action).setRGB(r, g, b);
+	public void setRGB(double r, double g, double b, int value){
+		((ColorShift) action).setRGB(r, g, b, value);
 	}
-	public void setColor(String color){
-		ColorShiftFactory.getColorShift(color);
+	public void setColor(String color, int value){
+		ColorShiftFactory.getColorShift(color, value);
 	}
-	public void setIntensity(int intensity) { ((ColorShift) action).setIntesity(intensity);}
 	public void setThreshold(int value){
 		if (name.equals("Svartvitt")){
 			((BlackAndWhite) action).setThreshold(value);

@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +31,7 @@ import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.Main;
 import model.*;
@@ -104,7 +107,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ColorPicker customColor;
 	@FXML
-	ChoiceBox filterBox;
+	ComboBox<String> filterBox;
 	@FXML
 	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, levelsMin, levelsMax, blurRadius,
 			gBlurRadius, sharpenIntensity, sharpenThreshold;
@@ -290,12 +293,13 @@ public class MainView extends AnchorPane implements Initializable {
 			AnchorPane pane = new AnchorPane();
 			window.initModality(Modality.APPLICATION_MODAL);
 			window.initOwner(primaryStage);
+			window.initStyle(StageStyle.TRANSPARENT);
 			pane.getChildren().add(new NewFilterView(window));
 			Parent root = pane;
 
 			Scene s = new Scene(root);
 
-			window.setScene(s);
+	        window.setScene(s);
 			window.show();
 		});
 		menuResetWindow.setOnAction(e -> {
@@ -515,8 +519,8 @@ public class MainView extends AnchorPane implements Initializable {
 		pinkButton.setUserData("pink");
 		purpleButton.setUserData("purple");
 		turquoiseButton.setUserData("turquoise");
-		greenButton.setUserData("green");
-
+		greenButton.setUserData("green");		
+		
 		/***
 		 * Functionality for adding filters via the toolbar.
 		 */
@@ -755,6 +759,11 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		filterIcon.setOnMouseClicked(e -> {
 			mouseClicked(topLevel, filterLevel, fadeFilter);
+			ObservableList<String> filters = FXCollections.observableArrayList(  );
+			for(CreatedFilter f : NewFilterHandeler.getFilters()){
+				filters.add(f.getName());
+			}
+			filterBox.getItems().addAll(filters);
 		});
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);

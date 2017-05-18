@@ -979,7 +979,7 @@
                         </Label>
                         <VBox alignment="CENTER" prefHeight="88.0" prefWidth="161.0" spacing="20.0">
                            <children>
-                              <ChoiceBox fx:id="filterBox" prefWidth="150.0" />
+                              <ComboBox fx:id="filterBox" prefWidth="150.0" />
                               <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj filter">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />

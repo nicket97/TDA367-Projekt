@@ -9,7 +9,10 @@ import com.sun.javafx.geom.Rectangle;
 
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
-
+ /**
+  * Filter that crops the picture
+  *
+  */
 public class Crop implements Layerable {
 	private Point topLeft;
 	private Point bottomRight;

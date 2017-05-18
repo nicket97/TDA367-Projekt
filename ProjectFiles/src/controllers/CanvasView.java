@@ -20,6 +20,9 @@ import main.Layers;
 import model.Layer;
 import model.LoadedImage;
 
+/**
+ * All input related to the canvas
+ */
 public class CanvasView extends AnchorPane implements Initializable {
 	
 	@FXML

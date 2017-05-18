@@ -6,7 +6,9 @@ import java.util.List;
 import controllers.MainView;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
-
+/**
+ * Filter that blurs the picture
+ */
 public class Blur implements Layerable {
 	private int radius;
 	private double[][] kernel;
@@ -36,7 +38,7 @@ public class Blur implements Layerable {
 	public LoadedImage transform(LoadedImage img) {
 		long time = System.nanoTime();
 LoadedImage newImage = new LoadedImage(img);
-Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
+		
 		for(int i = 0; i < img.getpxImage().length; i++) {
 			for(int j = 0; j < img.getpxImage()[i].length; j++) {
 				int sumRed = 0;
@@ -53,12 +55,10 @@ Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage(
 						}
 					}
 				}
-				
-				pxImage[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
+				newImage.getpxImage()[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
 				}
 		}
 		System.out.println("Blur" + (System.nanoTime() - time)/1000000000);
-		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 

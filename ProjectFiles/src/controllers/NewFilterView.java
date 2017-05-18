@@ -22,6 +22,10 @@ import model.Layer;
 import model.NewFilterHandeler;
 import model.NewKernel;
 
+/**
+ * Handles all input regarding creation of new filters by the user
+ */
+
 public class NewFilterView extends AnchorPane implements Initializable {
 	double[][] gridValues = new double[3][3];
 	String filterName;

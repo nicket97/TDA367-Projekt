@@ -7,7 +7,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Adds a chosen text to the picture
+ *
+ */
 public class TextFilter implements Layerable{
 
     private String text = "Your text";

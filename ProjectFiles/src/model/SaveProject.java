@@ -11,7 +11,11 @@ import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import main.Layers;
-
+ /** 
+  * Takes care of things related to saving projects
+  * 
+  *
+  */
 public class SaveProject {
 	public static boolean saveProject(){
 		try {

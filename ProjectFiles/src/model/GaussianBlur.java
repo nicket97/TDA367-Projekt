@@ -7,6 +7,10 @@ import controllers.MainView;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
+/**
+ * Filter that adds gaussian blur to the picture
+ *
+ */
 public class GaussianBlur implements Layerable {
 	private int radius;
 	private double[][] kernel;
@@ -41,7 +45,7 @@ public class GaussianBlur implements Layerable {
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 LoadedImage newImage = new LoadedImage(img);
-Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
+		
 		for(int i = 0; i < img.getpxImage().length; i++) {
 			for(int j = 0; j < img.getpxImage()[i].length; j++) {
 				int sumRed = 0;
@@ -63,10 +67,9 @@ Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage(
 					}
 					x++;
 				}
-				pxImage[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
+				newImage.getpxImage()[i][j]= Color.rgb(sumRed/count, sumGreen / count, sumBlue/count);
 				}
 		}
-		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 

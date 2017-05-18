@@ -17,6 +17,10 @@ import javafx.scene.layout.AnchorPane;
 import main.Layers;
 import model.Layer;
 
+/**
+ * List of layers added
+ */
+
 public class LayerView extends AnchorPane implements Initializable {
 
 	@FXML

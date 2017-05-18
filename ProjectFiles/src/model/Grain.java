@@ -5,7 +5,10 @@ import java.util.Random;
 
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
-
+/**
+ * Filter that adds noise to the picture
+ *
+ */
 public class Grain implements Layerable {
 	
 	private int diviation;
@@ -19,7 +22,6 @@ public class Grain implements Layerable {
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		 LoadedImage newImage = new LoadedImage(img);
-		 Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		 Random r = new Random();
          for(int i = 0; i < newImage.getpxImage().length; i++){
              for(int j = 0; j < newImage.getpxImage()[i].length; j++){
@@ -33,10 +35,9 @@ public class Grain implements Layerable {
 				 double newBlue = pxColor.getBlue() * 255 + factor;
                  //pxColor = Color.rgb((int) (((newRed) > 255) ? 255 : ((newRed) < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 : newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue + b));
 				 pxColor = Color.rgb(ColorTransformTest.getAllowedValue(newRed), ColorTransformTest.getAllowedValue(newGreen), ColorTransformTest.getAllowedValue(newBlue));
-				 pxImage[i][j] = pxColor;
+				 newImage.getpxImage()[i][j] = pxColor;
              }
          }
-         newImage.setPxImage(pxImage);
          return newImage;
 	}
 

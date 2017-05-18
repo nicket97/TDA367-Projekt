@@ -5,6 +5,10 @@ import java.util.List;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 
+/**
+ * Filter that makes the edges more visible and the rest less visible in the picture
+ *
+ */
 public class Edge implements Layerable{
 	
 	private double[][] kernel;
@@ -38,7 +42,7 @@ public class Edge implements Layerable{
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 LoadedImage newImage = new LoadedImage(img);
-Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
+		
 		for(int i = 0; i < img.getpxImage().length; i++) {
 			for(int j = 0; j < img.getpxImage()[i].length; j++) {
 				int sumRed = 0;
@@ -56,11 +60,10 @@ Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage(
 					}
 				}
 				
-				pxImage[i][j]= Color.rgb(ColorTransformTest.getAllowedValue(sumRed), ColorTransformTest.getAllowedValue(sumGreen), ColorTransformTest.getAllowedValue(sumBlue));
+				newImage.getpxImage()[i][j]= Color.rgb(ColorTransformTest.getAllowedValue(sumRed), ColorTransformTest.getAllowedValue(sumGreen), ColorTransformTest.getAllowedValue(sumBlue));
 				
 				}
 		}
-		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 

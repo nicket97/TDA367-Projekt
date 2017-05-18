@@ -5,7 +5,9 @@ import java.util.List;
 
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
-
+/**
+ * Filter that makes the picture only contain black and white pixles
+ */
 public class BlackAndWhite implements Layerable{
 
     private int threshold;
@@ -20,20 +22,19 @@ public class BlackAndWhite implements Layerable{
 
     public LoadedImage transform(LoadedImage img) {
         LoadedImage newImage = new LoadedImage(img);
-        Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
-        for(int i = 0; i < pxImage.length; i++){
-            for(int j = 0; j < pxImage[i].length; j++){
+
+        for(int i = 0; i < newImage.getpxImage().length; i++){
+            for(int j = 0; j < newImage.getpxImage()[i].length; j++){
                 int avr = (int) ((newImage.getpxImage()[i][j].getRed()*255 + newImage.getpxImage()[i][j].getGreen()*255 + newImage.getpxImage()[i][j].getBlue()*255) / 3);
                 if (avr <= threshold) {
-                	pxImage[i][j] = Color.rgb(0,0,0);
+                    newImage.getpxImage()[i][j] = Color.rgb(0,0,0);
                 }
                 else if (avr > threshold) {
-                	pxImage[i][j] = Color.rgb(255,255,255);
+                    newImage.getpxImage()[i][j] = Color.rgb(255,255,255);
 
                 }
             }
         }
-        newImage.setPxImage(pxImage);
         return newImage;
     }
 

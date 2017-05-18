@@ -14,6 +14,10 @@ import main.Layers;
 import model.Layer;
 import model.LoadedImage;
 
+/**
+ * Takes care of everything related to the small overview of the canvas on the right side
+ */
+
 public class MiniCanvasView extends AnchorPane implements Initializable {
 	
 	@FXML

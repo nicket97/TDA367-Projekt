@@ -5,6 +5,10 @@ import java.util.List;
 
 import javafx.scene.control.Slider;
 
+/**
+ * Rotates the picture to the right
+ *
+ */
 public class RotateR implements Layerable {
 
 	@Override

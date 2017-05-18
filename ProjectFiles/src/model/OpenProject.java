@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.image.BufferedImage;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,6 +12,10 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import main.Layers;
 
+/**
+ * Takes care of things related to opening previous saved projects
+ *
+ */
 public class OpenProject {
 	
 	//läs rad för rad till ????????

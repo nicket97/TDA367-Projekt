@@ -30,6 +30,9 @@ import model.Layer;
 import model.LoadedImage;
 import model.SaveProject;
 
+/**
+ * Handles all input related to the crop function
+ */
 public class CropView extends AnchorPane implements Initializable {
 	
 	@FXML

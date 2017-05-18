@@ -13,6 +13,10 @@ import javafx.scene.layout.AnchorPane;
 import main.Layers;
 import model.Layer;
 
+/**
+ * Custom cell for LayerView
+ */
+
 public class LayerRow extends AnchorPane implements Initializable {
 
 	@FXML

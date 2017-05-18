@@ -5,32 +5,16 @@ import java.awt.image.WritableRaster;
 
 import javafx.scene.paint.Color;
 
+/**
+ * Keeps the data of the loaded image
+ *
+ */
 public class LoadedImage {
-	private Color[][] pxImage;
-	private BufferedImage lImg;
-	private int width;
-	private int heigth;
+	private final Color[][] pxImage;
+	private final BufferedImage lImg;
+	private final int width;
+	private final int heigth;
 	
-	public void setPxImage(Color[][] pxImage) {
-		this.pxImage = pxImage;
-	}
-
-
-	public void setlImg(BufferedImage lImg) {
-		this.lImg = lImg;
-	}
-
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-
-	public void setHeigth(int heigth) {
-		this.heigth = heigth;
-	}
-
-
 	public LoadedImage(BufferedImage img){
 		this.lImg = img;
 		this.width = img.getWidth();

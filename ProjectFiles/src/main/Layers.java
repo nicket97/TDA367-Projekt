@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import controllers.MainView;
 import model.Layer;
-
+/**
+ * Handles the layer stack
+ *
+ */
 public class Layers {
 	
 	private static ArrayList<Layer> layerStack = new ArrayList<>();

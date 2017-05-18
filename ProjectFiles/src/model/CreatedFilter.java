@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * Puts together new filters
+ *
+ */
 public class CreatedFilter {
 	private double[][] kernel;
 	private String name;

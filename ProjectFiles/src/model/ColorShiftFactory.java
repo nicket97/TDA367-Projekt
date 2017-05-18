@@ -1,7 +1,9 @@
 package model;
 
 import main.Layers;
-
+/**Creates a Colorshift
+ *
+ */
 public class ColorShiftFactory {
 
     public static ColorShift getColorShift(String color, int value) {

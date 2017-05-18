@@ -1,5 +1,8 @@
 package model;
-
+/**
+ * Checks if color value is not higher or lower than accepted value
+ *
+ */
 public class ColorTransformTest {
 	public static int getAllowedValue(double newColor) {
 			if (newColor > 255) {

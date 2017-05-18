@@ -11,6 +11,10 @@ import java.util.List;
 
 import javafx.stage.Stage;
 
+/**
+ * Keep a list of filters created by the user
+ *
+ */
 public class NewFilterHandeler {
 	private static List<CreatedFilter> filters = new ArrayList<>();
 

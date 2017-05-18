@@ -1,5 +1,8 @@
 package model;
-
+ /**
+  * ENUM with different Colorshift-options
+  *
+  */
 
 public enum ColorShiftType {
         YELLOW,

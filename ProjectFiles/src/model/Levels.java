@@ -33,15 +33,17 @@ public class Levels implements Layerable{
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
+		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		changeLevel = 0.5;
 		for (int i = 0; i < img.getpxImage().length; i++) {
 			for (int j = 0; j < img.getpxImage()[1].length; j++){
 				double pixRed = (((img.getpxImage()[i][j].getRed()*255)-midLevel)*changeLevel) + midLevel;
 				double pixGreen = (((img.getpxImage()[i][j].getGreen()*255)-midLevel)*changeLevel) + midLevel;
 				double pixBlue = (((img.getpxImage()[i][j].getBlue()*255)-midLevel)*changeLevel) + midLevel;
-				newImage.getpxImage()[i][j]= Color.rgb((int)pixRed, (int)pixGreen, (int)pixBlue);
+				pxImage[i][j]= Color.rgb((int)pixRed, (int)pixGreen, (int)pixBlue);
 				}
 		      }
+		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 

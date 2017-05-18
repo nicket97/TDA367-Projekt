@@ -14,8 +14,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import main.Layers;
-import model.Layer;
+import model.core.Layer;
+import model.core.Layers;
+
+/**
+ * List of layers added
+ */
 
 public class LayerView extends AnchorPane implements Initializable {
 
@@ -23,16 +27,16 @@ public class LayerView extends AnchorPane implements Initializable {
 	AnchorPane layerListHolder;
 	@FXML
 	ListView<LayerRow> layerList;
-	
+
 	private List<Layer> listOfLayers = new ArrayList<Layer>();
-	
+
 	public LayerView() {
 
-		FXMLLoader fxmlLoader =	new FXMLLoader(getClass().getResource("/resources/fxml/LayerView.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/LayerView.fxml"));
 		System.out.println("layerview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
-		
+
 		try {
 			fxmlLoader.load();
 		} catch (IOException exception) {
@@ -47,17 +51,19 @@ public class LayerView extends AnchorPane implements Initializable {
 	public void update() {
 		listOfLayers.clear();
 		layerList.getItems().clear();
-		for(Layer l: Layers.getLayerStack()){
+		for (Layer l : Layers.getLayerStack()) {
 			listOfLayers.add(l);
 		}
-		
-		for(Layer layer : listOfLayers){
+
+		for (Layer layer : listOfLayers) {
 			layerList.getItems().add(new LayerRow(layer));
 		}
 
 		layerList.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				Platform.runLater(new Runnable() {
+					@Override
 					public void run() {
 						layerList.getSelectionModel().select(-1);
 
@@ -65,6 +71,6 @@ public class LayerView extends AnchorPane implements Initializable {
 				});
 			}
 		});
-		
+
 	}
 }

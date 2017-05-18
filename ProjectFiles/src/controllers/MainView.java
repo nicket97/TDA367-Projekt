@@ -33,16 +33,42 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import main.Layers;
 import main.Main;
 import model.*;
+import model.core.Layer;
+import model.core.Layerable;
+import model.core.Layers;
+import model.core.LoadedImage;
+import model.core.NewFilterHandeler;
+import model.core.OpenProject;
+import model.core.SaveProject;
+import model.transformations.BlackAndWhite;
+import model.transformations.Blur;
+import model.transformations.ColorShift;
+import model.transformations.Contrast;
+import model.transformations.Edge;
+import model.transformations.Exposure;
+import model.transformations.GaussianBlur;
+import model.transformations.Grain;
+import model.transformations.GrayScale;
+import model.transformations.HMirroring;
+import model.transformations.Levels;
+import model.transformations.RotateL;
+import model.transformations.RotateR;
+import model.transformations.Sharpen;
+import model.transformations.TextFilter;
+import model.transformations.VMirroring;
+import model.transformations.WhiteBalance;
+
+/**
+ * Main controller, distributes tasks
+ */
 
 public class MainView extends AnchorPane implements Initializable {
 
 	static MainView mainView;
 	public static LayerView layerView;
 	static CanvasView canvasView;
-
 	static MiniCanvasView miniCanvasView;
 	private Point topLeft = new Point(0, 0);
 	private Point bottomRight = new Point(0, 0);
@@ -59,7 +85,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	AnchorPane menuBar;
 	@FXML
-	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject;
+	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject, menuResetPicture;
 	@FXML
 	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels;
 	@FXML
@@ -71,8 +97,8 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Button closeButton, miniButton, maxiButton;
 	@FXML
-	Button exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate, textUpdate,
-		cfUpdate, grayUpdate, bwUpdate, wbUpdate;
+	Button exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate,
+			textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate;
 	@FXML
 	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton, purpleButton, turquoiseButton,
 			greenButton;
@@ -228,12 +254,16 @@ public class MainView extends AnchorPane implements Initializable {
 		menuZoomOut.setOnAction(e -> {
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 1.5));
 			System.out.println("zooooomOUT  " + canvasView.getZoomFactor());
+			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
 			canvasView.repaint();
 		});
 
 		menuZoomIn.setOnAction(e -> {
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 0.75));
 			System.out.println("zooooomIN  " + canvasView.getZoomFactor());
+			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
+			
+			System.out.println("slide" + slideZoom.getValue() + "              " + (Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
 			canvasView.repaint();
 		});
 		menuUndo.setOnAction(e -> {
@@ -243,7 +273,7 @@ public class MainView extends AnchorPane implements Initializable {
 		slideZoom.setValue(100);
 		slideZoom.setOnMouseClicked(e -> {
 			System.out.println("zooma " + slideZoom.getValue());
-			canvasView.setZoomFactor((Math.pow(2, slideZoom.getValue() / 20 - 5)));
+			canvasView.setZoomFactor(((Math.pow(2, (slideZoom.getValue() / 20 - 5)*-1))));
 			canvasView.repaint();
 		});
 		slideZoom.setOnMouseDragOver(e -> {
@@ -275,6 +305,14 @@ public class MainView extends AnchorPane implements Initializable {
 		menuResetWindow.setOnAction(e -> {
 			canvasView.setTopX(0);
 			canvasView.setTopY(0);
+			canvasView.repaint();
+
+		});
+	
+		menuResetPicture.setOnAction(e -> {
+			Layers.getLayerStack().clear();
+			layerView.update();
+			miniCanvasView.repaint();
 			canvasView.repaint();
 
 		});
@@ -324,7 +362,7 @@ public class MainView extends AnchorPane implements Initializable {
 	}
 
 	public void setPrimaryStage(Stage primaryStage) {
-		this.primaryStage = primaryStage;
+		MainView.primaryStage = primaryStage;
 	}
 
 	public Point setTopLeftCrop() {
@@ -430,7 +468,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private void menuClicked(MenuItem name, Layerable layerType) {
 		name.setOnAction(e -> {
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(layerType));
+				Layers.addLayer(new Layer(layerType));
 				canvasUpdate();
 			}
 		});
@@ -450,7 +488,7 @@ public class MainView extends AnchorPane implements Initializable {
 			level.toFront();
 			level.setVisible(true);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(layerType));
+				Layers.addLayer(new Layer(layerType));
 				canvasUpdate();
 			}
 		});
@@ -529,11 +567,12 @@ public class MainView extends AnchorPane implements Initializable {
 		cfUpdate.setOnAction(e -> {
 			if (colorGroup.getSelectedToggle().equals(null)) {
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed(),
-						customColor.getValue().getGreen(), customColor.getValue().getBlue(), 
+						customColor.getValue().getGreen(), customColor.getValue().getBlue(),
 						colorIntensity.valueProperty().intValue());
 			} else {
-				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-						.setColor((String) colorGroup.getSelectedToggle().getUserData(), colorIntensity.valueProperty().intValue());
+				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setColor(
+						(String) colorGroup.getSelectedToggle().getUserData(),
+						colorIntensity.valueProperty().intValue());
 			}
 			canvasUpdate();
 		});
@@ -587,7 +626,7 @@ public class MainView extends AnchorPane implements Initializable {
 		exposureIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new Exposure(1)));
+				Layers.addLayer(new Layer(new Exposure(1)));
 				canvasUpdate();
 			}
 		});
@@ -597,7 +636,7 @@ public class MainView extends AnchorPane implements Initializable {
 		contrastIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, contrastLevel, fadeContrast);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new Contrast(1, 1)));
+				Layers.addLayer(new Layer(new Contrast(1, 1)));
 				canvasUpdate();
 			}
 		});
@@ -607,7 +646,7 @@ public class MainView extends AnchorPane implements Initializable {
 		levelsIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, levelsLevel, fadeLevels);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new Levels(1, 1)));
+				Layers.addLayer(new Layer(new Levels(1, 1)));
 				canvasUpdate();
 			}
 		});
@@ -617,7 +656,7 @@ public class MainView extends AnchorPane implements Initializable {
 		grainIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, grainLevel, fadeGrain);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new Grain(10)));
+				Layers.addLayer(new Layer(new Grain(10)));
 				canvasUpdate();
 			}
 		});
@@ -633,7 +672,7 @@ public class MainView extends AnchorPane implements Initializable {
 		blurIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, blurLevel, fadeBlur);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new Blur(2)));
+				Layers.addLayer(new Layer(new Blur(2)));
 				canvasUpdate();
 			}
 		});
@@ -643,7 +682,7 @@ public class MainView extends AnchorPane implements Initializable {
 		gBlurIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, gBlurLevel, fadeGBlur);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new GaussianBlur(2)));
+				Layers.addLayer(new Layer(new GaussianBlur(2)));
 				canvasUpdate();
 			}
 		});
@@ -653,7 +692,7 @@ public class MainView extends AnchorPane implements Initializable {
 		sharpenIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, sharpenLevel, fadeSharpen);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new Sharpen()));
+				Layers.addLayer(new Layer(new Sharpen()));
 				canvasUpdate();
 			}
 		});
@@ -662,8 +701,8 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		textIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, textLevel, fadeText);
-			if (backgroundImage != null){
-				layerstack.addLayer(new Layer(new TextFilter()));
+			if (backgroundImage != null) {
+				Layers.addLayer(new Layer(new TextFilter()));
 				canvasUpdate();
 			}
 		});
@@ -676,7 +715,7 @@ public class MainView extends AnchorPane implements Initializable {
 		colorFilterIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorLevel, colorFilterLevel, fadeColorFilter);
 			if (backgroundImage != null) {
-				layerstack.addLayer(
+				Layers.addLayer(
 						new Layer(new ColorShift(0.7019608020782471, 0.7019608020782471, 0.7019608020782471)));
 				canvasUpdate();
 			}
@@ -688,7 +727,7 @@ public class MainView extends AnchorPane implements Initializable {
 		grayIcon.setOnMouseClicked(e -> {
 			// mouseClicked(colorLevel, grayLevel, fadeGray);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new GrayScale()));
+				Layers.addLayer(new Layer(new GrayScale()));
 				canvasUpdate();
 			}
 		});
@@ -698,7 +737,7 @@ public class MainView extends AnchorPane implements Initializable {
 		bwIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorLevel, bwLevel, fadeBW);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new BlackAndWhite(50)));
+				Layers.addLayer(new Layer(new BlackAndWhite(50)));
 				canvasUpdate();
 			}
 		});
@@ -708,7 +747,7 @@ public class MainView extends AnchorPane implements Initializable {
 		whiteBalanceIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorLevel, wbLevel, fadeWB);
 			if (backgroundImage != null) {
-				layerstack.addLayer(new Layer(new WhiteBalance(50)));
+				Layers.addLayer(new Layer(new WhiteBalance(50)));
 				canvasUpdate();
 			}
 		});
@@ -729,7 +768,6 @@ public class MainView extends AnchorPane implements Initializable {
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
-		slideZoom.setValue(50);
 
 	}
 
@@ -793,7 +831,7 @@ public class MainView extends AnchorPane implements Initializable {
 	}
 
 	private void exit(boolean changed) {
-		if(changed) {
+		if (changed) {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 			alert.setTitle("Varning");
 			alert.setHeaderText("Vill du spara projektet innan du avslutar?");
@@ -831,45 +869,39 @@ public class MainView extends AnchorPane implements Initializable {
 
 	/***
 	 * Method that will bring forward the correct settings view for each layer.
+	 * 
 	 * @param layer
 	 */
 	public void updateLayerSettings(Layer layer) {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		if (layer.getName().equals("Exponering")){
+		if (layer.getName().equals("Exponering")) {
 			setVisibility(exposureLevel);
-		}
-		else if (layer.getName().equals("Kontrast")){
+		} else if (layer.getName().equals("Kontrast")) {
 			setVisibility(contrastLevel);
-		}
-		else if (layer.getName().equals("Nivåer")){
+		} else if (layer.getName().equals("Nivåer")) {
 			setVisibility(levelsLevel);
-		}
-		else if (layer.getName().equals("Brus")){
+		} else if (layer.getName().equals("Brus")) {
 			setVisibility(grainLevel);
-		}
-		else if (layer.getName().equals("Oskärpa")){
+		} else if (layer.getName().equals("Oskärpa")) {
 			setVisibility(blurLevel);
-		}
-		else if (layer.getName().equals("Gaussisk Oskärpa")){
+		} else if (layer.getName().equals("Gaussisk Oskärpa")) {
 			setVisibility(gBlurLevel);
-		}
-		else if (layer.getName().equals("Skärpa")){
+		} else if (layer.getName().equals("Skärpa")) {
 			setVisibility(sharpenLevel);
-		}
-		else if (layer.getName().equals("Färgfilter")){
+		} else if (layer.getName().equals("Färgfilter")) {
 			setVisibility(colorFilterLevel);
-		}
-		else if (layer.getName().equals("Svartvitt")){
+		} else if (layer.getName().equals("Svartvitt")) {
 			setVisibility(bwLevel);
-		}
-		else if (layer.getName().equals("Vitbalans")){
+		} else if (layer.getName().equals("Vitbalans")) {
 			setVisibility(wbLevel);
 		}
-		/**else if (layer.getName().equals("Eget filter")){
-			setVisibility(customLevel);
-		}*/
+		/**
+		 * else if (layer.getName().equals("Eget filter")){
+		 * setVisibility(customLevel); }
+		 */
 	}
-	private void setVisibility(Node level){
+
+	private void setVisibility(Node level) {
 		level.toFront();
 		level.setVisible(true);
 	}
@@ -877,4 +909,8 @@ public class MainView extends AnchorPane implements Initializable {
 
 class Delta {
 	double x, y;
+	static int log(double x, int base)
+	{
+	    return (int) (Math.log(x) / Math.log(base));
+	}
 }

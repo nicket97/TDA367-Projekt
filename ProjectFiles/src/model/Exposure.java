@@ -22,7 +22,7 @@ public class Exposure implements Layerable{
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		 LoadedImage newImage = new LoadedImage(img);
-		 
+		 Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
          for(int i = 0; i < newImage.getpxImage().length; i++){
              for(int j = 0; j < newImage.getpxImage()[i].length; j++){
  
@@ -32,9 +32,10 @@ public class Exposure implements Layerable{
 				 double newBlue = pxColor.getBlue() * 255 + factor;
                  //pxColor = Color.rgb((int) (((newRed) > 255) ? 255 : ((newRed) < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 : newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue + b));
 				 pxColor = Color.rgb(getAllowedValue(newRed), getAllowedValue(newGreen), getAllowedValue(newBlue));
-				 newImage.getpxImage()[i][j] = pxColor;
+				 pxImage[i][j] = pxColor;
              }
          }
+         newImage.setPxImage(pxImage);
          return newImage;
 	}
 	private int getAllowedValue(double newColor) {

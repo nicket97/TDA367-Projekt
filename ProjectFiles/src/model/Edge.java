@@ -42,7 +42,7 @@ public class Edge implements Layerable{
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 LoadedImage newImage = new LoadedImage(img);
-		
+Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		for(int i = 0; i < img.getpxImage().length; i++) {
 			for(int j = 0; j < img.getpxImage()[i].length; j++) {
 				int sumRed = 0;
@@ -60,10 +60,11 @@ LoadedImage newImage = new LoadedImage(img);
 					}
 				}
 				
-				newImage.getpxImage()[i][j]= Color.rgb(ColorTransformTest.getAllowedValue(sumRed), ColorTransformTest.getAllowedValue(sumGreen), ColorTransformTest.getAllowedValue(sumBlue));
+				pxImage[i][j]= Color.rgb(ColorTransformTest.getAllowedValue(sumRed), ColorTransformTest.getAllowedValue(sumGreen), ColorTransformTest.getAllowedValue(sumBlue));
 				
 				}
 		}
+		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 

@@ -15,11 +15,10 @@ import model.Layer;
 
 public class LayerRow extends AnchorPane implements Initializable {
 
-	//ListCell<Layer> 
 	@FXML
 	AnchorPane layerList;
 	@FXML
-	Label layerLabel, trashCan;
+	Label layerLabel, settingsIcon, trashCan;
 	@FXML
 	CheckBox visibleBox;
 	@FXML
@@ -46,15 +45,18 @@ public class LayerRow extends AnchorPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("init layerrow");
 		layerLabel.setText(name);
-		trashCan.setOnMouseClicked(e -> {Layers.remove(layer);
-			MainView.canvasUpdate();});
+		//Visiblity
 		visibleBox.setSelected(layer.getVisible());
-		visibleBox.setOnMouseClicked(e -> {layer.changeVisible();
+		visibleBox.setOnMouseClicked(e -> { layer.changeVisible();
 			MainView.canvasUpdate();});
-		this.setOnMouseClicked(e ->{
-			
-		});
+		//Settings
+		settingsIcon.setOnMouseClicked(e -> {
+			System.out.println("settings pressed");
+			MainView.mainView.updateLayerSettings(layer);
+			});
+		//Trashcan
+		trashCan.setOnMouseClicked(e -> { Layers.remove(layer);
+		MainView.canvasUpdate();});
 	}
 }

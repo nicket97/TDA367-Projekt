@@ -18,7 +18,7 @@
             </ImageView>
          </graphic>
       </Label>
-      <Label id="trashCan" fx:id="trashCan1" layoutX="169.0" layoutY="14.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="4.0">
+      <Label id="trashCan" fx:id="settingsIcon" layoutX="169.0" layoutY="14.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="4.0">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                <image>

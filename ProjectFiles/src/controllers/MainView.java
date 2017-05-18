@@ -43,6 +43,10 @@ public class MainView extends AnchorPane implements Initializable {
 	private Point topLeft = new Point(0, 0);
 	private Point bottomRight = new Point(0, 0);
 	private static Stage primaryStage;
+	/**
+	 * Indicates if the project has changed.
+	 */
+	private boolean changed = false;
 
 	@FXML
 	TilePane bottomContainer;
@@ -59,7 +63,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter;
 	@FXML
-	MenuItem menuZoomIn, menuZoomOut, menuUndo, menuResetWindow;
+	MenuItem menuZoomIn, menuZoomOut, menuUndo, menuRedo, menuResetWindow;
 	@FXML
 	Button closeButton, miniButton, maxiButton;
 	@FXML
@@ -129,27 +133,7 @@ public class MainView extends AnchorPane implements Initializable {
 			if (NewFilterHandeler.getFilters().size() > 0) {
 				NewFilterHandeler.saveFilters();
 			}
-			if (MainView.getBackgroundImage() != null) {
-
-				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-				alert.setTitle("Varning");
-				alert.setHeaderText("Vill du spara projektet innan du avslutar?");
-
-				ButtonType buttonTypeYes = new ButtonType("Spara");
-				ButtonType buttonTypeNo = new ButtonType("Avsluta", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-				alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == buttonTypeYes) {
-					SaveProject.saveProject();
-				}
-				if (result.get() == buttonTypeNo) {
-					Platform.exit();
-				}
-			} else {
-				Platform.exit();
-			}
+			exit(changed);
 		});
 		miniButton.setOnAction(e -> {
 			Main.getPrimaryStage().setIconified(true);
@@ -199,35 +183,14 @@ public class MainView extends AnchorPane implements Initializable {
 				// On canceled fileopening
 			}
 			setDisableMenuItems(false);
+			changed = true;
 
 		});
 		menuClose.setOnAction(e -> {
 			if (NewFilterHandeler.getFilters().size() > 0) {
 				NewFilterHandeler.saveFilters();
 			}
-			if (MainView.getBackgroundImage() != null) {
-
-				Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-				alert.setTitle("Varning");
-				alert.setHeaderText("Vill du spara projektet innan du avslutar?");
-
-				ButtonType buttonTypeYes = new ButtonType("Spara");
-				ButtonType buttonTypeNo = new ButtonType("Avsluta", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-				alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == buttonTypeYes) {
-					SaveProject.saveProject();
-				}
-				if (result.get() == buttonTypeNo) {
-					Platform.exit();
-				}
-
-			} else {
-				Platform.exit();
-			}
-			// System.exit(0);
+			exit(changed);
 		});
 		menuExport.setOnAction(e -> {
 
@@ -249,10 +212,12 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		menuSaveProject.setOnAction(e -> {
 			SaveProject.saveProject();
+			changed = false;
 		});
 		menuOpenProject.setOnAction(e -> {
 			OpenProject.openFile();
 			setDisableMenuItems(false);
+			changed = false;
 		});
 
 		menuZoomOut.setOnAction(e -> {
@@ -269,6 +234,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuUndo.setOnAction(e -> {
 			Layers.remove(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1));
 			canvasView.repaint();
+			changed = true;
 		});
 		slideZoom.setValue(100);
 		slideZoom.setOnMouseClicked(e -> {
@@ -285,6 +251,7 @@ public class MainView extends AnchorPane implements Initializable {
 			CropView cropView = new CropView();
 			canvasPane.getChildren().add(cropView);
 			canvasView.repaint();
+			changed = true;
 
 		});
 
@@ -460,6 +427,7 @@ public class MainView extends AnchorPane implements Initializable {
 			if (backgroundImage != null) {
 				layerstack.addLayer(new Layer(layerType));
 				canvasUpdate();
+				changed = true;
 			}
 		});
 		return;
@@ -480,6 +448,7 @@ public class MainView extends AnchorPane implements Initializable {
 			if (backgroundImage != null) {
 				layerstack.addLayer(new Layer(layerType));
 				canvasUpdate();
+				changed = true;
 			}
 		});
 		return;
@@ -794,6 +763,37 @@ public class MainView extends AnchorPane implements Initializable {
 		bwUpdate.setDisable(b);
 		wbUpdate.setDisable(b);
 		slideZoom.setDisable(b);
+		menuResetWindow.setDisable(b);
+		menuRedo.setDisable(b);
+	}
+
+	private void exit(boolean changed) {
+		if(changed) {
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.setTitle("Varning");
+			alert.setHeaderText("Vill du spara projektet innan du avslutar?");
+
+			ButtonType buttonTypeYes = new ButtonType("Spara");
+			ButtonType buttonTypeNo = new ButtonType("Avsluta");
+			ButtonType buttonTypeClose = new ButtonType("Avbryt", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+			alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo, buttonTypeClose);
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == buttonTypeYes) {
+				SaveProject.saveProject();
+				Platform.exit();
+			}
+			if (result.get() == buttonTypeNo) {
+				Platform.exit();
+			}
+		} else {
+			Platform.exit();
+		}
+	}
+
+	public void setChanged(boolean changed) {
+		this.changed = changed;
 	}
 
 	public static LoadedImage getBackgroundImage() {

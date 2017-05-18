@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 
-<fx:root id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../../../../../TDA367%20projekt/TDA367-Projekt/ProjectFiles/src/resources/css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane id="mainPane" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" />
       <MenuBar id="menuBar" layoutX="26.0" layoutY="2.0" prefHeight="30.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -163,7 +163,7 @@
                      <graphic>
                         <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../TDA367%20projekt/TDA367-Projekt/ProjectFiles/src/resources/icons/maximize-icon.png" />
+                              <Image url="@../icons/maximize-icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -172,7 +172,7 @@
                      <graphic>
                         <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../TDA367%20projekt/TDA367-Projekt/ProjectFiles/src/resources/icons/minimize-icon.png" />
+                              <Image url="@../icons/minimize-icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -181,7 +181,7 @@
                      <graphic>
                         <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../TDA367%20projekt/TDA367-Projekt/ProjectFiles/src/resources/icons/close-icon.png" />
+                              <Image url="@../icons/close-icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -1005,7 +1005,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../TDA367%20projekt/TDA367-Projekt/ProjectFiles/src/resources/icons/zoom-icon.png" />
+                              <Image url="@../icons/zoom-icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -1014,7 +1014,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../TDA367%20projekt/TDA367-Projekt/ProjectFiles/src/resources/icons/hand-icon.png" />
+                              <Image url="@../icons/hand-icon.png" />
                            </image>
                         </ImageView>
                      </graphic>

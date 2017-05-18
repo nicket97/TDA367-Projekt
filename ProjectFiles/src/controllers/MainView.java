@@ -36,6 +36,7 @@ import model.*;
 
 public class MainView extends AnchorPane implements Initializable {
 
+	static MainView mainView;
 	public static LayerView layerView;
 	static CanvasView canvasView;
 
@@ -90,7 +91,11 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	HBox exposureLevel, contrastLevel, levelsLevel, grainLevel;
 	@FXML
-	HBox blurLevel, gBlurLevel, sharpenLevel;
+	HBox blurLevel;
+	@FXML
+	HBox gBlurLevel;
+	@FXML
+	HBox sharpenLevel;
 	@FXML
 	HBox colorFilterLevel, grayLevel, bwLevel, wbLevel;
 	@FXML
@@ -824,6 +829,12 @@ public class MainView extends AnchorPane implements Initializable {
 
 	public static CanvasView getCanvas() {
 		return canvasView;
+	}
+
+	public void updateLayerSettings(Layer layer) {
+		//if (layerable.equals(Blur.class)){
+			blurLevel.setVisible(true);
+		//}
 	}
 }
 

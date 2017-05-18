@@ -9,14 +9,14 @@ import javafx.scene.control.Slider;
  * Rotates the picture to the left
  *
  */
-public class RotateL implements Layerable{
+public class RotateL implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		BufferedImage newImage = new BufferedImage(img.getHeigth(), img.getWidth(), BufferedImage.TYPE_INT_ARGB);
-		for(int i = 0; i < img.getHeigth(); i++){
-			for(int j = 0; j < img.getWidth(); j++){
-				newImage.setRGB(i, img.getWidth()-1-j, LoadedImage.getIntFromColor(img.getpxImage()[j][i]));
+		for (int i = 0; i < img.getHeigth(); i++) {
+			for (int j = 0; j < img.getWidth(); j++) {
+				newImage.setRGB(i, img.getWidth() - 1 - j, LoadedImage.getIntFromColor(img.getpxImage()[j][i]));
 			}
 		}
 		return new LoadedImage(newImage);

@@ -14,9 +14,9 @@ public class RotateR implements Layerable {
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		BufferedImage newImage = new BufferedImage(img.getHeigth(), img.getWidth(), BufferedImage.TYPE_INT_ARGB);
-		for(int i = 0; i < img.getWidth(); i++){
-			for(int j = 0; j < img.getHeigth(); j++){
-				newImage.setRGB(img.getHeigth()-1-j, i, LoadedImage.getIntFromColor(img.getpxImage()[i][j]));
+		for (int i = 0; i < img.getWidth(); i++) {
+			for (int j = 0; j < img.getHeigth(); j++) {
+				newImage.setRGB(img.getHeigth() - 1 - j, i, LoadedImage.getIntFromColor(img.getpxImage()[i][j]));
 			}
 		}
 		return new LoadedImage(newImage);

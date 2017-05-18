@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +12,18 @@ public class HMirroring implements Layerable {
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
-		for(int i = 0; i < newImage.getpxImage().length; i++){
-            for(int j = 0; j < newImage.getpxImage()[i].length; j++){
-            	pxImage[i][j] = img.getpxImage()[img.getpxImage().length-1-i][j];
-            }
-        }
+		for (int i = 0; i < newImage.getpxImage().length; i++) {
+			for (int j = 0; j < newImage.getpxImage()[i].length; j++) {
+				pxImage[i][j] = img.getpxImage()[img.getpxImage().length - 1 - i][j];
+			}
+		}
 		newImage.setPxImage(pxImage);
 		return newImage;
 	}
 
 	@Override
 	public String saveLayer() {
-		String output = "HMirroring?"; 
+		String output = "HMirroring?";
 		return output;
 	}
 
@@ -38,5 +37,5 @@ public class HMirroring implements Layerable {
 		List<Slider> emptyList = new ArrayList();
 		return emptyList;
 	}
-	
+
 }

@@ -20,19 +20,20 @@ public class BlackAndWhite implements Layerable{
 
     public LoadedImage transform(LoadedImage img) {
         LoadedImage newImage = new LoadedImage(img);
-
-        for(int i = 0; i < newImage.getpxImage().length; i++){
-            for(int j = 0; j < newImage.getpxImage()[i].length; j++){
+        Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
+        for(int i = 0; i < pxImage.length; i++){
+            for(int j = 0; j < pxImage[i].length; j++){
                 int avr = (int) ((newImage.getpxImage()[i][j].getRed()*255 + newImage.getpxImage()[i][j].getGreen()*255 + newImage.getpxImage()[i][j].getBlue()*255) / 3);
                 if (avr <= threshold) {
-                    newImage.getpxImage()[i][j] = Color.rgb(0,0,0);
+                	pxImage[i][j] = Color.rgb(0,0,0);
                 }
                 else if (avr > threshold) {
-                    newImage.getpxImage()[i][j] = Color.rgb(255,255,255);
+                	pxImage[i][j] = Color.rgb(255,255,255);
 
                 }
             }
         }
+        newImage.setPxImage(pxImage);
         return newImage;
     }
 

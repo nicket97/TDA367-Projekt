@@ -528,12 +528,12 @@ public class MainView extends AnchorPane implements Initializable {
 		cfUpdate.setOnAction(e -> {
 			if (colorGroup.getSelectedToggle().equals(null)) {
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed(),
-						customColor.getValue().getGreen(), customColor.getValue().getBlue());
+						customColor.getValue().getGreen(), customColor.getValue().getBlue(), 
+						colorIntensity.valueProperty().intValue());
 			} else {
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-						.setColor((String) colorGroup.getSelectedToggle().getUserData());
+						.setColor((String) colorGroup.getSelectedToggle().getUserData(), colorIntensity.valueProperty().intValue());
 			}
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setIntensity((int) colorIntensity.getValue());
 			canvasUpdate();
 		});
 		/**

@@ -28,7 +28,7 @@ public class NewFilterView extends AnchorPane implements Initializable {
 	@FXML AnchorPane canvasPane;
 	@FXML TextField grid00, grid01, grid02, grid10, grid11, grid12, grid20, grid21, grid22, nameInput;
 	@FXML Button newFilterCancelButton, newFilterSaveButton, newFilterApplyButton;
-	@FXML ComboBox newFilterDropDown;
+	@FXML ComboBox<String> newFilterDropDown;
 	
 	private Stage stage;
 	

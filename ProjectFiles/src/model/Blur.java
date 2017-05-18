@@ -69,7 +69,7 @@ LoadedImage newImage = new LoadedImage(img);
 	@Override
 	public String getName() {
 		
-		return "Blur";
+		return "Oskärpa";
 	}
 
 	@Override

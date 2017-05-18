@@ -47,7 +47,7 @@ public class Grain implements Layerable {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "Grain";
+		return "Brus";
 	}
 
 	@Override

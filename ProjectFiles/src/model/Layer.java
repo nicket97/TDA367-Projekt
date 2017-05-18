@@ -39,7 +39,7 @@ public class Layer {
 	 * @param intValue
 	 */
 	public void setRadius(int value) {
-		if (name.equals("Blur")){
+		if (name.equals("Oskärpa")){
 			((Blur) action).setRadius(value);	
 		} else {
 			((GaussianBlur) action).setRadius(value);

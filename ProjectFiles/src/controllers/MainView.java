@@ -35,6 +35,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.Main;
 import model.*;
+import model.core.CreatedFilter;
 import model.core.Layer;
 import model.core.Layerable;
 import model.core.Layers;

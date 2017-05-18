@@ -12,7 +12,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import main.Layers;
 import model.Layer;
-import model.LoadedImage;
+import model.core.LoadedImage;
 
 /**
  * Takes care of everything related to the small overview of the canvas on the

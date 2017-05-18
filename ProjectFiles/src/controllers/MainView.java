@@ -33,6 +33,11 @@ import javafx.util.Duration;
 import main.Layers;
 import main.Main;
 import model.*;
+import model.core.Layerable;
+import model.core.LoadedImage;
+import model.core.NewFilterHandeler;
+import model.core.OpenProject;
+import model.core.SaveProject;
 
 /**
  * Main controller, distributes tasks
@@ -43,7 +48,6 @@ public class MainView extends AnchorPane implements Initializable {
 	static MainView mainView;
 	public static LayerView layerView;
 	static CanvasView canvasView;
-
 	static MiniCanvasView miniCanvasView;
 	private Point topLeft = new Point(0, 0);
 	private Point bottomRight = new Point(0, 0);

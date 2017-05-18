@@ -1,4 +1,4 @@
-package model;
+package model.core;
 
 import java.awt.image.BufferedImage;
 
@@ -10,6 +10,22 @@ import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import main.Layers;
+import model.BlackAndWhite;
+import model.Blur;
+import model.ColorShift;
+import model.Contrast;
+import model.Exposure;
+import model.GaussianBlur;
+import model.Grain;
+import model.GrayScale;
+import model.HMirroring;
+import model.Layer;
+import model.Levels;
+import model.RotateL;
+import model.RotateR;
+import model.Sharpen;
+import model.VMirroring;
+import model.WhiteBalance;
 
 /**
  * Takes care of things related to opening previous saved projects

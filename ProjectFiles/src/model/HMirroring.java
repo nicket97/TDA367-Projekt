@@ -5,6 +5,8 @@ import java.util.List;
 
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
+import model.core.Layerable;
+import model.core.LoadedImage;
 
 public class HMirroring implements Layerable {
 

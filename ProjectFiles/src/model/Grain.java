@@ -5,6 +5,8 @@ import java.util.Random;
 
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
+import model.core.Layerable;
+import model.core.LoadedImage;
 
 /**
  * Filter that adds noise to the picture

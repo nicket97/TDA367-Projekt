@@ -1,5 +1,7 @@
 package model;
 
+import model.core.Layerable;
+
 public class Layer {
 	private Layerable action;
 	private boolean visible;

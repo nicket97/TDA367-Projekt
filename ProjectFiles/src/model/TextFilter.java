@@ -1,6 +1,9 @@
 package model;
 
 import javafx.scene.control.Slider;
+import model.core.Layerable;
+import model.core.LoadedImage;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

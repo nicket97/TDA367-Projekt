@@ -1,4 +1,4 @@
-package model;
+package model.core;
 
 import java.awt.image.BufferedImage;
 import javafx.scene.paint.Color;

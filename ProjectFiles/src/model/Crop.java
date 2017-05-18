@@ -7,6 +7,8 @@ import java.util.List;
 import com.sun.javafx.geom.Rectangle;
 
 import javafx.scene.control.Slider;
+import model.core.Layerable;
+import model.core.LoadedImage;
 
 /**
  * Filter that crops the picture

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
+import model.core.Layerable;
+import model.core.LoadedImage;
 
 /**
  * Filter that changes the exposure in the picture

@@ -10,7 +10,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.SaveProject;
+import model.core.SaveProject;
 
 import java.util.Optional;
 

@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.Layers;
 import model.Layer;
-import model.LoadedImage;
+import model.core.LoadedImage;
 
 /**
  * All input related to the canvas

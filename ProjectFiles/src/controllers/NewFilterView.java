@@ -17,8 +17,8 @@ import javafx.stage.Stage;
 import main.Layers;
 import model.CreatedFilter;
 import model.Layer;
-import model.NewFilterHandeler;
 import model.NewKernel;
+import model.core.NewFilterHandeler;
 
 /**
  * Handles all input regarding creation of new filters by the user

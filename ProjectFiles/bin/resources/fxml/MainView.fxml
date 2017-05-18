@@ -62,7 +62,10 @@
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator></MenuItem>
-                    <MenuItem fx:id="menuResetWindow" mnemonicParsing="false" text="Återställ bilden">
+                    <MenuItem fx:id="menuResetWindow" mnemonicParsing="false" text="Centrera bild">
+                    </MenuItem>
+                  <MenuItem fx:id="menuResetPicture" mnemonicParsing="false" text="Återställ bild">
+                    
                      </MenuItem>
             </items>
           </Menu>

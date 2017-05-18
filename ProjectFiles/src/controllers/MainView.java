@@ -60,7 +60,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	AnchorPane menuBar;
 	@FXML
-	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject;
+	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject, menuResetPicture;
 	@FXML
 	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels;
 	@FXML
@@ -279,6 +279,14 @@ public class MainView extends AnchorPane implements Initializable {
 		menuResetWindow.setOnAction(e -> {
 			canvasView.setTopX(0);
 			canvasView.setTopY(0);
+			canvasView.repaint();
+
+		});
+	
+		menuResetPicture.setOnAction(e -> {
+			Layers.getLayerStack().clear();
+			layerView.update();
+			miniCanvasView.repaint();
 			canvasView.repaint();
 
 		});

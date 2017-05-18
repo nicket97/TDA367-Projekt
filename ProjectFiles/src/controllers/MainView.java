@@ -725,7 +725,6 @@ public class MainView extends AnchorPane implements Initializable {
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
-		slideZoom.setValue(50);
 
 	}
 
@@ -867,4 +866,5 @@ public class MainView extends AnchorPane implements Initializable {
 
 class Delta {
 	double x, y;
+	
 }

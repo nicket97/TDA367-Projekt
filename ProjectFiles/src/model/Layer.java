@@ -51,6 +51,7 @@ public class Layer {
 	public void setColor(String color){
 		ColorShiftFactory.getColorShift(color);
 	}
+	public void setIntensity(int intensity) { ((ColorShift) action).setIntesity(intensity);}
 	public void setThreshold(int value){
 		if (name.equals("Svartvitt")){
 			((BlackAndWhite) action).setThreshold(value);

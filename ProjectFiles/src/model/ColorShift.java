@@ -12,6 +12,7 @@ public class ColorShift implements Layerable{
 		private double r;
 		private double g;
 		private double b;
+		private int intensity;
 		 
 	    
 
@@ -35,9 +36,9 @@ public class ColorShift implements Layerable{
 	             for(int j = 0; j < newImage.getpxImage()[i].length; j++){
 	 
 	                 Color pxColor = newImage.getpxImage()[i][j];
-					 double newRed = pxColor.getRed() * 255 + r;
-					 double newGreen = pxColor.getGreen() * 255 + g;
-					 double newBlue = pxColor.getBlue() * 255 + b;
+					 double newRed = pxColor.getRed() * 255 + (r * intensity / 50);
+					 double newGreen = pxColor.getGreen() * 255 + (g * intensity / 50);
+					 double newBlue = pxColor.getBlue() * 255 + (b * intensity / 50);
 	                 //pxColor = Color.rgb((int) (((newRed) > 255) ? 255 : ((newRed) < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 : newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue + b));
 					 pxColor = Color.rgb(ColorTransformTest.getAllowedValue(newRed), ColorTransformTest.getAllowedValue(newGreen), ColorTransformTest.getAllowedValue(newBlue));
 					 newImage.getpxImage()[i][j] = pxColor;
@@ -71,6 +72,12 @@ public class ColorShift implements Layerable{
 		public void setB(double b) {
 			this.b = b;
 		}
+
+		public int getIntesity() {
+		return intensity;
+	}
+
+		public void setIntesity(int intesity) { this.intensity = intesity; }
 		
 		public void setRGB(double r, double g, double b){
 			this.r = r;

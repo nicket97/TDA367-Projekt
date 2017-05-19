@@ -92,7 +92,7 @@ public class CropView extends AnchorPane implements Initializable {
 
 			if (result.get() == buttonTypeYes) {
 				Layers.addLayer(new Layer(new Crop(getStartPoint(), getEndPoint(), width, height)));
-				canvasView.repaint();
+				MainView.canvasView.repaint();
 				this.getChildren().clear();
 
 			}

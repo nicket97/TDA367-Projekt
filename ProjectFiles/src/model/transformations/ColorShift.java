@@ -15,49 +15,50 @@ import model.transformations.help.ColorTransformTest;
  *
  */
 
-public class ColorShift implements Layerable{
+public class ColorShift implements Layerable {
 
-		private double r;
-		private double g;
-		private double b;
-		private int intensity;
-		 
-	    
+	private double r;
+	private double g;
+	private double b;
+	private double intensity;
 
-		public ColorShift(double redAddend, double greenAddend, double blueAddend) {
-	         this.r = redAddend;
-	         this.g = greenAddend;
-	         this.b = blueAddend;
-	     }
-		
-		public ColorShift(String[] arg) {
-			this.r = Double.parseDouble(arg[1]);
-			this.g = Double.parseDouble(arg[2]);
-			this.b = Double.parseDouble(arg[3]);
-			
+	public ColorShift(double redAddend, double greenAddend, double blueAddend, double intensity) {
+		this.r = redAddend;
+		this.g = greenAddend;
+		this.b = blueAddend;
+		this.intensity = intensity;
+	}
+
+	public ColorShift(String[] arg) {
+		this.r = Double.parseDouble(arg[1]);
+		this.g = Double.parseDouble(arg[2]);
+		this.b = Double.parseDouble(arg[3]);
+
+	}
+
+	@Override
+	public LoadedImage transform(LoadedImage img) {
+		LoadedImage newImage = new LoadedImage(img);
+		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
+		for (int i = 0; i < newImage.getpxImage().length; i++) {
+			for (int j = 0; j < newImage.getpxImage()[i].length; j++) {
+
+				Color pxColor = newImage.getpxImage()[i][j];
+				double newRed = pxColor.getRed() * 255 + (r * intensity);
+				double newGreen = pxColor.getGreen() * 255 + (g * intensity);
+				double newBlue = pxColor.getBlue() * 255 + (b * intensity);
+				// pxColor = Color.rgb((int) (((newRed) > 255) ? 255 : ((newRed)
+				// < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 :
+				// newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue +
+				// b));
+				pxColor = Color.rgb(ColorTransformTest.getAllowedValue(newRed),
+						ColorTransformTest.getAllowedValue(newGreen), ColorTransformTest.getAllowedValue(newBlue));
+				pxImage[i][j] = pxColor;
+			}
 		}
-	 
-		@Override
-		public LoadedImage transform(LoadedImage img) {
-	    	 LoadedImage newImage = new LoadedImage(img);
-	    	 Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
-	         for(int i = 0; i < newImage.getpxImage().length; i++){
-	             for(int j = 0; j < newImage.getpxImage()[i].length; j++){
-	 
-	                 Color pxColor = newImage.getpxImage()[i][j];
-					 double newRed = pxColor.getRed() * 255 + (r * intensity);
-					 double newGreen = pxColor.getGreen() * 255 + (g * intensity);
-					 double newBlue = pxColor.getBlue() * 255 + (b * intensity);
-	                 //pxColor = Color.rgb((int) (((newRed) > 255) ? 255 : ((newRed) < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 : newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue + b));
-					 pxColor = Color.rgb(ColorTransformTest.getAllowedValue(newRed), ColorTransformTest.getAllowedValue(newGreen), ColorTransformTest.getAllowedValue(newBlue));
-					 pxImage[i][j] = pxColor;
-	             }
-	         }
 		newImage.setPxImage(pxImage);
-	         return newImage;
-		}
-
-
+		return newImage;
+	}
 
 	public double getR() {
 		return r;
@@ -87,8 +88,8 @@ public class ColorShift implements Layerable{
 		return intensity;
 	}
 
-	public void setIntesity(double intesity) {
-		this.intensity = intesity;
+	public void setIntesity(double intensity) {
+		this.intensity = intensity;
 	}
 
 	public void setRGB(double r, double g, double b, double value) {

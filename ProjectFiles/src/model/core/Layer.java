@@ -60,7 +60,7 @@ public class Layer {
 	}
 
 	public void setRGB(double r, double g, double b, int value) {
-		((ColorShift) action).setRGB(r, g, b, value);
+		((ColorShift) action).setRGB(r*255, g*255, b*255, value);
 	}
 
 	public void setColor(String color, int value) {

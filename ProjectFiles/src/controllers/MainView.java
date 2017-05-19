@@ -34,7 +34,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.Main;
-import model.*;
+import model.core.CreatedFilter;
 import model.core.Layer;
 import model.core.Layerable;
 import model.core.Layers;
@@ -42,23 +42,7 @@ import model.core.LoadedImage;
 import model.core.NewFilterHandeler;
 import model.core.OpenProject;
 import model.core.SaveProject;
-import model.transformations.BlackAndWhite;
-import model.transformations.Blur;
-import model.transformations.ColorShift;
-import model.transformations.Contrast;
-import model.transformations.Edge;
-import model.transformations.Exposure;
-import model.transformations.GaussianBlur;
-import model.transformations.Grain;
-import model.transformations.GrayScale;
-import model.transformations.HMirroring;
-import model.transformations.Levels;
-import model.transformations.RotateL;
-import model.transformations.RotateR;
-import model.transformations.Sharpen;
-import model.transformations.TextFilter;
-import model.transformations.VMirroring;
-import model.transformations.WhiteBalance;
+import model.transformations.*;
 
 /**
  * Main controller, distributes tasks
@@ -91,7 +75,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR;
 	@FXML
-	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter;
+	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter;
 	@FXML
 	MenuItem menuZoomIn, menuZoomOut, menuUndo, menuRedo, menuResetWindow;
 	@FXML
@@ -335,6 +319,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClickedOptions(menuBlackWhite, bwLevel, (new BlackAndWhite(123)));
 		menuClickedOptions(menuGrain, grainLevel, new Grain(20));
 		menuClickedOptions(menuExposure, exposureLevel, (new Exposure(40)));
+		//menuClickedOptions(menuFilter, filterLevel, (new NewKernel()));
 		menuClicked(menuEdge, (new Edge()));
 		menuClicked(menuTextFilter, (new TextFilter()));
 

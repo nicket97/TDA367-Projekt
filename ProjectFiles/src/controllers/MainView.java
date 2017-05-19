@@ -312,7 +312,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClickedOptions(menuGaussianBlur, gBlurLevel, (new GaussianBlur(6)));
 		menuClickedOptions(menuSharpen, sharpenLevel, (new Sharpen()));
 		menuClickedOptions(menuGrayScale, grayLevel, (new GrayScale()));
-		menuClickedOptions(menuColorFilter, colorFilterLevel, (new ColorShift(0, 0, 0)));
+		menuClickedOptions(menuColorFilter, colorFilterLevel, (new ColorShift(0, 0, 0, 0.5)));
 		menuClickedOptions(menuContrast, contrastLevel, (new Contrast(100, 1.4)));
 		menuClickedOptions(menuWhitebalance, wbLevel, (new WhiteBalance(40)));
 		menuClickedOptions(menuLevels, levelsLevel, (new Levels(100, 40)));
@@ -701,7 +701,8 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(colorLevel, colorFilterLevel, fadeColorFilter);
 			if (backgroundImage != null) {
 				Layers.addLayer(
-						new Layer(new ColorShift(0.7019608020782471, 0.7019608020782471, 0.7019608020782471)));
+						new Layer(new ColorShift(0.7019608020782471, 0.7019608020782471, 0.7019608020782471, 0.5)));
+				colorIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
 				canvasUpdate();
 			}
 		});

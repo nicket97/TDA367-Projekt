@@ -612,6 +612,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Exposure(1)));
+				exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
 				canvasUpdate();
 			}
 		});
@@ -621,7 +622,9 @@ public class MainView extends AnchorPane implements Initializable {
 		contrastIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, contrastLevel, fadeContrast);
 			if (backgroundImage != null) {
-				Layers.addLayer(new Layer(new Contrast(1, 1)));
+				Layers.addLayer(new Layer(new Contrast(2, 10)));
+				contrastThreshold.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
+				contrastIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getThreshold());
 				canvasUpdate();
 			}
 		});
@@ -632,6 +635,8 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, levelsLevel, fadeLevels);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Levels(1, 1)));
+				levelsMin.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getMinLevel());
+				levelsMax.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getMaxLevel());
 				canvasUpdate();
 			}
 		});
@@ -862,10 +867,15 @@ public class MainView extends AnchorPane implements Initializable {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		if (layer.getName().equals("Exponering")) {
 			setVisibility(exposureLevel);
+			exposureIntensity.setValue(layer.getIntensity());
 		} else if (layer.getName().equals("Kontrast")) {
 			setVisibility(contrastLevel);
+			contrastThreshold.setValue(layer.getIntensity());
+			contrastIntensity.setValue(layer.getThreshold());
 		} else if (layer.getName().equals("Nivåer")) {
 			setVisibility(levelsLevel);
+			levelsMin.setValue(layer.getMinLevel());
+			levelsMax.setValue(layer.getMaxLevel());
 		} else if (layer.getName().equals("Brus")) {
 			setVisibility(grainLevel);
 		} else if (layer.getName().equals("Oskärpa")) {

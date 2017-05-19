@@ -83,7 +83,7 @@ public class ColorShift implements Layerable {
 		this.b = b;
 	}
 
-	public double getIntesity() {
+	public double getIntensity() {
 		return intensity;
 	}
 

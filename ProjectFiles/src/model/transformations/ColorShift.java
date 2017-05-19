@@ -9,10 +9,12 @@ import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
 import model.transformations.help.ColorTransformTest;
+
 /**
  * Shifts the colors in a picture
  *
  */
+
 public class ColorShift implements Layerable{
 
 		private double r;
@@ -55,104 +57,104 @@ public class ColorShift implements Layerable{
 	         return newImage;
 		}
 
-		
 
-		public double getR() {
-				return r;
-		}
 
-		public void setR(double r) {
-			this.r = r;
-		}
+	public double getR() {
+		return r;
+	}
 
-		public double getG() {
-			return g;
-		}
+	public void setR(double r) {
+		this.r = r;
+	}
 
-		public void setG(double g) {
-			this.g = g;
-		}
+	public double getG() {
+		return g;
+	}
 
-		public double getB() {
-			return b;
-		}
+	public void setG(double g) {
+		this.g = g;
+	}
 
-		public void setB(double b) {
-			this.b = b;
-		}
+	public double getB() {
+		return b;
+	}
 
-		public int getIntesity() {
+	public void setB(double b) {
+		this.b = b;
+	}
+
+	public double getIntensity() {
 		return intensity;
 	}
 
-		public void setIntesity(int intesity) { this.intensity = intesity; }
-		
-		public void setRGB(double r, double g, double b, int value){
-			this.r = r;
-			this.g = g;
-			this.b = b;
-			this.intensity = value;
-		}
+	public void setIntesity(double intesity) {
+		this.intensity = intesity;
+	}
 
-		@Override
-		public String saveLayer() {
-			String output = "ColorShift?" + r + "?" + g + "?" + b + "?"; 
-			return output;
-		}
+	public void setRGB(double r, double g, double b, double value) {
+		this.r = r;
+		this.g = g;
+		this.b = b;
+		this.intensity = value;
+	}
 
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return "Färgfilter";
-		}
-		@Override
-		public List<Slider> getSliders(){
-			List<Slider> sliders = new ArrayList<>();
-			Slider redSlider = new Slider();
-			redSlider.setMin(0);
-			redSlider.setMax(255);
-			redSlider.setValue(r);
-			redSlider.setOnDragDone(e -> {
-				r = redSlider.getValue();
-				MainView.getCanvas().repaint();
-				System.out.println("Röd " + redSlider.getValue());
-			});
-			
-			Slider blueSlider = new Slider();
-			blueSlider.setMin(0);
-			blueSlider.setMax(255);
-			blueSlider.setValue(r);
-			blueSlider.setOnDragDone(e -> {
-				b = blueSlider.getValue();
-				MainView.getCanvas().repaint();
-				System.out.println("Blå " + blueSlider.getValue());
-			});
-			
-			Slider greenSlider = new Slider();
-			greenSlider.setMin(0);
-			greenSlider.setMax(255);
-			greenSlider.setValue(r);
-			greenSlider.setOnDragDone(e -> {
-				g = greenSlider.getValue();
-				MainView.getCanvas().repaint();
-				System.out.println("grön" + greenSlider.getValue());
-			});
-			
-			sliders.add(redSlider);
-			sliders.add(greenSlider);
-			sliders.add(blueSlider);
-			return sliders;
-			
-		}
+	@Override
+	public String saveLayer() {
+		String output = "ColorShift?" + r + "?" + g + "?" + b + "?";
+		return output;
+	}
 
-	/*	@Override
-		public Layer openSavedLayer(String loadString) {
-			String[] data = loadString.split("?");
-			ColorShift cs = new ColorShift(Double.parseDouble(data[1]), Double.parseDouble(data[2]), Double.parseDouble(data[3]));
-			return new Layer(cs);
-		} */
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return "Färgfilter";
+	}
 
-		
-	 
+	@Override
+	public List<Slider> getSliders() {
+		List<Slider> sliders = new ArrayList<>();
+		Slider redSlider = new Slider();
+		redSlider.setMin(0);
+		redSlider.setMax(255);
+		redSlider.setValue(r);
+		redSlider.setOnDragDone(e -> {
+			r = redSlider.getValue();
+			MainView.getCanvas().repaint();
+			System.out.println("Röd " + redSlider.getValue());
+		});
+
+		Slider blueSlider = new Slider();
+		blueSlider.setMin(0);
+		blueSlider.setMax(255);
+		blueSlider.setValue(r);
+		blueSlider.setOnDragDone(e -> {
+			b = blueSlider.getValue();
+			MainView.getCanvas().repaint();
+			System.out.println("Blå " + blueSlider.getValue());
+		});
+
+		Slider greenSlider = new Slider();
+		greenSlider.setMin(0);
+		greenSlider.setMax(255);
+		greenSlider.setValue(r);
+		greenSlider.setOnDragDone(e -> {
+			g = greenSlider.getValue();
+			MainView.getCanvas().repaint();
+			System.out.println("grön" + greenSlider.getValue());
+		});
+
+		sliders.add(redSlider);
+		sliders.add(greenSlider);
+		sliders.add(blueSlider);
+		return sliders;
+
+	}
+
+	/*
+	 * @Override public Layer openSavedLayer(String loadString) { String[] data
+	 * = loadString.split("?"); ColorShift cs = new
+	 * ColorShift(Double.parseDouble(data[1]), Double.parseDouble(data[2]),
+	 * Double.parseDouble(data[3])); return new Layer(cs); }
+	 */
 
 }

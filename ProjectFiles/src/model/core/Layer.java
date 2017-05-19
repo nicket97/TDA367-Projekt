@@ -59,8 +59,8 @@ public class Layer {
 		}
 	}
 
-	public void setRGB(double r, double g, double b, int value) {
-		((ColorShift) action).setRGB(r, g, b, value);
+	public void setRGB(double r, double g, double b, double value) {
+		((ColorShift) action).setRGB(r*255, g*255, b*255, value);
 	}
 
 	public void setColor(String color, int value) {
@@ -89,5 +89,31 @@ public class Layer {
 
 	public void setDeviation(int value) {
 		((Grain) action).setDiviation(value);
+	}
+	public double getIntensity(){
+		if (name.equals("Färgfilter")){
+			return ((ColorShift) action).getIntensity();
+		}
+		else if (name.equals("Exponering")){
+			return ((Exposure) action).getFactor();
+		}
+		else if (name.equals("Kontrast")){
+			return ((Contrast) action).getFactor();
+		}
+		return 0.0;
+	}
+	public int getThreshold(){
+		if (name.equals("Kontrast")){
+			return ((Contrast) action).getThreshold();
+		}
+		return 0;
+	}
+
+	public double getMinLevel() {
+		return ((Levels) action).getMinLevel();
+	}
+
+	public double getMaxLevel() {
+		return ((Levels) action).getMaxLevel();
 	}
 }

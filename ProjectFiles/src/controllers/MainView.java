@@ -43,23 +43,7 @@ import model.core.LoadedImage;
 import model.core.NewFilterHandeler;
 import model.core.OpenProject;
 import model.core.SaveProject;
-import model.transformations.BlackAndWhite;
-import model.transformations.Blur;
-import model.transformations.ColorShift;
-import model.transformations.Contrast;
-import model.transformations.Edge;
-import model.transformations.Exposure;
-import model.transformations.GaussianBlur;
-import model.transformations.Grain;
-import model.transformations.GrayScale;
-import model.transformations.HMirroring;
-import model.transformations.Levels;
-import model.transformations.RotateL;
-import model.transformations.RotateR;
-import model.transformations.Sharpen;
-import model.transformations.TextFilter;
-import model.transformations.VMirroring;
-import model.transformations.WhiteBalance;
+import model.transformations.*;
 
 /**
  * Main controller, distributes tasks
@@ -92,7 +76,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	MenuItem menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR;
 	@FXML
-	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter;
+	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter;
 	@FXML
 	MenuItem menuZoomIn, menuZoomOut, menuUndo, menuRedo, menuResetWindow;
 	@FXML
@@ -329,13 +313,14 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClickedOptions(menuGaussianBlur, gBlurLevel, (new GaussianBlur(6)));
 		menuClickedOptions(menuSharpen, sharpenLevel, (new Sharpen()));
 		menuClickedOptions(menuGrayScale, grayLevel, (new GrayScale()));
-		menuClickedOptions(menuColorFilter, colorFilterLevel, (new ColorShift(0, 0, 0)));
+		menuClickedOptions(menuColorFilter, colorFilterLevel, (new ColorShift(0, 0, 0, 0.5)));
 		menuClickedOptions(menuContrast, contrastLevel, (new Contrast(100, 1.4)));
 		menuClickedOptions(menuWhitebalance, wbLevel, (new WhiteBalance(40)));
 		menuClickedOptions(menuLevels, levelsLevel, (new Levels(100, 40)));
 		menuClickedOptions(menuBlackWhite, bwLevel, (new BlackAndWhite(123)));
 		menuClickedOptions(menuGrain, grainLevel, new Grain(20));
 		menuClickedOptions(menuExposure, exposureLevel, (new Exposure(40)));
+		//menuClickedOptions(menuFilter, filterLevel, (new NewKernel()));
 		menuClicked(menuEdge, (new Edge()));
 		menuClicked(menuTextFilter, (new TextFilter()));
 
@@ -628,6 +613,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Exposure(1)));
+				exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
 				canvasUpdate();
 			}
 		});
@@ -637,7 +623,9 @@ public class MainView extends AnchorPane implements Initializable {
 		contrastIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, contrastLevel, fadeContrast);
 			if (backgroundImage != null) {
-				Layers.addLayer(new Layer(new Contrast(1, 1)));
+				Layers.addLayer(new Layer(new Contrast(2, 10)));
+				contrastThreshold.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
+				contrastIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getThreshold());
 				canvasUpdate();
 			}
 		});
@@ -648,6 +636,8 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, levelsLevel, fadeLevels);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Levels(1, 1)));
+				levelsMin.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getMinLevel());
+				levelsMax.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getMaxLevel());
 				canvasUpdate();
 			}
 		});
@@ -717,7 +707,8 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(colorLevel, colorFilterLevel, fadeColorFilter);
 			if (backgroundImage != null) {
 				Layers.addLayer(
-						new Layer(new ColorShift(0.7019608020782471, 0.7019608020782471, 0.7019608020782471)));
+						new Layer(new ColorShift(0.7019608020782471, 0.7019608020782471, 0.7019608020782471, 0.5)));
+				colorIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
 				canvasUpdate();
 			}
 		});
@@ -877,10 +868,15 @@ public class MainView extends AnchorPane implements Initializable {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		if (layer.getName().equals("Exponering")) {
 			setVisibility(exposureLevel);
+			exposureIntensity.setValue(layer.getIntensity());
 		} else if (layer.getName().equals("Kontrast")) {
 			setVisibility(contrastLevel);
+			contrastThreshold.setValue(layer.getIntensity());
+			contrastIntensity.setValue(layer.getThreshold());
 		} else if (layer.getName().equals("Nivåer")) {
 			setVisibility(levelsLevel);
+			levelsMin.setValue(layer.getMinLevel());
+			levelsMax.setValue(layer.getMaxLevel());
 		} else if (layer.getName().equals("Brus")) {
 			setVisibility(grainLevel);
 		} else if (layer.getName().equals("Oskärpa")) {

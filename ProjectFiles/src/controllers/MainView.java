@@ -82,7 +82,7 @@ public class MainView extends AnchorPane implements Initializable {
 	Button closeButton, miniButton, maxiButton;
 	@FXML
 	Button exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate,
-			textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate;
+			textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate;
 	@FXML
 	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton, purpleButton, turquoiseButton,
 			greenButton;
@@ -577,6 +577,12 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasUpdate();
 		});
 		// Custom filters
+		filterUpdate.setOnAction(e -> {
+			Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
+			.setKernel(NewFilterHandeler.getFilterKernel(filterBox.getSelectionModel().getSelectedItem().toString()),
+					filterBox.getSelectionModel().getSelectedItem().toString());
+			canvasUpdate();
+		});
 
 		/***
 		 * Handles fade transitions on mouseclick for the toolbar.
@@ -761,6 +767,8 @@ public class MainView extends AnchorPane implements Initializable {
 				filters.add(f.getName());
 			}
 			filterBox.getItems().addAll(filters);
+			Layers.addLayer(new Layer(new NewKernel(new double[3][3], "Eget Filter")));
+			canvasUpdate();
 		});
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);

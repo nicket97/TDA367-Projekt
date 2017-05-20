@@ -90,7 +90,7 @@ public class Layer {
 	public void setDeviation(int value) {
 		((Grain) action).setDiviation(value);
 	}
-	public double getIntensity(){
+	public double getDouble(){
 		if (name.equals("Färgfilter")){
 			return ((ColorShift) action).getIntensity();
 		}
@@ -102,9 +102,24 @@ public class Layer {
 		}
 		return 0.0;
 	}
-	public int getThreshold(){
+	public int getInt(){
 		if (name.equals("Kontrast")){
 			return ((Contrast) action).getThreshold();
+		}
+		else if (name.equals("Brus")){
+			return ((Grain) action).getDiviation();
+		}
+		else if (name.equals("Oskärpa")){
+			return ((Blur) action).getRadius();
+		}
+		else if (name.equals("Gaussisk Oskärpa")){
+			return ((GaussianBlur) action).getRadius();
+		}
+		else if (name.equals("Svartvitt")){
+			return ((BlackAndWhite) action).getThreshold();
+		}
+		else if (name.equals("Vitbalans")){
+			return ((WhiteBalance) action).getThreshold();
 		}
 		return 0;
 	}

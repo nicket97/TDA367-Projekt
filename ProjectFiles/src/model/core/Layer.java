@@ -55,9 +55,9 @@ public class Layer {
 	public void setRadius(int value) {
 		if (name.equals("Oskärpa")) {
 			((Blur) action).setRadius(value);
-		} else {
+		} else if (name.equals("Gaussisk Oskärpa")) {
 			((GaussianBlur) action).setRadius(value);
-		}
+		} else { ((Sharpen) action).setRadius(value); }
 	}
 
 	public void setRGB(double r, double g, double b, double value) {

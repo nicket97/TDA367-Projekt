@@ -11,6 +11,10 @@ import model.transformations.Grain;
 import model.transformations.Levels;
 import model.transformations.WhiteBalance;
 
+/**
+ * Keeps information regarding a layer
+ *
+ */
 public class Layer {
 	private Layerable action;
 	private boolean visible;
@@ -91,29 +95,6 @@ public class Layer {
 		((Grain) action).setDiviation(value);
 	}
 	public double getIntensity(){
-		if (name.equals("Färgfilter")){
-			return ((ColorShift) action).getIntensity();
-		}
-		else if (name.equals("Exponering")){
-			return ((Exposure) action).getFactor();
-		}
-		else if (name.equals("Kontrast")){
-			return ((Contrast) action).getFactor();
-		}
-		return 0.0;
-	}
-	public int getThreshold(){
-		if (name.equals("Kontrast")){
-			return ((Contrast) action).getThreshold();
-		}
-		return 0;
-	}
-
-	public double getMinLevel() {
-		return ((Levels) action).getMinLevel();
-	}
-
-	public double getMaxLevel() {
-		return ((Levels) action).getMaxLevel();
+		return ((ColorShift) action).getIntesity();
 	}
 }

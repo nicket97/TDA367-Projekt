@@ -31,8 +31,8 @@ public class NewKernel implements Layerable {
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		int radius = (kernel.length - 1) / 2;
 
-		for (int i = 1; i < img.getpxImage().length - 1; i++) {
-			for (int j = 1; j < img.getpxImage()[i].length - 1; j++) {
+		for (int i = 0; i < img.getpxImage().length ; i++) {
+			for (int j = 0; j < img.getpxImage()[i].length ; j++) {
 				int sumRed = 0;
 				int sumGreen = 0;
 				int sumBlue = 0;

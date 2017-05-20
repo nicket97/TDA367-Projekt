@@ -23,6 +23,15 @@ public class NewFilterHandeler {
 	public static void removeFilter(CreatedFilter filter) {
 		filters.remove(filter);
 	}
+	
+	public static double[][] getFilterKernel(String name){
+		for(CreatedFilter f : filters){
+			if (name.equals(f.getName())){
+				return f.getKernel();
+			}
+		}
+		return null;
+	}
 
 	public static List<CreatedFilter> getFilters() {
 		return filters;

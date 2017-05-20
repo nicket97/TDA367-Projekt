@@ -9,6 +9,7 @@ import model.transformations.Exposure;
 import model.transformations.GaussianBlur;
 import model.transformations.Grain;
 import model.transformations.Levels;
+import model.transformations.NewKernel;
 import model.transformations.Sharpen;
 import model.transformations.WhiteBalance;
 
@@ -95,9 +96,13 @@ public class Layer {
 	public void setDeviation(int value) {
 		((Grain) action).setDiviation(value);
 	}
+	public void setKernel(double[][] kernel, String name){
+		((NewKernel) action).setKernelAndName(kernel, name);
+	}
 
 	public double getIntensity(){
-		return ((ColorShift) action).getIntesity();
+		return ((ColorShift) action).getIntensity();
+	}
 		
 	public double getDouble(){
 		if (name.equals("Färgfilter")){

@@ -82,8 +82,12 @@ public class NewKernel implements Layerable {
 
 	@Override
 	public String getName() {
-
 		return name;
+	}
+	
+	public void setKernelAndName(double[][] kernel, String name){
+		this.name = name;
+		this.kernel = kernel;
 	}
 
 	@Override

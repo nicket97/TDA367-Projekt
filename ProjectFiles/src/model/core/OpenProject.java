@@ -58,9 +58,7 @@ public class OpenProject {
 				}
 				// filter and values
 				if (stage == 1) {
-					System.out.println(line);
 					information = line.split("\\?");
-					System.out.println(information.toString());
 					String layerType = information[0];
 					switch (layerType) {
 					case "ColorShift":

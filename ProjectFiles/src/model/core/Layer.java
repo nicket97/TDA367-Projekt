@@ -9,6 +9,7 @@ import model.transformations.Exposure;
 import model.transformations.GaussianBlur;
 import model.transformations.Grain;
 import model.transformations.Levels;
+import model.transformations.Sharpen;
 import model.transformations.WhiteBalance;
 
 /**
@@ -58,9 +59,9 @@ public class Layer {
 	public void setRadius(int value) {
 		if (name.equals("Oskärpa")) {
 			((Blur) action).setRadius(value);
-		} else {
+		} else if (name.equals("Gaussisk Oskärpa")) {
 			((GaussianBlur) action).setRadius(value);
-		}
+		} else { ((Sharpen) action).setRadius(value); }
 	}
 
 	public void setRGB(double r, double g, double b, double value) {
@@ -94,7 +95,53 @@ public class Layer {
 	public void setDeviation(int value) {
 		((Grain) action).setDiviation(value);
 	}
+
 	public double getIntensity(){
 		return ((ColorShift) action).getIntesity();
+		
+	public double getDouble(){
+		if (name.equals("Färgfilter")){
+			return ((ColorShift) action).getIntensity();
+		}
+		else if (name.equals("Exponering")){
+			return ((Exposure) action).getFactor();
+		}
+		else if (name.equals("Kontrast")){
+			return ((Contrast) action).getFactor();
+		}
+		return 0.0;
+	}
+	public int getInt(){
+		if (name.equals("Kontrast")){
+			return ((Contrast) action).getThreshold();
+		}
+		else if (name.equals("Brus")){
+			return ((Grain) action).getDiviation();
+		}
+		else if (name.equals("Oskärpa")){
+			return ((Blur) action).getRadius();
+		}
+		else if (name.equals("Gaussisk Oskärpa")){
+			return ((GaussianBlur) action).getRadius();
+		}
+		else if (name.equals("Skärpa")){
+			return ((Sharpen) action).getRadius();
+		}
+		else if (name.equals("Svartvitt")){
+			return ((BlackAndWhite) action).getThreshold();
+		}
+		else if (name.equals("Vitbalans")){
+			return ((WhiteBalance) action).getThreshold();
+		}
+		return 0;
+	}
+
+	public double getMinLevel() {
+		return ((Levels) action).getMinLevel();
+	}
+
+	public double getMaxLevel() {
+		return ((Levels) action).getMaxLevel();
+
 	}
 }

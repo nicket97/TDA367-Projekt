@@ -34,7 +34,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.Main;
-import model.*;
 import model.core.CreatedFilter;
 import model.core.Layer;
 import model.core.Layerable;
@@ -475,6 +474,7 @@ public class MainView extends AnchorPane implements Initializable {
 			level.setVisible(true);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(layerType));
+				updateLayerSettings(Layers.getLayerStack().get(Layers.getLayerStack().size()-1));
 				canvasUpdate();
 			}
 		});
@@ -544,9 +544,8 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasUpdate();
 		});
 		sharpenUpdate.setOnAction(e -> {
-			// Layers.getLayerStack().get(Layers.getLayerStack().size()-1.setRadiusAndThreshold(
-			// sharpenRadius.valueProperty().intValue(),
-			// sharpenThreshold.valueProperty().intValue()));
+			 Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
+			 .setRadius(sharpenIntensity.valueProperty().intValue());
 			canvasUpdate();
 		});
 		// Colors
@@ -613,7 +612,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Exposure(1)));
-				exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
+				exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
 				canvasUpdate();
 			}
 		});
@@ -624,8 +623,8 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, contrastLevel, fadeContrast);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Contrast(2, 10)));
-				contrastThreshold.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
-				contrastIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getThreshold());
+				contrastThreshold.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
+				contrastIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
 			}
 		});
@@ -648,6 +647,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, grainLevel, fadeGrain);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Grain(10)));
+				grainDeviation.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getInt());
 				canvasUpdate();
 			}
 		});
@@ -664,6 +664,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(effectLevel, blurLevel, fadeBlur);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Blur(2)));
+				blurRadius.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
 			}
 		});
@@ -674,6 +675,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(effectLevel, gBlurLevel, fadeGBlur);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new GaussianBlur(2)));
+				gBlurRadius.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
 			}
 		});
@@ -684,6 +686,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(effectLevel, sharpenLevel, fadeSharpen);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Sharpen()));
+				sharpenIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getInt());
 				canvasUpdate();
 			}
 		});
@@ -708,7 +711,7 @@ public class MainView extends AnchorPane implements Initializable {
 			if (backgroundImage != null) {
 				Layers.addLayer(
 						new Layer(new ColorShift(0.7019608020782471, 0.7019608020782471, 0.7019608020782471, 0.5)));
-				colorIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getIntensity());
+				colorIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
 				canvasUpdate();
 			}
 		});
@@ -730,6 +733,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(colorLevel, bwLevel, fadeBW);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new BlackAndWhite(50)));
+				bwIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
 			}
 		});
@@ -740,6 +744,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(colorLevel, wbLevel, fadeWB);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new WhiteBalance(50)));
+				wbWarm.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
 			}
 		});
@@ -868,29 +873,36 @@ public class MainView extends AnchorPane implements Initializable {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		if (layer.getName().equals("Exponering")) {
 			setVisibility(exposureLevel);
-			exposureIntensity.setValue(layer.getIntensity());
+			exposureIntensity.setValue(layer.getDouble());
 		} else if (layer.getName().equals("Kontrast")) {
 			setVisibility(contrastLevel);
-			contrastThreshold.setValue(layer.getIntensity());
-			contrastIntensity.setValue(layer.getThreshold());
+			contrastThreshold.setValue(layer.getDouble());
+			contrastIntensity.setValue(layer.getInt());
 		} else if (layer.getName().equals("Nivåer")) {
 			setVisibility(levelsLevel);
 			levelsMin.setValue(layer.getMinLevel());
 			levelsMax.setValue(layer.getMaxLevel());
 		} else if (layer.getName().equals("Brus")) {
 			setVisibility(grainLevel);
+			grainDeviation.setValue(layer.getInt());
 		} else if (layer.getName().equals("Oskärpa")) {
 			setVisibility(blurLevel);
+			blurRadius.setValue(layer.getInt());
 		} else if (layer.getName().equals("Gaussisk Oskärpa")) {
 			setVisibility(gBlurLevel);
+			gBlurRadius.setValue(layer.getInt());
 		} else if (layer.getName().equals("Skärpa")) {
 			setVisibility(sharpenLevel);
+			sharpenIntensity.setValue(layer.getInt());
 		} else if (layer.getName().equals("Färgfilter")) {
 			setVisibility(colorFilterLevel);
+			colorIntensity.setValue(layer.getDouble());
 		} else if (layer.getName().equals("Svartvitt")) {
 			setVisibility(bwLevel);
+			bwIntensity.setValue(layer.getInt());
 		} else if (layer.getName().equals("Vitbalans")) {
 			setVisibility(wbLevel);
+			wbWarm.setValue(layer.getInt());
 		}
 		/**
 		 * else if (layer.getName().equals("Eget filter")){

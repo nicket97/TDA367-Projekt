@@ -86,8 +86,8 @@ public class TextFilter implements Layerable {
 		return yPosition;
 	}
 
-	public void setPosition(String position) {
-		this.yPosition = yPosition;
+	public void setPosition(int position) {
+		this.yPosition = position;
 	}
 
 	public int getR() {

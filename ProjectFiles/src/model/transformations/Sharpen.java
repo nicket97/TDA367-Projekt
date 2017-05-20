@@ -12,11 +12,11 @@ import model.core.LoadedImage;
  *
  */
 public class Sharpen implements Layerable {
-	private int radius;
+	private int radius = 1;
 	private double[][] kernel;
 
 	public Sharpen() {
-
+		this.radius = 1;
 		kernel = new double[3][3];
 		kernel[0][0] = 0;
 		kernel[0][1] = -1;
@@ -34,7 +34,7 @@ public class Sharpen implements Layerable {
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
-		radius = 1;
+		//radius = 1;
 
 		for (int i = 0; i < img.getpxImage().length; i++) {
 			for (int j = 0; j < img.getpxImage()[i].length; j++) {

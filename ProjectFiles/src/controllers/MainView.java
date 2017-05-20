@@ -475,6 +475,7 @@ public class MainView extends AnchorPane implements Initializable {
 			level.setVisible(true);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(layerType));
+				updateLayerSettings(Layers.getLayerStack().get(Layers.getLayerStack().size()-1));
 				canvasUpdate();
 			}
 		});
@@ -544,9 +545,8 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasUpdate();
 		});
 		sharpenUpdate.setOnAction(e -> {
-			// Layers.getLayerStack().get(Layers.getLayerStack().size()-1.setRadiusAndThreshold(
-			// sharpenRadius.valueProperty().intValue(),
-			// sharpenThreshold.valueProperty().intValue()));
+			 Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
+			 .setRadius(sharpenIntensity.valueProperty().intValue());
 			canvasUpdate();
 		});
 		// Colors
@@ -687,6 +687,7 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(effectLevel, sharpenLevel, fadeSharpen);
 			if (backgroundImage != null) {
 				Layers.addLayer(new Layer(new Sharpen()));
+				sharpenIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getInt());
 				canvasUpdate();
 			}
 		});
@@ -893,6 +894,7 @@ public class MainView extends AnchorPane implements Initializable {
 			gBlurRadius.setValue(layer.getInt());
 		} else if (layer.getName().equals("Skärpa")) {
 			setVisibility(sharpenLevel);
+			sharpenIntensity.setValue(layer.getInt());
 		} else if (layer.getName().equals("Färgfilter")) {
 			setVisibility(colorFilterLevel);
 			colorIntensity.setValue(layer.getDouble());

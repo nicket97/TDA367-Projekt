@@ -9,6 +9,7 @@ import model.transformations.Exposure;
 import model.transformations.GaussianBlur;
 import model.transformations.Grain;
 import model.transformations.Levels;
+import model.transformations.Sharpen;
 import model.transformations.WhiteBalance;
 
 public class Layer {
@@ -114,6 +115,9 @@ public class Layer {
 		}
 		else if (name.equals("Gaussisk Oskärpa")){
 			return ((GaussianBlur) action).getRadius();
+		}
+		else if (name.equals("Skärpa")){
+			return ((Sharpen) action).getRadius();
 		}
 		else if (name.equals("Svartvitt")){
 			return ((BlackAndWhite) action).getThreshold();

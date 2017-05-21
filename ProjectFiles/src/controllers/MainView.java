@@ -191,8 +191,8 @@ public class MainView extends AnchorPane implements Initializable {
 					System.out.println("Open Image" + (double) (System.nanoTime() - time) / 1000000000);
 					// System.out.println(canvasView.toString());
 					Layers.setBackgroundImage(ll);
-					canvasView.repaint();
-					miniCanvasView.repaint();
+					canvasUpdate();
+					
 				}
 			} catch (IOException e1) {
 				// On canceled fileopening
@@ -240,7 +240,7 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 1.5));
 			System.out.println("zooooomOUT  " + canvasView.getZoomFactor());
 			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
-			canvasView.repaint();
+			canvasUpdate();
 		});
 
 		menuZoomIn.setOnAction(e -> {
@@ -249,17 +249,17 @@ public class MainView extends AnchorPane implements Initializable {
 			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
 			
 			System.out.println("slide" + slideZoom.getValue() + "              " + (Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
-			canvasView.repaint();
+			canvasUpdate();
 		});
 		menuUndo.setOnAction(e -> {
 			Layers.remove(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1));
-			canvasView.repaint();
+			canvasUpdate();
 		});
 		slideZoom.setValue(100);
 		slideZoom.setOnMouseClicked(e -> {
 			System.out.println("zooma " + slideZoom.getValue());
 			canvasView.setZoomFactor(((Math.pow(2, (slideZoom.getValue() / 20 - 5)*-1))));
-			canvasView.repaint();
+			canvasUpdate();
 		});
 		slideZoom.setOnMouseDragOver(e -> {
 			System.out.println("zooma " + slideZoom.getValue());
@@ -269,7 +269,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuCrop.setOnAction(e -> {
 			CropView cropView = new CropView();
 			canvasPane.getChildren().add(cropView);
-			canvasView.repaint();
+			canvasUpdate();
 
 		});
 
@@ -290,15 +290,13 @@ public class MainView extends AnchorPane implements Initializable {
 		menuResetWindow.setOnAction(e -> {
 			canvasView.setTopX(0);
 			canvasView.setTopY(0);
-			canvasView.repaint();
+			canvasUpdate();
 
 		});
 	
 		menuResetPicture.setOnAction(e -> {
 			Layers.getLayerStack().clear();
-			layerView.update();
-			miniCanvasView.repaint();
-			canvasView.repaint();
+			canvasUpdate();
 
 		});
 
@@ -784,6 +782,7 @@ public class MainView extends AnchorPane implements Initializable {
 	 * Method for repainting the canvases.
 	 */
 	static void canvasUpdate() {
+		System.out.println("Repaint");
 		canvasView.repaint();
 		miniCanvasView.repaint();
 		layerView.update();

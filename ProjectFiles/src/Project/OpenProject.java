@@ -10,8 +10,6 @@ import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import listeners.RepaintListener;
-import model.core.Layer;
-import model.core.Layers;
 import model.core.LoadedImage;
 import model.transformations.BlackAndWhite;
 import model.transformations.Blur;
@@ -28,6 +26,8 @@ import model.transformations.RotateR;
 import model.transformations.Sharpen;
 import model.transformations.VMirroring;
 import model.transformations.WhiteBalance;
+import model.transformations.core.Layer;
+import model.transformations.core.Layers;
 
 /**
  * Takes care of things related to opening previous saved projects

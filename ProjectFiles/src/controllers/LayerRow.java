@@ -10,8 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import model.core.Layer;
-import model.core.Layers;
+import model.transformations.core.Layer;
+import model.transformations.core.Layers;
 
 /**
  * Custom cell for LayerView

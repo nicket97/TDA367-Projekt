@@ -10,9 +10,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
-import model.core.Layer;
-import model.core.Layers;
 import model.core.LoadedImage;
+import model.transformations.core.Layer;
+import model.transformations.core.Layers;
 
 /**
  * Takes care of everything related to the small overview of the canvas on the

@@ -37,12 +37,12 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import main.Main;
 import model.core.CreatedFilter;
-import model.core.Layer;
 import model.core.Layerable;
-import model.core.Layers;
 import model.core.LoadedImage;
 import model.core.NewFilterHandeler;
 import model.transformations.*;
+import model.transformations.core.Layer;
+import model.transformations.core.Layers;
 
 /**
  * Main controller, distributes tasks

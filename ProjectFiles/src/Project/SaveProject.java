@@ -7,9 +7,9 @@ import java.io.PrintWriter;
 import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.core.Layer;
-import model.core.Layers;
 import model.core.LoadedImage;
+import model.transformations.core.Layer;
+import model.transformations.core.Layers;
 
 /**
  * Takes care of things related to saving projects

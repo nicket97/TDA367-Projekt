@@ -15,10 +15,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.core.CreatedFilter;
-import model.core.Layer;
-import model.core.Layers;
 import model.core.NewFilterHandeler;
 import model.transformations.NewKernel;
+import model.transformations.core.Layer;
+import model.transformations.core.Layers;
 
 /**
  * Handles all input regarding creation of new filters by the user

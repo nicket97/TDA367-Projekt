@@ -18,9 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.Main;
-import model.core.Layer;
-import model.core.Layers;
 import model.transformations.Crop;
+import model.transformations.core.Layer;
+import model.transformations.core.Layers;
 
 /**
  * Handles all input related to the crop function

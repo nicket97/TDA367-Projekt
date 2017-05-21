@@ -1,9 +1,10 @@
-package model.core;
+package model.transformations.core;
 
 import java.util.ArrayList;
 
 import controllers.MainView;
 import listeners.RepaintListener;
+import model.core.LoadedImage;
 
 /**
  * Handles the layer stack

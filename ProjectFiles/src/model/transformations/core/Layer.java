@@ -1,5 +1,6 @@
-package model.core;
+package model.transformations.core;
 
+import model.core.Layerable;
 import model.transformations.BlackAndWhite;
 import model.transformations.Blur;
 import model.transformations.ColorShift;

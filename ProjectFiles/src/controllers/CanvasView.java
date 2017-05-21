@@ -12,9 +12,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.core.Layer;
-import model.core.Layers;
 import model.core.LoadedImage;
+import model.transformations.core.Layer;
+import model.transformations.core.Layers;
 
 /**
  * All input related to the canvas

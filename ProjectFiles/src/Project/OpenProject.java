@@ -148,7 +148,7 @@ public class OpenProject {
 				}
 				System.out.println("hhehejhejhejhje" + LoadedImage.getColorFromInt(image.getRGB(0, 0)) + "---------"
 						+ LoadedImage.getColorFromInt(pxArray[0][0]));
-				MainView.setBackgroundImage(new LoadedImage(image));
+				Layers.setBackgroundImage(new LoadedImage(image));
 				MainView.getCanvas().repaint();
 				System.out.println("Loading project");
 			}

@@ -27,7 +27,7 @@ public class SaveProject {
 			for (Layer layer : Layers.getLayerStack()) {
 				out.println(layer.getAction().saveLayer());
 			}
-			LoadedImage img = MainView.getBackgroundImage();
+			LoadedImage img = Layers.getBackgroundImage();
 			out.println("??????????");
 			out.print(img.getBufferedImg().getWidth());
 			out.print("?");

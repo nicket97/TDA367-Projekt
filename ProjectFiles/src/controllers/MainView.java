@@ -122,7 +122,7 @@ public class MainView extends AnchorPane implements Initializable {
 	Slider slideZoom;
 	Layers layerstack = new Layers();
 
-	private static LoadedImage backgroundImage;
+	
 
 	public MainView(Stage pstage) {
 		mainView = this;
@@ -190,7 +190,7 @@ public class MainView extends AnchorPane implements Initializable {
 					LoadedImage ll = new LoadedImage(newImage);
 					System.out.println("Open Image" + (double) (System.nanoTime() - time) / 1000000000);
 					// System.out.println(canvasView.toString());
-					setBackgroundImage(ll);
+					Layers.setBackgroundImage(ll);
 					canvasView.repaint();
 					miniCanvasView.repaint();
 				}
@@ -211,7 +211,7 @@ public class MainView extends AnchorPane implements Initializable {
 
 			try {
 
-				LoadedImage export = MainView.backgroundImage;
+				LoadedImage export = Layers.getBackgroundImage();
 				for (Layer layer : Layers.getLayerStack()) {
 					export = layer.getAction().transform(export);
 				}
@@ -452,7 +452,7 @@ public class MainView extends AnchorPane implements Initializable {
 	 */
 	private void menuClicked(MenuItem name, Layerable layerType) {
 		name.setOnAction(e -> {
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(layerType));
 				canvasUpdate();
 			}
@@ -472,7 +472,7 @@ public class MainView extends AnchorPane implements Initializable {
 			toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 			level.toFront();
 			level.setVisible(true);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(layerType));
 				updateLayerSettings(Layers.getLayerStack().get(Layers.getLayerStack().size()-1));
 				canvasUpdate();
@@ -619,7 +619,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		exposureIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Exposure(1)));
 				exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
 				canvasUpdate();
@@ -630,7 +630,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		contrastIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, contrastLevel, fadeContrast);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Contrast(2, 10)));
 				contrastThreshold.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
 				contrastIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
@@ -642,7 +642,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		levelsIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, levelsLevel, fadeLevels);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Levels(1, 1)));
 				levelsMin.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getMinLevel());
 				levelsMax.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getMaxLevel());
@@ -654,7 +654,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		grainIcon.setOnMouseClicked(e -> {
 			mouseClicked(adjustLevel, grainLevel, fadeGrain);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Grain(10)));
 				grainDeviation.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getInt());
 				canvasUpdate();
@@ -671,7 +671,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		blurIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, blurLevel, fadeBlur);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Blur(2)));
 				blurRadius.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
@@ -682,7 +682,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		gBlurIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, gBlurLevel, fadeGBlur);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new GaussianBlur(2)));
 				gBlurRadius.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
@@ -693,7 +693,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		sharpenIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, sharpenLevel, fadeSharpen);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Sharpen()));
 				sharpenIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getInt());
 				canvasUpdate();
@@ -704,7 +704,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		textIcon.setOnMouseClicked(e -> {
 			mouseClicked(effectLevel, textLevel, fadeText);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new TextFilter()));
 				canvasUpdate();
 			}
@@ -717,7 +717,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		colorFilterIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorLevel, colorFilterLevel, fadeColorFilter);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(
 						new Layer(new ColorShift(0.7019608020782471, 0.7019608020782471, 0.7019608020782471, 0.5)));
 				colorIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
@@ -730,7 +730,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		grayIcon.setOnMouseClicked(e -> {
 			// mouseClicked(colorLevel, grayLevel, fadeGray);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new GrayScale()));
 				canvasUpdate();
 			}
@@ -740,7 +740,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		bwIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorLevel, bwLevel, fadeBW);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new BlackAndWhite(50)));
 				bwIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
@@ -751,7 +751,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		whiteBalanceIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorLevel, wbLevel, fadeWB);
-			if (backgroundImage != null) {
+			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new WhiteBalance(50)));
 				wbWarm.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
 				canvasUpdate();
@@ -863,13 +863,7 @@ public class MainView extends AnchorPane implements Initializable {
 		}
 	}
 
-	public static LoadedImage getBackgroundImage() {
-		return backgroundImage;
-	}
-
-	public static void setBackgroundImage(LoadedImage backgroundImage) {
-		MainView.backgroundImage = backgroundImage;
-	}
+	
 
 	public static CanvasView getCanvas() {
 		return canvasView;

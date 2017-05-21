@@ -11,7 +11,7 @@ import controllers.MainView;
 public class Layers {
 
 	private static ArrayList<Layer> layerStack = new ArrayList<>();
-
+	private static LoadedImage backgroundImage;
 	public static void addLayer(Layer l) {
 		System.out.println("add Layer");
 		layerStack.add(l);
@@ -36,5 +36,12 @@ public class Layers {
 	public static void clear() {
 		layerStack.clear();
 
+	}
+	public static LoadedImage getBackgroundImage() {
+		return backgroundImage;
+	}
+
+	public static void setBackgroundImage(LoadedImage backgroundImage) {
+		MainView.backgroundImage = backgroundImage;
 	}
 }

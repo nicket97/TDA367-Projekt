@@ -6,6 +6,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
+import model.core.NewFilterHandeler;
+import model.transformations.help.ColorTransformTest;
 
 /**
  * Saving and storing new kernels
@@ -21,8 +23,9 @@ public class NewKernel implements Layerable {
 		this.name = name;
 	}
 
-	public NewKernel(String information) {
-
+	public NewKernel(String[] args) {
+		this.name = args[1];
+		kernel = NewFilterHandeler.getFilterKernel(name);
 	}
 
 	@Override
@@ -43,10 +46,10 @@ public class NewKernel implements Layerable {
 					for (int l = -1 * radius; l <= radius; l++) {
 						if ((i + k) >= 0 && (j + l) >= 0 && (i + k) < img.getpxImage().length
 								&& (j + l) < img.getpxImage()[i].length) {
-							sumRed += img.getpxImage()[i + k][j + l].getRed() * 254 * kernel[x][y];
-							sumGreen += img.getpxImage()[i + k][j + l].getGreen() * 254 * kernel[x][y];
-							sumBlue += img.getpxImage()[i + k][j + l].getBlue() * 254 * kernel[x][y];
-							count++;
+							sumRed += img.getpxImage()[i + k][j + l].getRed() * 255 * kernel[x][y];
+							sumGreen += img.getpxImage()[i + k][j + l].getGreen() * 255 * kernel[x][y];
+							sumBlue += img.getpxImage()[i + k][j + l].getBlue() * 255 * kernel[x][y];
+							count += kernel[x][y];
 							y++;
 						} else {
 
@@ -55,19 +58,10 @@ public class NewKernel implements Layerable {
 					}
 					x++;
 				}
-				if (sumRed < 0)
-					sumRed = 0;
-				if (sumRed > 255)
-					sumRed = 255;
-				if (sumGreen < 0)
-					sumGreen = 0;
-				if (sumGreen > 255)
-					sumGreen = 255;
-				if (sumBlue < 0)
-					sumBlue = 0;
-				if (sumBlue > 255)
-					sumBlue = 255;
-				pxImage[i][j] = Color.rgb(sumRed, sumGreen, sumBlue);
+				sumRed = sumRed ;
+				sumGreen = sumGreen;    
+				sumBlue = sumBlue ;
+				pxImage[i][j] = Color.rgb(ColorTransformTest.getAllowedValue(sumRed), ColorTransformTest.getAllowedValue(sumGreen), ColorTransformTest.getAllowedValue(sumBlue));
 			}
 		}
 		newImage.setPxImage(pxImage);
@@ -76,8 +70,8 @@ public class NewKernel implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "NewKernel?" + name + "?";
 	}
 
 	@Override

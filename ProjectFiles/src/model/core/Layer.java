@@ -66,11 +66,11 @@ public class Layer {
 	}
 
 	public void setRGB(double r, double g, double b, double value) {
-		((ColorShift) action).setRGB(r*255, g*255, b*255, value);
+		((ColorShift) action).setRGB(r, g, b, value);
 	}
 
-	public void setColor(String color, int value) {
-		ColorShiftFactory.getColorShift(color, value);
+	public void setColor(String color, double d) {
+		ColorShiftFactory.getColorShift(color, d);
 	}
 
 	public void setThreshold(int value) {

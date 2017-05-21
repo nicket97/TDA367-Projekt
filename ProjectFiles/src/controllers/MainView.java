@@ -553,11 +553,11 @@ public class MainView extends AnchorPane implements Initializable {
 			if (colorGroup.getSelectedToggle().equals(null)) {
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed(),
 						customColor.getValue().getGreen(), customColor.getValue().getBlue(),
-						colorIntensity.valueProperty().intValue());
+						colorIntensity.valueProperty().doubleValue());
 			} else {
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setColor(
 						(String) colorGroup.getSelectedToggle().getUserData(),
-						colorIntensity.valueProperty().intValue());
+						colorIntensity.valueProperty().doubleValue());
 			}
 			canvasUpdate();
 		});

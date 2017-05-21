@@ -42,6 +42,6 @@ public class Layers {
 	}
 
 	public static void setBackgroundImage(LoadedImage backgroundImage) {
-		MainView.backgroundImage = backgroundImage;
+		Layers.backgroundImage = backgroundImage;
 	}
 }

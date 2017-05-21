@@ -60,7 +60,7 @@ public class NewFilterView extends AnchorPane implements Initializable {
 		System.out.println("init newFilter");
 		newFilterDropDown.setEditable(true);
 		ObservableList<String> options = FXCollections.observableArrayList();
-		if(MainView.getBackgroundImage() == null){
+		if(Layers.getBackgroundImage() == null){
 			newFilterApplyButton.setDisable(true);
 		}
 		for (CreatedFilter f : NewFilterHandeler.getFilters()) {

@@ -92,7 +92,7 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 	}
 
 	public void repaint() {
-		this.drawImage(MainView.getBackgroundImage());
+		this.drawImage(Layers.getBackgroundImage());
 	}
 
 }

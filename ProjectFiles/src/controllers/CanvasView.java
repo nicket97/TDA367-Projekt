@@ -156,7 +156,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 	}
 
 	public void repaint() {
-		this.drawImage(MainView.getBackgroundImage(), zoomFactor);
+		this.drawImage(Layers.getBackgroundImage(), zoomFactor);
 	}
 
 	public void setZoomFactor(double zoomFactor) {

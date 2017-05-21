@@ -3,7 +3,7 @@ package model.core;
 import java.util.ArrayList;
 
 import controllers.MainView;
-import model.core.listeners.RepaintListener;
+import listeners.RepaintListener;
 
 /**
  * Handles the layer stack

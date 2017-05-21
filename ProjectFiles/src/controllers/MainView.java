@@ -89,12 +89,12 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ToggleGroup colorGroup;
 	@FXML
-	ColorPicker customColor;
+	ColorPicker customColor, textColor;
 	@FXML
 	ComboBox<String> filterBox;
 	@FXML
 	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, levelsMin, levelsMax, blurRadius,
-			gBlurRadius, sharpenIntensity, sharpenThreshold;
+			gBlurRadius, sharpenIntensity, sharpenThreshold, textSize;
 	@FXML
 	Slider colorIntensity, bwThreshold, bwIntensity, wbWarm;
 	@FXML
@@ -321,7 +321,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClickedOptions(menuExposure, exposureLevel, (new Exposure(40)));
 		//menuClickedOptions(menuFilter, filterLevel, (new NewKernel()));
 		menuClicked(menuEdge, (new Edge()));
-		menuClicked(menuTextFilter, (new TextFilter()));
+		menuClickedOptions(menuTextFilter, textLevel, (new TextFilter()));
 
 		final Delta dragDelta = new Delta();
 
@@ -546,6 +546,12 @@ public class MainView extends AnchorPane implements Initializable {
 		sharpenUpdate.setOnAction(e -> {
 			 Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
 			 .setRadius(sharpenIntensity.valueProperty().intValue());
+			canvasUpdate();
+		});
+		textUpdate.setOnAction(e -> {
+			Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
+			.setTextFilter("Test", "Helvetica", (int) textSize.getValue(), "up", (int) (textColor.getValue().getRed() * 255), 
+					(int) (textColor.getValue().getGreen() * 255), (int) (textColor.getValue().getBlue() * 255));
 			canvasUpdate();
 		});
 		// Colors

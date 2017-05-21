@@ -20,28 +20,40 @@ public class Levels implements Layerable {
 	public Levels(int maxLevel, int minLevel) {
 		this.maxLevel = maxLevel;
 		this.minLevel = minLevel;
-		this.midLevel = (maxLevel + minLevel) / 2;
-		this.changeLevel = ((minLevel / midLevel) + (midLevel / maxLevel)) / 2;
-
+		//this.midLevel = (maxLevel + minLevel) / 2;
+		setMidLevel();
+		//this.changeLevel = (double)(((double)minLevel / (double)midLevel) + ((double)midLevel / (double)maxLevel));
+		calculateChange();
+		
 	}
 
 	public Levels(String[] args) {
 		this.maxLevel = Integer.parseInt(args[1]);
 		this.minLevel = Integer.parseInt(args[2]);
-		this.midLevel = (maxLevel + minLevel) / 2;
-		this.changeLevel = ((minLevel / midLevel) + (midLevel / maxLevel)) / 2;
+		//this.midLevel = (maxLevel + minLevel) / 2;
+		setMidLevel();
+		//this.changeLevel = (double)(((double)minLevel / (double)midLevel) + ((double)midLevel / (double)maxLevel));
+		calculateChange();
+		
 	}
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
-		changeLevel = 0.5;
+		System.out.println("hkjsdslkjkjdlka"  +  changeLevel);
 		for (int i = 0; i < img.getpxImage().length; i++) {
 			for (int j = 0; j < img.getpxImage()[1].length; j++) {
+				
 				double pixRed = (((img.getpxImage()[i][j].getRed() * 255) - midLevel) * changeLevel) + midLevel;
 				double pixGreen = (((img.getpxImage()[i][j].getGreen() * 255) - midLevel) * changeLevel) + midLevel;
 				double pixBlue = (((img.getpxImage()[i][j].getBlue() * 255) - midLevel) * changeLevel) + midLevel;
+				if(pixRed < minLevel)pixRed = minLevel;
+				if(pixRed > maxLevel)pixRed = maxLevel;
+				if(pixGreen < minLevel)pixGreen = minLevel;
+				if(pixGreen > maxLevel)pixGreen = maxLevel;
+				if(pixBlue < minLevel)pixBlue = minLevel;
+				if(pixBlue > maxLevel)pixBlue = maxLevel;
 				pxImage[i][j] = Color.rgb((int) pixRed, (int) pixGreen, (int) pixBlue);
 			}
 		}
@@ -72,6 +84,7 @@ public class Levels implements Layerable {
 
 	public void setMaxLevel(int maxLevel) {
 		this.maxLevel = maxLevel;
+		calculateChange();
 	}
 
 	public int getMinLevel() {
@@ -80,26 +93,30 @@ public class Levels implements Layerable {
 
 	public void setMinLevel(int minLevel) {
 		this.minLevel = minLevel;
+		calculateChange();
 	}
 
 	public int getMidLevel() {
 		return midLevel;
 	}
 
-	public void setMidLevel(int midLevel) {
-		this.midLevel = midLevel;
+	public void setMidLevel() {
+		this.midLevel = (maxLevel + minLevel) / 2;
 	}
 
 	public double getChangeLevel() {
 		return changeLevel;
 	}
 
-	public void setChangeLevel(double changeLevel) {
-		this.changeLevel = changeLevel;
-	}
+	
 
 	public void setLevels(int min, int max) {
 		this.minLevel = min;
 		this.maxLevel = max;
+		setMidLevel();
+		calculateChange();
+	}
+	public void calculateChange(){
+		this.changeLevel = (double)(((double)minLevel / (double)midLevel) + ((double)midLevel / (double)maxLevel))*2;
 	}
 }

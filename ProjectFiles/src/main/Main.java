@@ -17,7 +17,7 @@ import Project.SaveProject;
 
 public class Main extends Application {
 
-	public static Stage primaryStage;
+
 
 	public static void main(String[] args) {
 
@@ -27,7 +27,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		this.primaryStage = primaryStage;
 		Parent root = new MainView(primaryStage);
 
 		Scene scene = new Scene(root, 1280, 720);
@@ -37,9 +36,6 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 
-	public static Stage getPrimaryStage() {
-		return primaryStage;
-	}
 
 	/**
 	 * Calls when the the application ends.

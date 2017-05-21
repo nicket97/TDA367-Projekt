@@ -3,7 +3,6 @@ package model.transformations.core;
 import java.util.ArrayList;
 
 import controllers.MainView;
-import listeners.RepaintListener;
 import model.core.LoadedImage;
 
 /**
@@ -17,14 +16,13 @@ public class Layers {
 	public static void addLayer(Layer l) {
 		System.out.println("add Layer");
 		layerStack.add(l);
-		RepaintListener.actionPerformed();
 		
 
 	}
 
 	public static void remove(Layer l) {
 		layerStack.remove(l);
-		RepaintListener.actionPerformed();
+		
 
 	}
 
@@ -32,10 +30,7 @@ public class Layers {
 		return layerStack;
 	}
 
-	public static void update() {
-		RepaintListener.actionPerformed();
-	}
-
+	
 	public static void clear() {
 		layerStack.clear();
 

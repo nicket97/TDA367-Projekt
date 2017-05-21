@@ -151,13 +151,13 @@ public class MainView extends AnchorPane implements Initializable {
 			exit(changed);
 		});
 		miniButton.setOnAction(e -> {
-			Main.getPrimaryStage().setIconified(true);
+			getPrimaryStage().setIconified(true);
 		});
 		maxiButton.setOnAction(e -> {
-			if (Main.getPrimaryStage().isMaximized()) {
-				Main.getPrimaryStage().setMaximized(false);
+			if (getPrimaryStage().isMaximized()) {
+				getPrimaryStage().setMaximized(false);
 			} else {
-				Main.getPrimaryStage().setMaximized(true);
+				getPrimaryStage().setMaximized(true);
 			}
 		});
 
@@ -232,6 +232,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuOpenProject.setOnAction(e -> {
 			OpenProject.openFile();
 			setDisableMenuItems(false);
+			canvasUpdate();
 			changed = false;
 		});
 
@@ -785,6 +786,7 @@ public class MainView extends AnchorPane implements Initializable {
 	static void canvasUpdate() {
 		canvasView.repaint();
 		miniCanvasView.repaint();
+		layerView.update();
 		changed = true;
 	}
 

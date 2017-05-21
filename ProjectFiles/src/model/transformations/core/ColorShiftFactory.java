@@ -1,6 +1,6 @@
-package model.transformations;
+package model.transformations.core;
 
-import model.transformations.core.Layers;
+import model.transformations.ColorShift;
 
 /**
  * Creates a Colorshift

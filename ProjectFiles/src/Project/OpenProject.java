@@ -9,7 +9,7 @@ import java.io.FileReader;
 import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import listeners.RepaintListener;
+import main.Main;
 import model.core.LoadedImage;
 import model.transformations.BlackAndWhite;
 import model.transformations.Blur;
@@ -150,7 +150,6 @@ public class OpenProject {
 				System.out.println("hhehejhejhejhje" + LoadedImage.getColorFromInt(image.getRGB(0, 0)) + "---------"
 						+ LoadedImage.getColorFromInt(pxArray[0][0]));
 				Layers.setBackgroundImage(new LoadedImage(image));
-				RepaintListener.actionPerformed();
 				System.out.println("Loading project");
 			}
 

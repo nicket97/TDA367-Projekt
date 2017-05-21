@@ -73,10 +73,12 @@ public class NewFilterHandeler {
 			double[][] kernel = new double[3][3];
 			String name = "";
 			while ((line = br.readLine()) != null) {
+				
 				if (line.equalsIgnoreCase("??????????")) {
 
 					NewFilterHandeler.addFilter(new CreatedFilter(name, kernel));
 					c = 0;
+					kernel = new double[3][3];
 					name = "";
 					continue;
 				} else {

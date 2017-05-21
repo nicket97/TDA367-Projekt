@@ -28,6 +28,7 @@ public class Contrast implements Layerable {
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
+		System.out.println("Exposure" + threshold + "    " + factor);
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		for (int i = 0; i < img.getpxImage().length; i++) {
 			for (int j = 0; j < img.getpxImage()[1].length; j++) {

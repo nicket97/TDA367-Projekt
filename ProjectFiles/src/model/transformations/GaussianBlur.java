@@ -28,8 +28,8 @@ public class GaussianBlur implements Layerable {
 		int[] factors = new int[2 * radius + 1];
 
 		for (int k = 0; k < radius + 1; k++) {
-			factors[k] = (int) Math.pow(2, k);
-			factors[factors.length - k - 1] = (int) Math.pow(2, k);
+			factors[k] = (int) (k*1.5);
+			factors[factors.length - k - 1] =(int) (k*1.5);
 		}
 
 		for (int i = 0; i < 2 * radius + 1; i++) {

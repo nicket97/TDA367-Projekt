@@ -550,7 +550,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		// Colors
 		cfUpdate.setOnAction(e -> {
-			if (!customColor.getValue().equals(null)) {
+			if (customColor.getValue().getBlue() != 1 && customColor.getValue().getGreen() != 1 && customColor.getValue().getRed() != 1) {
 				
 				System.out.println("customcolor");
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed()*255,

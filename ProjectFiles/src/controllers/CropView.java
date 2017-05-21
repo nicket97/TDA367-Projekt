@@ -65,7 +65,7 @@ public class CropView extends AnchorPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		primaryStage = Main.getPrimaryStage();
+		primaryStage = MainView.getPrimaryStage();
 		this.setPrefWidth(MainView.getCanvas().imagePane.getWidth());
 		this.setPrefHeight(MainView.getCanvas().imagePane.getHeight());
 		this.setTranslateX(MainView.getCanvas().imagePane.getTranslateX());

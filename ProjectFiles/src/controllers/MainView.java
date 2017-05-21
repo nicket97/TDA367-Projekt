@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
+import Project.OpenProject;
+import Project.SaveProject;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -40,8 +42,6 @@ import model.core.Layerable;
 import model.core.Layers;
 import model.core.LoadedImage;
 import model.core.NewFilterHandeler;
-import model.core.OpenProject;
-import model.core.SaveProject;
 import model.transformations.*;
 
 /**
@@ -342,7 +342,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 	}
 
-	public Stage getPrimaryStage() {
+	public static Stage getPrimaryStage() {
 		return primaryStage;
 	}
 

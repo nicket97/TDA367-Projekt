@@ -1,4 +1,4 @@
-package model.core;
+package Project;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.core.Layer;
+import model.core.Layers;
+import model.core.LoadedImage;
 
 /**
  * Takes care of things related to saving projects

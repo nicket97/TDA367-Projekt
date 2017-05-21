@@ -1,4 +1,4 @@
-package model.core;
+package Project;
 
 import java.awt.image.BufferedImage;
 
@@ -9,6 +9,9 @@ import java.io.FileReader;
 import controllers.MainView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.core.Layer;
+import model.core.Layers;
+import model.core.LoadedImage;
 import model.transformations.BlackAndWhite;
 import model.transformations.Blur;
 import model.transformations.ColorShift;

@@ -550,9 +550,11 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		// Colors
 		cfUpdate.setOnAction(e -> {
-			if (colorGroup.getSelectedToggle().equals(null)) {
-				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed(),
-						customColor.getValue().getGreen(), customColor.getValue().getBlue(),
+			if (!customColor.getValue().equals(null)) {
+				
+				System.out.println("customcolor");
+				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed()*255,
+						customColor.getValue().getGreen()*255, customColor.getValue().getBlue()*255,
 						colorIntensity.valueProperty().doubleValue());
 			} else {
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setColor(
@@ -561,6 +563,7 @@ public class MainView extends AnchorPane implements Initializable {
 			}
 			canvasUpdate();
 		});
+		
 		/**
 		 * grayUpdate.setOnAction(e -> { layerstack.addLayer(new Layer(new
 		 * Blur((int) blurRadius.valueProperty().intValue()))); canvasUpdate();

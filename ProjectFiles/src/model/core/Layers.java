@@ -3,25 +3,27 @@ package model.core;
 import java.util.ArrayList;
 
 import controllers.MainView;
+import model.core.listeners.RepaintListener;
 
 /**
  * Handles the layer stack
  *
  */
 public class Layers {
-
+	
 	private static ArrayList<Layer> layerStack = new ArrayList<>();
 	private static LoadedImage backgroundImage;
 	public static void addLayer(Layer l) {
 		System.out.println("add Layer");
 		layerStack.add(l);
-		MainView.layerView.update();
+		RepaintListener.actionPerformed();
+		
 
 	}
 
 	public static void remove(Layer l) {
 		layerStack.remove(l);
-		MainView.layerView.update();
+		RepaintListener.actionPerformed();
 
 	}
 
@@ -30,7 +32,7 @@ public class Layers {
 	}
 
 	public static void update() {
-		MainView.getCanvas().repaint();
+		RepaintListener.actionPerformed();
 	}
 
 	public static void clear() {

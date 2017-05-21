@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import model.core.Layer;
 import model.core.Layers;
 import model.core.LoadedImage;
+import model.core.listeners.RepaintListener;
 import model.transformations.BlackAndWhite;
 import model.transformations.Blur;
 import model.transformations.ColorShift;
@@ -149,7 +150,7 @@ public class OpenProject {
 				System.out.println("hhehejhejhejhje" + LoadedImage.getColorFromInt(image.getRGB(0, 0)) + "---------"
 						+ LoadedImage.getColorFromInt(pxArray[0][0]));
 				Layers.setBackgroundImage(new LoadedImage(image));
-				MainView.getCanvas().repaint();
+				RepaintListener.actionPerformed();
 				System.out.println("Loading project");
 			}
 

@@ -9,9 +9,7 @@ import java.awt.image.BufferedImage;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by anton on 21/04/17.
- */
+
 public class ColorShiftTest {
 	@Test
 	public void transformTest() throws Exception {

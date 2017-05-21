@@ -8,9 +8,7 @@ import org.junit.Test;
 
 import java.awt.image.BufferedImage;
 
-/**
- * Created by anton on 13/05/17.
- */
+
 public class BlackAndWhiteTest {
 	@Test
 	public void transform() throws Exception {
@@ -27,10 +25,6 @@ public class BlackAndWhiteTest {
 		BlackAndWhite bW = new BlackAndWhite(threshold);
 		LoadedImage newImage = bW.transform(loadedImage);
 
-		int avr0 = (0 + 0 + 0) / 3;
-		int avr1 = (45 + 108 + 147) / 3;
-		int avr2 = (0 + 100 + 255) / 3;
-		int avr3 = (255 + 255 + 255) / 3;
 
 		assertTrue((int) (newImage.getpxImage()[0][0].getRed() * 255) == 0);
 		assertTrue((int) (newImage.getpxImage()[0][0].getGreen() * 255) == 0);

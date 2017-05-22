@@ -183,7 +183,9 @@ public class ColorShift implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		
+		v1.getChildren().clear();
+		v2.getChildren().clear();
+		v3.getChildren().clear();
 		
 		v1.getChildren().add(yellowButton);
 		v1.getChildren().add(orangeButton);

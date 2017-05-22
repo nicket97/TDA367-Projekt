@@ -75,7 +75,7 @@ public class BlackAndWhite implements Layerable{
 
 	@Override
 	public List<VBox> getVBox() {
-		
+		h1.getChildren().clear();
 		sliderThreshold.setValue(this.threshold);
 		h1.getChildren().add(sliderThreshold);
 		h1.getChildren().add(labelText);

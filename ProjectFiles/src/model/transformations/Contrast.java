@@ -127,6 +127,8 @@ public class Contrast implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
+		v1.getChildren().clear();
+		v2.getChildren().clear();
 		sliderThreshold.setValue(this.threshold);
 		v1.getChildren().add(sliderThreshold);
 		v1.getChildren().add(labelThreshold);

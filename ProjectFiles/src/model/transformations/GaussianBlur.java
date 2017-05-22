@@ -138,7 +138,7 @@ public class GaussianBlur implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		
+		v1.getChildren().clear();
 		sliderRadius.setValue(radius);
 		v1.getChildren().add(sliderRadius);
 		v1.getChildren().add(labelText);

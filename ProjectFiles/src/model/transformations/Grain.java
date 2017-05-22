@@ -82,7 +82,7 @@ public class Grain implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-
+		h1.getChildren().clear();
 		sliderDiviation.setValue(this.diviation);
 		h1.getChildren().add(sliderDiviation);
 		h1.getChildren().add(labelDiviation);

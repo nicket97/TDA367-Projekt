@@ -136,6 +136,8 @@ public class Levels implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
+		v1.getChildren().clear();
+		v2.getChildren().clear();
 		sliderMin.setValue(this.minLevel);
 		v1.getChildren().add(sliderMin);
 		v1.getChildren().add(labelMax);

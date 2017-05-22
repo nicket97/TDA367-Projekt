@@ -135,6 +135,11 @@ public class TextFilter implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
+		v1.getChildren().clear();
+		v2.getChildren().clear();
+		v3.getChildren().clear();
+		v4.getChildren().clear();
+		v5.getChildren().clear();
 		
 		txtIn.setText(this.text);
 		v1.getChildren().add(txtIn);

@@ -633,7 +633,10 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, topLevel, fadeIn);
 		});
 		exposureIcon.setOnMouseClicked(e -> {
+			exposureLevel.getChildren().clear();
+			Layers.addLayer(new Layer(new Exposure(50)));
 			exposureLevel.getChildren().add(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getAction().getVBox().get(0));
+			exposureLevel.setVisible(true);
 			/*mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Exposure(1)));

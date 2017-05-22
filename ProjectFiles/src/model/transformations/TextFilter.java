@@ -52,6 +52,7 @@ public class TextFilter implements Layerable {
 	public TextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		sliderSize.setMin(0);
 		sliderSize.setMax(200);
+		
 		ObservableList<String> fontList = FXCollections.observableArrayList();
 		fontList.add("Helvetica");
 		fontBox.setItems(fontList);
@@ -131,6 +132,7 @@ public class TextFilter implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
+		
 		txtIn.setText(this.text);
 		
 		customColor.setValue(Color.rgb(this.r, this.g, this.b));

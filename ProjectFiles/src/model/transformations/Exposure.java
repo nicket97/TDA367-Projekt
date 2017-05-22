@@ -1,8 +1,11 @@
 package model.transformations;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -14,13 +17,20 @@ import model.core.LoadedImage;
 public class Exposure implements Layerable {
 	private int factor;
 
+	private Label labelFactor = new Label("Exponering");
+	private VBox v1 = new VBox();
+	private Slider sliderFactor = new Slider(); 
+	
 	public Exposure(int factor) {
+		sliderFactor.setMin(-100);
+		sliderFactor.setMax(100);
+		
 		this.factor = factor;
 
 	}
 
 	public Exposure(String[] args) {
-		this.factor = Integer.parseInt(args[1]);
+		this(Integer.parseInt(args[1]));
 
 	}
 
@@ -68,11 +78,6 @@ public class Exposure implements Layerable {
 		return "Exponering";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public int getFactor() {
 		return factor;
@@ -80,6 +85,26 @@ public class Exposure implements Layerable {
 
 	public void setFactor(int factor) {
 		this.factor = factor;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+
+		sliderFactor.setValue(this.factor);
+		v1.getChildren().add(sliderFactor);
+		v1.getChildren().add(labelFactor);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(v1);
+		
+		return vboxList;
+	}
+
+	@Override
+	public void uppdate() {
+		this.factor = (int) sliderFactor.getValue();
+		
 	}
 
 }

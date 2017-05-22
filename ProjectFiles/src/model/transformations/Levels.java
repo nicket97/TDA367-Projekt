@@ -20,7 +20,7 @@ public class Levels implements Layerable {
 	private int midLevel;
 	private double changeLevel;
 	
-	private Slider sliderMin;
+	private Slider sliderMin = new Slider();
 	private Label labelMin = new Label("Min Värde");
 	
 	private Slider sliderMax = new Slider();

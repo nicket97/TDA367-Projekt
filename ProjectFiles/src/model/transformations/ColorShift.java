@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controllers.MainView;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
+import model.transformations.core.Layers;
 import model.transformations.help.ColorTransformTest;
 
 /**
@@ -21,18 +28,79 @@ public class ColorShift implements Layerable {
 	private double g;
 	private double b;
 	private double intensity;
-
+	
+	VBox v1 = new VBox();
+	VBox v2 = new VBox();
+	VBox v3 = new VBox();
+	
+	ColorPicker customColor = new ColorPicker();
+	Label labelCustomColor = new Label("Välj egen färg");
+	
+	Slider sliderItensity = new Slider();
+	Label labelIntensity = new Label("Itensitet");
+	
+	Label labelColor = new Label("Välj färg");
+	ToggleGroup colorGroup = new ToggleGroup();
+	
+	RadioButton yellowButton = new RadioButton();
+	RadioButton orangeButton = new RadioButton();
+	RadioButton blueButton = new RadioButton();
+	RadioButton redButton = new RadioButton();
+	RadioButton pinkButton = new RadioButton();
+	RadioButton purpleButton = new RadioButton();
+	RadioButton turquoiseButton = new RadioButton();
+	RadioButton greenButton = new RadioButton();
+	
+	HBox colorBox = new HBox();
+	
 	public ColorShift(double redAddend, double greenAddend, double blueAddend, double intensity) {
+		
 		this.r = redAddend;
 		this.g = greenAddend;
 		this.b = blueAddend;
 		this.intensity = intensity;
+		
+		yellowButton.setToggleGroup(colorGroup);
+		yellowButton.setStyle("-fx-background-color: yellow;");
+		
+		orangeButton.setToggleGroup(colorGroup);
+		orangeButton.setStyle("-fx-background-color: orange;");
+		
+		blueButton.setToggleGroup(colorGroup);
+		blueButton.setStyle("-fx-background-color: royalblue;");
+		
+		redButton.setToggleGroup(colorGroup);
+		redButton.setStyle("-fx-background-color: red;");
+		
+		pinkButton.setToggleGroup(colorGroup);
+		pinkButton.setStyle("-fx-background-color: hotpink;");
+		
+		purpleButton.setToggleGroup(colorGroup);
+		purpleButton.setStyle("-fx-background-color: blueviolet;");
+		
+		turquoiseButton.setToggleGroup(colorGroup);
+		turquoiseButton.setStyle("-fx-background-color: cyan;");
+		
+		greenButton.setToggleGroup(colorGroup);
+		greenButton.setStyle("-fx-background-color: limegreen;");
+		
+		colorBox.getChildren().add(yellowButton);
+		colorBox.getChildren().add(orangeButton);
+		colorBox.getChildren().add(blueButton);
+		colorBox.getChildren().add(redButton);
+		colorBox.getChildren().add(pinkButton);
+		colorBox.getChildren().add(purpleButton);
+		colorBox.getChildren().add(turquoiseButton);
+		colorBox.getChildren().add(greenButton);
+		
+		sliderItensity.setMin(0);
+		sliderItensity.setMax(1);
+		
+		
 	}
 
 	public ColorShift(String[] arg) {
-		this.r = Double.parseDouble(arg[1]);
-		this.g = Double.parseDouble(arg[2]);
-		this.b = Double.parseDouble(arg[3]);
+		this(Double.parseDouble(arg[1]),Double.parseDouble(arg[2]), Double.parseDouble(arg[3]) , Double.parseDouble(arg[4]));
 
 	}
 
@@ -102,61 +170,83 @@ public class ColorShift implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		String output = "ColorShift?" + r + "?" + g + "?" + b + "?";
+		String output = "ColorShift?" + r + "?" + g + "?" + b + "?" + intensity + "?";
 		return output;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Färgfilter";
 	}
 
+	
+
 	@Override
-	public List<Slider> getSliders() {
-		List<Slider> sliders = new ArrayList<>();
-		Slider redSlider = new Slider();
-		redSlider.setMin(0);
-		redSlider.setMax(255);
-		redSlider.setValue(r);
-		redSlider.setOnDragDone(e -> {
-			r = redSlider.getValue();
-			MainView.getCanvas().repaint();
-			System.out.println("Röd " + redSlider.getValue());
-		});
-
-		Slider blueSlider = new Slider();
-		blueSlider.setMin(0);
-		blueSlider.setMax(255);
-		blueSlider.setValue(r);
-		blueSlider.setOnDragDone(e -> {
-			b = blueSlider.getValue();
-			MainView.getCanvas().repaint();
-			System.out.println("Blå " + blueSlider.getValue());
-		});
-
-		Slider greenSlider = new Slider();
-		greenSlider.setMin(0);
-		greenSlider.setMax(255);
-		greenSlider.setValue(r);
-		greenSlider.setOnDragDone(e -> {
-			g = greenSlider.getValue();
-			MainView.getCanvas().repaint();
-			System.out.println("grön" + greenSlider.getValue());
-		});
-
-		sliders.add(redSlider);
-		sliders.add(greenSlider);
-		sliders.add(blueSlider);
-		return sliders;
-
+	public List<VBox> getVBox() {
+		
+		
+		v1.getChildren().add(yellowButton);
+		v1.getChildren().add(orangeButton);
+		v1.getChildren().add(blueButton);
+		v1.getChildren().add(redButton);
+		v1.getChildren().add(pinkButton);
+		v1.getChildren().add(purpleButton);
+		v1.getChildren().add(turquoiseButton);
+		v1.getChildren().add(greenButton);
+		v1.getChildren().add(labelColor);
+		
+		customColor.setValue(Color.rgb((int)this.r*255, (int)this.g*255, (int)this.b*255));
+		v2.getChildren().add(customColor);
+		v2.getChildren().add(labelCustomColor);
+		
+		sliderItensity.setValue(this.intensity);
+		v3.getChildren().add(sliderItensity);
+		v3.getChildren().add(labelIntensity);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(v1);
+		vboxList.add(v2);
+		vboxList.add(v3);
+		return vboxList;
 	}
 
-	/*
-	 * @Override public Layer openSavedLayer(String loadString) { String[] data
-	 * = loadString.split("?"); ColorShift cs = new
-	 * ColorShift(Double.parseDouble(data[1]), Double.parseDouble(data[2]),
-	 * Double.parseDouble(data[3])); return new Layer(cs); }
-	 */
+	@Override
+	public void uppdate() {
+		if (customColor.getValue() != null) {
+			System.out.println("customcolor");
+			this.setRGB(customColor.getValue().getRed()*255,
+					customColor.getValue().getGreen()*255, customColor.getValue().getBlue()*255,
+					sliderItensity.valueProperty().doubleValue());
+			colorGroup.selectToggle(null);
+		} else {
+			this.intensity = sliderItensity.getValue();
+			getDefinedColorShift((String)colorGroup.getSelectedToggle().getUserData(), this.intensity);
+		}
+		
+	}
+
+	private void getDefinedColorShift(String color, double d) {
+		if (color.equals("yellow")) {
+			this.setRGB(25, 25, 0, d);
+		} else if (color.equals("orange")) {
+			this.setRGB(25, 0, -25, d);
+		} else if (color.equals("blue")) {
+			this.setRGB(-25, -25, 50, d);
+		} else if (color.equals("red")) {
+			this.setRGB(25, -25, -25, d);
+		} else if (color.equals("pink")) {
+			this.setRGB(35, 10, 15, d);
+		} else if (color.equals("purple")) {
+			this.setRGB(25, -10, 30, d);
+		} else if (color.equals("turquoise")) {
+			this.setRGB(0, 25, 25, d);
+		} else if (color.equals("green")) {
+			this.setRGB(-25, 50, -25, d);
+		}
+		
+	}
+
+	
 
 }

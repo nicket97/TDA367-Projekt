@@ -70,9 +70,6 @@ public class Layer {
 		((ColorShift) action).setRGB(r, g, b, value);
 	}
 
-	public void setColor(String color, double d) {
-		ColorShiftFactory.getColorShift(color, d);
-	}
 
 	public void setThreshold(int value) {
 		if (name.equals("Svartvitt")) {

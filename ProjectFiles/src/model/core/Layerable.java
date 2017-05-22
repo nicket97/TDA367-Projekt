@@ -16,7 +16,7 @@ public interface Layerable {
 
 	public String getName();
 
-	public List<VBox> getHBox();
+	public List<VBox> getVBox();
 
 	public void uppdate();
 }

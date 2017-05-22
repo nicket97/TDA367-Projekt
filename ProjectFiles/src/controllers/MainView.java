@@ -572,9 +572,9 @@ public class MainView extends AnchorPane implements Initializable {
 						colorIntensity.valueProperty().doubleValue());
 				colorGroup.selectToggle(null);
 			} else {
-				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setColor(
+				/*Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setColor(
 						(String) colorGroup.getSelectedToggle().getUserData(),
-						colorIntensity.valueProperty().doubleValue());
+						colorIntensity.valueProperty().doubleValue());*/
 			}
 			canvasUpdate();
 		});

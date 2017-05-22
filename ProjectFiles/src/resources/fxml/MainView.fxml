@@ -198,7 +198,7 @@
          </children>
       </AnchorPane>
       <AnchorPane id="canvasPane" fx:id="canvasPane" layoutX="197.0" layoutY="96.0" prefHeight="352.0" prefWidth="611.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="55.0" />
-      <AnchorPane id="bottomPane" fx:id="bottomPane" layoutX="213.0" layoutY="440.0" prefHeight="178.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0">
+      <AnchorPane id="bottomPane" fx:id="bottomPane" layoutX="213.0" layoutY="440.0" prefHeight="120.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0">
          <children>
             <StackPane fx:id="toolContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

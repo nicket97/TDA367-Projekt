@@ -73,7 +73,7 @@ public class MainView extends AnchorPane implements Initializable {
 	menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, 
 	menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR,
 	menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter, 
-	menuZoomIn, menuZoomOut, menuUndo, menuRedo, menuResetWindow;
+	menuZoomIn, menuZoomOut, menuUndo, menuRedo, menuResetWindow, menuAbout;
 	@FXML
 	Button closeButton, miniButton, maxiButton;
 	@FXML
@@ -281,6 +281,21 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.getLayerStack().clear();
 			canvasUpdate();
 
+		});
+		
+		menuAbout.setOnAction(e -> {
+			Stage window = new Stage();
+			AnchorPane pane = new AnchorPane();
+			window.initModality(Modality.APPLICATION_MODAL);
+			window.initOwner(primaryStage);
+			window.initStyle(StageStyle.TRANSPARENT);
+			pane.getChildren().add(new AboutView(window));
+			Parent root = pane;
+
+			Scene about = new Scene(root);
+
+	        window.setScene(about);
+			window.show();
 		});
 
 		/***

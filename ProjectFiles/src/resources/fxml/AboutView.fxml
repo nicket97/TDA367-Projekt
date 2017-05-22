@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<fx:root type="AnchorPane" id="canvasPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="rightPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="158.0" fitWidth="350.0" layoutX="236.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <Pane layoutX="12.0" layoutY="12.0" prefHeight="334.0" prefWidth="570.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0" />
+      <ImageView fitHeight="158.0" fitWidth="350.0" layoutX="232.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/layers-logo.png" />
          </image>
       </ImageView>
-      <Text layoutX="14.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Layers är ett filterbaserat bildbehandlingsprogram. " />
+      <Text layoutX="18.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Layers är ett filterbaserat bildbehandlingsprogram. " />
+      <Button fx:id="aboutClose" id="updateButton" layoutX="539.0" layoutY="361.0" mnemonicParsing="false" text="Stäng" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
    </children>
 </fx:root>

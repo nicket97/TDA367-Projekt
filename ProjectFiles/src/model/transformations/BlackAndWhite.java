@@ -4,6 +4,7 @@ package model.transformations;
 import java.util.List;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -61,10 +62,17 @@ public class BlackAndWhite implements Layerable{
 		return "Svartvitt";
 	}
 
+
 	@Override
-	public List<Slider> getSliders() {
+	public List<VBox> getHBox() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void uppdate() {
+		// TODO Auto-generated method stub
+		
 	}
 
     

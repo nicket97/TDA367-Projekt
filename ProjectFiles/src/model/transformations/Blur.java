@@ -3,10 +3,10 @@ package model.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
-import controllers.MainView;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -17,12 +17,17 @@ import model.core.LoadedImage;
 public class Blur implements Layerable {
 	private int radius;
 	private double[][] kernel;
+	
+	Label labelText = new Label();
+	VBox h1 = new VBox();
+	Slider sliderRadius = new Slider();
 
 	public Blur(int r) {
+		sliderRadius.setMin(1);
+		sliderRadius.setMax(10);
+		
+		labelText.setText("Radie");
 		radius = r;
-		if (radius % 2 == 0) {
-			radius++;
-		}
 		kernel = new double[2 * radius + 1][2 * radius + 1];
 
 		for (int i = 0; i < 2 * radius + 1; i++) {
@@ -98,20 +103,29 @@ public class Blur implements Layerable {
 	}
 
 	@Override
-	public List<HBox> getHBox() {
-		HBox h1 = new HBox();
-		Slider sliderRadius = new Slider();
-		sliderRadius.setValue(radius);
-		sliderRadius.setMin(1);
-		sliderRadius.setMax(10);
-		sliderRadius.setMajorTickUnit(1);
+	public List<VBox> getHBox() {
 		
-		Label labelText = new Label();
-		labelText.setText("Radie");
+		sliderRadius.setValue(radius);
 		h1.getChildren().add(sliderRadius);
 		h1.getChildren().add(labelText);
-		List<HBox> hboxList = new ArrayList<HBox>();
-		hboxList.add(h1);
-		return hboxList;
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(h1);
+		
+		return vboxList;
+	}
+
+	@Override
+	public void uppdate() {
+		this.radius = (int) sliderRadius.getValue();
+		kernel = new double[2 * radius + 1][2 * radius + 1];
+
+		for (int i = 0; i < 2 * radius + 1; i++) {
+			for (int j = 0; j < 2 * radius + 1; j++) {
+				kernel[i][j] = 1;
+			}
+		}
+		
 	}
 }

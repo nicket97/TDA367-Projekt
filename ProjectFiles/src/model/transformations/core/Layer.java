@@ -140,15 +140,11 @@ public class Layer {
 		else if (name.equals("Vitbalans")){
 			return ((WhiteBalance) action).getThreshold();
 		}
-		else if (name.equals("Textfilter")) {
-			return ((TextFilter) action).getSize();
-		}
+		
 		return 0;
 	}
 	
-	public String getText() {
-		return ((TextFilter) action).getText();
-	}
+	
 
 	public double getMinLevel() {
 		return ((Levels) action).getMinLevel();

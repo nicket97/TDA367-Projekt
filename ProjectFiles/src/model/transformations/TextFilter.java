@@ -1,6 +1,9 @@
 package model.transformations;
 
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import model.core.Layerable;
 import model.core.LoadedImage;
 
@@ -22,6 +25,20 @@ public class TextFilter implements Layerable {
 	private int r = 255;
 	private int g = 255;
 	private int b = 255;
+	
+	private TextField txtIn = new TextField();
+	private ColorPicker customColor = new ColorPicker();
+	private ChoiceBox<String> fontBox = new ChoiceBox<String>();
+	private ChoiceBox<String> positionBox = new ChoiceBox<String>();
+	private Slider sliderSize = new Slider();
+	
+	private VBox v1 = new VBox();
+	private VBox v2 = new VBox();
+	private VBox v3 = new VBox();
+	private VBox v4= new VBox();
+	private VBox v5 = new VBox();
+	
+	
 
 	public TextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		this.text = text;
@@ -33,7 +50,7 @@ public class TextFilter implements Layerable {
 		this.b = b;
 	}
 
-	public TextFilter() {
+	public TextFilter(String[] args) {
 	}
 
 	@Override
@@ -69,11 +86,6 @@ public class TextFilter implements Layerable {
 		return "Textfilter";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		List<Slider> emptyList = new ArrayList();
-		return emptyList;
-	}
 	
 	public void setTextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		this.text = text;
@@ -85,52 +97,24 @@ public class TextFilter implements Layerable {
 		this.b = b;
 	}
 
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-
-	public String getPosition() {
-		return yPosition;
-	}
+	
 
 	public void setPosition(String yposition) {
 		this.yPosition = yposition;
 	}
 
-	public int getR() {
-		return r;
+
+	@Override
+	public List<VBox> getVBox() {
+		txtIn.setText(this.text);
+		
+		return null;
 	}
 
-	public void setR(int r) {
-		this.r = r;
-	}
-
-	public int getG() {
-		return g;
-	}
-
-	public void setG(int g) {
-		this.g = g;
-	}
-
-	public int getB() {
-		return b;
-	}
-
-	public void setB(int b) {
-		this.b = b;
+	@Override
+	public void uppdate() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

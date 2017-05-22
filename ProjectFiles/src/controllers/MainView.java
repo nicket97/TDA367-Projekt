@@ -6,8 +6,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.awt.GraphicsEnvironment;
 
 import javax.imageio.ImageIO;
 
@@ -90,7 +93,7 @@ public class MainView extends AnchorPane implements Initializable {
 	ComboBox<String> filterBox;
 	@FXML
 	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, levelsMin, levelsMax, blurRadius,
-			gBlurRadius, sharpenIntensity, sharpenThreshold, colorIntensity, bwThreshold, bwIntensity, wbWarm;
+			gBlurRadius, sharpenIntensity, sharpenThreshold, textSize, colorIntensity, bwThreshold, bwIntensity, wbWarm;
 	@FXML
 	StackPane toolContainer;
 	@FXML
@@ -103,6 +106,10 @@ public class MainView extends AnchorPane implements Initializable {
 	wbBackIcon, bwIcon, bwBackIcon,	aBackIcon, cBackIcon, eBackIcon, fBackIcon, clearColorIcon;
 	@FXML
 	Slider slideZoom;
+	@FXML
+	TextField textInput;
+	@FXML
+	ChoiceBox<String> fontBox, fontPlacement;
 	Layers layerstack = new Layers();
 
 	
@@ -123,7 +130,8 @@ public class MainView extends AnchorPane implements Initializable {
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
-
+		setChoiceBoxes();
+				
 		/***
 		 * Interface buttons.
 		 */
@@ -303,7 +311,7 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClickedOptions(menuExposure, exposureLevel, (new Exposure(40)));
 		//menuClickedOptions(menuFilter, filterLevel, (new NewKernel()));
 		menuClicked(menuEdge, (new Edge()));
-		menuClicked(menuTextFilter, (new TextFilter()));
+		menuClickedOptions(menuTextFilter, textLevel, (new TextFilter()));
 
 		final Delta dragDelta = new Delta();
 
@@ -531,6 +539,12 @@ public class MainView extends AnchorPane implements Initializable {
 		sharpenUpdate.setOnAction(e -> {
 			 Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
 			 .setRadius(sharpenIntensity.valueProperty().intValue());
+			canvasUpdate();
+		});
+		textUpdate.setOnAction(e -> {
+			Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
+			.setTextFilter(textInput.getText(), fontBox.getValue(), (int) textSize.getValue(), fontPlacement.getValue(), (int) (textColor.getValue().getRed() * 255), 
+					(int) (textColor.getValue().getGreen() * 255), (int) (textColor.getValue().getBlue() * 255));
 			canvasUpdate();
 		});
 		// Colors
@@ -849,6 +863,12 @@ public class MainView extends AnchorPane implements Initializable {
 		} else {
 			Platform.exit();
 		}
+	}
+	
+	private void setChoiceBoxes() {
+		fontPlacement.setItems(FXCollections.observableArrayList(FXCollections.observableArrayList("up","center","down")));
+		String fonts[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+		fontBox.setItems(FXCollections.observableArrayList(fonts));
 	}
 
 	

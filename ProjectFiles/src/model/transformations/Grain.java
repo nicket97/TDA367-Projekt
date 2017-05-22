@@ -1,9 +1,12 @@
 package model.transformations;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -16,13 +19,19 @@ import model.transformations.help.ColorTransformTest;
 public class Grain implements Layerable {
 
 	private int diviation;
+	
+	private Label labelDiviation = new Label("Avvikelse");
+	private VBox h1 = new VBox();
+	private Slider sliderDiviation = new Slider();
 
 	public Grain(int diviation) {
+		sliderDiviation.setMin(0);
+		sliderDiviation.setMax(200);
 		this.diviation = diviation;
 	}
 
 	public Grain(String[] args) {
-		this.diviation = Integer.parseInt(args[1]);
+		this( Integer.parseInt(args[1]));
 	}
 
 	@Override
@@ -40,10 +49,7 @@ public class Grain implements Layerable {
 				double newRed = pxColor.getRed() * 255 + factor;
 				double newGreen = pxColor.getGreen() * 255 + factor;
 				double newBlue = pxColor.getBlue() * 255 + factor;
-				// pxColor = Color.rgb((int) (((newRed) > 255) ? 255 : ((newRed)
-				// < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 :
-				// newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue +
-				// b));
+				
 				pxColor = Color.rgb(ColorTransformTest.getAllowedValue(newRed),
 						ColorTransformTest.getAllowedValue(newGreen), ColorTransformTest.getAllowedValue(newBlue));
 				pxImage[i][j] = pxColor;
@@ -65,11 +71,6 @@ public class Grain implements Layerable {
 		return "Brus";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public int getDiviation() {
 		return diviation;
@@ -77,6 +78,26 @@ public class Grain implements Layerable {
 
 	public void setDiviation(int diviation) {
 		this.diviation = diviation;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+
+		sliderDiviation.setValue(this.diviation);
+		h1.getChildren().add(sliderDiviation);
+		h1.getChildren().add(labelDiviation);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(h1);
+		
+		return vboxList;
+	}
+
+	@Override
+	public void uppdate() {
+		this.diviation = (int) sliderDiviation.getValue();
+		
 	}
 
 }

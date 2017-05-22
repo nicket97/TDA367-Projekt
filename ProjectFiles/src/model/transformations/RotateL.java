@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import model.core.Layerable;
 import model.core.LoadedImage;
 
@@ -35,10 +36,16 @@ public class RotateL implements Layerable {
 		return "Rotera 90\u00b0 vänster";
 	}
 
+
+
 	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
+	public List<VBox> getVBox() {
 		return null;
+	}
+
+	@Override
+	public void uppdate() {
+		
 	}
 
 }

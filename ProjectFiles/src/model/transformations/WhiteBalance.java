@@ -1,8 +1,11 @@
 package model.transformations;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -16,12 +19,20 @@ public class WhiteBalance implements Layerable {
 
 	private int threshold;
 
+	 
+    private Slider sliderThreshold = new Slider();
+    private Label labelText = new Label();
+	private VBox v1 = new VBox();
+
 	public WhiteBalance(int threshold) {
+		sliderThreshold.setMin(1);
+		sliderThreshold.setMax(100);
+		labelText.setText("Tröskelvärde");
 		this.threshold = threshold;
 	}
 
 	public WhiteBalance(String[] args) {
-		this.threshold = Integer.parseInt(args[1]);
+		this(Integer.parseInt(args[1]));
 	}
 
 	@Override
@@ -57,11 +68,6 @@ public class WhiteBalance implements Layerable {
 		return "Vitbalans";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public int getThreshold() {
 		return threshold;
@@ -69,6 +75,24 @@ public class WhiteBalance implements Layerable {
 
 	public void setThreshold(int threshold) {
 		this.threshold = threshold;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+		sliderThreshold.setValue(this.threshold);
+		v1.getChildren().add(sliderThreshold);
+		v1.getChildren().add(labelText);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(v1);
+		
+		return vboxList;
+	}
+
+	@Override
+	public void uppdate() {
+		this.threshold = (int) sliderThreshold.getValue();
 	}
 
 }

@@ -27,15 +27,15 @@
           <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="grid00" style="-fx-border-color:#000;"/>
-            <TextField fx:id="grid10" GridPane.columnIndex="1"  style="-fx-border-color:#000;" />
-            <TextField fx:id="grid20" GridPane.columnIndex="2"  style="-fx-border-color:#000;" />
-            <TextField fx:id="grid01" GridPane.rowIndex="1"  style="-fx-border-color:#000;" />
-            <TextField fx:id="grid11" GridPane.columnIndex="1" GridPane.rowIndex="1"  style="-fx-border-color:#000;" />
-            <TextField fx:id="grid21" GridPane.columnIndex="2" GridPane.rowIndex="1"  style="-fx-border-color:#000;" />
-            <TextField fx:id="grid02" GridPane.rowIndex="2"  style="-fx-border-color:#000;" />
-            <TextField fx:id="grid12" GridPane.columnIndex="1" GridPane.rowIndex="2"  style="-fx-border-color:#000;" />
-            <TextField fx:id="grid22" GridPane.columnIndex="2" GridPane.rowIndex="2"  style="-fx-border-color:#000;" />
+            <TextField fx:id="grid00" id="filterTextField"/>
+            <TextField fx:id="grid10" GridPane.columnIndex="1" id="filterTextField" />
+            <TextField fx:id="grid20" GridPane.columnIndex="2" id="filterTextField"/>
+            <TextField fx:id="grid01" GridPane.rowIndex="1" id="filterTextField"/>
+            <TextField fx:id="grid11" GridPane.columnIndex="1" GridPane.rowIndex="1"  id="filterTextField"/>
+            <TextField fx:id="grid21" GridPane.columnIndex="2" GridPane.rowIndex="1"  id="filterTextField"/>
+            <TextField fx:id="grid02" GridPane.rowIndex="2" id="filterTextField"/>
+            <TextField fx:id="grid12" GridPane.columnIndex="1" GridPane.rowIndex="2" id="filterTextField"/>
+            <TextField fx:id="grid22" GridPane.columnIndex="2" GridPane.rowIndex="2" id="filterTextField"/>
          </children>
       </GridPane>
       <ButtonBar layoutX="127.0" layoutY="346.0" prefHeight="40.0" prefWidth="458.0">

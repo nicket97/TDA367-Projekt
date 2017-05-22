@@ -29,27 +29,27 @@ public class ColorShift implements Layerable {
 	private double b;
 	private double intensity;
 	
-	VBox v1 = new VBox();
-	VBox v2 = new VBox();
-	VBox v3 = new VBox();
+	private VBox v1 = new VBox();
+	private VBox v2 = new VBox();
+	private VBox v3 = new VBox();
 	
-	ColorPicker customColor = new ColorPicker();
-	Label labelCustomColor = new Label("Välj egen färg");
+	private ColorPicker customColor = new ColorPicker();
+	private Label labelCustomColor = new Label("Välj egen färg");
 	
-	Slider sliderItensity = new Slider();
-	Label labelIntensity = new Label("Itensitet");
+	private Slider sliderItensity = new Slider();
+	private Label labelIntensity = new Label("Itensitet");
 	
-	Label labelColor = new Label("Välj färg");
-	ToggleGroup colorGroup = new ToggleGroup();
+	private Label labelColor = new Label("Välj färg");
+	private ToggleGroup colorGroup = new ToggleGroup();
 	
-	RadioButton yellowButton = new RadioButton();
-	RadioButton orangeButton = new RadioButton();
-	RadioButton blueButton = new RadioButton();
-	RadioButton redButton = new RadioButton();
-	RadioButton pinkButton = new RadioButton();
-	RadioButton purpleButton = new RadioButton();
-	RadioButton turquoiseButton = new RadioButton();
-	RadioButton greenButton = new RadioButton();
+	private RadioButton yellowButton = new RadioButton();
+	private RadioButton orangeButton = new RadioButton();
+	private RadioButton blueButton = new RadioButton();
+	private RadioButton redButton = new RadioButton();
+	private RadioButton pinkButton = new RadioButton();
+	private RadioButton purpleButton = new RadioButton();
+	private RadioButton turquoiseButton = new RadioButton();
+	private RadioButton greenButton = new RadioButton();
 	
 	HBox colorBox = new HBox();
 	

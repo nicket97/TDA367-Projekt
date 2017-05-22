@@ -1,7 +1,9 @@
 package model.transformations;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -14,6 +16,14 @@ import model.core.LoadedImage;
 public class Contrast implements Layerable {
 	private int threshold;
 	private double factor;
+	
+	private Slider sliderThreshold;
+	private Label labelThreshold = new Label("TröskelVärde");
+	
+	private Slider sliderFactor = new Slider();
+	private Label labelFactor = new Label("Itensitet");
+	private VBox v1 = new VBox();
+	private VBox v2 = new VBox();
 
 	public Contrast(int threshold, double factor) {
 		this.threshold = threshold;
@@ -22,6 +32,11 @@ public class Contrast implements Layerable {
 	}
 
 	public Contrast(String[] args) {
+		sliderThreshold.setMin(1);
+		sliderThreshold.setMax(255);
+		
+		sliderFactor.setMin(1);
+		sliderFactor.setMax(2);
 		threshold = Integer.parseInt(args[1]);
 		factor = Double.parseDouble(args[2]);
 	}
@@ -111,13 +126,26 @@ public class Contrast implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		// TODO Auto-generated method stub
-		return null;
+		sliderThreshold.setValue(this.threshold);
+		v1.getChildren().add(sliderThreshold);
+		v1.getChildren().add(labelThreshold);
+		
+		sliderFactor.setValue(this.factor);
+		v2.getChildren().add(sliderFactor);
+		v2.getChildren().add(labelFactor);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(v1);
+		vboxList.add(v2);
+		
+		return vboxList;
 	}
 
 	@Override
 	public void uppdate() {
-		// TODO Auto-generated method stub
+		this.threshold = (int) sliderThreshold.getValue();
+		this.factor = sliderFactor.getValue();
 		
 	}
 

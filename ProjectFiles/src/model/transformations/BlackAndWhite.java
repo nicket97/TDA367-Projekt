@@ -17,9 +17,9 @@ public class BlackAndWhite implements Layerable{
 
     private int threshold;
     
-    Slider sliderThreshold = new Slider();
-    Label labelText = new Label();
-	VBox h1 = new VBox();
+    private Slider sliderThreshold = new Slider();
+    private Label labelText = new Label();
+	private VBox h1 = new VBox();
 
 	public BlackAndWhite(int threshold) {
 		sliderThreshold.setMin(1);

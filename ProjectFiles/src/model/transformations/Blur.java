@@ -18,9 +18,9 @@ public class Blur implements Layerable {
 	private int radius;
 	private double[][] kernel;
 	
-	Label labelText = new Label();
-	VBox h1 = new VBox();
-	Slider sliderRadius = new Slider();
+	private Label labelText = new Label();
+	private VBox h1 = new VBox();
+	private Slider sliderRadius = new Slider();
 
 	public Blur(int r) {
 		sliderRadius.setMin(1);

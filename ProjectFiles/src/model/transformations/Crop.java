@@ -7,6 +7,7 @@ import java.util.List;
 import com.sun.javafx.geom.Rectangle;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import model.core.Layerable;
 import model.core.LoadedImage;
 
@@ -52,12 +53,7 @@ public class Crop implements Layerable {
 		return "Beskärning";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	public Point getTopLeft() {
 		return topLeft;
 	}
@@ -96,6 +92,17 @@ public class Crop implements Layerable {
 
 	public void setR(Rectangle r) {
 		this.r = r;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+		return null;
+	}
+
+	@Override
+	public void uppdate() {
+		
+		
 	}
 
 }

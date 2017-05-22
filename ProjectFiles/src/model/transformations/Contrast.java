@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.List;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -86,11 +87,6 @@ public class Contrast implements Layerable {
 		return "Kontrast";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public int getThreshold() {
 		return threshold;
@@ -111,6 +107,18 @@ public class Contrast implements Layerable {
 	public void setFactorAndThreshold(int threshold, double factor) {
 		this.threshold = threshold;
 		this.factor = factor;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void uppdate() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -26,19 +26,20 @@ public class Contrast implements Layerable {
 	private VBox v2 = new VBox();
 
 	public Contrast(int threshold, double factor) {
+		sliderThreshold.setMin(1);
+		sliderThreshold.setMax(255);
+		
+		sliderFactor.setMin(1);
+		sliderFactor.setMax(2);
+		
 		this.threshold = threshold;
 		this.factor = factor;
 
 	}
 
 	public Contrast(String[] args) {
-		sliderThreshold.setMin(1);
-		sliderThreshold.setMax(255);
-		
-		sliderFactor.setMin(1);
-		sliderFactor.setMax(2);
-		threshold = Integer.parseInt(args[1]);
-		factor = Double.parseDouble(args[2]);
+		this( Integer.parseInt(args[1]),Double.parseDouble(args[2]) );
+
 	}
 
 	@Override

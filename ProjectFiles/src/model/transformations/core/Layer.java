@@ -69,6 +69,7 @@ public class Layer {
 	public void setRGB(double r, double g, double b, double value) {
 		((ColorShift) action).setRGB(r, g, b, value);
 	}
+	
 
 
 	public void setThreshold(int value) {

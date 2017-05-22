@@ -633,12 +633,13 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, topLevel, fadeIn);
 		});
 		exposureIcon.setOnMouseClicked(e -> {
-			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
+			exposureLevel.getChildren().add(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getAction().getVBox().get(0));
+			/*mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Exposure(1)));
 				exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
 				canvasUpdate();
-			}
+			}*/
 		});
 		exposureBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(exposureLevel, adjustLevel, fadeAdjust);

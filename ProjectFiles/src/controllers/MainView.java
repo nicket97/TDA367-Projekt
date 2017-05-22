@@ -69,15 +69,11 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	AnchorPane menuBar;
 	@FXML
-	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject, menuResetPicture;
-	@FXML
-	MenuItem menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels;
-	@FXML
-	MenuItem menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR;
-	@FXML
-	MenuItem menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter;
-	@FXML
-	MenuItem menuZoomIn, menuZoomOut, menuUndo, menuRedo, menuResetWindow;
+	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject, menuResetPicture,
+	menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, 
+	menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR,
+	menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter, 
+	menuZoomIn, menuZoomOut, menuUndo, menuRedo, menuResetWindow;
 	@FXML
 	Button closeButton, miniButton, maxiButton;
 	@FXML
@@ -89,35 +85,22 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ToggleGroup colorGroup;
 	@FXML
-	ColorPicker customColor;
+	ColorPicker customColor, textColor;
 	@FXML
 	ComboBox<String> filterBox;
 	@FXML
 	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, levelsMin, levelsMax, blurRadius,
-			gBlurRadius, sharpenIntensity, sharpenThreshold;
-	@FXML
-	Slider colorIntensity, bwThreshold, bwIntensity, wbWarm;
+			gBlurRadius, sharpenIntensity, sharpenThreshold, colorIntensity, bwThreshold, bwIntensity, wbWarm;
 	@FXML
 	StackPane toolContainer;
 	@FXML
-	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel;
+	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel, exposureLevel, contrastLevel, levelsLevel, grainLevel,
+	blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel;
 	@FXML
-	HBox exposureLevel, contrastLevel, levelsLevel, grainLevel;
-	@FXML
-	HBox blurLevel, gBlurLevel, sharpenLevel, textLevel;
-	@FXML
-	HBox colorFilterLevel, grayLevel, bwLevel, wbLevel;
-	@FXML
-	Label adjustIcon, colorIcon, effectIcon, filterIcon;
-	@FXML
-	Label exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon, levelsIcon, levelsBackIcon, grainIcon,
-			grainBackIcon;
-	@FXML
-	Label blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon, sharpenIcon, sharpenBackIcon, textIcon, textBackIcon;
-	@FXML
-	Label colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon, whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon;
-	@FXML
-	Label aBackIcon, cBackIcon, eBackIcon, fBackIcon;
+	Label adjustIcon, colorIcon, effectIcon, filterIcon, exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon, 
+	levelsIcon, levelsBackIcon, grainIcon, grainBackIcon, blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon,
+	sharpenIcon, sharpenBackIcon, textIcon, textBackIcon, colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon, whiteBalanceIcon,
+	wbBackIcon, bwIcon, bwBackIcon,	aBackIcon, cBackIcon, eBackIcon, fBackIcon, clearColorIcon;
 	@FXML
 	Slider slideZoom;
 	Layers layerstack = new Layers();
@@ -493,6 +476,9 @@ public class MainView extends AnchorPane implements Initializable {
 		layerPane.getChildren().add(layerView);
 
 		topLevel.toFront();
+		clearColorIcon.setOnMouseClicked(e -> {
+			customColor.setValue(null);
+		});
 
 		/***
 		 * Adding values to the color buttons.
@@ -549,12 +535,12 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		// Colors
 		cfUpdate.setOnAction(e -> {
-			if (customColor.getValue().getBlue() != 1 && customColor.getValue().getGreen() != 1 && customColor.getValue().getRed() != 1) {
-				
+			if (customColor.getValue().getBlue() != 1 && customColor.getValue().getGreen() != 1 && customColor.getValue().getRed() != 1){
 				System.out.println("customcolor");
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed()*255,
 						customColor.getValue().getGreen()*255, customColor.getValue().getBlue()*255,
 						colorIntensity.valueProperty().doubleValue());
+				colorGroup.selectToggle(null);
 			} else {
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setColor(
 						(String) colorGroup.getSelectedToggle().getUserData(),

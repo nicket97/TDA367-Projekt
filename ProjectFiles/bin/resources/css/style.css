@@ -23,6 +23,10 @@
 #clickable {
 	-fx-cursor: hand;
 }
+#colorClear {
+	-fx-cursor: hand;
+	-fx-opacity: 0.5;
+}
 #boldLabel {
 	-fx-font-weight: bold;
 }

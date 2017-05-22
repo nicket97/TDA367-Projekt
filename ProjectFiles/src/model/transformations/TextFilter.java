@@ -1,20 +1,23 @@
 package model.transformations;
 
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Adds a chosen text to the picture
@@ -134,20 +137,45 @@ public class TextFilter implements Layerable {
 	public List<VBox> getVBox() {
 		
 		txtIn.setText(this.text);
+		v1.getChildren().add(txtIn);
+		v1.getChildren().add(labelText);
 		
 		customColor.setValue(Color.rgb(this.r, this.g, this.b));
+		v2.getChildren().add(customColor);
+		v2.getChildren().add(labelColor);
 		
 		fontBox.setValue(this.font);
+		v3.getChildren().add(fontBox);
+		v3.getChildren().add(labelFont);
 		
 		positionBox.setValue(this.yPosition);
+		v4.getChildren().add(positionBox);
+		v4.getChildren().add(labelPosition);
 		
+		sliderSize.setValue(this.size);
+		v5.getChildren().add(sliderSize);
+		v5.getChildren().add(labelSize);
 		
-		return null;
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(v1);
+		vboxList.add(v2);
+		vboxList.add(v3);
+		vboxList.add(v4);
+		vboxList.add(v5);
+		
+		return vboxList;
 	}
 
 	@Override
 	public void uppdate() {
-		// TODO Auto-generated method stub
+		this.text = txtIn.getText();
+		this.r = (int) customColor.getValue().getRed()*255;
+		this.g = (int) customColor.getValue().getGreen()*255;
+		this.b = (int) customColor.getValue().getBlue()*255;
+		this.font = fontBox.getValue();
+		this.yPosition = positionBox.getValue();
+		this.size = (int) sliderSize.getValue();
 		
 	}
 }

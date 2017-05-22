@@ -30,6 +30,10 @@ public class Crop implements Layerable {
 		this.height = height;
 
 	}
+	public Crop(String[] args){
+		this(new Point(Integer.parseInt(args[1]), Integer.parseInt(args[2])), new Point(Integer.parseInt(args[3]), Integer.parseInt(args[4])), 
+				Integer.parseInt(args[5]), Integer.parseInt(args[6]));
+	}
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
@@ -43,13 +47,14 @@ public class Crop implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		String output = "Crop?" + topLeft + "?" + bottomRight + "?";
+		String output = "Crop?" + topLeft.getX() + "?" + topLeft.getY() + "?" 
+				+ bottomRight.getX() + "?"  + bottomRight.getY() + "?"
+				+ this.width + "?" + this.height + "?";
 		return output;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Beskärning";
 	}
 

@@ -46,11 +46,11 @@ public class TextFilter implements Layerable {
 		g2.setFont(new Font(font, Font.BOLD, size));
 		int x = (img.getWidth() - metrics.stringWidth(text)) / 2;
 		int y = 75;
-		if(this.yPosition.equals("up"))
+		if(this.yPosition.equals("uppe"))
 			y = 75;
-		else if(this.yPosition.equals("center"))
+		else if(this.yPosition.equals("mitten"))
 			y = img.getHeigth() / 2;
-		else if(this.yPosition.equals("down"))
+		else if(this.yPosition.equals("nere"))
 			y = img.getHeigth() - 75;
 			
 		g2.drawString(text, x, y);

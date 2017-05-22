@@ -543,7 +543,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		textUpdate.setOnAction(e -> {
 			Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
-			.setTextFilter(textInput.getText(), fontBox.getValue(), (int) textSize.getValue(), fontPlacement.getValue(), (int) (textColor.getValue().getRed() * 255), 
+			.setTextFilter(textInput.getText(), fontBox.getValue() == null ? "Helvetica" : fontBox.getValue()  , (int) textSize.getValue(), fontPlacement.getValue() == null ? "mitten" : fontPlacement.getValue(), (int) (textColor.getValue().getRed() * 255), 
 					(int) (textColor.getValue().getGreen() * 255), (int) (textColor.getValue().getBlue() * 255));
 			canvasUpdate();
 		});
@@ -866,7 +866,7 @@ public class MainView extends AnchorPane implements Initializable {
 	}
 	
 	private void setChoiceBoxes() {
-		fontPlacement.setItems(FXCollections.observableArrayList(FXCollections.observableArrayList("up","center","down")));
+		fontPlacement.setItems(FXCollections.observableArrayList(FXCollections.observableArrayList("uppe","mitten","nere")));
 		String fonts[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		fontBox.setItems(FXCollections.observableArrayList(fonts));
 	}
@@ -916,6 +916,8 @@ public class MainView extends AnchorPane implements Initializable {
 		} else if (layer.getName().equals("Vitbalans")) {
 			setVisibility(wbLevel);
 			wbWarm.setValue(layer.getInt());
+		} else if (layer.getName().equals("Textfilter")) {
+			setVisibility(textLevel);
 		}
 		/**
 		 * else if (layer.getName().equals("Eget filter")){

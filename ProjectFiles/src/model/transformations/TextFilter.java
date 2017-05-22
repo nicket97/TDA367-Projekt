@@ -52,6 +52,9 @@ public class TextFilter implements Layerable {
 
 	public TextFilter(String[] args) {
 	}
+	public TextFilter(){
+		
+	}
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {

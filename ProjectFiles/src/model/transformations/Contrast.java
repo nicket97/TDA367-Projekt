@@ -17,7 +17,7 @@ public class Contrast implements Layerable {
 	private int threshold;
 	private double factor;
 	
-	private Slider sliderThreshold;
+	private Slider sliderThreshold = new Slider();
 	private Label labelThreshold = new Label("TröskelVärde");
 	
 	private Slider sliderFactor = new Slider();

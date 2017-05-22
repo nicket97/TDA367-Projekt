@@ -937,7 +937,7 @@ public class MainView extends AnchorPane implements Initializable {
 		} else if (layer.getName().equals("Textfilter")) {
 			setVisibility(textLevel);
 			textSize.setValue(layer.getInt());
-			textInput.setText(layer.getText());
+			//textInput.setText(layer.getText());
 		}
 		/**
 		 * else if (layer.getName().equals("Eget filter")){

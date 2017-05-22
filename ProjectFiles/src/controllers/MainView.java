@@ -633,18 +633,18 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, topLevel, fadeIn);
 		});
 		exposureIcon.setOnMouseClicked(e -> {
-			exposureLevel.getChildren().clear();
-			Layers.addLayer(new Layer(new Exposure(50)));
+			/**Layers.addLayer(new Layer(new Exposure(50)));
 			exposureLevel.getChildren().add(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getAction().getVBox().get(0));
-			exposureLevel.setVisible(true);
-			/*mouseClicked(adjustLevel, exposureLevel, fadeExposure);
+			exposureLevel.setVisible(true);*/
+			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (Layers.getBackgroundImage() != null) {
+				if (exposureLevel.getChildren().size() == 3) { exposureLevel.getChildren().remove(1); }
 				Layers.addLayer(new Layer(new Exposure(1)));
 				//exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
 				exposureLevel.getChildren().add(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getAction().getVBox().get(0));
 				exposureUpdate.toFront();
 				canvasUpdate();
-			}*/
+			}
 		});
 		exposureBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(exposureLevel, adjustLevel, fadeAdjust);
@@ -908,6 +908,9 @@ public class MainView extends AnchorPane implements Initializable {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		if (layer.getName().equals("Exponering")) {
 			setVisibility(exposureLevel);
+			//if (exposureLevel.getChildren().size() == 3) { exposureLevel.getChildren().remove(1); }
+			exposureLevel.getChildren().addAll(layer.getAction().getVBox());
+			exposureUpdate.toFront();
 			//exposureIntensity.setValue(layer.getDouble());
 		} else if (layer.getName().equals("Kontrast")) {
 			setVisibility(contrastLevel);

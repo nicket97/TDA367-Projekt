@@ -92,7 +92,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	ComboBox<String> filterBox;
 	@FXML
-	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, levelsMin, levelsMax, blurRadius,
+	Slider contrastThreshold, contrastIntensity, grainDeviation, levelsMin, levelsMax, blurRadius,
 			gBlurRadius, sharpenIntensity, sharpenThreshold, textSize, colorIntensity, bwThreshold, bwIntensity, wbWarm, greyIntensity;
 	@FXML
 	StackPane toolContainer;
@@ -522,7 +522,7 @@ public class MainView extends AnchorPane implements Initializable {
 		// Adjustments
 		exposureUpdate.setOnAction(e -> {
 			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-					.setFactor(exposureIntensity.valueProperty().intValue());
+					.getAction().uppdate();
 			canvasUpdate();
 		});
 		contrastUpdate.setOnAction(e -> {
@@ -637,7 +637,9 @@ public class MainView extends AnchorPane implements Initializable {
 			/*mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Exposure(1)));
-				exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
+				//exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
+				exposureLevel.getChildren().add(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getAction().getVBox().get(0));
+				exposureUpdate.toFront();
 				canvasUpdate();
 			}*/
 		});
@@ -903,7 +905,7 @@ public class MainView extends AnchorPane implements Initializable {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		if (layer.getName().equals("Exponering")) {
 			setVisibility(exposureLevel);
-			exposureIntensity.setValue(layer.getDouble());
+			//exposureIntensity.setValue(layer.getDouble());
 		} else if (layer.getName().equals("Kontrast")) {
 			setVisibility(contrastLevel);
 			contrastThreshold.setValue(layer.getDouble());

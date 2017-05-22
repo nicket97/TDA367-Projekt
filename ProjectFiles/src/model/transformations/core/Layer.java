@@ -148,6 +148,10 @@ public class Layer {
 		}
 		return 0;
 	}
+	
+	public String getText() {
+		return ((TextFilter) action).getText();
+	}
 
 	public double getMinLevel() {
 		return ((Levels) action).getMinLevel();

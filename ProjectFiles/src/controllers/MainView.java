@@ -93,7 +93,7 @@ public class MainView extends AnchorPane implements Initializable {
 	ComboBox<String> filterBox;
 	@FXML
 	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, levelsMin, levelsMax, blurRadius,
-			gBlurRadius, sharpenIntensity, sharpenThreshold, textSize, colorIntensity, bwThreshold, bwIntensity, wbWarm;
+			gBlurRadius, sharpenIntensity, sharpenThreshold, textSize, colorIntensity, bwThreshold, bwIntensity, wbWarm, greyIntensity;
 	@FXML
 	StackPane toolContainer;
 	@FXML
@@ -916,9 +916,12 @@ public class MainView extends AnchorPane implements Initializable {
 		} else if (layer.getName().equals("Vitbalans")) {
 			setVisibility(wbLevel);
 			wbWarm.setValue(layer.getInt());
+		} else if (layer.getName().equals("Gråskala")) {
+			setVisibility(grayLevel);
 		} else if (layer.getName().equals("Textfilter")) {
 			setVisibility(textLevel);
 			textSize.setValue(layer.getInt());
+			textInput.setText(layer.getText());
 		}
 		/**
 		 * else if (layer.getName().equals("Eget filter")){

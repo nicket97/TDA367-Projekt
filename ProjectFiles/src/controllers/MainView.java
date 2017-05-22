@@ -908,7 +908,7 @@ public class MainView extends AnchorPane implements Initializable {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		if (layer.getName().equals("Exponering")) {
 			setVisibility(exposureLevel);
-			//if (exposureLevel.getChildren().size() == 3) { exposureLevel.getChildren().remove(1); }
+			if (exposureLevel.getChildren().size() == 2) { exposureLevel.getChildren().remove(1); }
 			exposureLevel.getChildren().addAll(layer.getAction().getVBox());
 			exposureUpdate.toFront();
 			//exposureIntensity.setValue(layer.getDouble());

@@ -918,6 +918,7 @@ public class MainView extends AnchorPane implements Initializable {
 			wbWarm.setValue(layer.getInt());
 		} else if (layer.getName().equals("Textfilter")) {
 			setVisibility(textLevel);
+			textSize.setValue(layer.getInt());
 		}
 		/**
 		 * else if (layer.getName().equals("Eget filter")){

@@ -143,6 +143,9 @@ public class Layer {
 		else if (name.equals("Vitbalans")){
 			return ((WhiteBalance) action).getThreshold();
 		}
+		else if (name.equals("Textfilter")) {
+			return ((TextFilter) action).getSize();
+		}
 		return 0;
 	}
 

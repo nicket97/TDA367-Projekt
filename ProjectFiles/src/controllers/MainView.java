@@ -476,6 +476,7 @@ public class MainView extends AnchorPane implements Initializable {
 		layerPane.getChildren().add(layerView);
 
 		topLevel.toFront();
+		customColor.setValue(null);
 		clearColorIcon.setOnMouseClicked(e -> {
 			customColor.setValue(null);
 		});
@@ -535,7 +536,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		// Colors
 		cfUpdate.setOnAction(e -> {
-			if (customColor.getValue().getBlue() != 1 && customColor.getValue().getGreen() != 1 && customColor.getValue().getRed() != 1){
+			if (customColor.getValue() != null) {
 				System.out.println("customcolor");
 				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed()*255,
 						customColor.getValue().getGreen()*255, customColor.getValue().getBlue()*255,

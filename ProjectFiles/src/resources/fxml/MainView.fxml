@@ -869,7 +869,7 @@
                                           <Insets top="6.0" />
                                        </HBox.margin>
                                        <padding>
-                                          <Insets left="8.0" />
+                                          <Insets left="5.0" />
                                        </padding>
                                     </Label>
                                  </children>

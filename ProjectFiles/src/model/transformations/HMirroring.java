@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -35,9 +36,15 @@ public class HMirroring implements Layerable {
 	}
 
 	@Override
-	public List<Slider> getSliders() {
-		List<Slider> emptyList = new ArrayList();
-		return emptyList;
+	public List<VBox> getVBox() {
+		return null;
 	}
+
+	@Override
+	public void uppdate() {
+		
+	}
+
+
 
 }

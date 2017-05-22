@@ -82,6 +82,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 		LoadedImage newImage = new LoadedImage(img);
 
 		for (Layer layer : Layers.getLayerStack()) {
+			System.out.println(layer.getName() + "  " + layer.hashCode());
 			if (layer.getVisible()) {
 				newImage = layer.getAction().transform(newImage);
 			}

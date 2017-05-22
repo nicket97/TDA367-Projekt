@@ -25,7 +25,7 @@ public class Edge implements Layerable {
 		kernel[0][1] = -1;
 		kernel[0][2] = -1;
 		kernel[1][0] = -1;
-		kernel[1][1] = -8;
+		kernel[1][1] = 8;
 		kernel[1][2] = -1;
 		kernel[2][0] = -1;
 		kernel[2][1] = -1;

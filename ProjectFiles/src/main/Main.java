@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -32,6 +33,7 @@ public class Main extends Application {
 		Scene scene = new Scene(root, 1280, 720);
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.setTitle("Layers");
+		primaryStage.getIcons().add(new Image("resources/icons/favicon.png"));
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

@@ -836,6 +836,7 @@ public class MainView extends AnchorPane implements Initializable {
 		cfUpdate.setDisable(b);
 		bwUpdate.setDisable(b);
 		wbUpdate.setDisable(b);
+		filterUpdate.setDisable(b);
 		slideZoom.setDisable(b);
 	}
 

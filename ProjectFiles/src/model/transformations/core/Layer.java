@@ -12,6 +12,7 @@ import model.transformations.Levels;
 import model.transformations.NewKernel;
 import model.transformations.Sharpen;
 import model.transformations.WhiteBalance;
+import model.transformations.TextFilter;
 
 /**
  * Keeps information regarding a layer
@@ -99,6 +100,10 @@ public class Layer {
 	public void setKernel(double[][] kernel, String name){
 		((NewKernel) action).setKernelAndName(kernel, name);
 	}
+	
+	public void setTextFilter(String text, String font, int size, String yPosition, int r, int g, int b ) {
+		((TextFilter) action).setTextFilter(text, font, size, yPosition, r, g, b);
+	}
 
 	public double getIntensity(){
 		return ((ColorShift) action).getIntensity();
@@ -138,7 +143,14 @@ public class Layer {
 		else if (name.equals("Vitbalans")){
 			return ((WhiteBalance) action).getThreshold();
 		}
+		else if (name.equals("Textfilter")) {
+			return ((TextFilter) action).getSize();
+		}
 		return 0;
+	}
+	
+	public String getText() {
+		return ((TextFilter) action).getText();
 	}
 
 	public double getMinLevel() {

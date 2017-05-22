@@ -18,13 +18,14 @@ public class TextFilter implements Layerable {
 	private String text = "Your text";
 	private String font = "Helvetica";
 	private int size = 40;
-	private int yPosition = 100;
+	private String yPosition = "center";
 	private int r = 255;
 	private int g = 255;
 	private int b = 255;
 
-	public TextFilter(String text, int size, int yPosition, int r, int g, int b) {
+	public TextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		this.text = text;
+		this.font = font;
 		this.size = size;
 		this.yPosition = yPosition;
 		this.r = r;
@@ -43,8 +44,16 @@ public class TextFilter implements Layerable {
 		FontMetrics metrics = g2.getFontMetrics(new Font(font, Font.BOLD, size));
 		g2.setColor(new java.awt.Color(r, g, b));
 		g2.setFont(new Font(font, Font.BOLD, size));
-		int xPosition = (img.getWidth() - metrics.stringWidth(text)) / 2;
-		g2.drawString(text, xPosition, yPosition);
+		int x = (img.getWidth() - metrics.stringWidth(text)) / 2;
+		int y = 75;
+		if(this.yPosition.equals("uppe"))
+			y = 75;
+		else if(this.yPosition.equals("mitten"))
+			y = img.getHeigth() / 2;
+		else if(this.yPosition.equals("nere"))
+			y = img.getHeigth() - 75;
+			
+		g2.drawString(text, x, y);
 
 		return new LoadedImage(BImg);
 	}
@@ -65,6 +74,16 @@ public class TextFilter implements Layerable {
 		List<Slider> emptyList = new ArrayList();
 		return emptyList;
 	}
+	
+	public void setTextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
+		this.text = text;
+		this.font = font;
+		this.size = size;
+		this.yPosition = yPosition;
+		this.r = r;
+		this.g = g;
+		this.b = b;
+	}
 
 	public String getText() {
 		return text;
@@ -82,12 +101,12 @@ public class TextFilter implements Layerable {
 		this.size = size;
 	}
 
-	public int getPosition() {
+	public String getPosition() {
 		return yPosition;
 	}
 
-	public void setPosition(int position) {
-		this.yPosition = position;
+	public void setPosition(String yposition) {
+		this.yPosition = yposition;
 	}
 
 	public int getR() {
@@ -114,3 +133,4 @@ public class TextFilter implements Layerable {
 		this.b = b;
 	}
 }
+

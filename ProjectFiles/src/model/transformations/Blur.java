@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controllers.MainView;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -77,21 +79,7 @@ public class Blur implements Layerable {
 		return "Oskärpa";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		List<Slider> sliders = new ArrayList<>();
-		Slider radiusSlider = new Slider();
-		radiusSlider.setMin(0);
-		radiusSlider.setMax(255);
-		radiusSlider.setValue(this.getRadius());
-		radiusSlider.setOnDragDone(e -> {
-			this.setRadius((int) radiusSlider.getValue());
-			MainView.getCanvas().repaint();
-			System.out.println("Radie " + radiusSlider.getValue());
-		});
-		sliders.add(radiusSlider);
-		return sliders;
-	}
+
 
 	public void setRadius(int radius) {
 		this.radius = radius;
@@ -107,5 +95,23 @@ public class Blur implements Layerable {
 
 	public void setKernel(double[][] kernel) {
 		this.kernel = kernel;
+	}
+
+	@Override
+	public List<HBox> getHBox() {
+		HBox h1 = new HBox();
+		Slider sliderRadius = new Slider();
+		sliderRadius.setValue(radius);
+		sliderRadius.setMin(1);
+		sliderRadius.setMax(10);
+		sliderRadius.setMajorTickUnit(1);
+		
+		Label labelText = new Label();
+		labelText.setText("Radie");
+		h1.getChildren().add(sliderRadius);
+		h1.getChildren().add(labelText);
+		List<HBox> hboxList = new ArrayList<HBox>();
+		hboxList.add(h1);
+		return hboxList;
 	}
 }

@@ -3,6 +3,7 @@ package model.core;
 import java.util.List;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
 
 /**
  * Interface common for all filters
@@ -16,6 +17,6 @@ public interface Layerable {
 
 	public String getName();
 
-	public List<Slider> getSliders();
+	public List<HBox> getHBox();
 
 }

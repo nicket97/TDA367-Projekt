@@ -80,7 +80,7 @@ public class WhiteBalance implements Layerable {
 	@Override
 	public List<VBox> getVBox() {
 		v1.getChildren().clear();
-		
+		v1.setTranslateY(50);
 		sliderThreshold.setValue(this.threshold);
 		v1.getChildren().add(sliderThreshold);
 		v1.getChildren().add(labelText);

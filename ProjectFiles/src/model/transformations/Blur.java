@@ -105,6 +105,7 @@ public class Blur implements Layerable {
 	@Override
 	public List<VBox> getVBox() {
 		h1.getChildren().clear();
+		h1.setTranslateY(50);
 		sliderRadius.setValue(radius);
 		h1.getChildren().add(sliderRadius);
 		h1.getChildren().add(labelText);

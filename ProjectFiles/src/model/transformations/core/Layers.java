@@ -42,4 +42,7 @@ public class Layers {
 	public static void setBackgroundImage(LoadedImage backgroundImage) {
 		Layers.backgroundImage = backgroundImage;
 	}
+	public static Layer getLast(){
+		return layerStack.get(layerStack.size()-1);
+	}
 }

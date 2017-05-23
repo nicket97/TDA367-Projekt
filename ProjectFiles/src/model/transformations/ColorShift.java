@@ -186,6 +186,9 @@ public class ColorShift implements Layerable {
 		v1.getChildren().clear();
 		v2.getChildren().clear();
 		v3.getChildren().clear();
+		v1.setTranslateY(50);
+		v2.setTranslateY(50);
+		v3.setTranslateY(50);
 		
 		v1.getChildren().add(yellowButton);
 		v1.getChildren().add(orangeButton);

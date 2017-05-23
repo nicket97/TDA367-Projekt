@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
+import model.transformations.help.ColorTransformTest;
 
 /**
  * Filter that adds gaussian blur to the picture
@@ -76,7 +77,7 @@ public class GaussianBlur implements Layerable {
 					}
 					x++;
 				}
-				pxImage[i][j] = Color.rgb(sumRed / count, sumGreen / count, sumBlue / count);
+				pxImage[i][j] = Color.rgb(ColorTransformTest.getAllowedValue(sumRed / count), ColorTransformTest.getAllowedValue(sumGreen / count), ColorTransformTest.getAllowedValue(sumBlue / count));
 			}
 		}
 		newImage.setPxImage(pxImage);
@@ -139,6 +140,7 @@ public class GaussianBlur implements Layerable {
 	@Override
 	public List<VBox> getVBox() {
 		v1.getChildren().clear();
+		v1.setTranslateY(50);
 		sliderRadius.setValue(radius);
 		v1.getChildren().add(sliderRadius);
 		v1.getChildren().add(labelText);

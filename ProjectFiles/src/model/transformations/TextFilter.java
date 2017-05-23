@@ -140,7 +140,11 @@ public class TextFilter implements Layerable {
 		v3.getChildren().clear();
 		v4.getChildren().clear();
 		v5.getChildren().clear();
-		
+		v1.setTranslateY(50);
+		v2.setTranslateY(50);
+		v3.setTranslateY(50);
+		v4.setTranslateY(50);
+		v5.setTranslateY(50);
 		txtIn.setText(this.text);
 		v1.getChildren().add(txtIn);
 		v1.getChildren().add(labelText);

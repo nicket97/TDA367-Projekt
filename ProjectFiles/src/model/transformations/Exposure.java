@@ -90,6 +90,7 @@ public class Exposure implements Layerable {
 	@Override
 	public List<VBox> getVBox() {
 		v1.getChildren().clear();
+		v1.setTranslateY(55);
 		sliderFactor.setValue(this.factor);
 		v1.getChildren().add(sliderFactor);
 		v1.getChildren().add(labelFactor);

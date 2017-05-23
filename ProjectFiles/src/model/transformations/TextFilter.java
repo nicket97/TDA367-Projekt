@@ -10,6 +10,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -138,19 +139,23 @@ public class TextFilter implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		initiateVBox(v1);
-		initiateVBox(v2);
-		initiateVBox(v3);
-		initiateVBox(v4);
-		initiateVBox(v5);
+		initiateVBox(v1, 15);
+		initiateVBox(v2, 20);
+		initiateVBox(v3, 25);
+		initiateVBox(v4, 25);
+		initiateVBox(v5, 45);
 		txtIn.setText(this.text);
 		v1.getChildren().addAll(txtIn, labelText);
+		v1.setPrefWidth(170);
 		
 		customColor.setValue(Color.rgb(this.r, this.g, this.b));
+		customColor.setMinHeight(25);
 		v2.getChildren().addAll(customColor, labelColor);
+		v2.setPrefWidth(140);
 		
 		fontBox.setValue(this.font);
 		v3.getChildren().addAll(fontBox, labelFont);
+		v3.setPrefWidth(200);
 		
 		positionBox.setValue(this.yPosition);
 		v4.getChildren().addAll(positionBox, labelPosition);
@@ -169,11 +174,12 @@ public class TextFilter implements Layerable {
 		return vboxList;
 	}
 
-	private void initiateVBox(VBox v) {
+	private void initiateVBox(VBox v, double d) {
 		v.getChildren().clear();
-		v.setTranslateY(45);
+		v.setTranslateY(d);
 		v.setAlignment(Pos.BASELINE_CENTER);
 		v.setSpacing(10);
+		v.setPadding(new Insets(0, 15, 0, 15));;
 	}
 
 	@Override

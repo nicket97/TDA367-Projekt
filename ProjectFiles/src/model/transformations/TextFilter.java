@@ -82,7 +82,7 @@ public class TextFilter implements Layerable {
 		this(args[1], args[2], Integer.parseInt(args[3]), args[4], Integer.parseInt(args[5]), Integer.parseInt(args[6]) , Integer.parseInt(args[7]));
 	}
 	public TextFilter(){
-		this("Din text", "Helvetica", 40, "center", 255, 255, 255);
+		this("Din text", "Helvetica", 40, "mitten", 255, 255, 255);
 	}
 
 	@Override

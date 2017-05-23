@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.List;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -25,7 +26,7 @@ public class Edge implements Layerable {
 		kernel[0][1] = -1;
 		kernel[0][2] = -1;
 		kernel[1][0] = -1;
-		kernel[1][1] = -8;
+		kernel[1][1] = 8;
 		kernel[1][2] = -1;
 		kernel[2][0] = -1;
 		kernel[2][1] = -1;
@@ -33,17 +34,7 @@ public class Edge implements Layerable {
 	}
 
 	public Edge(String[] args) {
-		radius = 1;
-		kernel = new double[3][3];
-		kernel[0][0] = -1;
-		kernel[0][1] = -1;
-		kernel[0][2] = -1;
-		kernel[1][0] = -1;
-		kernel[1][1] = 8;
-		kernel[1][2] = -1;
-		kernel[2][0] = -1;
-		kernel[2][1] = -1;
-		kernel[2][2] = -1;
+		this();
 	}
 
 	@Override
@@ -88,11 +79,6 @@ public class Edge implements Layerable {
 		return "Kanter";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public double[][] getKernel() {
 		return kernel;
@@ -108,6 +94,16 @@ public class Edge implements Layerable {
 
 	public void setRadius(int radius) {
 		this.radius = radius;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+		return null;
+	}
+
+	@Override
+	public void uppdate() {
+		
 	}
 
 }

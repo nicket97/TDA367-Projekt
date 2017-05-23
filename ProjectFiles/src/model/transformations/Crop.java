@@ -7,6 +7,7 @@ import java.util.List;
 import com.sun.javafx.geom.Rectangle;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import model.core.Layerable;
 import model.core.LoadedImage;
 
@@ -29,6 +30,10 @@ public class Crop implements Layerable {
 		this.height = height;
 
 	}
+	public Crop(String[] args){
+		this(new Point(Integer.parseInt(args[1]), Integer.parseInt(args[2])), new Point(Integer.parseInt(args[3]), Integer.parseInt(args[4])), 
+				Integer.parseInt(args[5]), Integer.parseInt(args[6]));
+	}
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
@@ -42,22 +47,18 @@ public class Crop implements Layerable {
 
 	@Override
 	public String saveLayer() {
-		String output = "Crop?" + topLeft + "?" + bottomRight + "?";
+		String output = "Crop?" + topLeft.getX() + "?" + topLeft.getY() + "?" 
+				+ bottomRight.getX() + "?"  + bottomRight.getY() + "?"
+				+ this.width + "?" + this.height + "?";
 		return output;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Beskärning";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	public Point getTopLeft() {
 		return topLeft;
 	}
@@ -96,6 +97,17 @@ public class Crop implements Layerable {
 
 	public void setR(Rectangle r) {
 		this.r = r;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+		return null;
+	}
+
+	@Override
+	public void uppdate() {
+		
+		
 	}
 
 }

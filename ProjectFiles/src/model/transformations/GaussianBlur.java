@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controllers.MainView;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
+import model.transformations.help.ColorTransformTest;
 
 /**
  * Filter that adds gaussian blur to the picture
@@ -17,6 +20,10 @@ public class GaussianBlur implements Layerable {
 	private int radius;
 	private double[][] kernel;
 
+	private Label labelText = new Label("Radie");
+	private VBox v1 = new VBox();
+	private Slider sliderRadius = new Slider();
+	
 	public GaussianBlur(int r) {
 
 		radius = r;
@@ -70,7 +77,7 @@ public class GaussianBlur implements Layerable {
 					}
 					x++;
 				}
-				pxImage[i][j] = Color.rgb(sumRed / count, sumGreen / count, sumBlue / count);
+				pxImage[i][j] = Color.rgb(ColorTransformTest.getAllowedValue(sumRed / count), ColorTransformTest.getAllowedValue(sumGreen / count), ColorTransformTest.getAllowedValue(sumBlue / count));
 			}
 		}
 		newImage.setPxImage(pxImage);
@@ -121,21 +128,6 @@ public class GaussianBlur implements Layerable {
 
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		List<Slider> sliders = new ArrayList<>();
-		Slider radiusSlider = new Slider();
-		radiusSlider.setMin(0);
-		radiusSlider.setMax(255);
-		radiusSlider.setValue(this.getRadius());
-		radiusSlider.setOnDragDone(e -> {
-			this.setRadius((int) radiusSlider.getValue());
-			MainView.getCanvas().repaint();
-			System.out.println("Radie " + radiusSlider.getValue());
-		});
-		sliders.add(radiusSlider);
-		return sliders;
-	}
 
 	public double[][] getKernel() {
 		return kernel;
@@ -143,6 +135,28 @@ public class GaussianBlur implements Layerable {
 
 	public void setKernel(double[][] kernel) {
 		this.kernel = kernel;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+		v1.getChildren().clear();
+		v1.setTranslateY(50);
+		sliderRadius.setValue(radius);
+		v1.getChildren().add(sliderRadius);
+		v1.getChildren().add(labelText);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(v1);
+		
+		return vboxList;
+	}
+
+	@Override
+	public void uppdate() {
+		this.radius = (int) sliderRadius.getValue();
+		
+		uppdateKernel(this.radius);
 	}
 
 }

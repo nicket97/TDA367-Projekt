@@ -1,8 +1,11 @@
 package model.transformations;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -16,8 +19,24 @@ public class Levels implements Layerable {
 	private int minLevel;
 	private int midLevel;
 	private double changeLevel;
+	
+	private Slider sliderMin = new Slider();
+	private Label labelMin = new Label("Min Värde");
+	
+	private Slider sliderMax = new Slider();
+	private Label labelMax = new Label("Max Värde");
+	
+	private VBox v1 = new VBox();
+	private VBox v2 = new VBox();
+	
 
 	public Levels(int maxLevel, int minLevel) {
+		sliderMin.setMin(1);
+		sliderMin.setMax(255);
+		
+		sliderMax.setMin(1);
+		sliderMax.setMax(2);
+		
 		this.maxLevel = maxLevel;
 		this.minLevel = minLevel;
 		//this.midLevel = (maxLevel + minLevel) / 2;
@@ -72,11 +91,6 @@ public class Levels implements Layerable {
 		return "Nivåer";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public int getMaxLevel() {
 		return maxLevel;
@@ -118,5 +132,35 @@ public class Levels implements Layerable {
 	}
 	public void calculateChange(){
 		this.changeLevel = (double)(((double)minLevel / (double)midLevel) + ((double)midLevel / (double)maxLevel))*2;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+		v1.getChildren().clear();
+		v2.getChildren().clear();
+		v1.setTranslateY(50);
+		v2.setTranslateY(50);
+		sliderMin.setValue(this.minLevel);
+		v1.getChildren().add(sliderMin);
+		v1.getChildren().add(labelMax);
+		
+		sliderMax.setValue(this.maxLevel);
+		v2.getChildren().add(sliderMax);
+		v2.getChildren().add(labelMax);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(v1);
+		vboxList.add(v2);
+		
+		return vboxList;
+	}
+
+	@Override
+	public void uppdate() {
+		this.minLevel = (int) sliderMin.getValue();
+		this.maxLevel = (int) sliderMax.getValue();
+		setMidLevel();
+		calculateChange();
 	}
 }

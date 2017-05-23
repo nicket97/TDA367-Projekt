@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.List;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -90,11 +91,7 @@ public class Sharpen implements Layerable {
 		return "Skärpa";
 	}
 
-	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public int getRadius() {
 		return radius;
@@ -110,6 +107,16 @@ public class Sharpen implements Layerable {
 
 	public void setKernel(double[][] kernel) {
 		this.kernel = kernel;
+	}
+
+	@Override
+	public List<VBox> getVBox() {
+		return null;
+	}
+
+	@Override
+	public void uppdate() {
+		
 	}
 
 }

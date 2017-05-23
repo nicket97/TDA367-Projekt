@@ -83,17 +83,7 @@ public class MainView extends AnchorPane implements Initializable {
 	Button exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate,
 			textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate;
 	@FXML
-	RadioButton yellowButton, orangeButton, blueButton, redButton, pinkButton, purpleButton, turquoiseButton,
-			greenButton;
-	@FXML
-	ToggleGroup colorGroup;
-	@FXML
-	ColorPicker customColor, textColor;
-	@FXML
 	ComboBox<String> filterBox;
-	@FXML
-	Slider exposureIntensity, contrastThreshold, contrastIntensity, grainDeviation, levelsMin, levelsMax, blurRadius,
-			gBlurRadius, sharpenIntensity, sharpenThreshold, textSize, colorIntensity, bwThreshold, bwIntensity, wbWarm, greyIntensity;
 	@FXML
 	StackPane toolContainer;
 	@FXML
@@ -313,20 +303,68 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuVReflect, (new VMirroring()));
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));
-		menuClickedOptions(menuBlur, blurLevel, (new Blur(7)));
-		menuClickedOptions(menuGaussianBlur, gBlurLevel, (new GaussianBlur(6)));
-		menuClickedOptions(menuSharpen, sharpenLevel, (new Sharpen()));
-		menuClickedOptions(menuGrayScale, grayLevel, (new GrayScale()));
-		menuClickedOptions(menuColorFilter, colorFilterLevel, (new ColorShift(0, 0, 0, 0.5)));
-		menuClickedOptions(menuContrast, contrastLevel, (new Contrast(100, 1.4)));
-		menuClickedOptions(menuWhitebalance, wbLevel, (new WhiteBalance(40)));
-		menuClickedOptions(menuLevels, levelsLevel, (new Levels(100, 40)));
-		menuClickedOptions(menuBlackWhite, bwLevel, (new BlackAndWhite(123)));
-		menuClickedOptions(menuGrain, grainLevel, new Grain(20));
-		menuClickedOptions(menuExposure, exposureLevel, (new Exposure(40)));
+		//menuClickedOptions(menuBlur, blurLevel, (new Blur(7)));
+		menuBlur.setOnAction(e -> {
+			Layers.addLayer(new Layer(new Blur( 5)));
+			showBlur(Layers.getLast());
+		});
+		//menuClickedOptions(menuGaussianBlur, gBlurLevel, (new GaussianBlur(6)));
+		menuGaussianBlur.setOnAction(e -> {
+			Layers.addLayer(new Layer(new GaussianBlur(5)));
+			showGausianBlur(Layers.getLast());
+		});
+		//menuClickedOptions(menuSharpen, sharpenLevel, (new Sharpen()));
+		menuSharpen.setOnAction(e -> {
+			Layers.addLayer(new Layer(new Sharpen()));
+			showSharpen(Layers.getLast());
+		});
+		//menuClickedOptions(menuGrayScale, grayLevel, (new GrayScale()));
+		menuGrayScale.setOnAction(e -> {
+			Layers.addLayer(new Layer(new GrayScale()));
+			showGrayScale(Layers.getLast());
+		});
+		//menuClickedOptions(menuColorFilter, colorFilterLevel, (new ColorShift(0, 0, 0, 0.5)));
+		menuColorFilter.setOnAction( e-> {
+			Layers.addLayer(new Layer(new ColorShift(0,0,0,0.5)));
+			showColorShift(Layers.getLast());
+		});
+		//menuClickedOptions(menuContrast, contrastLevel, (new Contrast(100, 1.4)));
+		menuContrast.setOnAction(e->{
+			Layers.addLayer(new Layer(new Contrast(100,1.4)));
+			showContrast(Layers.getLast());
+		});
+		//menuClickedOptions(menuWhitebalance, wbLevel, (new WhiteBalance(40)));
+		menuWhitebalance.setOnAction(e -> {
+			Layers.addLayer(new Layer(new WhiteBalance(40)));
+			showWhiteBalance(Layers.getLast());
+		});
+		//menuClickedOptions(menuLevels, levelsLevel, (new Levels(100, 40)));
+		menuLevels.setOnAction(e -> {
+			Layers.addLayer(new Layer(new Levels(200,40)));
+			showLevels(Layers.getLast());
+		});
+		//menuClickedOptions(menuBlackWhite, bwLevel, (new BlackAndWhite(123)));
+		menuBlackWhite.setOnAction(e->{
+			Layers.addLayer(new Layer(new BlackAndWhite(128)));
+			showBlackAndWhite(Layers.getLast());
+		});
+		//menuClickedOptions(menuGrain, grainLevel, new Grain(20));
+		menuGrain.setOnAction(e -> {
+			Layers.addLayer(new Layer(new Grain(20)));
+			showGrain(Layers.getLast());
+		});
+		//menuClickedOptions(menuExposure, exposureLevel, (new Exposure(40)));
+		menuExposure.setOnAction(e->{ 
+			Layers.addLayer(new Layer(new Exposure(40)));
+			showExposure(Layers.getLast());
+			});
 		//menuClickedOptions(menuFilter, filterLevel, (new NewKernel()));
 		menuClicked(menuEdge, (new Edge()));
-		menuClickedOptions(menuTextFilter, textLevel, (new TextFilter()));
+		//menuClickedOptions(menuTextFilter, textLevel, (new TextFilter()));
+		menuTextFilter.setOnAction(e ->{
+			Layers.addLayer(new Layer(new TextFilter()));
+			showTextFilter(Layers.getLast());
+		});
 
 		final Delta dragDelta = new Delta();
 
@@ -499,101 +537,19 @@ public class MainView extends AnchorPane implements Initializable {
 		layerPane.getChildren().add(layerView);
 
 		topLevel.toFront();
-		customColor.setValue(null);
-		clearColorIcon.setOnMouseClicked(e -> {
-			customColor.setValue(null);
-		});
-
-		/***
-		 * Adding values to the color buttons.
-		 */
-		yellowButton.setUserData("yellow");
-		orangeButton.setUserData("orange");
-		blueButton.setUserData("blue");
-		redButton.setUserData("red");
-		pinkButton.setUserData("pink");
-		purpleButton.setUserData("purple");
-		turquoiseButton.setUserData("turquoise");
-		greenButton.setUserData("green");		
 		
 		/***
 		 * Functionality for adding filters via the toolbar.
 		 */
 		// Adjustments
-		exposureUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-					.setFactor(exposureIntensity.valueProperty().intValue());
-			canvasUpdate();
-		});
-		contrastUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setFactorAndThreshold(
-					contrastIntensity.valueProperty().intValue(), contrastThreshold.valueProperty().doubleValue());
-			canvasUpdate();
-		});
-		levelsUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-					.setLevels(levelsMin.valueProperty().intValue(), levelsMax.valueProperty().intValue());
-			canvasUpdate();
-		});
-		grainUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-					.setDeviation(grainDeviation.valueProperty().intValue());
-			canvasUpdate();
-		});
-
-		// Effects
-		blurUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-					.setRadius(blurRadius.valueProperty().intValue());
-			canvasUpdate();
-		});
-		gBlurUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-					.setRadius(gBlurRadius.valueProperty().intValue());
-			canvasUpdate();
-		});
-		sharpenUpdate.setOnAction(e -> {
-			 Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
-			 .setRadius(sharpenIntensity.valueProperty().intValue());
-			canvasUpdate();
-		});
-		textUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
-			.setTextFilter(textInput.getText(), fontBox.getValue() == null ? "Helvetica" : fontBox.getValue()  , (int) textSize.getValue(), fontPlacement.getValue() == null ? "mitten" : fontPlacement.getValue(), (int) (textColor.getValue().getRed() * 255), 
-					(int) (textColor.getValue().getGreen() * 255), (int) (textColor.getValue().getBlue() * 255));
-			canvasUpdate();
-		});
-		// Colors
-		cfUpdate.setOnAction(e -> {
-			if (customColor.getValue() != null) {
-				System.out.println("customcolor");
-				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setRGB(customColor.getValue().getRed()*255,
-						customColor.getValue().getGreen()*255, customColor.getValue().getBlue()*255,
-						colorIntensity.valueProperty().doubleValue());
-				colorGroup.selectToggle(null);
-			} else {
-				Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).setColor(
-						(String) colorGroup.getSelectedToggle().getUserData(),
-						colorIntensity.valueProperty().doubleValue());
-			}
-			canvasUpdate();
-		});
 		
 		/**
 		 * grayUpdate.setOnAction(e -> { layerstack.addLayer(new Layer(new
 		 * Blur((int) blurRadius.valueProperty().intValue()))); canvasUpdate();
 		 * });
 		 */
-		bwUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-					.setThreshold(bwThreshold.valueProperty().intValue());
-			canvasUpdate();
-		});
-		wbUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size() - 1)
-					.setThreshold(wbWarm.valueProperty().intValue());
-			canvasUpdate();
-		});
+		
+		
 		// Custom filters
 		filterUpdate.setOnAction(e -> {
 			Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
@@ -633,46 +589,36 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(adjustLevel, topLevel, fadeIn);
 		});
 		exposureIcon.setOnMouseClicked(e -> {
-			mouseClicked(adjustLevel, exposureLevel, fadeExposure);
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Exposure(1)));
-				exposureIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
-				canvasUpdate();
+				Layers.addLayer(new Layer(new Exposure(40)));
+				showExposure(Layers.getLast());
 			}
 		});
 		exposureBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(exposureLevel, adjustLevel, fadeAdjust);
 		});
 		contrastIcon.setOnMouseClicked(e -> {
-			mouseClicked(adjustLevel, contrastLevel, fadeContrast);
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Contrast(2, 10)));
-				contrastThreshold.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
-				contrastIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
-				canvasUpdate();
+				Layers.addLayer(new Layer(new Contrast(150,1.5)));
+				showContrast(Layers.getLast());
 			}
 		});
 		contrastBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(contrastLevel, adjustLevel, fadeAdjust);
 		});
 		levelsIcon.setOnMouseClicked(e -> {
-			mouseClicked(adjustLevel, levelsLevel, fadeLevels);
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Levels(1, 1)));
-				levelsMin.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getMinLevel());
-				levelsMax.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getMaxLevel());
-				canvasUpdate();
+				Layers.addLayer(new Layer(new Levels(40,200)));
+				showLevels(Layers.getLast());
 			}
 		});
 		levelsBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(levelsLevel, adjustLevel, fadeAdjust);
 		});
 		grainIcon.setOnMouseClicked(e -> {
-			mouseClicked(adjustLevel, grainLevel, fadeGrain);
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Grain(10)));
-				grainDeviation.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getInt());
-				canvasUpdate();
+				Layers.addLayer(new Layer(new Grain(40)));
+				showGrain(Layers.getLast());
 			}
 		});
 		grainBackIcon.setOnMouseClicked(e -> {
@@ -685,43 +631,36 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(effectLevel, topLevel, fadeIn);
 		});
 		blurIcon.setOnMouseClicked(e -> {
-			mouseClicked(effectLevel, blurLevel, fadeBlur);
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Blur(2)));
-				blurRadius.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
-				canvasUpdate();
+				Layers.addLayer(new Layer(new Blur(5)));
+				showBlur(Layers.getLast());
 			}
 		});
 		blurBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(blurLevel, effectLevel, fadeEffect);
 		});
 		gBlurIcon.setOnMouseClicked(e -> {
-			mouseClicked(effectLevel, gBlurLevel, fadeGBlur);
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new GaussianBlur(2)));
-				gBlurRadius.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
-				canvasUpdate();
+				Layers.addLayer(new Layer(new GaussianBlur(5)));
+				showGausianBlur(Layers.getLast());
 			}
 		});
 		gBlurBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(gBlurLevel, effectLevel, fadeEffect);
 		});
 		sharpenIcon.setOnMouseClicked(e -> {
-			mouseClicked(effectLevel, sharpenLevel, fadeSharpen);
 			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new Sharpen()));
-				sharpenIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size()-1).getInt());
-				canvasUpdate();
+				showSharpen(Layers.getLast());
 			}
 		});
 		sharpenBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(sharpenLevel, effectLevel, fadeEffect);
 		});
 		textIcon.setOnMouseClicked(e -> {
-			mouseClicked(effectLevel, textLevel, fadeText);
 			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new TextFilter()));
-				canvasUpdate();
+				showTextFilter(Layers.getLast());
 			}
 		});
 		textBackIcon.setOnMouseClicked(e -> {
@@ -731,17 +670,13 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(topLevel, colorLevel, fadeColor);
 		});
 		colorFilterIcon.setOnMouseClicked(e -> {
-			mouseClicked(colorLevel, colorFilterLevel, fadeColorFilter);
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(
-						new Layer(new ColorShift(0.7019608020782471, 0.7019608020782471, 0.7019608020782471, 0.5)));
-				colorIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getDouble());
-				canvasUpdate();
+				Layers.addLayer(new Layer(new ColorShift(0.5,0.5,0.5,0.5)));
+				showColorShift(Layers.getLast());
 			}
 		});
 		cfBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(colorFilterLevel, colorLevel, fadeColor);
-			colorGroup.selectToggle(null);
 		});
 		grayIcon.setOnMouseClicked(e -> {
 			// mouseClicked(colorLevel, grayLevel, fadeGray);
@@ -754,22 +689,18 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(grayLevel, colorLevel, fadeColor);
 		});
 		bwIcon.setOnMouseClicked(e -> {
-			mouseClicked(colorLevel, bwLevel, fadeBW);
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new BlackAndWhite(50)));
-				bwIntensity.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
-				canvasUpdate();
+				Layers.addLayer(new Layer(new BlackAndWhite(150)));
+				showBlackAndWhite(Layers.getLast());
 			}
 		});
 		bwBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(bwLevel, colorLevel, fadeColor);
 		});
 		whiteBalanceIcon.setOnMouseClicked(e -> {
-			mouseClicked(colorLevel, wbLevel, fadeWB);
 			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new WhiteBalance(50)));
-				wbWarm.setValue(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1).getInt());
-				canvasUpdate();
+				showWhiteBalance(Layers.getLast());
 			}
 		});
 		wbBackIcon.setOnMouseClicked(e -> {
@@ -899,45 +830,32 @@ public class MainView extends AnchorPane implements Initializable {
 	 * @param layer
 	 */
 	public void updateLayerSettings(Layer layer) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		
 		if (layer.getName().equals("Exponering")) {
-			setVisibility(exposureLevel);
-			exposureIntensity.setValue(layer.getDouble());
+			showExposure(layer);
 		} else if (layer.getName().equals("Kontrast")) {
-			setVisibility(contrastLevel);
-			contrastThreshold.setValue(layer.getDouble());
-			contrastIntensity.setValue(layer.getInt());
+			showContrast(layer);
 		} else if (layer.getName().equals("Nivåer")) {
-			setVisibility(levelsLevel);
-			levelsMin.setValue(layer.getMinLevel());
-			levelsMax.setValue(layer.getMaxLevel());
+			showLevels(layer);
 		} else if (layer.getName().equals("Brus")) {
-			setVisibility(grainLevel);
-			grainDeviation.setValue(layer.getInt());
+			showGrain(layer);
 		} else if (layer.getName().equals("Oskärpa")) {
-			setVisibility(blurLevel);
-			blurRadius.setValue(layer.getInt());
+			showBlur(layer);
 		} else if (layer.getName().equals("Gaussisk Oskärpa")) {
-			setVisibility(gBlurLevel);
-			gBlurRadius.setValue(layer.getInt());
+			showGausianBlur(layer);
 		} else if (layer.getName().equals("Skärpa")) {
-			setVisibility(sharpenLevel);
-			sharpenIntensity.setValue(layer.getInt());
+			showSharpen(layer);
 		} else if (layer.getName().equals("Färgfilter")) {
-			setVisibility(colorFilterLevel);
-			colorIntensity.setValue(layer.getDouble());
+			showColorShift(layer);
 		} else if (layer.getName().equals("Svartvitt")) {
-			setVisibility(bwLevel);
-			bwIntensity.setValue(layer.getInt());
+			showBlackAndWhite(layer);
 		} else if (layer.getName().equals("Vitbalans")) {
-			setVisibility(wbLevel);
-			wbWarm.setValue(layer.getInt());
+			showWhiteBalance(layer);
 		} else if (layer.getName().equals("Gråskala")) {
 			setVisibility(grayLevel);
 		} else if (layer.getName().equals("Textfilter")) {
-			setVisibility(textLevel);
-			textSize.setValue(layer.getInt());
-			textInput.setText(layer.getText());
+			showTextFilter(layer);
+			//textInput.setText(layer.getText());
 		}
 		/**
 		 * else if (layer.getName().equals("Eget filter")){
@@ -949,7 +867,208 @@ public class MainView extends AnchorPane implements Initializable {
 		level.toFront();
 		level.setVisible(true);
 	}
+	/*topLevel, adjustLevel, effectLevel, colorLevel, filterLevel, exposureLevel, contrastLevel, levelsLevel, grainLevel,
+	blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel;
+	
+	 exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate,
+		textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate;*/
+	public void showExposure(Layer l){
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		exposureUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		exposureLevel.getChildren().clear();
+		exposureLevel.getChildren().add(exposureBackIcon);
+		exposureLevel.getChildren().addAll(l.getAction().getVBox());
+		exposureLevel.getChildren().add(exposureUpdate);
+		exposureLevel.toFront();
+		exposureUpdate.toFront();
+		setVisibility(exposureLevel);
+		canvasUpdate();
+	}
+	private void showBlackAndWhite(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		bwUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		bwLevel.getChildren().clear();
+		bwLevel.getChildren().add(bwBackIcon);
+		bwLevel.getChildren().addAll(l.getAction().getVBox());
+		bwLevel.getChildren().add(bwUpdate);
+		bwLevel.toFront();
+		bwUpdate.toFront();
+		setVisibility(bwLevel);
+		canvasUpdate();
+	}
+	private void showTextFilter(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		textUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		textLevel.getChildren().clear();
+		textLevel.getChildren().add(textBackIcon);
+		textLevel.getChildren().addAll(l.getAction().getVBox());
+		textLevel.getChildren().add(textUpdate);
+		textLevel.toFront();
+		textUpdate.toFront();
+		setVisibility(textLevel);
+		canvasUpdate();
+		
+	}
+	private void showGrain(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		grainUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		grainLevel.getChildren().clear();
+		grainLevel.getChildren().add(grainBackIcon);
+		grainLevel.getChildren().addAll(l.getAction().getVBox());
+		grainLevel.getChildren().add(grainUpdate);
+		grainLevel.toFront();
+		grainUpdate.toFront();
+		setVisibility(grainLevel);
+		canvasUpdate();
+		
+	}
+	private void showLevels(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		levelsUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		levelsLevel.getChildren().clear();
+		levelsLevel.getChildren().add(levelsBackIcon);
+		levelsLevel.getChildren().addAll(l.getAction().getVBox());
+		levelsLevel.getChildren().add(levelsUpdate);
+		levelsLevel.toFront();
+		levelsUpdate.toFront();
+		setVisibility(levelsLevel);
+		canvasUpdate();
+		
+	}
+	private void showWhiteBalance(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		wbUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		wbLevel.getChildren().clear();
+		wbLevel.getChildren().add(wbBackIcon);
+		wbLevel.getChildren().addAll(l.getAction().getVBox());
+		wbLevel.getChildren().add(wbUpdate);
+		wbLevel.toFront();
+		wbUpdate.toFront();
+		setVisibility(wbLevel);
+		canvasUpdate();
+		
+	}
+	private void showContrast(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		contrastUpdate.setOnAction(null);
+		contrastUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		contrastLevel.getChildren().clear();
+		contrastLevel.getChildren().add(contrastBackIcon);
+		contrastLevel.getChildren().add(l.getAction().getVBox().get(0));
+		contrastLevel.getChildren().add(l.getAction().getVBox().get(1));
+		contrastLevel.getChildren().add(contrastUpdate);
+		contrastLevel.toFront();
+		contrastUpdate.toFront();
+		setVisibility(contrastLevel);
+		canvasUpdate();
+		
+	}
+	private void showColorShift(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		cfUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		colorFilterLevel.getChildren().clear();
+		colorFilterLevel.getChildren().add(cfBackIcon);
+		colorFilterLevel.getChildren().addAll(l.getAction().getVBox());
+		colorFilterLevel.getChildren().add(cfUpdate);
+		colorFilterLevel.toFront();
+		cfUpdate.toFront();
+		setVisibility(colorLevel);
+		canvasUpdate();
+		
+	}
+	private void showGrayScale(Layer l) {
+		/*toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		grayUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		grayLevel.getChildren().clear();
+		grayLevel.getChildren().add(grayBackIcon);
+		grayLevel.getChildren().addAll(l.getAction().getVBox());
+		grayLevel.getChildren().add(grayUpdate);
+		grayLevel.toFront();
+		grayUpdate.toFront();
+		setVisibility(grayLevel);*/
+		canvasUpdate();
+		
+	}
+	private void showSharpen(Layer l) {
+		/*toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		sharpenUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		sharpenLevel.getChildren().clear();
+		sharpenLevel.getChildren().add(sharpenBackIcon);
+		sharpenLevel.getChildren().add(l.getAction().getVBox().get(0));
+		sharpenLevel.getChildren().add(l.getAction().getVBox().get(1));
+		sharpenLevel.getChildren().add(sharpenUpdate);
+		sharpenLevel.toFront();
+		sharpenUpdate.toFront();
+		setVisibility(sharpenLevel);*/
+		canvasUpdate();
+		
+	}
+	private void showGausianBlur(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		gBlurUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		gBlurLevel.getChildren().clear();
+		gBlurLevel.getChildren().add(gBlurBackIcon);
+		gBlurLevel.getChildren().addAll(l.getAction().getVBox());
+		gBlurLevel.getChildren().add(gBlurUpdate);
+		gBlurLevel.toFront();
+		gBlurUpdate.toFront();
+		setVisibility(gBlurLevel);
+		canvasUpdate();
+		
+	}
+	private void showBlur(Layer l) {
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		blurUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		blurLevel.getChildren().clear();
+		blurLevel.getChildren().add(blurBackIcon);
+		blurLevel.getChildren().addAll(l.getAction().getVBox());
+		blurLevel.getChildren().add(blurUpdate);
+		blurLevel.toFront();
+		blurUpdate.toFront();
+		setVisibility(blurLevel);
+		canvasUpdate();
+		
+	}
+	
+	
 }
+
 
 class Delta {
 	double x, y;

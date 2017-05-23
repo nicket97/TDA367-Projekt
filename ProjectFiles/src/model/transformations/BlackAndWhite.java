@@ -1,9 +1,12 @@
 package model.transformations;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -13,13 +16,21 @@ import model.core.LoadedImage;
 public class BlackAndWhite implements Layerable{
 
     private int threshold;
+    
+    private Slider sliderThreshold = new Slider();
+    private Label labelText = new Label();
+	private VBox h1 = new VBox();
 
 	public BlackAndWhite(int threshold) {
+		sliderThreshold.setMin(1);
+		sliderThreshold.setMax(255);
+		labelText.setText("Tröskelvärde");
+		
         this.threshold = threshold;
     }
     
     public BlackAndWhite(String[] arg){
-    	this.threshold = Integer.parseInt(arg[1]);
+    	this(Integer.parseInt(arg[1]));
     }
 
     public LoadedImage transform(LoadedImage img) {
@@ -61,18 +72,26 @@ public class BlackAndWhite implements Layerable{
 		return "Svartvitt";
 	}
 
+
 	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VBox> getVBox() {
+		h1.getChildren().clear();
+		h1.setTranslateY(50);
+		sliderThreshold.setValue(this.threshold);
+		h1.getChildren().add(sliderThreshold);
+		h1.getChildren().add(labelText);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(h1);
+		return vboxList;
+	}
+
+	@Override
+	public void uppdate() {
+		this.threshold = (int) sliderThreshold.getValue();
+		
 	}
 
     
-
-	/* @Override
-	public Layer openSavedLayer(String loadString) {
-		String[] data = loadString.split("?");
-		BlackAndWhite bw = new BlackAndWhite();
-		return new Layer(bw);
-	} */
 }

@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.List;
 
 import javafx.scene.control.Slider;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -85,9 +86,16 @@ public class NewKernel implements Layerable {
 	}
 
 	@Override
-	public List<Slider> getSliders() {
-		// TODO Auto-generated method stub
+	public List<VBox> getVBox() {
+		//TODO fixa
 		return null;
 	}
 
+	@Override
+	public void uppdate() {
+
+	}
+
+
+	
 }

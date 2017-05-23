@@ -3,6 +3,7 @@ package model.transformations;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,15 +57,15 @@ public class TextFilter implements Layerable {
 		sliderSize.setMin(0);
 		sliderSize.setMax(200);
 		
-		ObservableList<String> fontList = FXCollections.observableArrayList();
-		fontList.add("Helvetica");
+		String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+		ObservableList<String> fontList = FXCollections.observableArrayList(fonts);
 		fontBox.setItems(fontList);
 		
 		ObservableList<String> positionList = FXCollections.observableArrayList();
 		positionList.add("uppe");
 		positionList.add("mitten");
 		positionList.add("nere");
-		fontBox.setItems(fontList);
+		positionBox.setItems(positionList);
 		
 		this.text = text;
 		this.font = font;
@@ -84,20 +85,21 @@ public class TextFilter implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
-		BufferedImage BImg = img.getBufferedImg();
+		LoadedImage newImage = new LoadedImage(img);
+		BufferedImage BImg = newImage.getBufferedImg();
 
 		Graphics2D g2 = BImg.createGraphics();
 		FontMetrics metrics = g2.getFontMetrics(new Font(font, Font.BOLD, size));
 		g2.setColor(new java.awt.Color(r, g, b));
 		g2.setFont(new Font(font, Font.BOLD, size));
 		int x = (img.getWidth() - metrics.stringWidth(text)) / 2;
-		int y = 75;
+		int y = 125;
 		if(this.yPosition.equals("uppe"))
-			y = 75;
+			y = 125;
 		else if(this.yPosition.equals("mitten"))
 			y = img.getHeigth() / 2;
 		else if(this.yPosition.equals("nere"))
-			y = img.getHeigth() - 75;
+			y = img.getHeigth() - 50;
 			
 		g2.drawString(text, x, y);
 

@@ -552,10 +552,7 @@ public class MainView extends AnchorPane implements Initializable {
 		
 		// Custom filters
 		filterUpdate.setOnAction(e -> {
-			Layers.getLayerStack().get(Layers.getLayerStack().size()-1)
-			.setKernel(NewFilterHandeler.getFilterKernel(filterBox.getSelectionModel().getSelectedItem().toString()),
-					filterBox.getSelectionModel().getSelectedItem().toString());
-			canvasUpdate();
+			//TODO fixa 
 		});
 
 		/***

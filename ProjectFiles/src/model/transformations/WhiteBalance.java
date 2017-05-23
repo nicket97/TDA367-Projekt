@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -27,7 +28,7 @@ public class WhiteBalance implements Layerable {
 	public WhiteBalance(int threshold) {
 		sliderThreshold.setMin(1);
 		sliderThreshold.setMax(100);
-		labelText.setText("Tröskelvärde");
+		labelText.setText("Värme");
 		this.threshold = threshold;
 	}
 
@@ -79,8 +80,7 @@ public class WhiteBalance implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		v1.getChildren().clear();
-		v1.setTranslateY(50);
+		initiateVBox(v1);
 		sliderThreshold.setValue(this.threshold);
 		v1.getChildren().add(sliderThreshold);
 		v1.getChildren().add(labelText);
@@ -90,6 +90,13 @@ public class WhiteBalance implements Layerable {
 		vboxList.add(v1);
 		
 		return vboxList;
+	}
+	
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(45);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
 	}
 
 	@Override

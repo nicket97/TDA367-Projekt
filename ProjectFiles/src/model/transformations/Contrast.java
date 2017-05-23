@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -18,10 +19,10 @@ public class Contrast implements Layerable {
 	private double factor;
 	
 	private Slider sliderThreshold = new Slider();
-	private Label labelThreshold = new Label("TröskelVärde");
+	private Label labelThreshold = new Label("Tröskelvärde");
 	
 	private Slider sliderFactor = new Slider();
-	private Label labelFactor = new Label("Itensitet");
+	private Label labelFactor = new Label("Intensitet");
 	private VBox v1 = new VBox();
 	private VBox v2 = new VBox();
 
@@ -127,24 +128,28 @@ public class Contrast implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		v1.getChildren().clear();
-		v2.getChildren().clear();
-		v1.setTranslateY(50);
-		v2.setTranslateY(50);
+		initiateVBox(v1);
+		initiateVBox(v2);
 		sliderThreshold.setValue(this.threshold);
 		v1.getChildren().add(sliderThreshold);
 		v1.getChildren().add(labelThreshold);
-		
 		sliderFactor.setValue(this.factor);
 		v2.getChildren().add(sliderFactor);
 		v2.getChildren().add(labelFactor);
-		
+
 		List<VBox> vboxList = new ArrayList<VBox>();
 		
 		vboxList.add(v1);
 		vboxList.add(v2);
 		
 		return vboxList;
+	}
+
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(45);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
 	}
 
 	@Override

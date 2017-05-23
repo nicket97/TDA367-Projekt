@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controllers.MainView;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -139,8 +140,7 @@ public class GaussianBlur implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		v1.getChildren().clear();
-		v1.setTranslateY(50);
+		initiateVBox(v1);
 		sliderRadius.setValue(radius);
 		v1.getChildren().add(sliderRadius);
 		v1.getChildren().add(labelText);
@@ -150,6 +150,13 @@ public class GaussianBlur implements Layerable {
 		vboxList.add(v1);
 		
 		return vboxList;
+	}
+	
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(45);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
 	}
 
 	@Override

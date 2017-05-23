@@ -3,7 +3,7 @@ package model.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
-import controllers.MainView;
+import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -14,7 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.core.Layerable;
 import model.core.LoadedImage;
-import model.transformations.core.Layers;
 import model.transformations.help.ColorTransformTest;
 
 /**
@@ -34,10 +33,10 @@ public class ColorShift implements Layerable {
 	private VBox v3 = new VBox();
 	
 	private ColorPicker customColor = new ColorPicker();
-	private Label labelCustomColor = new Label("Välj egen färg");
+	private Label labelCustomColor = new Label("Välj egen...");
 	
-	private Slider sliderItensity = new Slider();
-	private Label labelIntensity = new Label("Itensitet");
+	private Slider sliderIntensity = new Slider();
+	private Label labelIntensity = new Label("Intensitet");
 	
 	private Label labelColor = new Label("Välj färg");
 	private ToggleGroup colorGroup = new ToggleGroup();
@@ -84,19 +83,18 @@ public class ColorShift implements Layerable {
 		greenButton.setToggleGroup(colorGroup);
 		greenButton.setStyle("-fx-background-color: limegreen;");
 		
-		colorBox.getChildren().add(yellowButton);
-		colorBox.getChildren().add(orangeButton);
+		colorBox.getChildren().addAll(yellowButton, orangeButton, blueButton, redButton, pinkButton,
+				purpleButton, turquoiseButton, greenButton);
+		/**colorBox.getChildren().add(orangeButton);
 		colorBox.getChildren().add(blueButton);
 		colorBox.getChildren().add(redButton);
 		colorBox.getChildren().add(pinkButton);
 		colorBox.getChildren().add(purpleButton);
 		colorBox.getChildren().add(turquoiseButton);
-		colorBox.getChildren().add(greenButton);
+		colorBox.getChildren().add(greenButton);*/
 		
-		sliderItensity.setMin(0);
-		sliderItensity.setMax(1);
-		
-		
+		sliderIntensity.setMin(0);
+		sliderIntensity.setMax(1);	
 	}
 
 	public ColorShift(String[] arg) {
@@ -183,30 +181,34 @@ public class ColorShift implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		v1.getChildren().clear();
+		initiateVBox(v1);
+		initiateVBox(v2);
+		initiateVBox(v3);
+		/**v1.getChildren().clear();
 		v2.getChildren().clear();
 		v3.getChildren().clear();
 		v1.setTranslateY(50);
 		v2.setTranslateY(50);
-		v3.setTranslateY(50);
+		v3.setTranslateY(50);*/
 		
-		v1.getChildren().add(yellowButton);
-		v1.getChildren().add(orangeButton);
+		v1.getChildren().addAll(yellowButton, orangeButton, blueButton, redButton, pinkButton,
+				purpleButton, turquoiseButton, greenButton, labelColor);
+		/**v1.getChildren().add(orangeButton);
 		v1.getChildren().add(blueButton);
 		v1.getChildren().add(redButton);
 		v1.getChildren().add(pinkButton);
 		v1.getChildren().add(purpleButton);
 		v1.getChildren().add(turquoiseButton);
-		v1.getChildren().add(greenButton);
+		v1.getChildren().add(greenButton);*/
 		v1.getChildren().add(labelColor);
 		
 		customColor.setValue(Color.rgb((int)this.r*255, (int)this.g*255, (int)this.b*255));
-		v2.getChildren().add(customColor);
-		v2.getChildren().add(labelCustomColor);
+		v2.getChildren().addAll(customColor, labelCustomColor);
+		//v2.getChildren().add(labelCustomColor);
 		
-		sliderItensity.setValue(this.intensity);
-		v3.getChildren().add(sliderItensity);
-		v3.getChildren().add(labelIntensity);
+		sliderIntensity.setValue(this.intensity);
+		v3.getChildren().addAll(sliderIntensity, labelIntensity);
+		//v3.getChildren().add(labelIntensity);
 		
 		List<VBox> vboxList = new ArrayList<VBox>();
 		
@@ -222,10 +224,10 @@ public class ColorShift implements Layerable {
 			System.out.println("customcolor");
 			this.setRGB(customColor.getValue().getRed()*255,
 					customColor.getValue().getGreen()*255, customColor.getValue().getBlue()*255,
-					sliderItensity.valueProperty().doubleValue());
+					sliderIntensity.valueProperty().doubleValue());
 			colorGroup.selectToggle(null);
 		} else {
-			this.intensity = sliderItensity.getValue();
+			this.intensity = sliderIntensity.getValue();
 			getDefinedColorShift((String)colorGroup.getSelectedToggle().getUserData(), this.intensity);
 		}
 		
@@ -252,6 +254,11 @@ public class ColorShift implements Layerable {
 		
 	}
 
-	
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(45);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
+	}
 
 }

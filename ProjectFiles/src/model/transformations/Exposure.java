@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -89,8 +90,7 @@ public class Exposure implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		v1.getChildren().clear();
-		v1.setTranslateY(55);
+		initiateVBox(v1);
 		sliderFactor.setValue(this.factor);
 		v1.getChildren().add(sliderFactor);
 		v1.getChildren().add(labelFactor);
@@ -100,6 +100,13 @@ public class Exposure implements Layerable {
 		vboxList.add(v1);
 		
 		return vboxList;
+	}
+	
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(45);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ package model.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -75,8 +76,7 @@ public class BlackAndWhite implements Layerable{
 
 	@Override
 	public List<VBox> getVBox() {
-		h1.getChildren().clear();
-		h1.setTranslateY(50);
+		initiateVBox(h1);
 		sliderThreshold.setValue(this.threshold);
 		h1.getChildren().add(sliderThreshold);
 		h1.getChildren().add(labelText);
@@ -85,6 +85,13 @@ public class BlackAndWhite implements Layerable{
 		
 		vboxList.add(h1);
 		return vboxList;
+	}
+	
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(45);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
 	}
 
 	@Override

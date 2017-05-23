@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
@@ -136,17 +137,13 @@ public class Levels implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		v1.getChildren().clear();
-		v2.getChildren().clear();
-		v1.setTranslateY(50);
-		v2.setTranslateY(50);
+		initiateVBox(v1);
+		initiateVBox(v2);
 		sliderMin.setValue(this.minLevel);
-		v1.getChildren().add(sliderMin);
-		v1.getChildren().add(labelMax);
+		v1.getChildren().addAll(sliderMin, labelMin);
 		
 		sliderMax.setValue(this.maxLevel);
-		v2.getChildren().add(sliderMax);
-		v2.getChildren().add(labelMax);
+		v2.getChildren().addAll(sliderMax, labelMax);
 		
 		List<VBox> vboxList = new ArrayList<VBox>();
 		
@@ -156,6 +153,13 @@ public class Levels implements Layerable {
 		return vboxList;
 	}
 
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(45);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
+	}
+	
 	@Override
 	public void uppdate() {
 		this.minLevel = (int) sliderMin.getValue();

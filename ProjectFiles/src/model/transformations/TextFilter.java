@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -34,13 +35,13 @@ public class TextFilter implements Layerable {
 	private int b;
 	
 	private TextField txtIn = new TextField();
-	private Label labelText = new Label("Din Text");
+	private Label labelText = new Label("Skriv in text");
 	private ColorPicker customColor = new ColorPicker();
 	private Label labelColor = new Label("Välj färg");
 	private ChoiceBox<String> fontBox = new ChoiceBox<String>();
-	private Label labelFont = new Label("Font");
+	private Label labelFont = new Label("Välj typsnitt");
 	private ChoiceBox<String> positionBox = new ChoiceBox<String>();
-	private Label labelPosition = new Label("Position");
+	private Label labelPosition = new Label("Välj position");
 	private Slider sliderSize = new Slider();
 	private Label labelSize = new Label("Storlek");
 	
@@ -135,35 +136,25 @@ public class TextFilter implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		v1.getChildren().clear();
-		v2.getChildren().clear();
-		v3.getChildren().clear();
-		v4.getChildren().clear();
-		v5.getChildren().clear();
-		v1.setTranslateY(50);
-		v2.setTranslateY(50);
-		v3.setTranslateY(50);
-		v4.setTranslateY(50);
-		v5.setTranslateY(50);
+		initiateVBox(v1);
+		initiateVBox(v2);
+		initiateVBox(v3);
+		initiateVBox(v4);
+		initiateVBox(v5);
 		txtIn.setText(this.text);
-		v1.getChildren().add(txtIn);
-		v1.getChildren().add(labelText);
+		v1.getChildren().addAll(txtIn, labelText);
 		
 		customColor.setValue(Color.rgb(this.r, this.g, this.b));
-		v2.getChildren().add(customColor);
-		v2.getChildren().add(labelColor);
+		v2.getChildren().addAll(customColor, labelColor);
 		
 		fontBox.setValue(this.font);
-		v3.getChildren().add(fontBox);
-		v3.getChildren().add(labelFont);
+		v3.getChildren().addAll(fontBox, labelFont);
 		
 		positionBox.setValue(this.yPosition);
-		v4.getChildren().add(positionBox);
-		v4.getChildren().add(labelPosition);
+		v4.getChildren().addAll(positionBox, labelPosition);
 		
 		sliderSize.setValue(this.size);
-		v5.getChildren().add(sliderSize);
-		v5.getChildren().add(labelSize);
+		v5.getChildren().addAll(sliderSize, labelSize);
 		
 		List<VBox> vboxList = new ArrayList<VBox>();
 		
@@ -174,6 +165,13 @@ public class TextFilter implements Layerable {
 		vboxList.add(v5);
 		
 		return vboxList;
+	}
+
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(45);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
 	}
 
 	@Override

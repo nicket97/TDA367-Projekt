@@ -30,6 +30,8 @@ public class ColorShift implements Layerable {
 	
 	private boolean hasSettings = true;
 	
+	private HBox h1 = new HBox();
+	
 	private VBox v1 = new VBox();
 	private VBox v2 = new VBox();
 	private VBox v3 = new VBox();
@@ -52,7 +54,7 @@ public class ColorShift implements Layerable {
 	private RadioButton turquoiseButton = new RadioButton();
 	private RadioButton greenButton = new RadioButton();
 	
-	HBox colorBox = new HBox();
+	List<RadioButton> colorButtons;
 	
 	public ColorShift(double redAddend, double greenAddend, double blueAddend, double intensity) {
 		
@@ -61,39 +63,28 @@ public class ColorShift implements Layerable {
 		this.b = blueAddend;
 		this.intensity = intensity;
 		
-		yellowButton.setToggleGroup(colorGroup);
+		colorButtons = new ArrayList<RadioButton>();
+		colorButtons.add(yellowButton);
+		colorButtons.add(orangeButton);
+		colorButtons.add(blueButton);
+		colorButtons.add(redButton);
+		colorButtons.add(pinkButton);
+		colorButtons.add(purpleButton);
+		colorButtons.add(turquoiseButton);
+		colorButtons.add(greenButton);
+		
+		for (RadioButton r : colorButtons){
+			r.setToggleGroup(colorGroup);
+		}
+		
 		yellowButton.setStyle("-fx-background-color: yellow;");
-		
-		orangeButton.setToggleGroup(colorGroup);
 		orangeButton.setStyle("-fx-background-color: orange;");
-		
-		blueButton.setToggleGroup(colorGroup);
 		blueButton.setStyle("-fx-background-color: royalblue;");
-		
-		redButton.setToggleGroup(colorGroup);
 		redButton.setStyle("-fx-background-color: red;");
-		
-		pinkButton.setToggleGroup(colorGroup);
 		pinkButton.setStyle("-fx-background-color: hotpink;");
-		
-		purpleButton.setToggleGroup(colorGroup);
 		purpleButton.setStyle("-fx-background-color: blueviolet;");
-		
-		turquoiseButton.setToggleGroup(colorGroup);
 		turquoiseButton.setStyle("-fx-background-color: cyan;");
-		
-		greenButton.setToggleGroup(colorGroup);
 		greenButton.setStyle("-fx-background-color: limegreen;");
-		
-		colorBox.getChildren().addAll(yellowButton, orangeButton, blueButton, redButton, pinkButton,
-				purpleButton, turquoiseButton, greenButton);
-		/**colorBox.getChildren().add(orangeButton);
-		colorBox.getChildren().add(blueButton);
-		colorBox.getChildren().add(redButton);
-		colorBox.getChildren().add(pinkButton);
-		colorBox.getChildren().add(purpleButton);
-		colorBox.getChildren().add(turquoiseButton);
-		colorBox.getChildren().add(greenButton);*/
 		
 		sliderIntensity.setMin(0);
 		sliderIntensity.setMax(1);	
@@ -183,26 +174,18 @@ public class ColorShift implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		initiateVBox(v1);
-		initiateVBox(v2);
-		initiateVBox(v3);
-		/**v1.getChildren().clear();
-		v2.getChildren().clear();
-		v3.getChildren().clear();
-		v1.setTranslateY(50);
-		v2.setTranslateY(50);
-		v3.setTranslateY(50);*/
+		initiateVBox(v1, 35);
+		initiateVBox(v2, 20);
+		initiateVBox(v3, 45);
+		h1.getChildren().clear();
 		
-		v1.getChildren().addAll(yellowButton, orangeButton, blueButton, redButton, pinkButton,
-				purpleButton, turquoiseButton, greenButton, labelColor);
-		/**v1.getChildren().add(orangeButton);
-		v1.getChildren().add(blueButton);
-		v1.getChildren().add(redButton);
-		v1.getChildren().add(pinkButton);
-		v1.getChildren().add(purpleButton);
-		v1.getChildren().add(turquoiseButton);
-		v1.getChildren().add(greenButton);*/
-		v1.getChildren().add(labelColor);
+		for (RadioButton r : colorButtons){
+			setStyling(r);
+		}
+
+		h1.getChildren().addAll(colorButtons);
+		v1.getChildren().addAll(h1, labelColor);
+		h1.setSpacing(5);
 		
 		customColor.setValue(Color.rgb((int)this.r*255, (int)this.g*255, (int)this.b*255));
 		v2.getChildren().addAll(customColor, labelCustomColor);
@@ -256,11 +239,15 @@ public class ColorShift implements Layerable {
 		
 	}
 
-	private void initiateVBox(VBox v) {
+	private void initiateVBox(VBox v, double d) {
 		v.getChildren().clear();
-		v.setTranslateY(45);
+		v.setTranslateY(d);
 		v.setAlignment(Pos.BASELINE_CENTER);
 		v.setSpacing(10);
+	}
+	
+	private void setStyling(RadioButton l){
+		l.setId("colorButton");
 	}
 
 	@Override

@@ -993,7 +993,7 @@ public class MainView extends AnchorPane implements Initializable {
 		colorFilterLevel.getChildren().add(cfUpdate);
 		colorFilterLevel.toFront();
 		cfUpdate.toFront();
-		setVisibility(colorLevel);
+		setVisibility(colorFilterLevel);
 		canvasUpdate();
 		
 	}

@@ -58,7 +58,7 @@ public class LayerRow extends AnchorPane implements Initializable {
 		});
 		// Settings
 		if (!layer.hasSettings()){
-			settingsIcon.setId("disabledIcon");;
+			settingsIcon.setId("disabledIcon");
 			settingsIcon.setDisable(true);
 		}
 		settingsIcon.setOnMouseClicked(e -> {

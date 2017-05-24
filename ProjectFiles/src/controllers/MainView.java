@@ -997,6 +997,7 @@ public class MainView extends AnchorPane implements Initializable {
 		canvasUpdate();
 		
 	}
+	//  TA BORT !
 	private void showGrayScale(Layer l) {
 		/*toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		grayUpdate.setOnAction(e -> {
@@ -1063,6 +1064,10 @@ public class MainView extends AnchorPane implements Initializable {
 		
 	}
 	
+	public void topToFront(){
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		setVisibility(topLevel);
+	}
 	
 }
 

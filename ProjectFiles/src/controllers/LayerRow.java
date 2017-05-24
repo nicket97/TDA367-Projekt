@@ -69,6 +69,9 @@ public class LayerRow extends AnchorPane implements Initializable {
 		trashCan.setOnMouseClicked(e -> {
 			Layers.remove(layer);
 			MainView.canvasUpdate();
+			if (Layers.getLayerStack().isEmpty()){
+				MainView.mainView.topToFront();
+			}
 		});
 	}
 }

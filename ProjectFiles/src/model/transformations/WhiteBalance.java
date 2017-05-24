@@ -17,6 +17,8 @@ import model.transformations.help.ColorTransformTest;
  *
  */
 public class WhiteBalance implements Layerable {
+	
+	private boolean hasSettings = true;
 
 	private int threshold;
 
@@ -104,4 +106,8 @@ public class WhiteBalance implements Layerable {
 		this.threshold = (int) sliderThreshold.getValue();
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

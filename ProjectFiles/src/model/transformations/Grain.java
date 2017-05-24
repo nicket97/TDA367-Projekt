@@ -21,6 +21,8 @@ public class Grain implements Layerable {
 
 	private int deviation;
 	
+	private boolean hasSettings = true;
+	
 	private Label labelDeviation = new Label("Avvikelse");
 	private VBox h1 = new VBox();
 	private Slider sliderDeviation = new Slider();
@@ -108,4 +110,8 @@ public class Grain implements Layerable {
 		
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

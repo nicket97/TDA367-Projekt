@@ -17,6 +17,8 @@ public class Edge implements Layerable {
 
 	private double[][] kernel;
 	private int radius;
+	
+	private boolean hasSettings = false;
 
 	public Edge() {
 		radius = 1;
@@ -105,4 +107,8 @@ public class Edge implements Layerable {
 		
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

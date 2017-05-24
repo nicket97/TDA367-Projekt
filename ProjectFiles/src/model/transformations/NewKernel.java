@@ -18,6 +18,8 @@ public class NewKernel implements Layerable {
 
 	double[][] kernel;
 	String name;
+	
+	private boolean hasSettings = true;
 
 	public NewKernel(double[][] kernel, String name) {
 		this.kernel = kernel;
@@ -96,6 +98,9 @@ public class NewKernel implements Layerable {
 
 	}
 
-
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 	
 }

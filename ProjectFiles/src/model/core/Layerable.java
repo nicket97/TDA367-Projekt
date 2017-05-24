@@ -19,4 +19,6 @@ public interface Layerable {
 	public List<VBox> getVBox();
 
 	public void uppdate();
+
+	public boolean hasSettings();
 }

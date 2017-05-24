@@ -15,6 +15,8 @@ import model.core.LoadedImage;
 public class Sharpen implements Layerable {
 	private int radius = 1;
 	private double[][] kernel;
+	
+	private boolean hasSettings = true;
 
 	public Sharpen() {
 		this.radius = 1;
@@ -119,4 +121,8 @@ public class Sharpen implements Layerable {
 		
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

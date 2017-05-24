@@ -28,6 +28,8 @@ public class ColorShift implements Layerable {
 	private double b;
 	private double intensity;
 	
+	private boolean hasSettings = true;
+	
 	private VBox v1 = new VBox();
 	private VBox v2 = new VBox();
 	private VBox v3 = new VBox();
@@ -261,4 +263,8 @@ public class ColorShift implements Layerable {
 		v.setSpacing(10);
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

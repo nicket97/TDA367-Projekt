@@ -52,4 +52,8 @@ public class Layer {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public boolean hasSettings() {
+		return action.hasSettings();
+	}
 }

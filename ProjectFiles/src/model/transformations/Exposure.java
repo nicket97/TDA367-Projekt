@@ -18,6 +18,8 @@ import model.core.LoadedImage;
 public class Exposure implements Layerable {
 	private int factor;
 
+	private boolean hasSettings = true; 
+	
 	private Label labelFactor = new Label("Exponering");
 	private VBox v1 = new VBox();
 	private Slider sliderFactor = new Slider(); 
@@ -115,4 +117,8 @@ public class Exposure implements Layerable {
 		
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

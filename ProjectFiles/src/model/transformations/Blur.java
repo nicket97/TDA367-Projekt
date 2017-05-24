@@ -17,6 +17,7 @@ import model.core.LoadedImage;
 public class Blur implements Layerable {
 	private int radius;
 	private double[][] kernel;
+	private boolean hasSettings = true;
 	
 	private Label labelText = new Label();
 	private VBox h1 = new VBox();
@@ -134,5 +135,10 @@ public class Blur implements Layerable {
 			}
 		}
 		
+	}
+
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
 	}
 }

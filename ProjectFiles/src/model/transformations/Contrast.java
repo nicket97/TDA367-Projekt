@@ -18,6 +18,8 @@ public class Contrast implements Layerable {
 	private int threshold;
 	private double factor;
 	
+	private boolean hasSettings = true;
+	
 	private Slider sliderThreshold = new Slider();
 	private Label labelThreshold = new Label("Tröskelvärde");
 	
@@ -159,4 +161,8 @@ public class Contrast implements Layerable {
 		
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

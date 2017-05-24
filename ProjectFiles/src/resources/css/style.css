@@ -30,6 +30,9 @@
 #boldLabel {
 	-fx-font-weight: bold;
 }
+#disabledIcon {
+	-fx-opacity: 0.2;
+}
 
 /** PANES **/
 

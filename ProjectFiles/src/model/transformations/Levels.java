@@ -21,6 +21,8 @@ public class Levels implements Layerable {
 	private int midLevel;
 	private double changeLevel;
 	
+	private boolean hasSettings = true;
+	
 	private Slider sliderMin = new Slider();
 	private Label labelMin = new Label("Min Värde");
 	
@@ -166,5 +168,10 @@ public class Levels implements Layerable {
 		this.maxLevel = (int) sliderMax.getValue();
 		setMidLevel();
 		calculateChange();
+	}
+	
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
 	}
 }

@@ -35,6 +35,7 @@ public class TextFilter implements Layerable {
 	private int r;
 	private int g;
 	private int b;
+	private boolean hasSettings = true;
 	
 	private TextField txtIn = new TextField();
 	private Label labelText = new Label("Skriv in text");
@@ -192,6 +193,11 @@ public class TextFilter implements Layerable {
 		this.yPosition = positionBox.getValue();
 		this.size = (int) sliderSize.getValue();
 		
+	}
+
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
 	}
 }
 

@@ -13,6 +13,8 @@ import model.core.LoadedImage;
  *
  */
 public class RotateL implements Layerable {
+	
+	private boolean hasSettings = false;
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
@@ -48,4 +50,8 @@ public class RotateL implements Layerable {
 		
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

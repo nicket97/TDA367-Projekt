@@ -11,6 +11,8 @@ import model.core.LoadedImage;
 
 public class HMirroring implements Layerable {
 
+	private boolean hasSettings = false;
+	
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
@@ -45,6 +47,9 @@ public class HMirroring implements Layerable {
 		
 	}
 
-
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 
 }

@@ -14,6 +14,8 @@ import model.core.LoadedImage;
  */
 public class GrayScale implements Layerable {
 
+	private boolean hasSettings = false;
+	
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
@@ -49,6 +51,11 @@ public class GrayScale implements Layerable {
 	@Override
 	public void uppdate() {
 		
+	}
+
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
 	}
 
 	

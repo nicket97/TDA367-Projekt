@@ -109,5 +109,9 @@ public class Crop implements Layerable {
 		
 		
 	}
+	@Override
+	public boolean hasSettings() {
+		return false;
+	}
 
 }

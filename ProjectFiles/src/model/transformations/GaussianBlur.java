@@ -20,6 +20,8 @@ import model.transformations.help.ColorTransformTest;
 public class GaussianBlur implements Layerable {
 	private int radius;
 	private double[][] kernel;
+	
+	private boolean hasSettings = true;
 
 	private Label labelText = new Label("Radie");
 	private VBox v1 = new VBox();
@@ -166,4 +168,8 @@ public class GaussianBlur implements Layerable {
 		uppdateKernel(this.radius);
 	}
 
+	@Override
+	public boolean hasSettings() {
+		return hasSettings;
+	}
 }

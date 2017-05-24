@@ -18,6 +18,8 @@ public class BlackAndWhite implements Layerable{
 
     private int threshold;
     
+    private boolean hasSettings = true;
+    
     private Slider sliderThreshold = new Slider();
     private Label labelText = new Label();
 	private VBox h1 = new VBox();
@@ -100,5 +102,7 @@ public class BlackAndWhite implements Layerable{
 		
 	}
 
-    
+    public boolean hasSettings(){
+    	return hasSettings;
+    }
 }

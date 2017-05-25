@@ -278,7 +278,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/effectIcon.png" />
+                                    <Image url="/resources/icons/exposure-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -290,7 +290,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/colorIcon.png" />
+                                    <Image url="/resources/icons/contrast-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -314,7 +314,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/filterIcon.png" />
+                                    <Image url="/resources/icons/grain-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -435,7 +435,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/adjustIcon.png" />
+                                    <Image url="/resources/icons/blur-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -447,7 +447,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/effectIcon.png" />
+                                    <Image url="/resources/icons/gblur-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -459,7 +459,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/colorIcon.png" />
+                                    <Image url="/resources/icons/sharpen-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -696,7 +696,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/adjustIcon.png" />
+                                    <Image url="/resources/icons/color-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -708,7 +708,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/effectIcon.png" />
+                                    <Image url="/resources/icons/bw-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -720,7 +720,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/colorIcon.png" />
+                                    <Image url="/resources/icons/gray-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -732,7 +732,7 @@
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="/resources/icons/filterIcon.png" />
+                                    <Image url="/resources/icons/wb-icon.png" />
                                  </image>
                               </ImageView>
                            </graphic>

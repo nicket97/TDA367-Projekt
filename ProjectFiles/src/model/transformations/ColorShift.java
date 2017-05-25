@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -41,6 +42,7 @@ public class ColorShift implements Layerable {
 	
 	private ColorPicker customColor = new ColorPicker();
 	private Label labelCustomColor = new Label("Välj egen...");
+	private Label clearColorIcon = new Label();
 	
 	private Slider sliderIntensity = new Slider();
 	private Label labelIntensity = new Label("Intensitet");
@@ -65,6 +67,8 @@ public class ColorShift implements Layerable {
 		this.g = greenAdded;
 		this.b = blueAdded;
 		this.intensity = intensity;
+		
+		clearColorIcon.setGraphic(new ImageView("resources/icons/clear-icon.png"));
 		
 		colorButtons = new ArrayList<RadioButton>();
 		colorButtons.add(yellowButton);
@@ -177,6 +181,12 @@ public class ColorShift implements Layerable {
 		h1.getChildren().clear();
 		h2.getChildren().clear();
 		
+		clearColorIcon.setId("colorClear");
+		clearColorIcon.setTranslateY(6);
+		clearColorIcon.setOnMouseClicked(e -> {
+			customColor.setValue(null);
+		});
+		
 		for (RadioButton r : colorButtons){
 			setStyling(r);
 		}
@@ -198,11 +208,8 @@ public class ColorShift implements Layerable {
 			customColor.setValue(Color.rgb((int)this.r, (int)this.g, (int)this.b));
 		} else { customColor.setValue(null); }
 		
-		h2.getChildren().addAll(customColor, MainView.mainView.getClearColorIcon());
+		h2.getChildren().addAll(customColor, clearColorIcon);
 		h2.setSpacing(7);
-		MainView.mainView.getClearColorIcon().setOnMouseClicked(e -> {
-			customColor.setValue(null);
-		});
 		v2.getChildren().addAll(h2, labelCustomColor);
 		
 		sliderIntensity.setValue(this.intensity);

@@ -50,7 +50,7 @@ import model.transformations.core.Layers;
 
 public class MainView extends AnchorPane implements Initializable {
 
-	public static MainView mainView;
+	static MainView mainView;
 	public static LayerView layerView;
 	static CanvasView canvasView;
 	static MiniCanvasView miniCanvasView;
@@ -1064,10 +1064,6 @@ public class MainView extends AnchorPane implements Initializable {
 	public void topToFront(){
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		setVisibility(topLevel);
-	}
-	
-	public Label getClearColorIcon(){
-		return clearColorIcon;
 	}
 }
 

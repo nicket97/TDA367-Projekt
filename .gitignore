@@ -3,3 +3,4 @@ filters.txt
 filters.txt
 filters.txt
 *.txt
+/target/

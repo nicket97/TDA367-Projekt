@@ -56,11 +56,11 @@ public class ColorShift implements Layerable {
 	
 	List<RadioButton> colorButtons;
 	
-	public ColorShift(double redAddend, double greenAddend, double blueAddend, double intensity) {
+	public ColorShift(double redAdded, double greenAdded, double blueAdded, double intensity) {
 		
-		this.r = redAddend;
-		this.g = greenAddend;
-		this.b = blueAddend;
+		this.r = redAdded;
+		this.g = greenAdded;
+		this.b = blueAdded;
 		this.intensity = intensity;
 		
 		colorButtons = new ArrayList<RadioButton>();
@@ -99,7 +99,6 @@ public class ColorShift implements Layerable {
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
 		Color[][] pxImage = img.getpxImage();
-		System.out.println("kijkljsakjlk" + r * intensity + "   " + intensity + "    " + r);
 		for (int i = 0; i < newImage.getpxImage().length; i++) {
 			for (int j = 0; j < newImage.getpxImage()[i].length; j++) {
 				
@@ -107,10 +106,7 @@ public class ColorShift implements Layerable {
 				double newRed = pxColor.getRed()*255 + (r * intensity);
 				double newGreen = pxColor.getGreen()*255  + (g * intensity);
 				double newBlue = pxColor.getBlue()*255  + (b * intensity);
-				// pxColor = Color.rgb((int) (((newRed) > 255) ? 255 : ((newRed)
-				// < 0) ? 0 : newRed), (int) (((newGreen) > 255) ? 255 :
-				// newGreen), (int) (((newBlue + b) > 255) ? 255 : newBlue +
-				// b));
+
 				pxColor = Color.rgb(ColorTransformTest.getAllowedValue(newRed),
 						ColorTransformTest.getAllowedValue(newGreen), ColorTransformTest.getAllowedValue(newBlue));
 				pxImage[i][j] = pxColor;
@@ -170,8 +166,6 @@ public class ColorShift implements Layerable {
 		return "Färgfilter";
 	}
 
-	
-
 	@Override
 	public List<VBox> getVBox() {
 		initiateVBox(v1, 35);
@@ -182,18 +176,26 @@ public class ColorShift implements Layerable {
 		for (RadioButton r : colorButtons){
 			setStyling(r);
 		}
+		
+		yellowButton.setUserData("yellow");
+ 		orangeButton.setUserData("orange");
+ 		blueButton.setUserData("blue");
+ 		redButton.setUserData("red");
+ 		pinkButton.setUserData("pink");
+ 		purpleButton.setUserData("purple");
+ 		turquoiseButton.setUserData("turquoise");
+ 		greenButton.setUserData("green");
 
 		h1.getChildren().addAll(colorButtons);
 		v1.getChildren().addAll(h1, labelColor);
 		h1.setSpacing(5);
 		
-		customColor.setValue(Color.rgb((int)this.r*255, (int)this.g*255, (int)this.b*255));
-		v2.getChildren().addAll(customColor, labelCustomColor);
-		//v2.getChildren().add(labelCustomColor);
+		//customColor.setValue(Color.rgb((int)this.r*255, (int)this.g*255, (int)this.b*255));
 		
+		customColor.setValue(null);
+		v2.getChildren().addAll(customColor, labelCustomColor);
 		sliderIntensity.setValue(this.intensity);
 		v3.getChildren().addAll(sliderIntensity, labelIntensity);
-		//v3.getChildren().add(labelIntensity);
 		
 		List<VBox> vboxList = new ArrayList<VBox>();
 		
@@ -206,7 +208,6 @@ public class ColorShift implements Layerable {
 	@Override
 	public void uppdate() {
 		if (customColor.getValue() != null) {
-			System.out.println("customcolor");
 			this.setRGB(customColor.getValue().getRed()*255,
 					customColor.getValue().getGreen()*255, customColor.getValue().getBlue()*255,
 					sliderIntensity.valueProperty().doubleValue());

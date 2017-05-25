@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.api.services.webfonts.Webfonts;
+import com.google.api.services.webfonts.model.WebfontList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -60,11 +63,16 @@ public class TextFilter implements Layerable {
 	public TextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		sliderSize.setMin(0);
 		sliderSize.setMax(200);
+		/**
+		Webfonts webfonts = new Webfonts(null, null, null);
+		ObservableList<WebfontList> request = webfonts.webfonts().list();
+		fontBox.setItems(request);
+		*/
 		
 		String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		ObservableList<String> fontList = FXCollections.observableArrayList(fonts);
 		fontBox.setItems(fontList);
-		
+				
 		ObservableList<String> positionList = FXCollections.observableArrayList();
 		positionList.add("uppe");
 		positionList.add("mitten");

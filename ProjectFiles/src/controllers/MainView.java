@@ -6,8 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.awt.GraphicsEnvironment;
@@ -38,7 +36,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import main.Main;
 import model.core.CreatedFilter;
 import model.core.Layerable;
 import model.core.LoadedImage;
@@ -53,7 +50,7 @@ import model.transformations.core.Layers;
 
 public class MainView extends AnchorPane implements Initializable {
 
-	static MainView mainView;
+	public static MainView mainView;
 	public static LayerView layerView;
 	static CanvasView canvasView;
 	static MiniCanvasView miniCanvasView;
@@ -1069,6 +1066,9 @@ public class MainView extends AnchorPane implements Initializable {
 		setVisibility(topLevel);
 	}
 	
+	public Label getClearColorIcon(){
+		return clearColorIcon;
+	}
 }
 
 

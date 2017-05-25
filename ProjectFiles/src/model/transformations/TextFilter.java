@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +93,9 @@ public class TextFilter implements Layerable {
 		BufferedImage BImg = newImage.getBufferedImg();
 
 		Graphics2D g2 = BImg.createGraphics();
+		g2.setRenderingHint(
+				RenderingHints.KEY_TEXT_ANTIALIASING,
+				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		FontMetrics metrics = g2.getFontMetrics(new Font(font, Font.BOLD, size));
 		g2.setColor(new java.awt.Color(r, g, b));
 		g2.setFont(new Font(font, Font.BOLD, size));

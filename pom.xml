@@ -24,4 +24,11 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.google.apis</groupId>
+  		<artifactId>google-api-services-webfonts</artifactId>
+  		<version>v1-rev51-1.22.0</version>
+  	</dependency>
+  </dependencies>
 </project>

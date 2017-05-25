@@ -3,6 +3,7 @@ package model.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
+import controllers.MainView;
 import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -29,8 +30,10 @@ public class ColorShift implements Layerable {
 	private double intensity;
 	
 	private boolean hasSettings = true;
+	private boolean customActive = false;
 	
 	private HBox h1 = new HBox();
+	private HBox h2 = new HBox();
 	
 	private VBox v1 = new VBox();
 	private VBox v2 = new VBox();
@@ -169,9 +172,10 @@ public class ColorShift implements Layerable {
 	@Override
 	public List<VBox> getVBox() {
 		initiateVBox(v1, 35);
-		initiateVBox(v2, 20);
+		initiateVBox(v2, 25);
 		initiateVBox(v3, 45);
 		h1.getChildren().clear();
+		h2.getChildren().clear();
 		
 		for (RadioButton r : colorButtons){
 			setStyling(r);
@@ -190,10 +194,17 @@ public class ColorShift implements Layerable {
 		v1.getChildren().addAll(h1, labelColor);
 		h1.setSpacing(5);
 		
-		//customColor.setValue(Color.rgb((int)this.r*255, (int)this.g*255, (int)this.b*255));
+		if (customActive){
+			customColor.setValue(Color.rgb((int)this.r, (int)this.g, (int)this.b));
+		} else { customColor.setValue(null); }
 		
-		customColor.setValue(null);
-		v2.getChildren().addAll(customColor, labelCustomColor);
+		h2.getChildren().addAll(customColor, MainView.mainView.getClearColorIcon());
+		h2.setSpacing(7);
+		MainView.mainView.getClearColorIcon().setOnMouseClicked(e -> {
+			customColor.setValue(null);
+		});
+		v2.getChildren().addAll(h2, labelCustomColor);
+		
 		sliderIntensity.setValue(this.intensity);
 		v3.getChildren().addAll(sliderIntensity, labelIntensity);
 		
@@ -212,9 +223,12 @@ public class ColorShift implements Layerable {
 					customColor.getValue().getGreen()*255, customColor.getValue().getBlue()*255,
 					sliderIntensity.valueProperty().doubleValue());
 			colorGroup.selectToggle(null);
+			customActive = true;
+			
 		} else {
-			this.intensity = sliderIntensity.getValue();
+			this.intensity = sliderIntensity.valueProperty().doubleValue();
 			getDefinedColorShift((String)colorGroup.getSelectedToggle().getUserData(), this.intensity);
+			customActive = false;
 		}
 		
 	}

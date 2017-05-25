@@ -6,10 +6,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.awt.GraphicsEnvironment;
-
 import javax.imageio.ImageIO;
 
 import Project.OpenProject;
@@ -51,64 +52,62 @@ import model.transformations.core.Layers;
 public class MainView extends AnchorPane implements Initializable {
 
 	static MainView mainView;
-	public static LayerView layerView;
 	static CanvasView canvasView;
 	static MiniCanvasView miniCanvasView;
+	public static LayerView layerView;
+	private static Stage primaryStage;
 	private Point topLeft = new Point(0, 0);
 	private Point bottomRight = new Point(0, 0);
-	private static Stage primaryStage;
+	
 	/**
 	 * Indicates if the project has changed.
 	 */
 	private static boolean changed = false;
 
 	@FXML
-	TilePane bottomContainer;
-	@FXML
-	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane;
-	@FXML
-	AnchorPane menuBar;
-	@FXML
-	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject, menuResetPicture,
-	menuGrayScale, menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, 
-	menuCrop, menuExposure, menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR,
-	menuBlur, menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter, 
-	menuZoomIn, menuZoomOut, menuUndo, menuRedo, menuResetWindow, menuAbout;
-	@FXML
-	Button closeButton, miniButton, maxiButton;
-	@FXML
-	Button exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate,
-			textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate;
-	@FXML
-	ComboBox<String> filterBox;
+	TilePane bottomContainer;	
 	@FXML
 	StackPane toolContainer;
 	@FXML
-	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel, exposureLevel, contrastLevel, levelsLevel, grainLevel,
-	blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel;
+	AnchorPane bottomPane, canvasPane, miniCanvas, layerPane, menuBar;
 	@FXML
-	Label adjustIcon, colorIcon, effectIcon, filterIcon, exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon, 
-	levelsIcon, levelsBackIcon, grainIcon, grainBackIcon, blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon,
-	sharpenIcon, sharpenBackIcon, textIcon, textBackIcon, colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon, whiteBalanceIcon,
-	wbBackIcon, bwIcon, bwBackIcon,	aBackIcon, cBackIcon, eBackIcon, fBackIcon, clearColorIcon;
+	MenuItem openImage, menuClose, menuExport, menuSaveProject, menuOpenProject, menuResetPicture, menuGrayScale,
+			menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, menuCrop, menuExposure, menuContrast,
+			menuHReflect, menuVReflect, menuRotateL, menuRotateR, menuBlur, menuGaussianBlur, menuSharpen,
+			menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo,
+			menuResetWindow, menuAbout;
+	@FXML
+	Button closeButton, miniButton, maxiButton, exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, 
+			gBlurUpdate, sharpenUpdate,	textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate;
+	@FXML
+	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel, exposureLevel, contrastLevel, levelsLevel,
+			grainLevel, blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel;
+	@FXML
+	Label adjustIcon, colorIcon, effectIcon, filterIcon, exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon,
+			levelsIcon, levelsBackIcon, grainIcon, grainBackIcon, blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon,
+			sharpenIcon, sharpenBackIcon, textIcon, textBackIcon, colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon,
+			whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon, aBackIcon, cBackIcon, eBackIcon, fBackIcon,
+			clearColorIcon;
 	@FXML
 	Slider slideZoom;
 	@FXML
 	TextField textInput;
 	@FXML
 	ChoiceBox<String> fontBox, fontPlacement;
-	Layers layerstack = new Layers();
-
+	@FXML
+	ComboBox<String> filterBox;
 	
+	Layers layerstack = new Layers();
+	List<MenuItem> menuItems;
 
 	public MainView(Stage pstage) {
+		
 		mainView = this;
 		primaryStage = pstage;
 		NewFilterHandeler.loadFilters();
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/MainView.fxml"));
 
-		System.out.println("mainview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
 
@@ -117,8 +116,9 @@ public class MainView extends AnchorPane implements Initializable {
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
-		setChoiceBoxes();
-				
+		
+		final Delta dragDelta = new Delta();
+
 		/***
 		 * Interface buttons.
 		 */
@@ -139,6 +139,9 @@ public class MainView extends AnchorPane implements Initializable {
 			}
 		});
 
+		/***
+		 * Menu controls.
+		 */
 		openImage.setOnAction(e -> {
 			Layers.clear();
 			canvasView.setZoomFactor(1);
@@ -147,8 +150,6 @@ public class MainView extends AnchorPane implements Initializable {
 					"*.jpeg");
 			fileChooser.getExtensionFilters().add(extFilter);
 			;
-			// fileChooser.setSelectedExtensionFilter(new
-			// ExtensionFilter(".jpg", ".png" , ".jpeg"));
 			fileChooser.setTitle("Välj en bild");
 
 			File f = fileChooser.showOpenDialog(new Stage());
@@ -167,10 +168,9 @@ public class MainView extends AnchorPane implements Initializable {
 					long time = System.nanoTime();
 					LoadedImage ll = new LoadedImage(newImage);
 					System.out.println("Open Image" + (double) (System.nanoTime() - time) / 1000000000);
-					// System.out.println(canvasView.toString());
 					Layers.setBackgroundImage(ll);
 					canvasUpdate();
-					
+
 				}
 			} catch (IOException e1) {
 				// On canceled fileopening
@@ -216,27 +216,22 @@ public class MainView extends AnchorPane implements Initializable {
 
 		menuZoomOut.setOnAction(e -> {
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 1.5));
-			System.out.println("zooooomOUT  " + canvasView.getZoomFactor());
-			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
+			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) + 5) * 20);
 			canvasUpdate();
 		});
 
 		menuZoomIn.setOnAction(e -> {
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 0.75));
-			System.out.println("zooooomIN  " + canvasView.getZoomFactor());
-			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
-			
-			System.out.println("slide" + slideZoom.getValue() + "              " + (Delta.log(canvasView.getZoomFactor(), 2)+5)*20);
+			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) + 5) * 20);
 			canvasUpdate();
 		});
 		menuUndo.setOnAction(e -> {
 			Layers.remove(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1));
 			canvasUpdate();
 		});
-		slideZoom.setValue(100);
 		slideZoom.setOnMouseClicked(e -> {
 			System.out.println("zooma " + slideZoom.getValue());
-			canvasView.setZoomFactor(((Math.pow(2, (slideZoom.getValue() / 20 - 5)*-1))));
+			canvasView.setZoomFactor(((Math.pow(2, (slideZoom.getValue() / 20 - 5) * -1))));
 			canvasUpdate();
 		});
 		slideZoom.setOnMouseDragOver(e -> {
@@ -250,7 +245,6 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasUpdate();
 
 		});
-
 		menuNewFilter.setOnAction(e -> {
 			Stage window = new Stage();
 			AnchorPane pane = new AnchorPane();
@@ -259,10 +253,9 @@ public class MainView extends AnchorPane implements Initializable {
 			window.initStyle(StageStyle.TRANSPARENT);
 			pane.getChildren().add(new NewFilterView(window));
 			Parent root = pane;
-
 			Scene s = new Scene(root);
 
-	        window.setScene(s);
+			window.setScene(s);
 			window.show();
 		});
 		menuResetWindow.setOnAction(e -> {
@@ -271,13 +264,11 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasUpdate();
 
 		});
-	
 		menuResetPicture.setOnAction(e -> {
 			Layers.getLayerStack().clear();
 			canvasUpdate();
-
 		});
-		
+
 		menuAbout.setOnAction(e -> {
 			Stage window = new Stage();
 			AnchorPane pane = new AnchorPane();
@@ -289,7 +280,7 @@ public class MainView extends AnchorPane implements Initializable {
 
 			Scene about = new Scene(root);
 
-	        window.setScene(about);
+			window.setScene(about);
 			window.show();
 		});
 
@@ -300,71 +291,58 @@ public class MainView extends AnchorPane implements Initializable {
 		menuClicked(menuVReflect, (new VMirroring()));
 		menuClicked(menuRotateL, (new RotateL()));
 		menuClicked(menuRotateR, (new RotateR()));
-		//menuClickedOptions(menuBlur, blurLevel, (new Blur(7)));
 		menuBlur.setOnAction(e -> {
-			Layers.addLayer(new Layer(new Blur( 5)));
+			Layers.addLayer(new Layer(new Blur(5)));
 			showBlur(Layers.getLast());
 		});
-		//menuClickedOptions(menuGaussianBlur, gBlurLevel, (new GaussianBlur(6)));
 		menuGaussianBlur.setOnAction(e -> {
 			Layers.addLayer(new Layer(new GaussianBlur(5)));
 			showGausianBlur(Layers.getLast());
 		});
-		//menuClickedOptions(menuSharpen, sharpenLevel, (new Sharpen()));
 		menuSharpen.setOnAction(e -> {
 			Layers.addLayer(new Layer(new Sharpen()));
 			showSharpen(Layers.getLast());
 		});
-		//menuClickedOptions(menuGrayScale, grayLevel, (new GrayScale()));
 		menuGrayScale.setOnAction(e -> {
 			Layers.addLayer(new Layer(new GrayScale()));
-			showGrayScale(Layers.getLast());
 		});
-		//menuClickedOptions(menuColorFilter, colorFilterLevel, (new ColorShift(0, 0, 0, 0.5)));
-		menuColorFilter.setOnAction( e-> {
-			Layers.addLayer(new Layer(new ColorShift(0,0,0,0.5)));
+		menuColorFilter.setOnAction(e -> {
+			Layers.addLayer(new Layer(new ColorShift(0, 0, 0, 0.5)));
 			showColorShift(Layers.getLast());
 		});
-		//menuClickedOptions(menuContrast, contrastLevel, (new Contrast(100, 1.4)));
-		menuContrast.setOnAction(e->{
-			Layers.addLayer(new Layer(new Contrast(100,1.4)));
+		menuContrast.setOnAction(e -> {
+			Layers.addLayer(new Layer(new Contrast(100, 1.4)));
 			showContrast(Layers.getLast());
 		});
-		//menuClickedOptions(menuWhitebalance, wbLevel, (new WhiteBalance(40)));
 		menuWhitebalance.setOnAction(e -> {
 			Layers.addLayer(new Layer(new WhiteBalance(40)));
 			showWhiteBalance(Layers.getLast());
 		});
-		//menuClickedOptions(menuLevels, levelsLevel, (new Levels(100, 40)));
 		menuLevels.setOnAction(e -> {
-			Layers.addLayer(new Layer(new Levels(200,40)));
+			Layers.addLayer(new Layer(new Levels(200, 40)));
 			showLevels(Layers.getLast());
 		});
-		//menuClickedOptions(menuBlackWhite, bwLevel, (new BlackAndWhite(123)));
-		menuBlackWhite.setOnAction(e->{
+		menuBlackWhite.setOnAction(e -> {
 			Layers.addLayer(new Layer(new BlackAndWhite(128)));
 			showBlackAndWhite(Layers.getLast());
 		});
-		//menuClickedOptions(menuGrain, grainLevel, new Grain(20));
 		menuGrain.setOnAction(e -> {
 			Layers.addLayer(new Layer(new Grain(20)));
 			showGrain(Layers.getLast());
 		});
-		//menuClickedOptions(menuExposure, exposureLevel, (new Exposure(40)));
-		menuExposure.setOnAction(e->{ 
+		menuExposure.setOnAction(e -> {
 			Layers.addLayer(new Layer(new Exposure(40)));
 			showExposure(Layers.getLast());
-			});
-		//menuClickedOptions(menuFilter, filterLevel, (new NewKernel()));
+		});
 		menuClicked(menuEdge, (new Edge()));
-		//menuClickedOptions(menuTextFilter, textLevel, (new TextFilter()));
-		menuTextFilter.setOnAction(e ->{
+		menuTextFilter.setOnAction(e -> {
 			Layers.addLayer(new Layer(new TextFilter()));
 			showTextFilter(Layers.getLast());
 		});
 
-		final Delta dragDelta = new Delta();
-
+		/***
+		 * Move main window controls.
+		 */
 		menuBar.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
@@ -382,14 +360,11 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 	}
 
-	public static Stage getPrimaryStage() {
-		return primaryStage;
-	}
-
-	public void setPrimaryStage(Stage primaryStage) {
-		MainView.primaryStage = primaryStage;
-	}
-
+	/***
+	 * Crop function.
+	 * 
+	 * @return
+	 */
 	public Point setTopLeftCrop() {
 		Point topLeft = new Point();
 		canvasView.setOnMouseClicked(e -> {
@@ -429,7 +404,6 @@ public class MainView extends AnchorPane implements Initializable {
 				e1.printStackTrace();
 			}
 		}
-
 		return bottomRight;
 	}
 
@@ -500,29 +474,23 @@ public class MainView extends AnchorPane implements Initializable {
 		return;
 	}
 
-	/***
-	 * Adds a filter via the menu option and also returns the settings view.
-	 * 
-	 * @param name
-	 * @param level
-	 * @param layerType
-	 */
-	private void menuClickedOptions(MenuItem name, HBox level, Layerable layerType) {
-		name.setOnAction(e -> {
-			toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-			level.toFront();
-			level.setVisible(true);
-			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(layerType));
-				updateLayerSettings(Layers.getLayerStack().get(Layers.getLayerStack().size()-1));
-				canvasUpdate();
-			}
-		});
-		return;
+	public static Stage getPrimaryStage() {
+		return primaryStage;
+	}
+	public void setPrimaryStage(Stage primaryStage) {
+		MainView.primaryStage = primaryStage;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		menuItems = new ArrayList<MenuItem>();
+		Collections.addAll(menuItems, menuExport, menuSaveProject, menuResetPicture, menuGrayScale,
+			menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, menuCrop, menuExposure, menuContrast,
+			menuHReflect, menuVReflect, menuRotateL, menuRotateR, menuBlur, menuGaussianBlur, menuSharpen,
+			menuTextFilter, menuEdge, menuGrain, menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo,
+			menuResetWindow);
+		
 		setDisableMenuItems(true);
 
 		canvasView = new CanvasView(primaryStage);
@@ -534,22 +502,12 @@ public class MainView extends AnchorPane implements Initializable {
 		layerPane.getChildren().add(layerView);
 
 		topLevel.toFront();
-		
-		/***
-		 * Functionality for adding filters via the toolbar.
-		 */
-		// Adjustments
-		
-		/**
-		 * grayUpdate.setOnAction(e -> { layerstack.addLayer(new Layer(new
-		 * Blur((int) blurRadius.valueProperty().intValue()))); canvasUpdate();
-		 * });
-		 */
-		
-		
+
+		slideZoom.setValue(100);
+
 		// Custom filters
 		filterUpdate.setOnAction(e -> {
-			//TODO fixa 
+			// TODO fixa
 		});
 
 		/***
@@ -593,7 +551,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		contrastIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Contrast(150,1.5)));
+				Layers.addLayer(new Layer(new Contrast(150, 1.5)));
 				showContrast(Layers.getLast());
 			}
 		});
@@ -602,7 +560,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		levelsIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Levels(40,200)));
+				Layers.addLayer(new Layer(new Levels(40, 200)));
 				showLevels(Layers.getLast());
 			}
 		});
@@ -665,7 +623,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		colorFilterIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new ColorShift(0.5,0.5,0.5,0.5)));
+				Layers.addLayer(new Layer(new ColorShift(0.5, 0.5, 0.5, 0.5)));
 				showColorShift(Layers.getLast());
 			}
 		});
@@ -673,7 +631,6 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(colorFilterLevel, colorLevel, fadeColor);
 		});
 		grayIcon.setOnMouseClicked(e -> {
-			// mouseClicked(colorLevel, grayLevel, fadeGray);
 			if (Layers.getBackgroundImage() != null) {
 				Layers.addLayer(new Layer(new GrayScale()));
 				canvasUpdate();
@@ -705,8 +662,8 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		filterIcon.setOnMouseClicked(e -> {
 			mouseClicked(topLevel, filterLevel, fadeFilter);
-			ObservableList<String> filters = FXCollections.observableArrayList(  );
-			for(CreatedFilter f : NewFilterHandeler.getFilters()){
+			ObservableList<String> filters = FXCollections.observableArrayList();
+			for (CreatedFilter f : NewFilterHandeler.getFilters()) {
 				filters.add(f.getName());
 			}
 			filterBox.getItems().addAll(filters);
@@ -716,14 +673,12 @@ public class MainView extends AnchorPane implements Initializable {
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
-
 	}
 
 	/***
 	 * Method for repainting the canvases.
 	 */
 	static void canvasUpdate() {
-		System.out.println("Repaint");
 		canvasView.repaint();
 		miniCanvasView.repaint();
 		layerView.update();
@@ -737,47 +692,9 @@ public class MainView extends AnchorPane implements Initializable {
 	 * @param b
 	 */
 	private void setDisableMenuItems(boolean b) {
-		menuExport.setDisable(b);
-		menuSaveProject.setDisable(b);
-		menuGrayScale.setDisable(b);
-		menuColorFilter.setDisable(b);
-		menuBlackWhite.setDisable(b);
-		menuWhitebalance.setDisable(b);
-		menuLevels.setDisable(b);
-		menuCrop.setDisable(b);
-		menuExposure.setDisable(b);
-		menuContrast.setDisable(b);
-		menuGrain.setDisable(b);
-		menuHReflect.setDisable(b);
-		menuVReflect.setDisable(b);
-		menuRotateL.setDisable(b);
-		menuRotateR.setDisable(b);
-		menuBlur.setDisable(b);
-		menuGaussianBlur.setDisable(b);
-		menuSharpen.setDisable(b);
-		menuTextFilter.setDisable(b);
-		menuEdge.setDisable(b);
-		menuZoomIn.setDisable(b);
-		menuZoomOut.setDisable(b);
-		menuUndo.setDisable(b);
-		menuRedo.setDisable(b);
-		menuResetWindow.setDisable(b);
-		disableToolbarButtons(b);
-	}
-
-	private void disableToolbarButtons(boolean b) {
-		exposureUpdate.setDisable(b);
-		contrastUpdate.setDisable(b);
-		levelsUpdate.setDisable(b);
-		grainUpdate.setDisable(b);
-		blurUpdate.setDisable(b);
-		gBlurUpdate.setDisable(b);
-		sharpenUpdate.setDisable(b);
-		textUpdate.setDisable(b);
-		cfUpdate.setDisable(b);
-		bwUpdate.setDisable(b);
-		wbUpdate.setDisable(b);
-		filterUpdate.setDisable(b);
+		for (MenuItem m : menuItems){
+			m.setDisable(b);
+		}
 		slideZoom.setDisable(b);
 	}
 
@@ -805,14 +722,6 @@ public class MainView extends AnchorPane implements Initializable {
 			Platform.exit();
 		}
 	}
-	
-	private void setChoiceBoxes() {
-		fontPlacement.setItems(FXCollections.observableArrayList(FXCollections.observableArrayList("uppe","mitten","nere")));
-		String fonts[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-		fontBox.setItems(FXCollections.observableArrayList(fonts));
-	}
-
-	
 
 	public static CanvasView getCanvas() {
 		return canvasView;
@@ -824,7 +733,7 @@ public class MainView extends AnchorPane implements Initializable {
 	 * @param layer
 	 */
 	public void updateLayerSettings(Layer layer) {
-		
+
 		if (layer.getName().equals("Exponering")) {
 			showExposure(layer);
 		} else if (layer.getName().equals("Kontrast")) {
@@ -845,120 +754,52 @@ public class MainView extends AnchorPane implements Initializable {
 			showBlackAndWhite(layer);
 		} else if (layer.getName().equals("Vitbalans")) {
 			showWhiteBalance(layer);
-		} else if (layer.getName().equals("Gråskala")) {
-			setVisibility(grayLevel);
 		} else if (layer.getName().equals("Textfilter")) {
 			showTextFilter(layer);
-			//textInput.setText(layer.getText());
+			// textInput.setText(layer.getText());
+		} else if (layer.getName().equals("Eget filter")){
+			showCustomFilter(layer); 
 		}
-		/**
-		 * else if (layer.getName().equals("Eget filter")){
-		 * setVisibility(customLevel); }
-		 */
 	}
 
 	private void setVisibility(Node level) {
 		level.toFront();
 		level.setVisible(true);
 	}
-	/*topLevel, adjustLevel, effectLevel, colorLevel, filterLevel, exposureLevel, contrastLevel, levelsLevel, grainLevel,
-	blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel;
-	
-	 exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, gBlurUpdate, sharpenUpdate,
-		textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate;*/
-	public void showExposure(Layer l){
+
+	private void showFilterSettings(Button b, Layer l, HBox h, Label backIcon) {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		exposureUpdate.setOnAction(e -> {
+		b.setOnAction(e -> {
 			l.getAction().uppdate();
 			canvasUpdate();
 		});
-		exposureLevel.getChildren().clear();
-		exposureLevel.getChildren().add(exposureBackIcon);
-		exposureLevel.getChildren().addAll(l.getAction().getVBox());
-		exposureLevel.getChildren().add(exposureUpdate);
-		exposureLevel.toFront();
-		exposureUpdate.toFront();
-		setVisibility(exposureLevel);
+		h.getChildren().clear();
+		h.getChildren().addAll(b, backIcon);
+		h.getChildren().addAll(l.getAction().getVBox());
+		h.toFront();
+		b.toFront();
+		setVisibility(h);
 		canvasUpdate();
+	}
+
+	
+	public void showExposure(Layer l) {
+		showFilterSettings(exposureUpdate, l, exposureLevel, exposureBackIcon);
 	}
 	private void showBlackAndWhite(Layer l) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		bwUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		bwLevel.getChildren().clear();
-		bwLevel.getChildren().add(bwBackIcon);
-		bwLevel.getChildren().addAll(l.getAction().getVBox());
-		bwLevel.getChildren().add(bwUpdate);
-		bwLevel.toFront();
-		bwUpdate.toFront();
-		setVisibility(bwLevel);
-		canvasUpdate();
+		showFilterSettings(bwUpdate, l, bwLevel, bwBackIcon);
 	}
 	private void showTextFilter(Layer l) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		textUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		textLevel.getChildren().clear();
-		textLevel.getChildren().add(textBackIcon);
-		textLevel.getChildren().addAll(l.getAction().getVBox());
-		textLevel.getChildren().add(textUpdate);
-		textLevel.toFront();
-		textUpdate.toFront();
-		setVisibility(textLevel);
-		canvasUpdate();
-		
+		showFilterSettings(textUpdate, l, textLevel, textBackIcon);
 	}
 	private void showGrain(Layer l) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		grainUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		grainLevel.getChildren().clear();
-		grainLevel.getChildren().add(grainBackIcon);
-		grainLevel.getChildren().addAll(l.getAction().getVBox());
-		grainLevel.getChildren().add(grainUpdate);
-		grainLevel.toFront();
-		grainUpdate.toFront();
-		setVisibility(grainLevel);
-		canvasUpdate();
-		
+		showFilterSettings(grainUpdate, l, grainLevel, grainBackIcon);
 	}
 	private void showLevels(Layer l) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		levelsUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		levelsLevel.getChildren().clear();
-		levelsLevel.getChildren().add(levelsBackIcon);
-		levelsLevel.getChildren().addAll(l.getAction().getVBox());
-		levelsLevel.getChildren().add(levelsUpdate);
-		levelsLevel.toFront();
-		levelsUpdate.toFront();
-		setVisibility(levelsLevel);
-		canvasUpdate();
-		
+		showFilterSettings(levelsUpdate, l, levelsLevel, levelsBackIcon);
 	}
 	private void showWhiteBalance(Layer l) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		wbUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		wbLevel.getChildren().clear();
-		wbLevel.getChildren().add(wbBackIcon);
-		wbLevel.getChildren().addAll(l.getAction().getVBox());
-		wbLevel.getChildren().add(wbUpdate);
-		wbLevel.toFront();
-		wbUpdate.toFront();
-		setVisibility(wbLevel);
-		canvasUpdate();
-		
+		showFilterSettings(wbUpdate, l, wbLevel, wbBackIcon);
 	}
 	private void showContrast(Layer l) {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
@@ -968,110 +809,54 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasUpdate();
 		});
 		contrastLevel.getChildren().clear();
-		contrastLevel.getChildren().add(contrastBackIcon);
-		contrastLevel.getChildren().add(l.getAction().getVBox().get(0));
-		contrastLevel.getChildren().add(l.getAction().getVBox().get(1));
-		contrastLevel.getChildren().add(contrastUpdate);
+		contrastLevel.getChildren().addAll(contrastBackIcon, contrastUpdate);
+		contrastLevel.getChildren().addAll(l.getAction().getVBox().get(0), l.getAction().getVBox().get(1));
 		contrastLevel.toFront();
 		contrastUpdate.toFront();
 		setVisibility(contrastLevel);
 		canvasUpdate();
-		
+
 	}
+
 	private void showColorShift(Layer l) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		cfUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		colorFilterLevel.getChildren().clear();
-		colorFilterLevel.getChildren().add(cfBackIcon);
-		colorFilterLevel.getChildren().addAll(l.getAction().getVBox());
-		colorFilterLevel.getChildren().add(cfUpdate);
-		colorFilterLevel.toFront();
-		cfUpdate.toFront();
-		setVisibility(colorFilterLevel);
-		canvasUpdate();
-		
+		showFilterSettings(cfUpdate, l, colorFilterLevel, cfBackIcon);
 	}
-	//  TA BORT !
-	private void showGrayScale(Layer l) {
-		/*toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		grayUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		grayLevel.getChildren().clear();
-		grayLevel.getChildren().add(grayBackIcon);
-		grayLevel.getChildren().addAll(l.getAction().getVBox());
-		grayLevel.getChildren().add(grayUpdate);
-		grayLevel.toFront();
-		grayUpdate.toFront();
-		setVisibility(grayLevel);*/
+
+	private void showSharpen(Layer l) { 
+		// TODO
+		/*
+		 * toolContainer.getChildren().get(toolContainer.getChildren().size() -
+		 * 1).setVisible(false); sharpenUpdate.setOnAction(e -> {
+		 * l.getAction().uppdate(); canvasUpdate(); });
+		 * sharpenLevel.getChildren().clear();
+		 * sharpenLevel.getChildren().add(sharpenBackIcon);
+		 * sharpenLevel.getChildren().add(l.getAction().getVBox().get(0));
+		 * sharpenLevel.getChildren().add(l.getAction().getVBox().get(1));
+		 * sharpenLevel.getChildren().add(sharpenUpdate);
+		 * sharpenLevel.toFront(); sharpenUpdate.toFront();
+		 * setVisibility(sharpenLevel);
+		 */
 		canvasUpdate();
-		
-	}
-	private void showSharpen(Layer l) {
-		/*toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		sharpenUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		sharpenLevel.getChildren().clear();
-		sharpenLevel.getChildren().add(sharpenBackIcon);
-		sharpenLevel.getChildren().add(l.getAction().getVBox().get(0));
-		sharpenLevel.getChildren().add(l.getAction().getVBox().get(1));
-		sharpenLevel.getChildren().add(sharpenUpdate);
-		sharpenLevel.toFront();
-		sharpenUpdate.toFront();
-		setVisibility(sharpenLevel);*/
-		canvasUpdate();
-		
-	}
-	private void showGausianBlur(Layer l) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		gBlurUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		gBlurLevel.getChildren().clear();
-		gBlurLevel.getChildren().add(gBlurBackIcon);
-		gBlurLevel.getChildren().addAll(l.getAction().getVBox());
-		gBlurLevel.getChildren().add(gBlurUpdate);
-		gBlurLevel.toFront();
-		gBlurUpdate.toFront();
-		setVisibility(gBlurLevel);
-		canvasUpdate();
-		
 	}
 	private void showBlur(Layer l) {
-		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
-		blurUpdate.setOnAction(e -> {
-			l.getAction().uppdate();
-			canvasUpdate();
-		});
-		blurLevel.getChildren().clear();
-		blurLevel.getChildren().add(blurBackIcon);
-		blurLevel.getChildren().addAll(l.getAction().getVBox());
-		blurLevel.getChildren().add(blurUpdate);
-		blurLevel.toFront();
-		blurUpdate.toFront();
-		setVisibility(blurLevel);
-		canvasUpdate();
-		
+		showFilterSettings(blurUpdate, l, blurLevel, blurBackIcon);
 	}
-	
-	public void topToFront(){
+	private void showGausianBlur(Layer l) {
+		showFilterSettings(gBlurUpdate, l, gBlurLevel, gBlurBackIcon);
+	}
+	private void showCustomFilter(Layer l) {
+		// TODO
+	}
+
+	public void topToFront() {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		setVisibility(topLevel);
 	}
 }
 
-
 class Delta {
 	double x, y;
-	static int log(double x, int base)
-	{
-	    return (int) (Math.log(x) / Math.log(base));
+	static int log(double x, int base) {
+		return (int) (Math.log(x) / Math.log(base));
 	}
 }

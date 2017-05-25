@@ -1,9 +1,9 @@
 package model.transformations;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import controllers.MainView;
 import javafx.geometry.Pos;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -71,14 +71,8 @@ public class ColorShift implements Layerable {
 		clearColorIcon.setGraphic(new ImageView("resources/icons/clear-icon.png"));
 		
 		colorButtons = new ArrayList<RadioButton>();
-		colorButtons.add(yellowButton);
-		colorButtons.add(orangeButton);
-		colorButtons.add(blueButton);
-		colorButtons.add(redButton);
-		colorButtons.add(pinkButton);
-		colorButtons.add(purpleButton);
-		colorButtons.add(turquoiseButton);
-		colorButtons.add(greenButton);
+		Collections.addAll(colorButtons, yellowButton, orangeButton, blueButton, redButton, pinkButton, purpleButton,
+				turquoiseButton, greenButton);
 		
 		for (RadioButton r : colorButtons){
 			r.setToggleGroup(colorGroup);

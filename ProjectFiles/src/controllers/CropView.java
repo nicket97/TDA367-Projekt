@@ -104,6 +104,7 @@ public class CropView extends AnchorPane implements Initializable {
 				this.getChildren().clear();
 			}
 			MainView.canvasUpdate();
+			this.setVisible(false);
 		});
 		
 

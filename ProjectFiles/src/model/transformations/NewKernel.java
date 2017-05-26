@@ -19,7 +19,7 @@ public class NewKernel implements Layerable {
 	double[][] kernel;
 	String name;
 	
-	private boolean hasSettings = true;
+	private final boolean hasSettings = false;
 
 	public NewKernel(double[][] kernel, String name) {
 		this.kernel = kernel;
@@ -61,10 +61,7 @@ public class NewKernel implements Layerable {
 					}
 					x++;
 				}
-				sumRed = sumRed ;
-				sumGreen = sumGreen;    
-				sumBlue = sumBlue ;
-				pxImage[i][j] = Color.rgb(ColorTransformTest.getAllowedValue(sumRed), ColorTransformTest.getAllowedValue(sumGreen), ColorTransformTest.getAllowedValue(sumBlue));
+				pxImage[i][j] = Color.rgb(ColorTransformTest.getAllowedValue(sumRed/count), ColorTransformTest.getAllowedValue(sumGreen/count), ColorTransformTest.getAllowedValue(sumBlue/count));
 			}
 		}
 		newImage.setPxImage(pxImage);

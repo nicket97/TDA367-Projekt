@@ -339,6 +339,15 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.addLayer(new Layer(new TextFilter()));
 			showTextFilter(Layers.getLast());
 		});
+		menuFilter.setOnAction(e -> {
+			mouseClicked(topLevel, filterLevel, fadeFilter);
+			ObservableList<String> filters = FXCollections.observableArrayList();
+			for (CreatedFilter f : NewFilterHandeler.getFilters()) {
+				filters.add(f.getName());
+			}
+			filterBox.getItems().addAll(filters);
+			canvasUpdate();
+		});
 
 		/***
 		 * Move main window controls.
@@ -358,6 +367,7 @@ public class MainView extends AnchorPane implements Initializable {
 				pstage.setY(mouseEvent.getScreenY() + dragDelta.y);
 			}
 		});
+		
 	}
 
 	/***
@@ -507,7 +517,10 @@ public class MainView extends AnchorPane implements Initializable {
 
 		// Custom filters
 		filterUpdate.setOnAction(e -> {
-			// TODO fixa
+			Layers.addLayer(new Layer(new NewKernel(NewFilterHandeler.getFilter(
+					filterBox.getValue()).getKernel()
+					,NewFilterHandeler.getFilter(filterBox.getValue()).getName() )));
+			canvasUpdate();
 		});
 
 		/***
@@ -661,13 +674,13 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(colorLevel, topLevel, fadeIn);
 		});
 		filterIcon.setOnMouseClicked(e -> {
+			//TODO
 			mouseClicked(topLevel, filterLevel, fadeFilter);
 			ObservableList<String> filters = FXCollections.observableArrayList();
 			for (CreatedFilter f : NewFilterHandeler.getFilters()) {
 				filters.add(f.getName());
 			}
 			filterBox.getItems().addAll(filters);
-			Layers.addLayer(new Layer(new NewKernel(new double[3][3], "Eget Filter")));
 			canvasUpdate();
 		});
 		fBackIcon.setOnMouseClicked(e -> {
@@ -845,7 +858,7 @@ public class MainView extends AnchorPane implements Initializable {
 		showFilterSettings(gBlurUpdate, l, gBlurLevel, gBlurBackIcon);
 	}
 	private void showCustomFilter(Layer l) {
-		// TODO
+		showFilterSettings(filterUpdate, l, filterLevel, fBackIcon);
 	}
 
 	public void topToFront() {

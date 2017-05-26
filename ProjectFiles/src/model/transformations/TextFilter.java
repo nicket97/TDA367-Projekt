@@ -39,7 +39,7 @@ public class TextFilter implements Layerable {
 	private int r;
 	private int g;
 	private int b;
-	private boolean hasSettings = true;
+	private final boolean hasSettings = true;
 	
 	private TextField txtIn = new TextField();
 	private Label labelText = new Label("Skriv in text");
@@ -62,7 +62,7 @@ public class TextFilter implements Layerable {
 
 	public TextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		sliderSize.setMin(0);
-		sliderSize.setMax(200);
+		sliderSize.setMax(400);
 		/**
 		Webfonts webfonts = new Webfonts(null, null, null);
 		ObservableList<WebfontList> request = webfonts.webfonts().list();
@@ -98,9 +98,9 @@ public class TextFilter implements Layerable {
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
-		BufferedImage BImg = newImage.getBufferedImg();
+		
 
-		Graphics2D g2 = BImg.createGraphics();
+		Graphics2D g2 = newImage.getBufferedImg().createGraphics();
 		g2.setRenderingHint(
 				RenderingHints.KEY_TEXT_ANTIALIASING,
 				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -117,8 +117,8 @@ public class TextFilter implements Layerable {
 			y = img.getHeigth() - 50;
 			
 		g2.drawString(text, x, y);
-
-		return new LoadedImage(BImg);
+		
+		return new LoadedImage(newImage.getBufferedImg());
 	}
 
 	@Override

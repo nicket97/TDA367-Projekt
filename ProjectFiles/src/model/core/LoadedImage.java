@@ -128,10 +128,51 @@ public class LoadedImage {
 
 	public void setPxImage(Color[][] pxImage) {
 		this.pxImage = pxImage;
+		
 	}
 
 	public void setlImg(BufferedImage lImg) {
 		this.lImg = lImg;
+		class CreateImage implements Runnable {
+			Color[][] pxImage;
+			int n;
+
+			CreateImage(Color[][] s, int x) {
+				pxImage = s;
+				n = x;
+			}
+
+			@Override
+			public void run() {
+				for (int i = n; i < width; i += 4) {
+					for (int j = 0; j < heigth; j++) {
+						pxImage[i][j] = getColorFromInt(lImg.getRGB(i, j));
+					}
+				}
+			}
+		}
+		Thread t1 = new Thread(new CreateImage(this.pxImage, 0));
+		Thread t2 = new Thread(new CreateImage(this.pxImage, 1));
+		Thread t3 = new Thread(new CreateImage(this.pxImage, 2));
+		Thread t4 = new Thread(new CreateImage(this.pxImage, 3));
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
+
+		try {
+			t1.join();
+			System.out.println("1");
+			t2.join();
+			System.out.println("2");
+			t3.join();
+			System.out.println("3");
+			t4.join();
+			System.out.println("4");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void setWidth(int width) {

@@ -701,6 +701,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private void exit(boolean changed) {
 		if (changed) {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.initStyle(StageStyle.TRANSPARENT);
 			alert.setTitle("Varning");
 			alert.setHeaderText("Vill du spara projektet innan du avslutar?");
 
@@ -709,6 +710,10 @@ public class MainView extends AnchorPane implements Initializable {
 			ButtonType buttonTypeClose = new ButtonType("Avbryt", ButtonBar.ButtonData.CANCEL_CLOSE);
 
 			alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo, buttonTypeClose);
+			
+			DialogPane dialogPane = alert.getDialogPane();
+			dialogPane.getStylesheets().add(
+			getClass().getResource("../resources/css/style.css").toExternalForm());
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == buttonTypeYes) {
@@ -721,7 +726,9 @@ public class MainView extends AnchorPane implements Initializable {
 		} else {
 			Platform.exit();
 		}
+
 	}
+	
 
 	public static CanvasView getCanvas() {
 		return canvasView;

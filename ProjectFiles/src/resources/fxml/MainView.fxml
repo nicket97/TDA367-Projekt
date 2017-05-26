@@ -73,10 +73,13 @@
                         <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator></MenuItem>
                     <MenuItem fx:id="menuResetWindow" mnemonicParsing="false" text="Centrera bild">
-                    </MenuItem>
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="SPACE" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
                   <MenuItem fx:id="menuResetPicture" mnemonicParsing="false" text="Återställ bild">
-                    
-                     </MenuItem>
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Justera">
@@ -102,11 +105,22 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Anpassa">
                <items>
-                  <MenuItem fx:id="menuExposure" mnemonicParsing="false" text="Exponering" />
-                  <MenuItem fx:id="menuContrast" mnemonicParsing="false" text="Kontrast" />
-                  <MenuItem fx:id="menuLevels" mnemonicParsing="false" text="Nivåer" />
+                  <MenuItem fx:id="menuExposure" mnemonicParsing="false" text="Exponering">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem fx:id="menuContrast" mnemonicParsing="false" text="Kontrast">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem fx:id="menuLevels" mnemonicParsing="false" text="Nivåer">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
                   <MenuItem fx:id="menuGrain" mnemonicParsing="false" text="Brus">
-                  </MenuItem>
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
                   
                   
                </items>
@@ -119,15 +133,15 @@
                      </accelerator></MenuItem>
                   <MenuItem fx:id="menuGaussianBlur" mnemonicParsing="false" text="Gaussisk Oskärpa">
                      <accelerator>
-                        <KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        <KeyCodeCombination alt="UP" code="B" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator></MenuItem>
                   <MenuItem fx:id="menuSharpen" mnemonicParsing="false" text="Skärpa">
                   <accelerator>
-                     <KeyCodeCombination alt="UP" code="B" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                   </accelerator></MenuItem>
                   <MenuItem fx:id="menuEdge" mnemonicParsing="false" text="Kanter">
                   <accelerator>
-                     <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                   </accelerator></MenuItem>
                   <MenuItem fx:id="menuTextFilter" mnemonicParsing="false" text="Text">
                      <accelerator>
@@ -139,11 +153,11 @@
                <items>
                   <MenuItem fx:id="menuColorFilter" mnemonicParsing="false" text="Färgfilter">
                      <accelerator>
-                        <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator></MenuItem>
                   <MenuItem fx:id="menuBlackWhite" mnemonicParsing="false" text="Svartvitt">
                      <accelerator>
-                        <KeyCodeCombination alt="DOWN" code="B" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                   <MenuItem fx:id="menuGrayScale" mnemonicParsing="false" text="Gråskala">
                      <accelerator>
@@ -151,13 +165,16 @@
                      </accelerator></MenuItem>
                   <MenuItem fx:id="menuWhitebalance" mnemonicParsing="false" text="Vitbalans">
                      <accelerator>
-                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator></MenuItem>
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Egna filter">
                <items>
-                  <MenuItem fx:id="menuFilter" mnemonicParsing="false" text="Applicera" />
+                  <MenuItem fx:id="menuFilter" mnemonicParsing="false" text="Applicera">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
                   <MenuItem fx:id="menuNewFilter" mnemonicParsing="false" text="Lägg till nytt..." />
                </items>
             </Menu>

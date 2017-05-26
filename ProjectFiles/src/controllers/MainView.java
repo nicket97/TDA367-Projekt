@@ -339,6 +339,10 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.addLayer(new Layer(new TextFilter()));
 			showTextFilter(Layers.getLast());
 		});
+		menuFilter.setOnAction(e -> {
+			Layers.addLayer(new Layer(new NewKernel(new double [3][3], "Eget filter")));
+			showCustomFilter(Layers.getLast());
+		});
 
 		/***
 		 * Move main window controls.
@@ -661,14 +665,10 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(colorLevel, topLevel, fadeIn);
 		});
 		filterIcon.setOnMouseClicked(e -> {
-			mouseClicked(topLevel, filterLevel, fadeFilter);
-			ObservableList<String> filters = FXCollections.observableArrayList();
-			for (CreatedFilter f : NewFilterHandeler.getFilters()) {
-				filters.add(f.getName());
+			if (Layers.getBackgroundImage() != null){
+				Layers.addLayer(new Layer(new NewKernel(new double[3][3], "Eget Filter")));
+				showCustomFilter(Layers.getLast());
 			}
-			filterBox.getItems().addAll(filters);
-			Layers.addLayer(new Layer(new NewKernel(new double[3][3], "Eget Filter")));
-			canvasUpdate();
 		});
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
@@ -696,6 +696,7 @@ public class MainView extends AnchorPane implements Initializable {
 			m.setDisable(b);
 		}
 		slideZoom.setDisable(b);
+		filterUpdate.setDisable(b);
 	}
 
 	private void exit(boolean changed) {
@@ -822,7 +823,6 @@ public class MainView extends AnchorPane implements Initializable {
 		contrastUpdate.toFront();
 		setVisibility(contrastLevel);
 		canvasUpdate();
-
 	}
 
 	private void showColorShift(Layer l) {
@@ -852,7 +852,19 @@ public class MainView extends AnchorPane implements Initializable {
 		showFilterSettings(gBlurUpdate, l, gBlurLevel, gBlurBackIcon);
 	}
 	private void showCustomFilter(Layer l) {
-		// TODO
+		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
+		filterUpdate.setOnAction(null);
+		filterUpdate.setOnAction(e -> {
+			l.getAction().uppdate();
+			canvasUpdate();
+		});
+		filterLevel.getChildren().clear();
+		filterLevel.getChildren().addAll(fBackIcon, filterUpdate);
+		filterLevel.getChildren().addAll(l.getAction().getVBox().get(0));
+		filterLevel.toFront();
+		filterUpdate.toFront();
+		setVisibility(filterLevel);
+		canvasUpdate();
 	}
 
 	public void topToFront() {

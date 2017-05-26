@@ -1,10 +1,18 @@
 package model.transformations;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import model.core.CreatedFilter;
 import model.core.Layerable;
 import model.core.LoadedImage;
 import model.core.NewFilterHandeler;
@@ -19,11 +27,17 @@ public class NewKernel implements Layerable {
 	double[][] kernel;
 	String name;
 	
+	private Label labelText = new Label();
+	private VBox v = new VBox();
+	private ComboBox<String> filterBox = new ComboBox<String>();
+	
 	private boolean hasSettings = true;
 
 	public NewKernel(double[][] kernel, String name) {
 		this.kernel = kernel;
 		this.name = name;
+		
+		labelText.setText("Välj filter");
 	}
 
 	public NewKernel(String[] args) {
@@ -89,10 +103,32 @@ public class NewKernel implements Layerable {
 
 	@Override
 	public List<VBox> getVBox() {
-		//TODO fixa
-		return null;
+		initiateVBox(v);
+		
+		ObservableList<String> filters = FXCollections.observableArrayList();
+		for (CreatedFilter f : NewFilterHandeler.getFilters()) {
+			filters.add(f.getName());
+		}
+		filterBox.getItems().addAll(filters);
+		filterBox.setPrefWidth(150.0);
+		
+		v.getChildren().addAll(filterBox, labelText);
+		
+		List<VBox> vboxList = new ArrayList<VBox>();
+		
+		vboxList.add(v);
+		
+		return vboxList;
 	}
 
+	private void initiateVBox(VBox v) {
+		v.getChildren().clear();
+		v.setTranslateY(30);
+		v.setAlignment(Pos.BASELINE_CENTER);
+		v.setSpacing(10);
+		v.setPadding(new Insets(0, 15, 0, 15));;
+	}
+	
 	@Override
 	public void uppdate() {
 

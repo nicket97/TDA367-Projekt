@@ -51,6 +51,12 @@
 #rightPane {
 	-fx-background-color: derive(#1d1d1d,10%);
 }
+#aboutPane {
+	-fx-background-color: derive(#1d1d1d,10%);
+	-fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #d3d3d3;
+}
 #layerPane .scroll-bar:horizontal .increment-arrow,
 #layerPane .scroll-bar:horizontal .decrement-arrow,
 #layerPane .scroll-bar:horizontal .increment-button,

@@ -24,6 +24,7 @@ import model.transformations.Levels;
 import model.transformations.RotateL;
 import model.transformations.RotateR;
 import model.transformations.Sharpen;
+import model.transformations.TextFilter;
 import model.transformations.VMirroring;
 import model.transformations.WhiteBalance;
 import model.transformations.core.Layer;
@@ -110,6 +111,9 @@ public class OpenProject {
 					case "Grain":
 						Layers.addLayer(new Layer(new Grain(information)));
 						break;
+					case "TextFilter":
+							Layers.addLayer(new Layer(new TextFilter(information)));
+							break;
 					}
 				}
 				if (stage == 2) {

@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.api.services.webfonts.Webfonts;
-import com.google.api.services.webfonts.model.WebfontList;
+//import com.google.api.services.webfonts.Webfonts;
+//import com.google.api.services.webfonts.model.WebfontList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -110,11 +110,11 @@ public class TextFilter implements Layerable {
 		int x = (img.getWidth() - metrics.stringWidth(text)) / 2;
 		int y = 125;
 		if(this.yPosition.equals("uppe"))
-			y = 20;
+			y = (img.getHeigth() / 8) + (size / 2);
 		else if(this.yPosition.equals("mitten"))
-			y = img.getHeigth() / 2+size/4;
+			y = (img.getHeigth() / 2) + (size / 4);
 		else if(this.yPosition.equals("nere"))
-			y = img.getHeigth() - size;
+			y = img.getHeigth() - ((img.getHeigth() / 12));
 			
 		g2.drawString(text, x, y);
 		

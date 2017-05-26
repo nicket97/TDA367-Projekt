@@ -578,3 +578,52 @@
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected{
     -fx-background-color: #55c4fe;  /* TODO: this probably is the "accent" color" */
 }
+
+/** DIALOG WINDOW **/
+
+ .dialog-pane{
+  -fx-background-color: derive(#1d1d1d,10%);
+ }
+
+/**Costumization of The Bar where the buttons are located**/
+.dialog-pane > .button-bar > .container {
+	-fx-background-color: derive(#1d1d1d,10%);
+}
+
+.dialog-pane > .content.label {
+	-fx-background-color: derive(#1d1d1d,10%);
+ 	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+	-fx-text-fill: white;
+}
+
+/**Costumization of DialogPane Header**/
+.dialog-pane:header .header-panel {
+  -fx-background-color: derive(#1d1d1d,10%);
+}
+
+.dialog-pane:header .header-panel .label{
+	-fx-background-color: derive(#1d1d1d,10%);
+ 	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+	-fx-text-fill: white;
+}
+
+
+/**Costumization of Buttons**/
+.dialog-pane .button{
+    -fx-padding: 5 15 5 15;   
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-cursor: hand;
+ }
+
+.dialog-pane .button:hover{     
+  -fx-background-color: #3a3a3a;
+ }

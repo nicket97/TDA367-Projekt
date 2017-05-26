@@ -319,7 +319,7 @@ public class MainView extends AnchorPane implements Initializable {
 			showWhiteBalance(Layers.getLast());
 		});
 		menuLevels.setOnAction(e -> {
-			Layers.addLayer(new Layer(new Levels(200, 40)));
+			Layers.addLayer(new Layer(new Levels(20, 180)));
 			showLevels(Layers.getLast());
 		});
 		menuBlackWhite.setOnAction(e -> {
@@ -573,7 +573,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		levelsIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Levels(40, 200)));
+				Layers.addLayer(new Layer(new Levels(20, 180)));
 				showLevels(Layers.getLast());
 			}
 		});
@@ -714,6 +714,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private void exit(boolean changed) {
 		if (changed) {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			alert.initStyle(StageStyle.TRANSPARENT);
 			alert.setTitle("Varning");
 			alert.setHeaderText("Vill du spara projektet innan du avslutar?");
 
@@ -722,6 +723,10 @@ public class MainView extends AnchorPane implements Initializable {
 			ButtonType buttonTypeClose = new ButtonType("Avbryt", ButtonBar.ButtonData.CANCEL_CLOSE);
 
 			alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo, buttonTypeClose);
+			
+			DialogPane dialogPane = alert.getDialogPane();
+			dialogPane.getStylesheets().add(
+			getClass().getResource("../resources/css/style.css").toExternalForm());
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == buttonTypeYes) {
@@ -734,7 +739,9 @@ public class MainView extends AnchorPane implements Initializable {
 		} else {
 			Platform.exit();
 		}
+
 	}
+	
 
 	public static CanvasView getCanvas() {
 		return canvasView;

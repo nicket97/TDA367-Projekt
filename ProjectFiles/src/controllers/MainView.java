@@ -302,6 +302,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		menuGrayScale.setOnAction(e -> {
 			Layers.addLayer(new Layer(new GrayScale()));
+			canvasUpdate();
 		});
 		menuColorFilter.setOnAction(e -> {
 			Layers.addLayer(new Layer(new ColorShift(0, 0, 0, 0.5)));

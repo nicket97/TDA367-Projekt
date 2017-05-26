@@ -319,7 +319,7 @@ public class MainView extends AnchorPane implements Initializable {
 			showWhiteBalance(Layers.getLast());
 		});
 		menuLevels.setOnAction(e -> {
-			Layers.addLayer(new Layer(new Levels(200, 40)));
+			Layers.addLayer(new Layer(new Levels(20, 180)));
 			showLevels(Layers.getLast());
 		});
 		menuBlackWhite.setOnAction(e -> {
@@ -560,7 +560,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		levelsIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Levels(40, 200)));
+				Layers.addLayer(new Layer(new Levels(20, 180)));
 				showLevels(Layers.getLast());
 			}
 		});

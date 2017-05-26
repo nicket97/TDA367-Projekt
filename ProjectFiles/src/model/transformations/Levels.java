@@ -33,7 +33,7 @@ public class Levels implements Layerable {
 	private VBox v2 = new VBox();
 	
 
-	public Levels(int maxLevel, int minLevel) {
+	public Levels(int minLevel, int maxLevel) {
 		sliderMin.setMin(1);
 		sliderMin.setMax(255);
 		

@@ -1007,11 +1007,20 @@
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label id="clickable" fx:id="handIcon" contentDisplay="TOP" text="Handverktyg">
+                  <Label id="clickable" fx:id="handIcon" contentDisplay="TOP" text="Flytta">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/hand-icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label id="clickable" fx:id="cursorIcon" contentDisplay="TOP" layoutX="101.0" layoutY="10.0" text="Pekare">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/cursor-icon.png" />
                            </image>
                         </ImageView>
                      </graphic>

@@ -17,8 +17,6 @@ import Project.OpenProject;
 import Project.SaveProject;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +35,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import model.core.CreatedFilter;
 import model.core.Layerable;
 import model.core.LoadedImage;
 import model.core.NewFilterHandeler;
@@ -87,7 +84,7 @@ public class MainView extends AnchorPane implements Initializable {
 			levelsIcon, levelsBackIcon, grainIcon, grainBackIcon, blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon,
 			sharpenIcon, sharpenBackIcon, textIcon, textBackIcon, colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon,
 			whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon, aBackIcon, cBackIcon, eBackIcon, fBackIcon,
-			clearColorIcon;
+			clearColorIcon, zoomIcon, handIcon, cursorIcon;
 	@FXML
 	Slider slideZoom;
 	@FXML

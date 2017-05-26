@@ -121,6 +121,7 @@ public class NewFilterView extends AnchorPane implements Initializable {
 		newFilterApplyButton.setOnAction(e -> {
 			Layers.addLayer(new Layer(new NewKernel(gridValues, filterName)));
 			stage.hide();
+			MainView.canvasUpdate();
 		});
 
 	}

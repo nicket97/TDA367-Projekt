@@ -102,4 +102,14 @@ public class NewFilterHandeler {
 		}
 	}
 
+	public static CreatedFilter getFilter(String value) {
+		for(CreatedFilter f : filters){
+			if(f.getName().equals(value)){
+				return f;
+			}
+			
+		}
+		return null;
+	}
+
 }

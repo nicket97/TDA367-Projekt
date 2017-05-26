@@ -340,8 +340,18 @@ public class MainView extends AnchorPane implements Initializable {
 			showTextFilter(Layers.getLast());
 		});
 		menuFilter.setOnAction(e -> {
+<<<<<<< HEAD
 			Layers.addLayer(new Layer(new NewKernel(new double [3][3], "Eget filter")));
 			showCustomFilter(Layers.getLast());
+=======
+			mouseClicked(topLevel, filterLevel, fadeFilter);
+			ObservableList<String> filters = FXCollections.observableArrayList();
+			for (CreatedFilter f : NewFilterHandeler.getFilters()) {
+				filters.add(f.getName());
+			}
+			filterBox.getItems().addAll(filters);
+			canvasUpdate();
+>>>>>>> 7bb0fb1eb7f337201231391926505f97b2bfff5e
 		});
 
 		/***
@@ -362,6 +372,7 @@ public class MainView extends AnchorPane implements Initializable {
 				pstage.setY(mouseEvent.getScreenY() + dragDelta.y);
 			}
 		});
+		
 	}
 
 	/***
@@ -511,7 +522,10 @@ public class MainView extends AnchorPane implements Initializable {
 
 		// Custom filters
 		filterUpdate.setOnAction(e -> {
-			// TODO fixa
+			Layers.addLayer(new Layer(new NewKernel(NewFilterHandeler.getFilter(
+					filterBox.getValue()).getKernel()
+					,NewFilterHandeler.getFilter(filterBox.getValue()).getName() )));
+			canvasUpdate();
 		});
 
 		/***
@@ -665,10 +679,21 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(colorLevel, topLevel, fadeIn);
 		});
 		filterIcon.setOnMouseClicked(e -> {
+<<<<<<< HEAD
 			if (Layers.getBackgroundImage() != null){
 				Layers.addLayer(new Layer(new NewKernel(new double[3][3], "Eget Filter")));
 				showCustomFilter(Layers.getLast());
 			}
+=======
+			//TODO
+			mouseClicked(topLevel, filterLevel, fadeFilter);
+			ObservableList<String> filters = FXCollections.observableArrayList();
+			for (CreatedFilter f : NewFilterHandeler.getFilters()) {
+				filters.add(f.getName());
+			}
+			filterBox.getItems().addAll(filters);
+			canvasUpdate();
+>>>>>>> 7bb0fb1eb7f337201231391926505f97b2bfff5e
 		});
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
@@ -852,6 +877,7 @@ public class MainView extends AnchorPane implements Initializable {
 		showFilterSettings(gBlurUpdate, l, gBlurLevel, gBlurBackIcon);
 	}
 	private void showCustomFilter(Layer l) {
+<<<<<<< HEAD
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		filterUpdate.setOnAction(null);
 		filterUpdate.setOnAction(e -> {
@@ -865,6 +891,9 @@ public class MainView extends AnchorPane implements Initializable {
 		filterUpdate.toFront();
 		setVisibility(filterLevel);
 		canvasUpdate();
+=======
+		showFilterSettings(filterUpdate, l, filterLevel, fBackIcon);
+>>>>>>> 7bb0fb1eb7f337201231391926505f97b2bfff5e
 	}
 
 	public void topToFront() {

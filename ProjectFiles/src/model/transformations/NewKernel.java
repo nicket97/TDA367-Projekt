@@ -27,11 +27,15 @@ public class NewKernel implements Layerable {
 	double[][] kernel;
 	String name;
 	
+<<<<<<< HEAD
 	private Label labelText = new Label();
 	private VBox v = new VBox();
 	private ComboBox<String> filterBox = new ComboBox<String>();
 	
 	private boolean hasSettings = true;
+=======
+	private final boolean hasSettings = false;
+>>>>>>> 7bb0fb1eb7f337201231391926505f97b2bfff5e
 
 	public NewKernel(double[][] kernel, String name) {
 		this.kernel = kernel;
@@ -75,10 +79,7 @@ public class NewKernel implements Layerable {
 					}
 					x++;
 				}
-				sumRed = sumRed ;
-				sumGreen = sumGreen;    
-				sumBlue = sumBlue ;
-				pxImage[i][j] = Color.rgb(ColorTransformTest.getAllowedValue(sumRed), ColorTransformTest.getAllowedValue(sumGreen), ColorTransformTest.getAllowedValue(sumBlue));
+				pxImage[i][j] = Color.rgb(ColorTransformTest.getAllowedValue(sumRed/count), ColorTransformTest.getAllowedValue(sumGreen/count), ColorTransformTest.getAllowedValue(sumBlue/count));
 			}
 		}
 		newImage.setPxImage(pxImage);

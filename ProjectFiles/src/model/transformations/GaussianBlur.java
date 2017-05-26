@@ -28,7 +28,8 @@ public class GaussianBlur implements Layerable {
 	private Slider sliderRadius = new Slider();
 	
 	public GaussianBlur(int r) {
-
+		sliderRadius.setMax(10);
+		sliderRadius.setMin(1);
 		radius = r;
 		/*
 		 * if (radius % 2 == 0) { radius++; }

@@ -103,7 +103,9 @@ public class CropView extends AnchorPane implements Initializable {
 				cropAlert.close();
 				this.getChildren().clear();
 			}
+			MainView.canvasUpdate();
 		});
+		
 
 	}
 

@@ -501,6 +501,7 @@ public class MainView extends AnchorPane implements Initializable {
 
 		canvasPane.getChildren().add(canvasView);
 		miniCanvas.getChildren().add(miniCanvasView);
+		miniCanvas.setTranslateX(5);
 		layerPane.getChildren().add(layerView);
 
 		topLevel.toFront();

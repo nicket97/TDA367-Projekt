@@ -66,10 +66,12 @@ public class CanvasView extends AnchorPane implements Initializable {
 			System.out.println("Släpp X = " + e.getX() + " Y = " + e.getY());
 			this.releasedX = e.getX();
 			this.releasedY = e.getY();
-
-			if (imagePane.getWidth() < primaryStage.getWidth() - 240) {
-			} else {
-				moveCanvas(distanceDragged());
+			if(imagePane != null){
+				if (imagePane.getWidth() < primaryStage.getWidth() - 240) {
+				} 
+				else {
+					moveCanvas(distanceDragged());
+				}
 			}
 
 		});

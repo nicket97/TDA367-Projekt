@@ -78,6 +78,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 	}
 
 	public void drawImage(LoadedImage img, double zoomFactor) {
+		System.out.println("GPU Pipeline" + com.sun.prism.GraphicsPipeline.getPipeline().getClass().getName());
 		long time = System.nanoTime();
 		LoadedImage newImage = new LoadedImage(img);
 

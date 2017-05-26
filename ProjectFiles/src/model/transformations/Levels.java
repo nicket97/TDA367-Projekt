@@ -38,7 +38,7 @@ public class Levels implements Layerable {
 		sliderMin.setMax(255);
 		
 		sliderMax.setMin(1);
-		sliderMax.setMax(2);
+		sliderMax.setMax(255);
 		
 		this.maxLevel = maxLevel;
 		this.minLevel = minLevel;
@@ -61,6 +61,7 @@ public class Levels implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
+		System.out.println("Levles transforme" + maxLevel + "  " + minLevel + "   " + midLevel + "   " + changeLevel);
 		LoadedImage newImage = new LoadedImage(img);
 		Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
 		System.out.println("hkjsdslkjkjdlka"  +  changeLevel);

@@ -88,7 +88,7 @@ public class ColorShift implements Layerable {
 		greenButton.setStyle("-fx-background-color: limegreen;");
 		
 		sliderIntensity.setMin(0);
-		sliderIntensity.setMax(1);	
+		sliderIntensity.setMax(3);	
 	}
 
 	public ColorShift(String[] arg) {
@@ -104,9 +104,9 @@ public class ColorShift implements Layerable {
 			for (int j = 0; j < newImage.getpxImage()[i].length; j++) {
 				
 				Color pxColor = pxImage[i][j];
-				double newRed = pxColor.getRed()*255 + (r * intensity);
-				double newGreen = pxColor.getGreen()*255  + (g * intensity);
-				double newBlue = pxColor.getBlue()*255  + (b * intensity);
+				double newRed = pxColor.getRed()*255 + ((r - 20) * intensity);
+				double newGreen = pxColor.getGreen()*255  + ((g - 20) * intensity);
+				double newBlue = pxColor.getBlue()*255  + ((b - 20) * intensity);
 
 				pxColor = Color.rgb(ColorTransformTest.getAllowedValue(newRed),
 						ColorTransformTest.getAllowedValue(newGreen), ColorTransformTest.getAllowedValue(newBlue));
@@ -183,6 +183,9 @@ public class ColorShift implements Layerable {
 		
 		for (RadioButton r : colorButtons){
 			setStyling(r);
+			r.setOnAction(e -> {
+				customColor.setValue(null);
+			});
 		}
 		
 		yellowButton.setUserData("yellow");
@@ -193,6 +196,7 @@ public class ColorShift implements Layerable {
  		purpleButton.setUserData("purple");
  		turquoiseButton.setUserData("turquoise");
  		greenButton.setUserData("green");
+ 		
 
 		h1.getChildren().addAll(colorButtons);
 		v1.getChildren().addAll(h1, labelColor);

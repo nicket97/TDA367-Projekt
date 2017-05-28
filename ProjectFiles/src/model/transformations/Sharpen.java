@@ -98,7 +98,7 @@ public class Sharpen implements Layerable {
 
 	/**
 	 * Gets the sharpen radius
-	 * @return
+	 * @return radius for sharpen kernel
 	 */
 	public int getRadius() {
 		return radius;
@@ -106,7 +106,7 @@ public class Sharpen implements Layerable {
 
 	/**
 	 * Sets the sharpen radius
-	 * @param radius
+	 * @param radius radius of kernel
 	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
@@ -114,7 +114,7 @@ public class Sharpen implements Layerable {
 
 	/**
 	 * Gets the sharpen kernel
-	 * @return
+	 * @return kernel-values for sharpen
 	 */
 	public double[][] getKernel() {
 		return kernel;

@@ -135,7 +135,7 @@ public class Contrast implements Layerable {
 
 	/**
 	 * Sets the factor of the filter
-	 * @param new factor to be set
+	 * @param factor new factor to be set
 	 */
 	public void setFactor(double factor) {
 		this.factor = factor;

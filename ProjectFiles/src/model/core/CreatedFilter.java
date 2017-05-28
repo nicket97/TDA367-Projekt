@@ -29,7 +29,7 @@ public class CreatedFilter {
 
 	/**
 	 * Setter for the kernel-values
-	 * @param the new values for the kernel
+	 * @param kernel the new values for the kernel
 	 */
 	public void setKernel(double[][] kernel) {
 		this.kernel = kernel;
@@ -45,7 +45,7 @@ public class CreatedFilter {
 
 	/**
 	 * Setter for the name of the filter
-	 * @param the new name for the filter
+	 * @param name the new name for the filter
 	 */
 	public void setName(String name) {
 		this.name = name;

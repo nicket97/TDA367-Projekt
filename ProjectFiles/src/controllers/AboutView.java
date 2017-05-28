@@ -29,7 +29,7 @@ public class AboutView extends AnchorPane implements Initializable {
 
 	/**
 	 * Constructor for AboutView class
-	 * @param window
+	 * @param window window for about to be shown in
 	 */
 	public AboutView(Stage window) {
 		this.stage = window;

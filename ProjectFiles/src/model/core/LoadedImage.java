@@ -171,7 +171,7 @@ public class LoadedImage {
 
 	/**
 	 * Sets the BufferedImage
-	 * @param image as BufferedImage
+	 * @param lImg image as BufferedImage
 	 */
 	public void setlImg(BufferedImage lImg) {
 		this.lImg = lImg;

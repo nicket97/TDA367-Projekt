@@ -42,7 +42,7 @@ public class Main extends Application {
 	/**
 	 * Calls when the the application ends.
 	 * 
-	 * @throws Exception
+	 * @throws Exception if somethings wrong
 	 */
 	@Override
 	public void stop() throws Exception {

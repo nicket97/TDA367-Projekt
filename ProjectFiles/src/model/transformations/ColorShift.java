@@ -141,7 +141,7 @@ public class ColorShift implements Layerable {
 	}
 	/**
 	 * Sets green-value
-	 * @param r new green-value to be set
+	 * @param g new green-value to be set
 	 */
 	public void setG(double g) {
 		this.g = g;
@@ -157,7 +157,7 @@ public class ColorShift implements Layerable {
 	
 	/**
 	 * Sets blue-value
-	 * @param r new blue-value to be set
+	 * @param b new blue-value to be set
 	 */
 	public void setB(double b) {
 		this.b = b;
@@ -312,7 +312,7 @@ public class ColorShift implements Layerable {
 	
 	/**
 	 * Sets the look of the buttons
-	 * @param l
+	 * @param l RadioButton to set styling 
 	 */
 	private void setStyling(RadioButton l){
 		l.setId("colorButton");

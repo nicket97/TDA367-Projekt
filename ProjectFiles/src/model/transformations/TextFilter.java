@@ -62,13 +62,13 @@ public class TextFilter implements Layerable {
 
 	/**
 	 * Constructor of the TextFilter class
-	 * @param text
-	 * @param font
-	 * @param size
-	 * @param yPosition
-	 * @param r
-	 * @param g
-	 * @param b
+	 * @param text text to be written
+	 * @param font font pof written text
+	 * @param size size of written text
+	 * @param yPosition y-postition of the text
+	 * @param r red value
+	 * @param g green value
+	 * @param b blue value
 	 */
 	public TextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		sliderSize.setMin(0);

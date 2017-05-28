@@ -39,7 +39,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 
 	/**
 	 * Constructor of CanvasView class
-	 * @param pStage
+	 * @param pStage primary stage
 	 */
 	public CanvasView(Stage pStage) {
 

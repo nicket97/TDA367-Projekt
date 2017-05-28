@@ -124,8 +124,8 @@ public class NewFilterHandeler {
 
 	/**
 	 * Gets all created filters
-	 * @param value
-	 * @return
+	 * @param value values of filters
+	 * @return filter values 
 	 */
 	public static CreatedFilter getFilter(String value) {
 		for(CreatedFilter f : filters){

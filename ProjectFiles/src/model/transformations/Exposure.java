@@ -99,7 +99,7 @@ public class Exposure implements Layerable {
 
 	/**
 	 * Sets the factor for the exposure
-	 * @param factor
+	 * @param factor new factor to be set
 	 */
 	public void setFactor(int factor) {
 		this.factor = factor;

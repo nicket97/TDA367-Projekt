@@ -42,7 +42,7 @@ public interface Layerable {
 
 	/**
 	 * Returns the filter settings
-	 * @return
+	 * @return filter settings for each filter
 	 */
 	public boolean hasSettings();
 }

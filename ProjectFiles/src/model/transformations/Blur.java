@@ -104,7 +104,7 @@ public class Blur implements Layerable {
 
 	/**
 	 * Gets the kernel-values
-	 * @return
+	 * @return the kernel-values
 	 */
 	public double[][] getKernel() {
 		return kernel;

@@ -100,7 +100,7 @@ public class MainView extends AnchorPane implements Initializable {
 
 	/**
 	 * Constructor of the MainView class
-	 * @param pstage
+	 * @param pstage primary stage
 	 */
 	public MainView(Stage pstage) {
 		
@@ -420,8 +420,8 @@ public class MainView extends AnchorPane implements Initializable {
 	/***
 	 * Connects the fadetransition and HBox node.
 	 * 
-	 * @param name
-	 * @param node
+	 * @param name name of transition
+	 * @param node which HBox node
 	 */
 	private void fadeSettings(FadeTransition name, Node node) {
 		name.setNode(node);
@@ -435,9 +435,9 @@ public class MainView extends AnchorPane implements Initializable {
 	/***
 	 * Changes visibility of nodes when navigating the toolbar.
 	 * 
-	 * @param begin
-	 * @param end
-	 * @param fade
+	 * @param begin beginning of node
+	 * @param end end of node
+	 * @param fade how fade should work
 	 */
 	private void mouseClicked(Node begin, Node end, FadeTransition fade) {
 		begin.setVisible(false);
@@ -450,8 +450,8 @@ public class MainView extends AnchorPane implements Initializable {
 	/***
 	 * Adds a filter via the menu option (no settings).
 	 * 
-	 * @param name
-	 * @param layerType
+	 * @param name name of filter
+	 * @param layerType which type of layer
 	 */
 	private void menuClicked(MenuItem name, Layerable layerType) {
 		name.setOnAction(e -> {
@@ -678,7 +678,7 @@ public class MainView extends AnchorPane implements Initializable {
 	 * Method for disabling menu options and update buttons when no image is
 	 * open.
 	 * 
-	 * @param b
+	 * @param b boolean to disable or enable
 	 */
 	private void setDisableMenuItems(boolean b) {
 		for (MenuItem m : menuItems){
@@ -727,7 +727,7 @@ public class MainView extends AnchorPane implements Initializable {
 	/***
 	 * Method that will bring forward the correct settings view for each layer.
 	 * 
-	 * @param layer
+	 * @param layer layer to bring forward settings for
 	 */
 	public void updateLayerSettings(Layer layer) {
 

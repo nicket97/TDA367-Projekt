@@ -67,7 +67,7 @@ public class Layer {
 
 	/**
 	 * Sets the name
-	 * @param l the name to be set
+	 * @param name the name to be set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -75,7 +75,7 @@ public class Layer {
 
 	/**
 	 * Returns the filter settings
-	 * @return
+	 * @return filter settings
 	 */
 	public boolean hasSettings() {
 		return action.hasSettings();

@@ -69,7 +69,6 @@ public class LayerRow extends AnchorPane implements Initializable {
 			settingsIcon.setDisable(true);
 		}
 		settingsIcon.setOnMouseClicked(e -> {
-			System.out.println("settings pressed");
 			MainView.mainView.updateLayerSettings(layer);
 		});
 		// Trashcan

@@ -33,7 +33,6 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 	public MiniCanvasView() {
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/MiniCanvasView.fxml"));
-		System.out.println("minicanvasview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
 
@@ -46,8 +45,7 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("init minicanvas");
-	}
+		}
 
 	/**
 	 * Draws the image on the right place of the screen
@@ -87,11 +85,7 @@ public class MiniCanvasView extends AnchorPane implements Initializable {
 				screenY++;
 			}
 			screenX++;
-			// System.out.println("screeny" + screenY);
 		}
-
-		System.out.println("minicanvasView");
-
 		canvasPane.getChildren().clear();
 		canvasPane.getChildren().add(imagePane);
 

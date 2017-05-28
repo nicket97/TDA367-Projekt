@@ -15,12 +15,9 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import main.Main;
 import model.transformations.Crop;
 import model.transformations.core.Layer;
 import model.transformations.core.Layers;
@@ -38,8 +35,6 @@ public class CropView extends AnchorPane implements Initializable {
 
 	double zoomFactor = 1;
 
-
-
 	private Point pressedPoint;
 	private Point releasedPoint;
 	private int width;
@@ -52,7 +47,6 @@ public class CropView extends AnchorPane implements Initializable {
 	 */
 	public CropView() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/CanvasView.fxml"));
-		System.out.println("cropview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
 
@@ -169,7 +163,6 @@ public class CropView extends AnchorPane implements Initializable {
 	 * @return the value of startPoint
 	 */
 	public Point getStartPoint() {
-		// TODO Auto-generated method stub
 		return pressedPoint;
 	}
 
@@ -178,8 +171,6 @@ public class CropView extends AnchorPane implements Initializable {
 	 * @return the value of endPoint
 	 */
 	public Point getEndPoint() {
-		// TODO Auto-generated method stub
 		return releasedPoint;
 	}
-
 }

@@ -169,7 +169,6 @@ public class MainView extends AnchorPane implements Initializable {
 
 					long time = System.nanoTime();
 					LoadedImage ll = new LoadedImage(newImage);
-					System.out.println("Open Image" + (double) (System.nanoTime() - time) / 1000000000);
 					Layers.setBackgroundImage(ll);
 					canvasUpdate();
 
@@ -241,12 +240,10 @@ public class MainView extends AnchorPane implements Initializable {
 			}
 		});
 		slideZoom.setOnMouseClicked(e -> {
-			System.out.println("zooma " + slideZoom.getValue());
 			canvasView.setZoomFactor(((Math.pow(2, (slideZoom.getValue() / 20 - 5) * -1))));
 			canvasUpdate();
 		});
 		slideZoom.setOnMouseDragOver(e -> {
-			System.out.println("zooma " + slideZoom.getValue());
 
 		});
 

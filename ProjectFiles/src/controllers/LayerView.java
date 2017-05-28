@@ -36,7 +36,6 @@ public class LayerView extends AnchorPane implements Initializable {
 	public LayerView() {
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/LayerView.fxml"));
-		System.out.println("layerview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
 

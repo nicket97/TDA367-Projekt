@@ -46,7 +46,6 @@ public class NewFilterView extends AnchorPane implements Initializable {
 	public NewFilterView(Stage window) {
 		stage = window;
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/NewFilterView.fxml"));
-		System.out.println("new filter view");
 		fxmlLoader.setController(this);
 		fxmlLoader.setRoot(this);
 
@@ -71,7 +70,6 @@ public class NewFilterView extends AnchorPane implements Initializable {
 			newFilterApplyButton.setDisable(true);
 		}
 		for (CreatedFilter f : NewFilterHandeler.getFilters()) {
-			System.out.println(f.getName());
 			options.add(f.getName());
 		}
 		newFilterDropDown.getItems().addAll(options);
@@ -113,8 +111,6 @@ public class NewFilterView extends AnchorPane implements Initializable {
 			gridValues[2][2] = Double.parseDouble(grid22.getText());
 
 			NewFilterHandeler.addFilter(new CreatedFilter(filterName, gridValues));
-
-			System.out.println("DONE!");
 			stage.hide();
 
 			if (newFilterDropDown.getValue() == null && nameInput.getText() != null) {

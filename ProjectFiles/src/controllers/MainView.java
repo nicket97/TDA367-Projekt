@@ -169,7 +169,6 @@ public class MainView extends AnchorPane implements Initializable {
 
 					long time = System.nanoTime();
 					LoadedImage ll = new LoadedImage(newImage);
-					System.out.println("Open Image" + (double) (System.nanoTime() - time) / 1000000000);
 					Layers.setBackgroundImage(ll);
 					canvasUpdate();
 
@@ -241,12 +240,10 @@ public class MainView extends AnchorPane implements Initializable {
 			}
 		});
 		slideZoom.setOnMouseClicked(e -> {
-			System.out.println("zooma " + slideZoom.getValue());
 			canvasView.setZoomFactor(((Math.pow(2, (slideZoom.getValue() / 20 - 5) * -1))));
 			canvasUpdate();
 		});
 		slideZoom.setOnMouseDragOver(e -> {
-			System.out.println("zooma " + slideZoom.getValue());
 
 		});
 
@@ -319,11 +316,11 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasUpdate();
 		});
 		menuColorFilter.setOnAction(e -> {
-			Layers.addLayer(new Layer(new ColorShift(0, 0, 0, 0.5)));
+			Layers.addLayer(new Layer(new ColorShift(25, -25, -25, 0.8)));
 			showColorShift(Layers.getLast());
 		});
 		menuContrast.setOnAction(e -> {
-			Layers.addLayer(new Layer(new Contrast(100, 1.4)));
+			Layers.addLayer(new Layer(new Contrast(45, 1.25)));
 			showContrast(Layers.getLast());
 		});
 		menuWhitebalance.setOnAction(e -> {
@@ -331,7 +328,7 @@ public class MainView extends AnchorPane implements Initializable {
 			showWhiteBalance(Layers.getLast());
 		});
 		menuLevels.setOnAction(e -> {
-			Layers.addLayer(new Layer(new Levels(20, 180)));
+			Layers.addLayer(new Layer(new Levels(40, 160)));
 			showLevels(Layers.getLast());
 		});
 		menuBlackWhite.setOnAction(e -> {
@@ -343,7 +340,7 @@ public class MainView extends AnchorPane implements Initializable {
 			showGrain(Layers.getLast());
 		});
 		menuExposure.setOnAction(e -> {
-			Layers.addLayer(new Layer(new Exposure(40)));
+			Layers.addLayer(new Layer(new Exposure(-80)));
 			showExposure(Layers.getLast());
 		});
 		menuClicked(menuEdge, (new Edge()));
@@ -535,7 +532,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		exposureIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Exposure(40)));
+				Layers.addLayer(new Layer(new Exposure(-60)));
 				showExposure(Layers.getLast());
 			}
 		});
@@ -544,7 +541,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		contrastIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Contrast(150, 1.5)));
+				Layers.addLayer(new Layer(new Contrast(45, 1.25)));
 				showContrast(Layers.getLast());
 			}
 		});
@@ -553,7 +550,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		levelsIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Levels(20, 180)));
+				Layers.addLayer(new Layer(new Levels(40, 60)));
 				showLevels(Layers.getLast());
 			}
 		});
@@ -562,7 +559,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		grainIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new Grain(40)));
+				Layers.addLayer(new Layer(new Grain(20)));
 				showGrain(Layers.getLast());
 			}
 		});
@@ -616,7 +613,7 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		colorFilterIcon.setOnMouseClicked(e -> {
 			if (Layers.getBackgroundImage() != null) {
-				Layers.addLayer(new Layer(new ColorShift(0.5, 0.5, 0.5, 0.5)));
+				Layers.addLayer(new Layer(new ColorShift(0.5, 0.5, 0.5, 0.8)));
 				showColorShift(Layers.getLast());
 			}
 		});

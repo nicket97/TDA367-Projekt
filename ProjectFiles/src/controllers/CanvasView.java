@@ -45,7 +45,6 @@ public class CanvasView extends AnchorPane implements Initializable {
 
 		primaryStage = pStage;
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/CanvasView.fxml"));
-		System.out.println("canvasview");
 		fxmlLoader.setRoot(this);
 		fxmlLoader.setController(this);
 
@@ -54,7 +53,6 @@ public class CanvasView extends AnchorPane implements Initializable {
 		} catch (IOException exception) {
 			throw new RuntimeException(exception);
 		}
-
 	}
 
 
@@ -63,7 +61,6 @@ public class CanvasView extends AnchorPane implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("init canvas");
 		setMouse();
 		this.setPrefSize(2000, 2000);
 
@@ -75,12 +72,9 @@ public class CanvasView extends AnchorPane implements Initializable {
 	 * @param zoomFactor how much of a zoom that the photo should be drawn with
 	 */
 	public void drawImage(LoadedImage img, double zoomFactor) {
-		System.out.println("GPU Pipeline" + com.sun.prism.GraphicsPipeline.getPipeline().getClass().getName());
-		long time = System.nanoTime();
 		LoadedImage newImage = new LoadedImage(img);
 
 		for (Layer layer : Layers.getLayerStack()) {
-			System.out.println(layer.getName() + "  " + layer.hashCode());
 			if (layer.getVisible()) {
 				newImage = layer.getAction().transform(newImage);
 			}
@@ -88,7 +82,6 @@ public class CanvasView extends AnchorPane implements Initializable {
 		LoadedImage newsImage = newImage;
 
 		imagePane = new Canvas(newImage.getWidth() / zoomFactor, newImage.getHeigth() / zoomFactor);
-		System.out.println("imagePaneSize" + imagePane.getWidth() + "     " + imagePane.getHeight());
 		imagePane.setTranslateX((primaryStage.getWidth() - 240 - newImage.getWidth() / zoomFactor) / 2);
 		PixelWriter gc = imagePane.getGraphicsContext2D().getPixelWriter();
 		// Zoom Out
@@ -109,16 +102,13 @@ public class CanvasView extends AnchorPane implements Initializable {
 					screenY++;
 				}
 				screenX++;
-				// System.out.println("screeny" + screenY);
 			}
 		}
 		// zoom in
 		else if (zoomFactor < 1) {
 			int screenX = 0;
 			double zoom = zoomFactor;
-			System.out.println(zoom);
 			double y = topX;
-			System.out.println("testa x =" + this.getHeight() + "Y = " + this.getWidth());
 			for (int i = topX; i < this.getWidth(); i++) {
 				double x = topY;
 				int screenY = 0;
@@ -129,24 +119,14 @@ public class CanvasView extends AnchorPane implements Initializable {
 					screenY++;
 					if (((int) y >= newImage.getpxImage().length)
 							|| ((int) (x) >= newImage.getpxImage()[1].length || (x) <= 0 || (int) (y) <= 0)) {
-						// System.out.println(((int) Math.floor(y) >=
-						// newImage.getpxImage().length) + " " +
-						// ((int)Math.floor( (x)) >=
-						// newImage.getpxImage()[1].length));
-
 					} else {
 						gc.setColor(screenX, screenY,
 								newImage.getpxImage()[(int) Math.floor(y)][(int) Math.floor((x))]);
 
 					}
-					// System.out.println(screenX + "hej " + screenY);
-					// System.out.println((x) + " and " + (y));
-
 				}
-
 			}
 		}
-		System.out.println("canvasView" + (double) (System.nanoTime() - time) / 1000000000);
 
 		canvasPane.getChildren().clear();
 		canvasPane.getChildren().add(imagePane);
@@ -185,7 +165,6 @@ public class CanvasView extends AnchorPane implements Initializable {
 		Point distanceDiffernce = new Point();
 		distanceDiffernce.x = (int) (releasedX - pressedX) * (-1);
 		distanceDiffernce.y = (int) (releasedY - pressedY) * (-1);
-		System.out.println("Distance dragged method run" + distanceDiffernce.x);
 		return distanceDiffernce;
 	}
 
@@ -212,22 +191,16 @@ public class CanvasView extends AnchorPane implements Initializable {
 	public void moveCanvas(Point distanceDifference) {
 		this.topX = getTopX() + distanceDifference.x;
 		this.topY = getTopY() + distanceDifference.y;
-
-		/*
-		 * if (topX < 0) { this.topX = 0; } if (topY < 0){ this.topY = 0; }
-		 */
 		repaint();
 
 	}
 	public void setMouse(){
 		canvasPane.setOnMousePressed(e -> {
-			System.out.println("Klicka X = " + e.getX() + " Y = " + e.getY());
 			this.pressedX = e.getX();
 			this.pressedY = e.getY();
 
 		});
 		canvasPane.setOnMouseReleased(e -> {
-			System.out.println("Släpp X = " + e.getX() + " Y = " + e.getY());
 			this.releasedX = e.getX();
 			this.releasedY = e.getY();
 			if(imagePane != null){
@@ -251,7 +224,6 @@ public class CanvasView extends AnchorPane implements Initializable {
 	 */
 	public void setTopX(int i) {
 		topX = i;
-
 	}
 
 	/**
@@ -262,5 +234,4 @@ public class CanvasView extends AnchorPane implements Initializable {
 		topY = i;
 
 	}
-
 }

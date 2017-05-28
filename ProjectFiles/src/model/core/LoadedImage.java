@@ -51,24 +51,12 @@ public class LoadedImage {
 
 		try {
 			t1.join();
-			System.out.println("1");
 			t2.join();
-			System.out.println("2");
 			t3.join();
-			System.out.println("3");
 			t4.join();
-			System.out.println("4");
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		/*
-		 * for(int i = 0; i < width; i++){ for(int j = 0; j < heigth; j++){
-		 * pxImage[i][j] = getColorFromInt(img.getRGB(i, j)); } }
-		 */
-		// System.out.println("hej" + pxImage[0][0].getRed()*255 + " eller " +
-		// ((img.getRGB(0, 0)>>16)&0xFF));
 	}
 
 	/**
@@ -91,8 +79,6 @@ public class LoadedImage {
 			}
 		}
 		this.lImg = image;
-		// System.out.println("heja" + pxImage[0][0].getRed()*255 + " eller " +
-		// ((lImg.getRGB(0, 0)>>16)&0xFF));
 	}
 
 	/**
@@ -204,15 +190,10 @@ public class LoadedImage {
 
 		try {
 			t1.join();
-			System.out.println("1");
 			t2.join();
-			System.out.println("2");
 			t3.join();
-			System.out.println("3");
 			t4.join();
-			System.out.println("4");
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

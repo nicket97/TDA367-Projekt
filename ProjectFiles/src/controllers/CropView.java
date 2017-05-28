@@ -16,6 +16,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -129,15 +130,14 @@ public class CropView extends AnchorPane implements Initializable {
 			this.height = (int) (distanceDragged(pressedPoint, releasedPoint).getY());
 			int posX = (int) pressedPoint.getX();
 			int posY = (int) pressedPoint.getY();
-			System.out.println(posX + " hej " + posY + "       " + width + " X " + height);
 			Rectangle r = new Rectangle(posX, posY, width, height);
 			posX = (int) (posX * MainView.getCanvas().getZoomFactor());
 			posY = (int) (posY * MainView.getCanvas().getZoomFactor());
 			this.pressedPoint = new Point(posX, posY);
 			this.width = (int) (this.width * MainView.getCanvas().getZoomFactor());
 			this.height = (int) (this.height * MainView.getCanvas().getZoomFactor());
-			r.setStroke(Color.BLACK);
-			r.setStrokeWidth(10);
+			r.setStyle(
+					"-fx-opacity: 0.5;");
 			this.getChildren().add(r);
 		}
 

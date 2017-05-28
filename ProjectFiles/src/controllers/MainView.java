@@ -384,51 +384,7 @@ public class MainView extends AnchorPane implements Initializable {
 	}
 
 	/***
-	 * Crop function.
-	 * 
-	 * @return value of top left pixel
-	 */
-	public Point setTopLeftCrop() {
-		Point topLeft = new Point();
-		canvasView.setOnMouseClicked(e -> {
-			topLeft.setLocation(e.getX(), e.getY());
-		});
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-		alert.setTitle("Beskärning");
-		alert.setHeaderText("Välj önskat övre vänstra hörn");
-		alert.showAndWait();
-		// alert.get
-		while (topLeft.getX() == 0 && topLeft.getY() == 0) {
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		System.out.println(topLeft.toString());
-		return topLeft;
-	}
-
-	public Point setBottomRightCrop() {
-		Point bottomRight = new Point();
-		canvasView.setOnMouseClicked(e -> {
-			bottomRight.setLocation(e.getX(), e.getY());
-		});
-		Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
-		alert2.setTitle("Beskärning");
-		alert2.setHeaderText("Välj önskat nedre högra hörn");
-		alert2.showAndWait();
-		while (topLeft.getX() == 0 && topLeft.getY() == 0) {
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		return bottomRight;
-	}
+	
 
 	/***
 	 * Creates fadetransitions that will be used in the toolbar.

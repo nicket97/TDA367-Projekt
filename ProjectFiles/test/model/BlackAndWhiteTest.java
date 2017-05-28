@@ -3,6 +3,8 @@ package model;
 import static org.junit.Assert.*;
 
 import javafx.scene.paint.Color;
+import model.core.LoadedImage;
+import model.transformations.BlackAndWhite;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,6 +1,8 @@
 package model;
 
 import javafx.scene.paint.Color;
+import model.core.LoadedImage;
+import model.transformations.GrayScale;
 import org.junit.Test;
 
 import java.awt.image.BufferedImage;

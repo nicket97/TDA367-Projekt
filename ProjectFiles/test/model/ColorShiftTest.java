@@ -1,8 +1,8 @@
 package model;
 
 import javafx.scene.paint.Color;
-import model.ColorShift;
-import model.LoadedImage;
+import model.transformations.ColorShift;
+import model.core.LoadedImage;
 import org.junit.Test;
 
 import java.awt.image.BufferedImage;
@@ -21,7 +21,7 @@ public class ColorShiftTest {
 		loadedImage.getpxImage()[1][0] = Color.rgb(0, 100, 200);
 		loadedImage.getpxImage()[1][1] = Color.rgb(200, 225, 250);
 
-		ColorShift colorShift = new ColorShift(10, -25, 50);
+		ColorShift colorShift = new ColorShift(10, -25, 50, 100);
 		LoadedImage newImage = colorShift.transform(loadedImage);
 
 		assertTrue((int) (newImage.getpxImage()[0][0].getRed() * 255) == 10);

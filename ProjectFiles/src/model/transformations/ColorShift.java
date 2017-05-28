@@ -69,7 +69,7 @@ public class ColorShift implements Layerable {
 		this.intensity = intensity;
 		
 		clearColorIcon.setGraphic(new ImageView("resources/icons/clear-icon.png"));
-		
+		customColor.setPrefWidth(150);
 		colorButtons = new ArrayList<RadioButton>();
 		Collections.addAll(colorButtons, yellowButton, orangeButton, blueButton, redButton, pinkButton, purpleButton,
 				turquoiseButton, greenButton);

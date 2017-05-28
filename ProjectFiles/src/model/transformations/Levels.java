@@ -34,6 +34,7 @@ public class Levels implements Layerable {
 	
 
 	public Levels(int minLevel, int maxLevel) {
+		
 		sliderMin.setMin(1);
 		sliderMin.setMax(255);
 		
@@ -50,12 +51,7 @@ public class Levels implements Layerable {
 	}
 
 	public Levels(String[] args) {
-		this.maxLevel = Integer.parseInt(args[1]);
-		this.minLevel = Integer.parseInt(args[2]);
-		//this.midLevel = (maxLevel + minLevel) / 2;
-		setMidLevel();
-		//this.changeLevel = (double)(((double)minLevel / (double)midLevel) + ((double)midLevel / (double)maxLevel));
-		calculateChange();
+		this(Integer.parseInt(args[2]),Integer.parseInt(args[1]));
 		
 	}
 

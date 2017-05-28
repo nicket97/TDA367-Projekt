@@ -56,25 +56,7 @@ public class CanvasView extends AnchorPane implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init canvas");
-		canvasPane.setOnMousePressed(e -> {
-			System.out.println("Klicka X = " + e.getX() + " Y = " + e.getY());
-			this.pressedX = e.getX();
-			this.pressedY = e.getY();
-
-		});
-		canvasPane.setOnMouseReleased(e -> {
-			System.out.println("Släpp X = " + e.getX() + " Y = " + e.getY());
-			this.releasedX = e.getX();
-			this.releasedY = e.getY();
-			if(imagePane != null){
-				if (imagePane.getWidth() < primaryStage.getWidth() - 240) {
-				} 
-				else {
-					moveCanvas(distanceDragged());
-				}
-			}
-
-		});
+		setMouse();
 		this.setPrefSize(2000, 2000);
 
 	}
@@ -196,6 +178,31 @@ public class CanvasView extends AnchorPane implements Initializable {
 		 */
 		repaint();
 
+	}
+	public void setMouse(){
+		canvasPane.setOnMousePressed(e -> {
+			System.out.println("Klicka X = " + e.getX() + " Y = " + e.getY());
+			this.pressedX = e.getX();
+			this.pressedY = e.getY();
+
+		});
+		canvasPane.setOnMouseReleased(e -> {
+			System.out.println("Släpp X = " + e.getX() + " Y = " + e.getY());
+			this.releasedX = e.getX();
+			this.releasedY = e.getY();
+			if(imagePane != null){
+				if (imagePane.getWidth() < primaryStage.getWidth() - 240) {
+				} 
+				else {
+					moveCanvas(distanceDragged());
+				}
+			}
+
+		});
+	}
+	public void resetMouse(){
+		canvasPane.setOnMousePressed(null);
+		canvasPane.setOnMouseReleased(null);
 	}
 
 	public void setTopX(int i) {

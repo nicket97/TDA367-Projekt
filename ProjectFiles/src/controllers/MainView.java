@@ -360,6 +360,21 @@ public class MainView extends AnchorPane implements Initializable {
 				pstage.setY(mouseEvent.getScreenY() + dragDelta.y);
 			}
 		});
+		handIcon.setOnMouseClicked(e -> {
+			canvasView.setMouse();
+		});
+		cursorIcon.setOnMouseClicked(e -> {
+			canvasView.resetMouse();
+			
+		});
+		zoomIcon.setOnMouseClicked(e -> {
+			canvasView.resetMouse();
+			canvasPane.setOnMouseClicked(s -> {
+				canvasView.setZoomFactor(canvasView.getZoomFactor()/1.5);
+				slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) + 5) * 20);
+				canvasUpdate();
+			});
+		});
 		
 	}
 

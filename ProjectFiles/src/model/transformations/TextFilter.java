@@ -60,10 +60,20 @@ public class TextFilter implements Layerable {
 	
 	
 
+	/**
+	 * Constructor of the TextFilter class
+	 * @param text
+	 * @param font
+	 * @param size
+	 * @param yPosition
+	 * @param r
+	 * @param g
+	 * @param b
+	 */
 	public TextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		sliderSize.setMin(0);
 		sliderSize.setMax(400);
-		/**
+		/*
 		Webfonts webfonts = new Webfonts(null, null, null);
 		ObservableList<WebfontList> request = webfonts.webfonts().list();
 		fontBox.setItems(request);
@@ -91,6 +101,9 @@ public class TextFilter implements Layerable {
 	public TextFilter(String[] args) {
 		this(args[1], args[2], Integer.parseInt(args[3]), args[4], Integer.parseInt(args[5]), Integer.parseInt(args[6]) , Integer.parseInt(args[7]));
 	}
+	/**
+	 * Sets starting options for filter
+	 */
 	public TextFilter(){
 		this("Din text", "Helvetica", 40, "mitten", 255, 255, 255);
 	}
@@ -121,18 +134,29 @@ public class TextFilter implements Layerable {
 		return new LoadedImage(newImage.getBufferedImg());
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "TextFilter?" + text + "?" + font + "?" + size + "?" + yPosition + "?" + r + "?" + g + "?" + b + "?";
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Textfilter";
 	}
 
-	
+	/**
+	 * Sets the setting for the text filter
+	 * @param text the user's chosen text
+	 * @param font which font the text should have
+	 * @param size the size of the text
+	 * @param yPosition where the text should be places
+	 * @param r red-value
+	 * @param g green-value
+	 * @param b blue-value
+	 */
 	public void setTextFilter(String text, String font, int size, String yPosition, int r, int g, int b) {
 		this.text = text;
 		this.font = font;
@@ -145,6 +169,10 @@ public class TextFilter implements Layerable {
 
 	
 
+	/**
+	 * Sets the position
+	 * @param yposition the y-value of the new position
+	 */
 	public void setPosition(String yposition) {
 		this.yPosition = yposition;
 	}

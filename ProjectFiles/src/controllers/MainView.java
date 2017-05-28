@@ -97,6 +97,10 @@ public class MainView extends AnchorPane implements Initializable {
 	Layers layerstack = new Layers();
 	List<MenuItem> menuItems;
 
+	/**
+	 * Constructor of the MainView class
+	 * @param pstage
+	 */
 	public MainView(Stage pstage) {
 		
 		mainView = this;
@@ -381,7 +385,7 @@ public class MainView extends AnchorPane implements Initializable {
 	/***
 	 * Crop function.
 	 * 
-	 * @return
+	 * @return value of top left pixel
 	 */
 	public Point setTopLeftCrop() {
 		Point topLeft = new Point();
@@ -863,6 +867,7 @@ public class MainView extends AnchorPane implements Initializable {
 		 */
 		canvasUpdate();
 	}
+	
 	private void showBlur(Layer l) {
 		showFilterSettings(blurUpdate, l, blurLevel, blurBackIcon);
 	}

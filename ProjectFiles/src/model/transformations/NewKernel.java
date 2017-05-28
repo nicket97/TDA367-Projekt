@@ -82,17 +82,24 @@ public class NewKernel implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		
 		return "NewKernel?" + name + "?";
 	}
 
+	
 	@Override
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * Sets kernel and name of the layer
+	 * @param kernel values being set
+	 * @param name name of the filter
+	 */
 	public void setKernelAndName(double[][] kernel, String name){
 		this.name = name;
 		this.kernel = kernel;

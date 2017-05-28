@@ -24,6 +24,10 @@ public class BlackAndWhite implements Layerable{
     private Label labelText = new Label();
 	private VBox h1 = new VBox();
 
+	/**
+	 * Handles slider and threshold
+	 * @param threshold the threshold for the filter
+	 */
 	public BlackAndWhite(int threshold) {
 		sliderThreshold.setMin(1);
 		sliderThreshold.setMax(255);
@@ -36,6 +40,7 @@ public class BlackAndWhite implements Layerable{
     	this(Integer.parseInt(arg[1]));
     }
 
+   
     public LoadedImage transform(LoadedImage img) {
         LoadedImage newImage = new LoadedImage(img);
         Color[][] pxImage = new Color[newImage.getpxImage().length][newImage.getpxImage()[0].length];
@@ -55,14 +60,21 @@ public class BlackAndWhite implements Layerable{
         return newImage;
     }
 
+    /**
+     * Gets the threshold value
+     * @return the threshold value
+     */
     public int getThreshold() {
         return threshold;
     }
 
+    /**
+     * Sets the threshold
+     * @param threshold new threshold value
+     */
     public void setThreshold(int threshold) {
         this.threshold = threshold;
     }
-
 
     @Override
     public String saveLayer() {
@@ -70,6 +82,7 @@ public class BlackAndWhite implements Layerable{
         return output;
     }
 
+    
 	@Override
 	public String getName() {
 		return "Svartvitt";

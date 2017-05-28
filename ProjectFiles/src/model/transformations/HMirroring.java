@@ -26,12 +26,14 @@ public class HMirroring implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "HMirroring?";
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Spegla Vertikalt";

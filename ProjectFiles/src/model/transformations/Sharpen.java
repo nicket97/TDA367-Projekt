@@ -82,31 +82,48 @@ public class Sharpen implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "Sharpen?" + radius + "?";
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Skärpa";
 	}
 
 
-
+	/**
+	 * Gets the sharpen radius
+	 * @return
+	 */
 	public int getRadius() {
 		return radius;
 	}
 
+	/**
+	 * Sets the sharpen radius
+	 * @param radius
+	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
 
+	/**
+	 * Gets the sharpen kernel
+	 * @return
+	 */
 	public double[][] getKernel() {
 		return kernel;
 	}
 
+	/**
+	 * Sets the kernel
+	 * @param kernel kernel being set
+	 */
 	public void setKernel(double[][] kernel) {
 		this.kernel = kernel;
 	}

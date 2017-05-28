@@ -45,6 +45,7 @@ public class Crop implements Layerable {
 
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "Crop?" + topLeft.getX() + "?" + topLeft.getY() + "?" 
@@ -53,48 +54,88 @@ public class Crop implements Layerable {
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Beskärning";
 	}
 
-	
+	/**
+	 * Gets the top left point
+	 * @return top left point
+	 */
 	public Point getTopLeft() {
 		return topLeft;
 	}
 
+	/**
+	 * Sets the top left point
+	 * @param topLeft point on the top left
+	 */
 	public void setTopLeft(Point topLeft) {
 		this.topLeft = topLeft;
 	}
 
+	/**
+	 * Gets the bottom right point
+	 * @return bottom right point
+	 */
 	public Point getBottomRight() {
 		return bottomRight;
 	}
 
+	/**
+	 * Sets the bottom right point
+	 * @param bottomRight point on the bottom right
+	 */
 	public void setBottomRight(Point bottomRight) {
 		this.bottomRight = bottomRight;
 	}
 
+	/**
+	 * Gets the width of the rectangle
+	 * @return rectangle width
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Sets the width of the rectangle
+	 * @param width new width
+	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
 
+	/**
+	 * Gets the height of the rectangle
+	 * @return rectangle height
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * Sets the rectangle height
+	 * @param height new height
+	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
 
+	/**
+	 * Gets the rectangle
+	 * @return rectangle
+	 */
 	public Rectangle getR() {
 		return r;
 	}
 
+	/**
+	 * Sets the rectangle
+	 * @param r rectangle to be set
+	 */
 	public void setR(Rectangle r) {
 		this.r = r;
 	}

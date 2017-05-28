@@ -49,6 +49,9 @@ public class CropView extends AnchorPane implements Initializable {
 
 	private Stage primaryStage;
 
+	/**
+	 * Constructor for CropView
+	 */
 	public CropView() {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/CanvasView.fxml"));
 		System.out.println("cropview");
@@ -63,6 +66,9 @@ public class CropView extends AnchorPane implements Initializable {
 
 	}
 
+	/**
+	 * Saves points, draws black rectangle and asks for confirmation
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		primaryStage = MainView.getPrimaryStage();
@@ -110,6 +116,11 @@ public class CropView extends AnchorPane implements Initializable {
 
 	}
 
+	/**
+	 * Draws black rectangle over photo 
+	 * @param topLeft value of the pressed top left point
+	 * @param bottomRight value of the released bottom right point
+	 */
 	public void drawImage(Point topLeft, Point bottomRight) {
 		if (pressedPoint == null) {
 
@@ -132,10 +143,19 @@ public class CropView extends AnchorPane implements Initializable {
 
 	}
 
+	/**
+	 * Repaints the picture
+	 */
 	public void repaint() {
 
 	}
 
+	/**
+	 * Calculates the distance between mouse is pressed and released
+	 * @param pStart point pressed
+	 * @param pStop point released
+	 * @return the distance between the two points
+	 */
 	public Point distanceDragged(Point pStart, Point pStop) {
 		Point distanceDiffernce = new Point();
 		distanceDiffernce.x = (int) (pStop.getX() - pStart.getX());
@@ -144,11 +164,19 @@ public class CropView extends AnchorPane implements Initializable {
 		return distanceDiffernce;
 	}
 
+	/**
+	 * Getter for startPoint variable
+	 * @return the value of startPoint
+	 */
 	public Point getStartPoint() {
 		// TODO Auto-generated method stub
 		return pressedPoint;
 	}
 
+	/**
+	 * Getter for endPoint variable
+	 * @return the value of endPoint
+	 */
 	public Point getEndPoint() {
 		// TODO Auto-generated method stub
 		return releasedPoint;

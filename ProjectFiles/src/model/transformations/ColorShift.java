@@ -117,38 +117,75 @@ public class ColorShift implements Layerable {
 		return newImage;
 	}
 
+	/**
+	 * Gets red-value
+	 * @return red-value
+	 */
 	public double getR() {
 		return r;
 	}
 
+	/**
+	 * Sets red-value
+	 * @param r new red-value to be set
+	 */
 	public void setR(double r) {
 		this.r = r;
 	}
-
+	/**
+	 * Gets green-value
+	 * @return green-value
+	 */
 	public double getG() {
 		return g;
 	}
-
+	/**
+	 * Sets green-value
+	 * @param r new green-value to be set
+	 */
 	public void setG(double g) {
 		this.g = g;
 	}
 
+	/**
+	 * Gets blue-value
+	 * @return blue-value
+	 */
 	public double getB() {
 		return b;
 	}
-
+	
+	/**
+	 * Sets blue-value
+	 * @param r new blue-value to be set
+	 */
 	public void setB(double b) {
 		this.b = b;
 	}
 
+	/**
+	 * Gets intensity-value
+	 * @return intensity value
+	 */
 	public double getIntensity() {
 		return intensity;
 	}
 
+	/**
+	 * Sets intensity-value
+	 * @param intensity new value to be set
+	 */
 	public void setIntesity(double intensity) {
 		this.intensity = intensity;
 	}
 
+	/**
+	 * Sets red, green and blue values together
+	 * @param r red value to be set
+	 * @param g green value to be set
+	 * @param b blue value to be set
+	 * @param value intensity value
+	 */
 	public void setRGB(double r, double g, double b, double value) {
 		this.r = r;
 		this.g = g;
@@ -156,11 +193,13 @@ public class ColorShift implements Layerable {
 		this.intensity = value;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "ColorShift?" + r + "?" + g + "?" + b + "?" + intensity + "?";
 		return output;
 	}
+
 
 	@Override
 	public String getName() {
@@ -238,6 +277,11 @@ public class ColorShift implements Layerable {
 		
 	}
 
+	/**
+	 * Values for the different colorshift to choose from in settings
+	 * @param color color that is chosen
+	 * @param d intensity of color
+	 */
 	private void getDefinedColorShift(String color, double d) {
 		if (color.equals("yellow")) {
 			this.setRGB(25, 25, 0, d);
@@ -266,6 +310,10 @@ public class ColorShift implements Layerable {
 		v.setSpacing(10);
 	}
 	
+	/**
+	 * Sets the look of the buttons
+	 * @param l
+	 */
 	private void setStyling(RadioButton l){
 		l.setId("colorButton");
 	}

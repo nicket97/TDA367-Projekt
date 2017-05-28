@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root id="aboutPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="12.0" layoutY="12.0" prefHeight="334.0" prefWidth="570.0" style="-fx-background-color: #efefef;" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <Text layoutX="5.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utvecklat av Anton Hagvall, Hanna Jacobsson, Niclas Johansson och Kristina Markan för kursen TDA367 på Chalmers Tekniska Högskola våren 2017. " wrappingWidth="566.3971252441406" />
+            <Text layoutX="5.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Layers är ett filterbaserat bildbehandlingsprogram skrivet i Java. " wrappingWidth="566.3971252441406">
+            </Text>
+            <ImageView fitHeight="158.0" fitWidth="350.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/layers-logo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="224.0" fitWidth="198.0" layoutX="364.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/chalmers.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Button id="updateButton" fx:id="aboutClose" layoutX="539.0" layoutY="361.0" mnemonicParsing="false" text="Stäng" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+   </children>
+</fx:root>

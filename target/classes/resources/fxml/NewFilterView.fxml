@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<fx:root fx:id="canvasPane" id="rightPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="AnchorPane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="nameInput" layoutX="63.0" layoutY="93.0" prefHeight="32.0" prefWidth="192.0" promptText="Namn" />
+      <GridPane layoutX="63.0" layoutY="181.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="96.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="104.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="104.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="grid00" id="filterTextField"/>
+            <TextField fx:id="grid10" GridPane.columnIndex="1" id="filterTextField" />
+            <TextField fx:id="grid20" GridPane.columnIndex="2" id="filterTextField"/>
+            <TextField fx:id="grid01" GridPane.rowIndex="1" id="filterTextField"/>
+            <TextField fx:id="grid11" GridPane.columnIndex="1" GridPane.rowIndex="1"  id="filterTextField"/>
+            <TextField fx:id="grid21" GridPane.columnIndex="2" GridPane.rowIndex="1"  id="filterTextField"/>
+            <TextField fx:id="grid02" GridPane.rowIndex="2" id="filterTextField"/>
+            <TextField fx:id="grid12" GridPane.columnIndex="1" GridPane.rowIndex="2" id="filterTextField"/>
+            <TextField fx:id="grid22" GridPane.columnIndex="2" GridPane.rowIndex="2" id="filterTextField"/>
+         </children>
+      </GridPane>
+      <ButtonBar layoutX="127.0" layoutY="346.0" prefHeight="40.0" prefWidth="458.0">
+        <buttons>
+          <Button id="updateButton" fx:id="newFilterCancelButton" minWidth="55.0" mnemonicParsing="false" prefHeight="27.0" text="Avbryt" />
+            <Button id="updateButton" fx:id="newFilterSaveButton" mnemonicParsing="false" text="Spara" />
+        </buttons>
+      </ButtonBar>
+      <Button id="updateButton" fx:id="newFilterApplyButton" layoutX="26.0" layoutY="353.0" mnemonicParsing="false" text="Verkställ" />
+      <Label layoutX="62.0" layoutY="62.0" text="Namnge lager" />
+      <Label layoutX="62.0" layoutY="153.0" text="Fyll kernel (3x3)" />
+      <ComboBox fx:id="newFilterDropDown" layoutX="386.0" layoutY="93.0" prefWidth="150.0" promptText="Skapade filter" />
+   </children>
+   </fx:root>

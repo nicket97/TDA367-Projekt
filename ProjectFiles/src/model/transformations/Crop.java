@@ -31,8 +31,8 @@ public class Crop implements Layerable {
 
 	}
 	public Crop(String[] args){
-		this(new Point(Integer.parseInt(args[1]), Integer.parseInt(args[2])), new Point(Integer.parseInt(args[3]), Integer.parseInt(args[4])), 
-				Integer.parseInt(args[5]), Integer.parseInt(args[6]));
+		this(new Point((int)Double.parseDouble(args[1]), (int)Double.parseDouble(args[2])), new Point((int)Double.parseDouble(args[3]), (int)Double.parseDouble(args[4])), 
+				(int)Double.parseDouble(args[5]), (int)Double.parseDouble(args[6]));
 	}
 
 	@Override

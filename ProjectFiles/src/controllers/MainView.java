@@ -56,6 +56,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private Point topLeft = new Point(0, 0);
 	private Point bottomRight = new Point(0, 0);
 	
+	private Layer lastAction;
 	/**
 	 * Indicates if the project has changed.
 	 */
@@ -228,8 +229,16 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasUpdate();
 		});
 		menuUndo.setOnAction(e -> {
-			Layers.remove(Layers.getLayerStack().get(Layers.getLayerStack().size() - 1));
+			lastAction = Layers.getLast();
+			Layers.remove(Layers.getLast());
 			canvasUpdate();
+		});
+		menuRedo.setOnAction(e -> {
+			if(lastAction != null){
+				Layers.addLayer(lastAction);
+				lastAction = null;
+				canvasUpdate();
+			}
 		});
 		slideZoom.setOnMouseClicked(e -> {
 			System.out.println("zooma " + slideZoom.getValue());
@@ -365,6 +374,7 @@ public class MainView extends AnchorPane implements Initializable {
 				pstage.setY(mouseEvent.getScreenY() + dragDelta.y);
 			}
 		});
+		
 		handIcon.setOnMouseClicked(e -> {
 			canvasView.setMouse();
 		});

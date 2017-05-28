@@ -13,10 +13,13 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Main;
 import model.transformations.Crop;
 import model.transformations.core.Layer;
@@ -70,8 +73,6 @@ public class CropView extends AnchorPane implements Initializable {
 		this.setPrefWidth(MainView.getCanvas().imagePane.getWidth());
 		this.setPrefHeight(MainView.getCanvas().imagePane.getHeight());
 		this.setTranslateX(MainView.getCanvas().imagePane.getTranslateX());
-		System.out.println();
-		// this.setStyle("-fx-background-color:#FFF;");
 		this.setOnMousePressed(e -> {
 			this.pressedPoint = new Point((int) e.getX(), (int) e.getY());
 
@@ -81,6 +82,7 @@ public class CropView extends AnchorPane implements Initializable {
 			drawImage(pressedPoint, releasedPoint);
 
 			Alert cropAlert = new Alert(Alert.AlertType.CONFIRMATION);
+			cropAlert.initStyle(StageStyle.TRANSPARENT);
 			cropAlert.setTitle("Beskärning");
 			cropAlert.setHeaderText("Vill du endast behålla denna del av bilden?");
 
@@ -88,6 +90,10 @@ public class CropView extends AnchorPane implements Initializable {
 			ButtonType buttonTypeNo = new ButtonType("Avbryt", ButtonBar.ButtonData.CANCEL_CLOSE);
 
 			cropAlert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+			
+			DialogPane dialogPane = cropAlert.getDialogPane();
+			dialogPane.getStylesheets().add(
+			getClass().getResource("../resources/css/style.css").toExternalForm());
 
 			Optional<ButtonType> result = cropAlert.showAndWait();
 
@@ -124,15 +130,14 @@ public class CropView extends AnchorPane implements Initializable {
 			this.height = (int) (distanceDragged(pressedPoint, releasedPoint).getY());
 			int posX = (int) pressedPoint.getX();
 			int posY = (int) pressedPoint.getY();
-			System.out.println(posX + " hej " + posY + "       " + width + " X " + height);
 			Rectangle r = new Rectangle(posX, posY, width, height);
 			posX = (int) (posX * MainView.getCanvas().getZoomFactor());
 			posY = (int) (posY * MainView.getCanvas().getZoomFactor());
 			this.pressedPoint = new Point(posX, posY);
 			this.width = (int) (this.width * MainView.getCanvas().getZoomFactor());
 			this.height = (int) (this.height * MainView.getCanvas().getZoomFactor());
-			r.setStroke(Color.BLACK);
-			r.setStrokeWidth(10);
+			r.setStyle(
+					"-fx-opacity: 0.5;");
 			this.getChildren().add(r);
 		}
 

@@ -35,12 +35,7 @@ public class CropView extends AnchorPane implements Initializable {
 
 	double zoomFactor = 1;
 
-	private int topX = 0;
-	private int topY = 0;
-	private double pressedX;
-	private double pressedY;
-	private double releasedX;
-	private double releasedY;
+
 
 	private Point pressedPoint;
 	private Point releasedPoint;

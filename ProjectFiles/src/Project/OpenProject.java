@@ -15,12 +15,15 @@ import model.transformations.BlackAndWhite;
 import model.transformations.Blur;
 import model.transformations.ColorShift;
 import model.transformations.Contrast;
+import model.transformations.Crop;
+import model.transformations.Edge;
 import model.transformations.Exposure;
 import model.transformations.GaussianBlur;
 import model.transformations.Grain;
 import model.transformations.GrayScale;
 import model.transformations.HMirroring;
 import model.transformations.Levels;
+import model.transformations.NewKernel;
 import model.transformations.RotateL;
 import model.transformations.RotateR;
 import model.transformations.Sharpen;
@@ -75,7 +78,7 @@ public class OpenProject {
 					case "GaussianBlur":
 						Layers.addLayer(new Layer(new GaussianBlur(information)));
 						break;
-					case "GrayScale":
+					case "GreyScale":
 						Layers.addLayer(new Layer(new GrayScale()));
 						break;
 					case "Sharpen":
@@ -112,9 +115,18 @@ public class OpenProject {
 						Layers.addLayer(new Layer(new Grain(information)));
 						break;
 					case "TextFilter":
-							Layers.addLayer(new Layer(new TextFilter(information)));
-							break;
+						Layers.addLayer(new Layer(new TextFilter(information)));
+						break;
+					case "Crop":
+						Layers.addLayer(new Layer(new Crop(information)));
+						break;
+					case "Kanter":
+						Layers.addLayer(new Layer(new Edge(information)));
+						break;
+					case "NewKernel":
+						Layers.addLayer(new Layer(new NewKernel(information)));
 					}
+					
 				}
 				if (stage == 2) {
 					information = line.split("\\?");

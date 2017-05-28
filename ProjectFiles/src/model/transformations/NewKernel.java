@@ -75,6 +75,9 @@ public class NewKernel implements Layerable {
 					}
 					x++;
 				}
+				if(count == 0){
+					count = 1;
+				}
 				pxImage[i][j] = Color.rgb(ColorTransformTest.getAllowedValue(sumRed/count), ColorTransformTest.getAllowedValue(sumGreen/count), ColorTransformTest.getAllowedValue(sumBlue/count));
 			}
 		}
@@ -135,7 +138,8 @@ public class NewKernel implements Layerable {
 	
 	@Override
 	public void uppdate() {
-
+		this.name = filterBox.getValue();
+		this.kernel = NewFilterHandeler.getFilter(name).getKernel();
 	}
 
 	@Override

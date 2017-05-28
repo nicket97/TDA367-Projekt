@@ -72,7 +72,7 @@ public class Edge implements Layerable {
 	@Override
 	
 	public String saveLayer() {
-		// TODO Auto-generated method stub
+		
 		return "Kanter";
 	}
 

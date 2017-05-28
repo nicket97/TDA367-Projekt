@@ -27,11 +27,13 @@ public class RotateR implements Layerable {
 		return new LoadedImage(newImage);
 	}
 
+
 	@Override
 	public String saveLayer() {
 		String output = "RotateR?";
 		return output;
 	}
+
 
 	@Override
 	public String getName() {

@@ -73,32 +73,47 @@ public class Blur implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "Blur?" + radius + "?";
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
-
 		return "Oskärpa";
 	}
 
-
-
+	/**
+	 * Sets the radius of the kernel
+	 * @param radius radius to be set
+	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
 
+	/**
+	 * Gets the radius of the kernel
+	 * @return radius of kernel
+	 */
 	public int getRadius() {
 		return radius;
 	}
 
+	/**
+	 * Gets the kernel-values
+	 * @return
+	 */
 	public double[][] getKernel() {
 		return kernel;
 	}
 
+	/**
+	 * Sets the kernel-values
+	 * @param kernel new values to be set in kernel
+	 */
 	public void setKernel(double[][] kernel) {
 		this.kernel = kernel;
 	}

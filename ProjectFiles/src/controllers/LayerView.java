@@ -30,6 +30,9 @@ public class LayerView extends AnchorPane implements Initializable {
 
 	private List<Layer> listOfLayers = new ArrayList<Layer>();
 
+	/**
+	 * Constructor of the LayerView class
+	 */
 	public LayerView() {
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/LayerView.fxml"));
@@ -44,10 +47,14 @@ public class LayerView extends AnchorPane implements Initializable {
 		}
 	}
 
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	}
 
+	/**
+	 * Updates list  of layers
+	 */
 	public void update() {
 		listOfLayers.clear();
 		layerList.getItems().clear();

@@ -38,6 +38,9 @@ public class WhiteBalance implements Layerable {
 		this(Integer.parseInt(args[1]));
 	}
 
+	/** 
+	 * Changes the white balance of the image
+	 */
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
@@ -59,12 +62,18 @@ public class WhiteBalance implements Layerable {
 		return newImage;
 	}
 
+	/**
+	 * {@inheritDoc}	
+	 */
 	@Override
 	public String saveLayer() {
 		String output = "WhiteBalance?" + threshold + "?";
 		return output;
 	}
 
+	/**
+	 * {@inheritDoc}	
+	 */
 	@Override
 	public String getName() {
 
@@ -72,14 +81,25 @@ public class WhiteBalance implements Layerable {
 	}
 
 
+	/**
+	 * Gets the threshold of the filter
+	 * @return threshold
+	 */
 	public int getThreshold() {
 		return threshold;
 	}
 
+	/**
+	 * Sets threshold of the filter
+	 * @param threshold new threshold
+	 */
 	public void setThreshold(int threshold) {
 		this.threshold = threshold;
 	}
 
+	/**
+	 * Gets the vBox
+	 */
 	@Override
 	public List<VBox> getVBox() {
 		initiateVBox(v1);
@@ -94,6 +114,10 @@ public class WhiteBalance implements Layerable {
 		return vboxList;
 	}
 	
+	/**
+	 * Initiates the vBox
+	 * @param v the vBox
+	 */
 	private void initiateVBox(VBox v) {
 		v.getChildren().clear();
 		v.setTranslateY(45);
@@ -101,11 +125,17 @@ public class WhiteBalance implements Layerable {
 		v.setSpacing(10);
 	}
 
+	/**
+	 * Updates the filter
+	 */
 	@Override
 	public void uppdate() {
 		this.threshold = (int) sliderThreshold.getValue();
 	}
 
+	/**
+	 * Gets the settings for filter
+	 */
 	@Override
 	public boolean hasSettings() {
 		return hasSettings;

@@ -92,44 +92,79 @@ public class Levels implements Layerable {
 	}
 
 
+	/**
+	 * Gets the max level
+	 * @return max level
+	 */
 	public int getMaxLevel() {
 		return maxLevel;
 	}
 
+	/**
+	 * Sets the max level
+	 * @param maxLevel new max level
+	 */
 	public void setMaxLevel(int maxLevel) {
 		this.maxLevel = maxLevel;
 		calculateChange();
 	}
 
+	/**
+	 * Gets the min level
+	 * @return min level
+	 */
 	public int getMinLevel() {
 		return minLevel;
 	}
 
+	/**
+	 * Sets min level
+	 * @param minLevel new min level
+	 */
 	public void setMinLevel(int minLevel) {
 		this.minLevel = minLevel;
 		calculateChange();
 	}
 
+	/**
+	 * Gets mid level
+	 * @return mid level
+	 */
 	public int getMidLevel() {
 		return midLevel;
 	}
 
+	/**
+	 * Sets mid level
+	 */
 	public void setMidLevel() {
 		this.midLevel = (maxLevel + minLevel) / 2;
 	}
 
+	/**
+	 * Gets the change level
+	 * @return change level
+	 */
 	public double getChangeLevel() {
 		return changeLevel;
 	}
 
 	
 
+	/**
+	 * Sets the levels from settings
+	 * @param min min level
+	 * @param max max level
+	 */
 	public void setLevels(int min, int max) {
 		this.minLevel = min;
 		this.maxLevel = max;
 		setMidLevel();
 		calculateChange();
 	}
+	/**
+	 * Calculates how much each pixel should change
+	 */
 	public void calculateChange(){
 		this.changeLevel = (double)(((double)minLevel / (double)midLevel) + ((double)midLevel / (double)maxLevel))*2;
 	}

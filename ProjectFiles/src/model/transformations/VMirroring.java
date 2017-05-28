@@ -29,17 +29,20 @@ public class VMirroring implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "VMirroring?";
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Spegla Horisontellt";
 	}
 
+	
 	@Override
 	public List<VBox> getVBox() {
 		return null;

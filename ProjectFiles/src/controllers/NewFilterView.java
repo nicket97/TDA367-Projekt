@@ -39,6 +39,10 @@ public class NewFilterView extends AnchorPane implements Initializable {
 
 	private Stage stage;
 
+	/**
+	 * Constructor for the NewFilterView class
+	 * @param window stage that is being set
+	 */
 	public NewFilterView(Stage window) {
 		stage = window;
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/NewFilterView.fxml"));
@@ -54,6 +58,9 @@ public class NewFilterView extends AnchorPane implements Initializable {
 		}
 	}
 
+	/**
+	 * Sets all grid values and name entered by user and handles all the different options regarding creation of new filterss
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -190,10 +190,11 @@ public class MainView extends AnchorPane implements Initializable {
 				for (Layer layer : Layers.getLayerStack()) {
 					export = layer.getAction().transform(export);
 				}
+				LoadedImage finalExport = new LoadedImage(export);
 				FileChooser fileChooser = new FileChooser();
 
 				File outputfile = fileChooser.showSaveDialog(new Stage());
-				BufferedImage bufferedExport = export.getBufferedImg();
+				BufferedImage bufferedExport = finalExport.getBufferedImg();
 				ImageIO.write(bufferedExport, "png", new File(outputfile.getAbsolutePath() + ".png"));
 
 			} catch (IOException e1) {

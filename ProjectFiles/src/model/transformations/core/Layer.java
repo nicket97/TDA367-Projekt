@@ -29,30 +29,54 @@ public class Layer {
 		this.name = l.getName();
 	}
 
+	/**
+	 * Gets the action
+	 * @return the action
+	 */
 	public Layerable getAction() {
 		return action;
 	}
-
+	/**
+	 * Sets the action
+	 * @param l the action to be set
+	 */
 	public void setaction(Layerable l) {
 		this.action = l;
 	}
-
+	/**
+	 * Gets the visibility of the layer
+	 * @return the visibility
+	 */
 	public boolean getVisible() {
 		return visible;
 	}
 
+	/**
+	 * Changes the visibility of the layer
+	 */
 	public void changeVisible() {
 		this.visible = !this.visible;
 	}
-
+	/**
+	 * Gets the name
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Sets the name
+	 * @param l the name to be set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Returns the filter settings
+	 * @return
+	 */
 	public boolean hasSettings() {
 		return action.hasSettings();
 	}

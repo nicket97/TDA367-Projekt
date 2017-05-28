@@ -27,6 +27,10 @@ public class AboutView extends AnchorPane implements Initializable {
 	
 	private Stage stage;
 
+	/**
+	 * Constructor for AboutView class
+	 * @param window
+	 */
 	public AboutView(Stage window) {
 		this.stage = window;
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/AboutView.fxml"));
@@ -41,6 +45,9 @@ public class AboutView extends AnchorPane implements Initializable {
 		}
 	}
 
+	/**
+	 * Handles close button on About panel
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		

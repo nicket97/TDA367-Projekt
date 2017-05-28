@@ -62,11 +62,13 @@ public class Grain implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		// TODO Auto-generated method stub
 		return "Grain?" + deviation;
 	}
+
 
 	@Override
 	public String getName() {
@@ -75,10 +77,18 @@ public class Grain implements Layerable {
 	}
 
 
+	/**
+	 * Gets deviation 
+	 * @return deviation
+	 */
 	public int getDiviation() {
 		return deviation;
 	}
 
+	/**
+	 * Sets deviation 
+	 * @param diviation the deviation
+	 */
 	public void setDiviation(int diviation) {
 		this.deviation = diviation;
 	}

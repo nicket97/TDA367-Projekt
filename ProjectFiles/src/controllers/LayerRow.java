@@ -31,6 +31,10 @@ public class LayerRow extends AnchorPane implements Initializable {
 	private String name;
 	private Layer layer;
 
+	/**
+	 * Constructor for LayerRow class
+	 * @param layer the layer in question
+	 */
 	public LayerRow(Layer layer) {
 
 		this.layer = layer;
@@ -47,6 +51,9 @@ public class LayerRow extends AnchorPane implements Initializable {
 		}
 	}
 
+	/**
+	 * Handles the different options in the layer row
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		layerLabel.setText(name);

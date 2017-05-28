@@ -16,14 +16,27 @@ import java.util.List;
 public class NewFilterHandeler {
 	private static List<CreatedFilter> filters = new ArrayList<>();
 
+	/**
+	 * Adds filter to new filters
+	 * @param filter filter being added
+	 */
 	public static void addFilter(CreatedFilter filter) {
 		filters.add(filter);
 	}
 
+	/**
+	 * Removes filters
+	 * @param filter filter being removed
+	 */
 	public static void removeFilter(CreatedFilter filter) {
 		filters.remove(filter);
 	}
 	
+	/**
+	 * Gets the kernel for the filter
+	 * @param name name of the filter
+	 * @return the kernel-values for the filter
+	 */
 	public static double[][] getFilterKernel(String name){
 		for(CreatedFilter f : filters){
 			if (name.equals(f.getName())){
@@ -33,6 +46,10 @@ public class NewFilterHandeler {
 		return null;
 	}
 
+	/**
+	 * Gets the list of filters
+	 * @return list of filters
+	 */
 	public static List<CreatedFilter> getFilters() {
 		return filters;
 	}
@@ -63,6 +80,9 @@ public class NewFilterHandeler {
 
 	}
 
+	/**
+	 * Loads the list of filters
+	 */
 	public static void loadFilters() {
 
 		try {
@@ -102,6 +122,11 @@ public class NewFilterHandeler {
 		}
 	}
 
+	/**
+	 * Gets all created filters
+	 * @param value
+	 * @return
+	 */
 	public static CreatedFilter getFilter(String value) {
 		for(CreatedFilter f : filters){
 			if(f.getName().equals(value)){

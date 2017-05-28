@@ -37,6 +37,10 @@ public class CanvasView extends AnchorPane implements Initializable {
 	private double releasedY;
 	private Stage primaryStage;
 
+	/**
+	 * Constructor of CanvasView class
+	 * @param pStage
+	 */
 	public CanvasView(Stage pStage) {
 
 		primaryStage = pStage;
@@ -53,6 +57,10 @@ public class CanvasView extends AnchorPane implements Initializable {
 
 	}
 
+
+	/**
+	 * Handles mouse clicks on canvas and sets canvas size
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("init canvas");
@@ -79,6 +87,11 @@ public class CanvasView extends AnchorPane implements Initializable {
 
 	}
 
+	/**
+	 * Draws the image centered on the canvas, with right zoom
+	 * @param img the photo being drawn
+	 * @param zoomFactor how much of a zoom that the photo should be drawn with
+	 */
 	public void drawImage(LoadedImage img, double zoomFactor) {
 		System.out.println("GPU Pipeline" + com.sun.prism.GraphicsPipeline.getPipeline().getClass().getName());
 		long time = System.nanoTime();
@@ -159,18 +172,33 @@ public class CanvasView extends AnchorPane implements Initializable {
 		// System.out.println(canvasPane.getChildren().toString());
 	}
 
+	/**
+	 * Repaints picture with different zoom factor
+	 */
 	public void repaint() {
 		this.drawImage(Layers.getBackgroundImage(), zoomFactor);
 	}
 
+	/**
+	 * Setter for zoomFactor variable
+	 * @param zoomFactor value for how much zoom
+	 */
 	public void setZoomFactor(double zoomFactor) {
 		this.zoomFactor = zoomFactor;
 	}
 
+	/**
+	 * Getter for zoomFactor variable
+	 * @return the value of zoomFactor
+	 */
 	public double getZoomFactor() {
 		return zoomFactor;
 	}
 
+	/**
+	 * Method that calculates the distance of mouse dragged
+	 * @return distance from where mouse is pressed and released
+	 */
 	public Point distanceDragged() {
 		Point distanceDiffernce = new Point();
 		distanceDiffernce.x = (int) (releasedX - pressedX) * (-1);
@@ -179,14 +207,26 @@ public class CanvasView extends AnchorPane implements Initializable {
 		return distanceDiffernce;
 	}
 
+	/**
+	 * Getter for topX variable
+	 * @return value of topX
+	 */
 	public int getTopX() {
 		return topX;
 	}
 
+	/**
+	 * Getter for topY variable
+	 * @return value of topY
+	 */
 	public int getTopY() {
 		return topY;
 	}
 
+	/**
+	 * Sets new value for topX and topY variables
+	 * @param distanceDifference how much the picture should be moved
+	 */
 	public void moveCanvas(Point distanceDifference) {
 		this.topX = getTopX() + distanceDifference.x;
 		this.topY = getTopY() + distanceDifference.y;
@@ -198,11 +238,19 @@ public class CanvasView extends AnchorPane implements Initializable {
 
 	}
 
+	/**
+	 * Setter for topX variable
+	 * @param i new topX value
+	 */
 	public void setTopX(int i) {
 		topX = i;
 
 	}
 
+	/**
+	 * Setter for topY variable
+	 * @param i new topY value
+	 */
 	public void setTopY(int i) {
 		topY = i;
 

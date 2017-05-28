@@ -32,12 +32,14 @@ public class GrayScale implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "GreyScale?";
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Gråskala";

@@ -13,6 +13,10 @@ public class LoadedImage {
 	private int width;
 	private int heigth;
 
+	/**
+	 * Constructor for the LoadedImage class
+	 * @param img image being used in program
+	 */
 	public LoadedImage(BufferedImage img) {
 		this.lImg = img;
 		this.width = img.getWidth();
@@ -67,6 +71,10 @@ public class LoadedImage {
 		// ((img.getRGB(0, 0)>>16)&0xFF));
 	}
 
+	/**
+	 * Constructor of the LoadedImage class
+	 * @param img image being drawn in program
+	 */
 	public LoadedImage(LoadedImage img) {
 		this.width = img.width;
 		this.heigth = img.heigth;
@@ -87,10 +95,19 @@ public class LoadedImage {
 		// ((lImg.getRGB(0, 0)>>16)&0xFF));
 	}
 
+	/**
+	 * Returns the image as a BufferedImage
+	 * @return the image as a BufferedImage
+	 */
 	public BufferedImage getBufferedImg() {
 		return lImg;
 	}
 
+	/**
+	 * Turns a number of a color into separate rgb-values
+	 * @param color number of color being translated
+	 * @return rgb-values for the new Color
+	 */
 	public static Color getColorFromInt(int color) {
 		int argb = color;
 		int r = (argb >> 16) & 0xFF;
@@ -100,6 +117,11 @@ public class LoadedImage {
 
 	}
 
+	/**
+	 * Turns rgb-values into a number
+	 * @param rgb values to be transformed
+	 * @return int representing the colors
+	 */
 	public static int getIntFromColor(Color rgb) {
 
 		int R = (int) Math.round(255 * rgb.getRed());
@@ -113,24 +135,44 @@ public class LoadedImage {
 		return 0xFF000000 | R | G | B;
 	}
 
+	/**
+	 * Returns matrix filled with Color-objects
+	 * @return matrix with picture
+	 */
 	public Color[][] getpxImage() {
 		return pxImage;
 
 	}
 
+	/**
+	 * Gets the width of the image
+	 * @return width of image
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Gets height of image
+	 * @return height of image
+	 */
 	public int getHeigth() {
 		return heigth;
 	}
 
+	/**
+	 * Sets the image
+	 * @param pxImage the matrix of Color-object containing the image
+	 */
 	public void setPxImage(Color[][] pxImage) {
 		this.pxImage = pxImage;
 		
 	}
 
+	/**
+	 * Sets the BufferedImage
+	 * @param image as BufferedImage
+	 */
 	public void setlImg(BufferedImage lImg) {
 		this.lImg = lImg;
 		class CreateImage implements Runnable {
@@ -175,10 +217,18 @@ public class LoadedImage {
 		}
 	}
 
+	/**
+	 * Sets width of image
+	 * @param width new width of image
+	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
+	
+	/**
+	 * Sets height of image
+	 * @param heigth new height of image
+	 */
 	public void setHeigth(int heigth) {
 		this.heigth = heigth;
 	}

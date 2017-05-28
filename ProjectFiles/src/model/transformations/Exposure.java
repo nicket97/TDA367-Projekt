@@ -60,6 +60,11 @@ public class Exposure implements Layerable {
 		return newImage;
 	}
 
+	/**
+	 * Makes sure no pixels goes above 255 or below 0
+	 * @param newColor the color to be checked
+	 * @return 255 or 0 if the pixel was above or below allowed numbers
+	 */
 	private int getAllowedValue(double newColor) {
 		if (newColor > 255) {
 			newColor = 255;
@@ -70,22 +75,32 @@ public class Exposure implements Layerable {
 
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "Exposure?" + factor + "?";
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Exponering";
 	}
 
 
+	/**
+	 * Gets the factor for the exposure
+	 * @return the factor
+	 */
 	public int getFactor() {
 		return factor;
 	}
 
+	/**
+	 * Sets the factor for the exposure
+	 * @param factor
+	 */
 	public void setFactor(int factor) {
 		this.factor = factor;
 	}

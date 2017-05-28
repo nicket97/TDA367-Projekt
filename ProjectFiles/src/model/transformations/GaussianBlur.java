@@ -88,6 +88,7 @@ public class GaussianBlur implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "GaussianBlur?" + radius + "?";
@@ -95,21 +96,34 @@ public class GaussianBlur implements Layerable {
 
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Gaussisk Oskärpa";
 	}
 
+	/**
+	 * Gets the radius of the kernel
+	 * @return the radius of the kernel
+	 */
 	public int getRadius() {
 		return radius;
 	}
 
+	/**
+	 * Sets the radius for the kernel
+	 * @param radius radius for the kernel
+	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
 		uppdateKernel(radius);
 
 	}
 
+	/**
+	 * Updates kernel with new values
+	 * @param r radius for the kernel
+	 */
 	private void uppdateKernel(int r) {
 		radius = r;
 		/*
@@ -132,11 +146,18 @@ public class GaussianBlur implements Layerable {
 
 	}
 
-
+	/**
+	 * Gets the kernel values
+	 * @return values of the kernel
+	 */
 	public double[][] getKernel() {
 		return kernel;
 	}
 
+	/**
+	 * Sets kernel values
+	 * @param kernel values to be set
+	 */
 	public void setKernel(double[][] kernel) {
 		this.kernel = kernel;
 	}

@@ -70,29 +70,47 @@ public class Edge implements Layerable {
 	}
 
 	@Override
+	
 	public String saveLayer() {
 		// TODO Auto-generated method stub
 		return "Kanter";
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Kanter";
 	}
 
 
+	/**
+	 * Gets the kernel for the transformation 
+	 * @return kernel
+	 */
 	public double[][] getKernel() {
 		return kernel;
 	}
 
+	/**
+	 * Sets the kernel for the transformation
+	 * @param kernel values to be set
+	 */
 	public void setKernel(double[][] kernel) {
 		this.kernel = kernel;
 	}
 
+	/**
+	 * Gets radius for kernel
+	 * @return radius
+	 */
 	public int getRadius() {
 		return radius;
 	}
 
+	/**
+	 * Sets radius for kernel
+	 * @param radius kernel radius
+	 */
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}

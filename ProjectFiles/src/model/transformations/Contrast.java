@@ -95,34 +95,57 @@ public class Contrast implements Layerable {
 		return newImage;
 	}
 
+	
 	@Override
 	public String saveLayer() {
 		String output = "Contrast?" + threshold + "?" + factor + "?";
 		return output;
 	}
 
+	
 	@Override
 	public String getName() {
 		return "Kontrast";
 	}
 
 
+	/** 
+	 * Gets the threshold for the filter
+	 * @return threshold of the filter
+	 */
 	public int getThreshold() {
 		return threshold;
 	}
 
+	/**
+	 * Sets threshold for the filter
+	 * @param threshold new threshold to be set
+	 */
 	public void setThreshold(int threshold) {
 		this.threshold = threshold;
 	}
 
+	/**
+	 * Gets the factor of the filter
+	 * @return factor
+	 */
 	public double getFactor() {
 		return factor;
 	}
 
+	/**
+	 * Sets the factor of the filter
+	 * @param new factor to be set
+	 */
 	public void setFactor(double factor) {
 		this.factor = factor;
 	}
 
+	/**
+	 * Sets factor and threshold together
+	 * @param threshold threshold to be set
+	 * @param factor factor to be set
+	 */
 	public void setFactorAndThreshold(int threshold, double factor) {
 		this.threshold = threshold;
 		this.factor = factor;

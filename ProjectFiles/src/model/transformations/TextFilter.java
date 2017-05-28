@@ -226,9 +226,12 @@ public class TextFilter implements Layerable {
 	@Override
 	public void uppdate() {
 		this.text = txtIn.getText();
-		this.r = (int) customColor.getValue().getRed()*255;
-		this.g = (int) customColor.getValue().getGreen()*255;
-		this.b = (int) customColor.getValue().getBlue()*255;
+		double rd = (customColor.getValue().getRed())*255;
+		double gd = (customColor.getValue().getGreen())*255;
+		double bd = (customColor.getValue().getBlue())*255;
+		this.r = (int) rd;
+		this.g = (int) gd;
+		this.b = (int) bd;
 		this.font = fontBox.getValue();
 		this.yPosition = positionBox.getValue();
 		this.size = (int) sliderSize.getValue();

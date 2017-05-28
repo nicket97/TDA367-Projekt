@@ -215,7 +215,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <AnchorPane id="topBar" fx:id="menuBar" prefHeight="35.0" prefWidth="682.0">
+            <AnchorPane id="topBar" fx:id="menuBar" prefHeight="35.0" prefWidth="550.0">
                <children>
                   <HBox alignment="CENTER_RIGHT" layoutX="24.0" prefHeight="35.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>

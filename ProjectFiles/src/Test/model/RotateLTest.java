@@ -1,4 +1,4 @@
-package model;
+package Test.model;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,11 +8,11 @@ import org.junit.Test;
 
 import javafx.scene.paint.Color;
 import model.core.LoadedImage;
-import model.transformations.HMirroring;
 import model.transformations.RotateL;
+import model.transformations.RotateR;
 
-public class MirrorHTest {
-	
+public class RotateLTest {
+
 	@Test
 	public void transform() throws Exception {
 		BufferedImage testImage = new BufferedImage(2, 2, BufferedImage.TYPE_INT_ARGB);
@@ -23,20 +23,20 @@ public class MirrorHTest {
 		loadedImage.getpxImage()[1][0] = Color.rgb(0, 100, 255);
 		loadedImage.getpxImage()[1][1] = Color.rgb(255, 255, 255);
 		
-		HMirroring rotate = new HMirroring();
+		RotateL rotate = new RotateL();
 		LoadedImage newImage = rotate.transform(loadedImage);
 		
 		assertTrue((int) (newImage.getpxImage()[0][0].getRed() * 255) == 0);
 		assertTrue((int) (newImage.getpxImage()[0][0].getGreen() * 255) == 100);
 		assertTrue((int) (newImage.getpxImage()[0][0].getBlue() * 255) == 255);
 		
-		assertTrue((int) (newImage.getpxImage()[1][0].getRed() * 255) == 0);
-		assertTrue((int) (newImage.getpxImage()[1][0].getGreen() * 255) == 0);
-		assertTrue((int) (newImage.getpxImage()[1][0].getBlue() * 255) == 0);
+		assertTrue((int) (newImage.getpxImage()[0][1].getRed() * 255) == 0);
+		assertTrue((int) (newImage.getpxImage()[0][1].getGreen() * 255) == 0);
+		assertTrue((int) (newImage.getpxImage()[0][1].getBlue() * 255) == 0);
 		
-		assertTrue((int) (newImage.getpxImage()[0][1].getRed() * 255) == 255);
-		assertTrue((int) (newImage.getpxImage()[0][1].getGreen() * 255) == 255);
-		assertTrue((int) (newImage.getpxImage()[0][1].getBlue() * 255) == 255);
+		assertTrue((int) (newImage.getpxImage()[1][0].getRed() * 255) == 255);
+		assertTrue((int) (newImage.getpxImage()[1][0].getGreen() * 255) == 255);
+		assertTrue((int) (newImage.getpxImage()[1][0].getBlue() * 255) == 255);
 		
 		assertTrue((int) (newImage.getpxImage()[1][1].getRed() * 255) == 45);
 		assertTrue((int) (newImage.getpxImage()[1][1].getGreen() * 255) == 108);

@@ -1,4 +1,4 @@
-package model;
+package Test.model;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

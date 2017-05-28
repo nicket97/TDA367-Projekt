@@ -1,4 +1,4 @@
-package model;
+package Test.model;
 
 import javafx.scene.paint.Color;
 import model.core.LoadedImage;

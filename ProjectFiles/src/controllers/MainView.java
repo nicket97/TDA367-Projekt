@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
-
 import Project.OpenProject;
 import Project.SaveProject;
 import javafx.animation.FadeTransition;
@@ -23,6 +22,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -862,9 +862,18 @@ public class MainView extends AnchorPane implements Initializable {
 	 * 
 	 */
 	private void showSuggestions(String txt) {
-		ArrayList suggestions = findMenuHandler.getSuggestions(txt);
+		ArrayList<String> suggestions = findMenuHandler.getSuggestions(txt);
 		System.out.println(suggestions);
-		//suggestionsPopUp.show();
+		suggestionsPopUp.show(menuFind, Side.BOTTOM, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+		
+		suggestionsPopUp.getItems().clear();
+		for(int i = 0; i < suggestions.size(); i++) {
+			MenuItem item = new MenuItem(suggestions.get(i));
+			item.setOnAction(e -> {
+				menuGrayScale.fire();
+			});
+			suggestionsPopUp.getItems().add(item);
+		}
 		
 	}
 }

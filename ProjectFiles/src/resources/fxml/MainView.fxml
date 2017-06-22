@@ -210,18 +210,14 @@
                   </Menu>
                 <Menu mnemonicParsing="false" text="Hjälp">
                   <items>
-                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
                            <content>
                               <HBox>
                                  <children>
                                     <Label text="Sök:" />
                                     <TextField fx:id="menuFind">
                                        <contextMenu>
-                                          <ContextMenu fx:id="suggestionsPopUp">
-                                            <items>
-                                              <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                                            </items>
-                                          </ContextMenu>
+                                          <ContextMenu fx:id="suggestionsPopUp" anchorLocation="CONTENT_TOP_RIGHT" anchorX="100.0" anchorY="20.0" x="100.0" y="20.0" />
                                        </contextMenu>
                                     </TextField>
                                  </children>

@@ -4,42 +4,39 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.MenuItem;
 
 public class FindMenuHandler {
 
-	ArrayList<String> allMenuItems = new ArrayList<String>();
+	ArrayList<MenuItem> allMenuItems = new ArrayList<MenuItem>();
 	//ObservableList<String> allMenuItems = FXCollections.observableArrayList();
 	
-	public FindMenuHandler() {
-		init();
+	public FindMenuHandler(ArrayList<MenuItem> menuItems) {
+		allMenuItems = menuItems;
 	}
 	
-	private void init() {
-		allMenuItems.add("Beskära");
-		allMenuItems.add("Kontrast");
-		allMenuItems.add("Färgfilter");
-		allMenuItems.add("Gråskala");
-	}
-	
-	public ArrayList<String> getSuggestions(String txt) {
+	public ArrayList<MenuItem> getSuggestions(String txt) {
 		
-		ArrayList<String> suggestions = new ArrayList<String>();
+		ArrayList<MenuItem> suggestions = new ArrayList<MenuItem>();
 		
 		for(int i = 0; i < allMenuItems.size(); i++) {
-			String item = allMenuItems.get(i);
-			if (item.startsWith(txt)) {
+			MenuItem item = allMenuItems.get(i);
+			if (item.getText().toUpperCase().startsWith(txt.toUpperCase())) {
+				System.out.println("ppp111 = "+item.getText());
 				suggestions.add(item);
 			}
 		}
 		for(int i = 0; i < allMenuItems.size(); i++) {
-			String item = allMenuItems.get(i);
-			if (item.contains(txt)) {
-				if(!suggestions.contains(item)) {
+			MenuItem item = allMenuItems.get(i);
+			if (item.getText().toUpperCase().contains(txt.toUpperCase())) {
+				System.out.println("ppp = "+item.getText());
+				System.out.println("ppp = "+suggestions.contains(item));
+				if(!(suggestions.contains(item))) {
 					suggestions.add(item);
 				}
 			}
 		}
-		
+		System.out.println("ppp size = "+suggestions.size());
 		return suggestions;
 	}
 	

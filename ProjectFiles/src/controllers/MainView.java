@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -58,7 +59,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private static Stage primaryStage;
 	private Point topLeft = new Point(0, 0);
 	private Point bottomRight = new Point(0, 0);
-	private FindMenuHandler findMenuHandler = new FindMenuHandler();
+	private FindMenuHandler findMenuHandler;
 	
 	private Layer lastAction;
 	/**
@@ -670,6 +671,8 @@ public class MainView extends AnchorPane implements Initializable {
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
+		
+		initFindMenuHandler();
 	}
 
 	/***
@@ -862,20 +865,36 @@ public class MainView extends AnchorPane implements Initializable {
 	 * 
 	 */
 	private void showSuggestions(String txt) {
-		ArrayList<String> suggestions = findMenuHandler.getSuggestions(txt);
+		ArrayList<MenuItem> suggestions = findMenuHandler.getSuggestions(txt);
 		System.out.println(suggestions);
-		suggestionsPopUp.show(menuFind, Side.BOTTOM, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
 		
 		suggestionsPopUp.getItems().clear();
 		for(int i = 0; i < suggestions.size(); i++) {
-			MenuItem item = new MenuItem(suggestions.get(i));
+			
+			MenuItem suggestedItem = suggestions.get(i);
+			MenuItem item = new MenuItem(suggestedItem.getText());
+			
 			item.setOnAction(e -> {
-				menuGrayScale.fire();
+				suggestedItem.fire();
 			});
+	
 			suggestionsPopUp.getItems().add(item);
 		}
+		suggestionsPopUp.show(menuFind, Side.BOTTOM, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
 		
 	}
+	
+	private void initFindMenuHandler() {
+		ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>(Arrays.asList(openImage, menuClose, 
+				menuExport, menuSaveProject, menuOpenProject, menuResetPicture, menuGrayScale,
+				menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, menuCrop, menuExposure, 
+				menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR, menuBlur, 
+				menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, 
+				menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo,
+				menuResetWindow, menuAbout));
+		findMenuHandler = new FindMenuHandler(menuItems);
+	}
+	
 }
 
 class Delta {

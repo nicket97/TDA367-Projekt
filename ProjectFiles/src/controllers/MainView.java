@@ -11,7 +11,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 import javax.imageio.ImageIO;
+
 
 import Project.OpenProject;
 import Project.SaveProject;
@@ -89,7 +91,7 @@ public class MainView extends AnchorPane implements Initializable {
 	@FXML
 	Slider slideZoom;
 	@FXML
-	TextField textInput;
+	TextField textInput, menuFind;
 	@FXML
 	ChoiceBox<String> fontBox, fontPlacement;
 	@FXML
@@ -218,13 +220,13 @@ public class MainView extends AnchorPane implements Initializable {
 
 		menuZoomOut.setOnAction(e -> {
 			canvasView.setZoomFactor((canvasView.getZoomFactor() * 1.5));
-			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) - 5) * 20);
+			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) + 5) * 20);
 			canvasUpdate();
 		});
 
 		menuZoomIn.setOnAction(e -> {
-			canvasView.setZoomFactor((canvasView.getZoomFactor() * 0.75));
-			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) - 5) * 20);
+			canvasView.setZoomFactor((canvasView.getZoomFactor() / 1.5));
+			slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) + 5) * 20);
 			canvasUpdate();
 		});
 		menuUndo.setOnAction(e -> {
@@ -352,6 +354,10 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.addLayer(new Layer(new NewKernel(new double [3][3], "Eget filter")));
 			showCustomFilter(Layers.getLast());
 		});
+		menuFind.setOnKeyReleased(e -> {
+			System.out.println("menuFind " + e.getText());
+			System.out.println(menuFind.getText());
+		});
 
 		/***
 		 * Move main window controls.
@@ -383,7 +389,7 @@ public class MainView extends AnchorPane implements Initializable {
 			canvasView.resetMouse();
 			canvasPane.setOnMouseClicked(s -> {
 				canvasView.setZoomFactor(canvasView.getZoomFactor()/1.5);
-				slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) + 5) * 20*-1);
+				slideZoom.setValue((Delta.log(canvasView.getZoomFactor(), 2) + 5) * 20);
 				canvasUpdate();
 			});
 		});

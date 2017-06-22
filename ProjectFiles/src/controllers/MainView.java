@@ -40,6 +40,7 @@ import javafx.util.Duration;
 import model.core.Layerable;
 import model.core.LoadedImage;
 import model.core.NewFilterHandeler;
+import model.core.FindMenuHandler;
 import model.transformations.*;
 import model.transformations.core.Layer;
 import model.transformations.core.Layers;
@@ -57,6 +58,7 @@ public class MainView extends AnchorPane implements Initializable {
 	private static Stage primaryStage;
 	private Point topLeft = new Point(0, 0);
 	private Point bottomRight = new Point(0, 0);
+	private FindMenuHandler findMenuHandler = new FindMenuHandler();
 	
 	private Layer lastAction;
 	/**
@@ -96,6 +98,8 @@ public class MainView extends AnchorPane implements Initializable {
 	ChoiceBox<String> fontBox, fontPlacement;
 	@FXML
 	ComboBox<String> filterBox;
+	@FXML
+	ContextMenu suggestionsPopUp;
 	
 	Layers layerstack = new Layers();
 	List<MenuItem> menuItems;
@@ -357,8 +361,9 @@ public class MainView extends AnchorPane implements Initializable {
 		menuFind.setOnKeyReleased(e -> {
 			System.out.println("menuFind " + e.getText());
 			System.out.println(menuFind.getText());
+			showSuggestions(menuFind.getText());
 		});
-
+		
 		/***
 		 * Move main window controls.
 		 */
@@ -851,6 +856,16 @@ public class MainView extends AnchorPane implements Initializable {
 	public void topToFront() {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
 		setVisibility(topLevel);
+	}
+	
+	/**
+	 * 
+	 */
+	private void showSuggestions(String txt) {
+		ArrayList suggestions = findMenuHandler.getSuggestions(txt);
+		System.out.println(suggestions);
+		//suggestionsPopUp.show();
+		
 	}
 }
 

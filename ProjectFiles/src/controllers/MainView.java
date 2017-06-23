@@ -360,8 +360,9 @@ public class MainView extends AnchorPane implements Initializable {
 			showCustomFilter(Layers.getLast());
 		});
 		menuFind.setOnKeyReleased(e -> {
-			System.out.println("menuFind " + e.getText());
-			System.out.println(menuFind.getText());
+			showSuggestions(menuFind.getText());
+		});
+		menuFind.setOnMouseClicked(e -> {
 			showSuggestions(menuFind.getText());
 		});
 		
@@ -862,28 +863,37 @@ public class MainView extends AnchorPane implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Shows the suggestions by the search function in a context menu under the text field.
+	 * This method is called every time you release a key when the text field is focused.
 	 */
 	private void showSuggestions(String txt) {
 		ArrayList<MenuItem> suggestions = findMenuHandler.getSuggestions(txt);
-		System.out.println(suggestions);
 		
 		suggestionsPopUp.getItems().clear();
+		
+		if (txt.equals("")) {
+			suggestionsPopUp.hide();
+			return;
+		}
+		
 		for(int i = 0; i < suggestions.size(); i++) {
 			
 			MenuItem suggestedItem = suggestions.get(i);
 			MenuItem item = new MenuItem(suggestedItem.getText());
-			
+			item.setAccelerator(suggestedItem.getAccelerator());
 			item.setOnAction(e -> {
 				suggestedItem.fire();
+				menuFind.setText("");
 			});
 	
 			suggestionsPopUp.getItems().add(item);
 		}
 		suggestionsPopUp.show(menuFind, Side.BOTTOM, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-		
 	}
 	
+	/**
+	 * Creates a FindMenuHandler with all the menuItems.
+	 */
 	private void initFindMenuHandler() {
 		ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>(Arrays.asList(openImage, menuClose, 
 				menuExport, menuSaveProject, menuOpenProject, menuResetPicture, menuGrayScale,

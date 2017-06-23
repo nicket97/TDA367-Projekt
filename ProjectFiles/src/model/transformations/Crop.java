@@ -37,10 +37,11 @@ public class Crop implements Layerable {
 
 	@Override
 	public LoadedImage transform(LoadedImage img) {
-		BufferedImage croppedImage = img.getBufferedImg().getSubimage((int) topLeft.getX(), (int) topLeft.getY(), width,
+		LoadedImage newImage = new LoadedImage(img);
+		BufferedImage croppedImage = newImage.getBufferedImg().getSubimage((int) topLeft.getX(), (int) topLeft.getY(), width,
 				height);
-		LoadedImage newImage = new LoadedImage(croppedImage);
-		return newImage;
+		LoadedImage finalImage = new LoadedImage(croppedImage);
+		return finalImage;
 
 	}
 

@@ -19,6 +19,8 @@ import Project.OpenProject;
 import Project.SaveProject;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,6 +47,7 @@ import model.core.FindMenuHandler;
 import model.transformations.*;
 import model.transformations.core.Layer;
 import model.transformations.core.Layers;
+import javafx.scene.input.KeyCode;
 
 /**
  * Main controller, distributes tasks
@@ -359,8 +362,17 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.addLayer(new Layer(new NewKernel(new double [3][3], "Eget filter")));
 			showCustomFilter(Layers.getLast());
 		});
+		menuFind.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> o, String oldValue, String newValue) {
+				showSuggestions(menuFind.getText());
+			}
+		});
 		menuFind.setOnKeyReleased(e -> {
-			showSuggestions(menuFind.getText());
+			if(e.getCode().equals(KeyCode.ENTER) && (suggestionsPopUp.getItems().size() == 1)) {
+				suggestionsPopUp.getItems().get(0).fire();
+				menuFind.setText("");
+			}
 		});
 		menuFind.setOnMouseClicked(e -> {
 			showSuggestions(menuFind.getText());
@@ -868,16 +880,12 @@ public class MainView extends AnchorPane implements Initializable {
 	 */
 	private void showSuggestions(String txt) {
 		ArrayList<MenuItem> suggestions = findMenuHandler.getSuggestions(txt);
-		
 		suggestionsPopUp.getItems().clear();
-		
 		if (txt.equals("")) {
 			suggestionsPopUp.hide();
 			return;
 		}
-		
 		for(int i = 0; i < suggestions.size(); i++) {
-			
 			MenuItem suggestedItem = suggestions.get(i);
 			MenuItem item = new MenuItem(suggestedItem.getText());
 			item.setAccelerator(suggestedItem.getAccelerator());
@@ -885,7 +893,6 @@ public class MainView extends AnchorPane implements Initializable {
 				suggestedItem.fire();
 				menuFind.setText("");
 			});
-	
 			suggestionsPopUp.getItems().add(item);
 		}
 		suggestionsPopUp.show(menuFind, Side.BOTTOM, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);

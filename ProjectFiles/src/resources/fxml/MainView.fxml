@@ -117,6 +117,7 @@
                               <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
+                        <MenuItem fx:id="menuCopyRight" mnemonicParsing="false" text="Copyright" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Anpassa">
@@ -1031,6 +1032,75 @@
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="filterUpdate" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                  </HBox>
+                  <HBox id="hbox" fx:id="copyRightLevel" alignment="CENTER" prefHeight="149.0" prefWidth="1080.0" spacing="10.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="copyRightBackIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="88.0" prefWidth="150.0" spacing="5.0">
+                           <children>
+                              <TextField fx:id="copyRightName" prefWidth="150.0" />
+                              <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" prefWidth="150.0" text="Skriv in text">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="8.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="88.0" prefWidth="150.0" spacing="8.0">
+                           <children>
+                              <ColorPicker fx:id="textColor1" prefWidth="125.0" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj färg...">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="88.0" prefWidth="150.0" spacing="5.0">
+                           <children>
+                              <ChoiceBox fx:id="fontBox1" prefWidth="120.0" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj typsnitt">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="150.0" spacing="15.0">
+                           <children>
+                              <Slider fx:id="textSize1" max="72.0" min="9.0" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Storlek">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="25.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button id="updateButton" fx:id="copyRightUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                   </HBox>
                </children>

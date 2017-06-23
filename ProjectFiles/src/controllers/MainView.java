@@ -81,25 +81,25 @@ public class MainView extends AnchorPane implements Initializable {
 			menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, menuCrop, menuExposure, menuContrast,
 			menuHReflect, menuVReflect, menuRotateL, menuRotateR, menuBlur, menuGaussianBlur, menuSharpen,
 			menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo,
-			menuResetWindow, menuAbout;
+			menuResetWindow, menuAbout, menuCopyRight;
 	@FXML
 	Button closeButton, miniButton, maxiButton, exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, 
-			gBlurUpdate, sharpenUpdate,	textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate;
+			gBlurUpdate, sharpenUpdate,	textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate, copyRightUpdate;
 	@FXML
 	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel, exposureLevel, contrastLevel, levelsLevel,
-			grainLevel, blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel;
+			grainLevel, blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel, copyRightLevel;
 	@FXML
 	Label adjustIcon, colorIcon, effectIcon, filterIcon, exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon,
 			levelsIcon, levelsBackIcon, grainIcon, grainBackIcon, blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon,
 			sharpenIcon, sharpenBackIcon, textIcon, textBackIcon, colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon,
 			whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon, aBackIcon, cBackIcon, eBackIcon, fBackIcon,
-			clearColorIcon, zoomIcon, handIcon, cursorIcon;
+			clearColorIcon, zoomIcon, handIcon, cursorIcon, copyRightBackIcon;
 	@FXML
 	Slider slideZoom;
 	@FXML
-	TextField textInput, menuFind;
+	TextField textInput, menuFind, copyRightName;
 	@FXML
-	ChoiceBox<String> fontBox, fontPlacement;
+	ChoiceBox<String> fontBox, fontPlacement, fontBox1;
 	@FXML
 	ComboBox<String> filterBox;
 	@FXML
@@ -376,6 +376,10 @@ public class MainView extends AnchorPane implements Initializable {
 		});
 		menuFind.setOnMouseClicked(e -> {
 			showSuggestions(menuFind.getText());
+		});
+		menuCopyRight.setOnAction(e -> {
+			Layers.addLayer(new Layer(new CopyRight()));
+			showCopyRight(Layers.getLast());
 		});
 		
 		/***
@@ -684,6 +688,10 @@ public class MainView extends AnchorPane implements Initializable {
 		fBackIcon.setOnMouseClicked(e -> {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
+		copyRightBackIcon.setOnMouseClicked(e -> {
+			System.out.println("backIcon");
+			mouseClicked(copyRightLevel, topLevel, fadeIn);
+		});
 		
 		initFindMenuHandler();
 	}
@@ -780,6 +788,8 @@ public class MainView extends AnchorPane implements Initializable {
 			// textInput.setText(layer.getText());
 		} else if (layer.getName().equals("Eget filter")){
 			showCustomFilter(layer); 
+		} else if (layer.getName().equals("Copyright")){
+			showCopyRight(layer); 
 		}
 	}
 
@@ -868,6 +878,9 @@ public class MainView extends AnchorPane implements Initializable {
 	private void showCustomFilter(Layer l) {
 		showFilterSettings(filterUpdate, l, filterLevel, fBackIcon);
 	}
+	private void showCopyRight(Layer l) {
+		showFilterSettings(copyRightUpdate, l, copyRightLevel, copyRightBackIcon);
+	}
 
 	public void topToFront() {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
@@ -902,13 +915,13 @@ public class MainView extends AnchorPane implements Initializable {
 	 * Creates a FindMenuHandler with all the menuItems.
 	 */
 	private void initFindMenuHandler() {
-		ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>(Arrays.asList(openImage, menuClose, 
+		ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>(Arrays.asList(menuClose, 
 				menuExport, menuSaveProject, menuOpenProject, menuResetPicture, menuGrayScale,
 				menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, menuCrop, menuExposure, 
 				menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR, menuBlur, 
 				menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, 
-				menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo,
-				menuResetWindow, menuAbout));
+				menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo, openImage, 
+				menuResetWindow, menuAbout, menuCopyRight));
 		findMenuHandler = new FindMenuHandler(menuItems);
 	}
 	

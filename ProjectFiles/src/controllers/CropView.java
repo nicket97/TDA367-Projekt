@@ -67,13 +67,18 @@ public class CropView extends AnchorPane implements Initializable {
 		this.setPrefWidth(MainView.getCanvas().imagePane.getWidth());
 		this.setPrefHeight(MainView.getCanvas().imagePane.getHeight());
 		this.setTranslateX(MainView.getCanvas().imagePane.getTranslateX());
+		Rectangle dragBox = new Rectangle(0,0,0,0);
+		this.getChildren().add(dragBox);
 		this.setOnMousePressed(e -> {
 			this.pressedPoint = new Point((int) e.getX(), (int) e.getY());
-
+		});
+		this.setOnMouseDragged(e -> {
+			this.releasedPoint = new Point((int) e.getX(), (int) e.getY());
+			drawImage(pressedPoint, releasedPoint, dragBox);
 		});
 		this.setOnMouseReleased(e -> {
 			this.releasedPoint = new Point((int) e.getX(), (int) e.getY());
-			drawImage(pressedPoint, releasedPoint);
+			drawImage(pressedPoint, releasedPoint, dragBox);
 
 			Alert cropAlert = new Alert(Alert.AlertType.CONFIRMATION);
 			cropAlert.initStyle(StageStyle.TRANSPARENT);
@@ -116,7 +121,7 @@ public class CropView extends AnchorPane implements Initializable {
 	 * @param topLeft value of the pressed top left point
 	 * @param bottomRight value of the released bottom right point
 	 */
-	public void drawImage(Point topLeft, Point bottomRight) {
+	public void drawImage(Point topLeft, Point bottomRight, Rectangle r) {
 		if (pressedPoint == null) {
 
 		} else {
@@ -124,15 +129,17 @@ public class CropView extends AnchorPane implements Initializable {
 			this.height = (int) (distanceDragged(pressedPoint, releasedPoint).getY());
 			int posX = (int) pressedPoint.getX();
 			int posY = (int) pressedPoint.getY();
-			Rectangle r = new Rectangle(posX, posY, width, height);
-			posX = (int) (posX * MainView.getCanvas().getZoomFactor());
-			posY = (int) (posY * MainView.getCanvas().getZoomFactor());
-			this.pressedPoint = new Point(posX, posY);
-			this.width = (int) (this.width * MainView.getCanvas().getZoomFactor());
-			this.height = (int) (this.height * MainView.getCanvas().getZoomFactor());
+			r.setX(posX);
+			r.setY(posY);
+			r.setWidth(width);
+			r.setHeight(height);
+			//posX = (int) (posX * MainView.getCanvas().getZoomFactor());
+			//posY = (int) (posY * MainView.getCanvas().getZoomFactor());
+			//this.pressedPoint = new Point(posX, posY);
+			//this.width = (int) (this.width * MainView.getCanvas().getZoomFactor());
+			//this.height = (int) (this.height * MainView.getCanvas().getZoomFactor());
 			r.setStyle(
 					"-fx-opacity: 0.5;");
-			this.getChildren().add(r);
 		}
 
 	}

@@ -173,6 +173,7 @@
                               <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
+                        <MenuItem fx:id="menuEmoji" mnemonicParsing="false" text="Emoji" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Färg">
@@ -1101,6 +1102,88 @@
                            </HBox.margin>
                         </VBox>
                         <Button id="updateButton" fx:id="copyRightUpdate" mnemonicParsing="false" text="Uppdatera" />
+                     </children>
+                  </HBox>
+                  <HBox id="hbox" fx:id="emojiLevel" alignment="CENTER" prefHeight="149.0" prefWidth="1080.0" spacing="10.0" visible="false">
+                     <children>
+                        <Label id="clickable" fx:id="emojiBackIcon" contentDisplay="TOP" graphicTextGap="10.0" text="Tillbaka">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/resources/icons/back-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="88.0" prefWidth="150.0" spacing="5.0">
+                           <children>
+                              <ChoiceBox fx:id="emojiBox" prefWidth="150.0" />
+                              <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" prefWidth="150.0" text="Skriv in text">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="8.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="88.0" prefWidth="150.0" spacing="8.0">
+                           <children>
+                              <ColorPicker fx:id="emojiColor" prefWidth="125.0" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj färg...">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="88.0" prefWidth="150.0" spacing="5.0">
+                           <children>
+                              <Slider fx:id="emojiSize" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj typsnitt">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="636.0" layoutY="35.0" prefHeight="88.0" prefWidth="150.0" spacing="5.0">
+                           <children>
+                              <Slider fx:id="emojiY" orientation="VERTICAL" />
+                              <Label contentDisplay="TOP" graphicTextGap="10.0" text="Välj placering">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="120.0" prefWidth="150.0" spacing="15.0">
+                           <children>
+                              <Slider fx:id="emojiX" max="72.0" min="9.0" />
+                              <Label alignment="CENTER" contentDisplay="BOTTOM" graphicTextGap="10.0" text="Storlek">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="25.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <Button id="updateButton" fx:id="emojiUpdate" mnemonicParsing="false" text="Uppdatera" />
                      </children>
                   </HBox>
                </children>

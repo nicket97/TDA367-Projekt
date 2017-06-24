@@ -81,25 +81,27 @@ public class MainView extends AnchorPane implements Initializable {
 			menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, menuCrop, menuExposure, menuContrast,
 			menuHReflect, menuVReflect, menuRotateL, menuRotateR, menuBlur, menuGaussianBlur, menuSharpen,
 			menuTextFilter, menuEdge, menuGrain, menuNewFilter, menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo,
-			menuResetWindow, menuAbout, menuCopyRight;
+			menuResetWindow, menuAbout, menuCopyRight, menuEmoji;
 	@FXML
 	Button closeButton, miniButton, maxiButton, exposureUpdate, contrastUpdate, levelsUpdate, grainUpdate, blurUpdate, 
-			gBlurUpdate, sharpenUpdate,	textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate, copyRightUpdate;
+			gBlurUpdate, sharpenUpdate,	textUpdate, cfUpdate, grayUpdate, bwUpdate, wbUpdate, filterUpdate, 
+			copyRightUpdate, emojiUpdate;
 	@FXML
 	HBox topLevel, adjustLevel, effectLevel, colorLevel, filterLevel, exposureLevel, contrastLevel, levelsLevel,
-			grainLevel, blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel, copyRightLevel;
+			grainLevel, blurLevel, gBlurLevel, sharpenLevel, textLevel, colorFilterLevel, grayLevel, bwLevel, wbLevel, 
+			copyRightLevel, emojiLevel;
 	@FXML
 	Label adjustIcon, colorIcon, effectIcon, filterIcon, exposureIcon, exposureBackIcon, contrastIcon, contrastBackIcon,
 			levelsIcon, levelsBackIcon, grainIcon, grainBackIcon, blurIcon, blurBackIcon, gBlurIcon, gBlurBackIcon,
 			sharpenIcon, sharpenBackIcon, textIcon, textBackIcon, colorFilterIcon, cfBackIcon, grayIcon, grayBackIcon,
 			whiteBalanceIcon, wbBackIcon, bwIcon, bwBackIcon, aBackIcon, cBackIcon, eBackIcon, fBackIcon,
-			clearColorIcon, zoomIcon, handIcon, cursorIcon, copyRightBackIcon;
+			clearColorIcon, zoomIcon, handIcon, cursorIcon, copyRightBackIcon, emojiBackIcon;
 	@FXML
-	Slider slideZoom;
+	Slider slideZoom, emojiSlider, emojiY, emojiX;
 	@FXML
 	TextField textInput, menuFind, copyRightName;
 	@FXML
-	ChoiceBox<String> fontBox, fontPlacement, fontBox1;
+	ChoiceBox<String> fontBox, fontPlacement, fontBox1, emojiBox;
 	@FXML
 	ComboBox<String> filterBox;
 	@FXML
@@ -381,6 +383,10 @@ public class MainView extends AnchorPane implements Initializable {
 			Layers.addLayer(new Layer(new CopyRight()));
 			showCopyRight(Layers.getLast());
 		});
+		menuEmoji.setOnAction(e -> {
+			Layers.addLayer(new Layer(new Emoji()));
+			showEmoji(Layers.getLast());
+		});
 		
 		/***
 		 * Move main window controls.
@@ -504,7 +510,7 @@ public class MainView extends AnchorPane implements Initializable {
 			menuColorFilter, menuBlackWhite, menuWhitebalance, menuLevels, menuCrop, menuExposure, menuContrast,
 			menuHReflect, menuVReflect, menuRotateL, menuRotateR, menuBlur, menuGaussianBlur, menuSharpen,
 			menuTextFilter, menuEdge, menuGrain, menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo,
-			menuResetWindow);
+			menuResetWindow, menuCopyRight, menuEmoji);
 		
 		setDisableMenuItems(true);
 
@@ -689,8 +695,10 @@ public class MainView extends AnchorPane implements Initializable {
 			mouseClicked(filterLevel, topLevel, fadeIn);
 		});
 		copyRightBackIcon.setOnMouseClicked(e -> {
-			System.out.println("backIcon");
 			mouseClicked(copyRightLevel, topLevel, fadeIn);
+		});
+		emojiBackIcon.setOnMouseClicked(e -> {
+			mouseClicked(emojiLevel, topLevel, fadeIn);
 		});
 		
 		initFindMenuHandler();
@@ -791,6 +799,9 @@ public class MainView extends AnchorPane implements Initializable {
 		} else if (layer.getName().equals("Copyright")){
 			showCopyRight(layer); 
 		}
+		else if (layer.getName().equals("Emoji")){
+			showEmoji(layer); 
+		}
 	}
 
 	private void setVisibility(Node level) {
@@ -881,6 +892,9 @@ public class MainView extends AnchorPane implements Initializable {
 	private void showCopyRight(Layer l) {
 		showFilterSettings(copyRightUpdate, l, copyRightLevel, copyRightBackIcon);
 	}
+	private void showEmoji(Layer l) {
+		showFilterSettings(emojiUpdate, l, emojiLevel, emojiBackIcon);
+	}
 
 	public void topToFront() {
 		toolContainer.getChildren().get(toolContainer.getChildren().size() - 1).setVisible(false);
@@ -921,7 +935,7 @@ public class MainView extends AnchorPane implements Initializable {
 				menuContrast, menuHReflect, menuVReflect, menuRotateL, menuRotateR, menuBlur, 
 				menuGaussianBlur, menuSharpen, menuTextFilter, menuEdge, menuGrain, menuNewFilter, 
 				menuFilter, menuZoomIn, menuZoomOut, menuUndo, menuRedo, openImage, 
-				menuResetWindow, menuAbout, menuCopyRight));
+				menuResetWindow, menuAbout, menuCopyRight, menuEmoji));
 		findMenuHandler = new FindMenuHandler(menuItems);
 	}
 	

@@ -1,7 +1,6 @@
 package Project;
 
 import java.awt.image.BufferedImage;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,8 +14,10 @@ import model.transformations.BlackAndWhite;
 import model.transformations.Blur;
 import model.transformations.ColorShift;
 import model.transformations.Contrast;
+import model.transformations.CopyRight;
 import model.transformations.Crop;
 import model.transformations.Edge;
+import model.transformations.Emoji;
 import model.transformations.Exposure;
 import model.transformations.GaussianBlur;
 import model.transformations.Grain;
@@ -125,6 +126,12 @@ public class OpenProject {
 						break;
 					case "NewKernel":
 						Layers.addLayer(new Layer(new NewKernel(information)));
+					case "CopyRight":
+						Layers.addLayer(new Layer(new CopyRight(information)));
+						break;
+					case "Emoji":
+						Layers.addLayer(new Layer(new Emoji(information)));
+						break;
 					}
 					
 				}

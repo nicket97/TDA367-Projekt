@@ -77,10 +77,9 @@ public class CopyRight implements Layerable {
 	}
 	
 	public CopyRight(String[] args) {
-		this(args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[5]), Integer.parseInt(args[6]) , Integer.parseInt(args[7]));
+		this(args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]), Integer.parseInt(args[6]));
 	}
 
-	
 	@Override
 	public LoadedImage transform(LoadedImage img) {
 		LoadedImage newImage = new LoadedImage(img);
@@ -103,7 +102,7 @@ public class CopyRight implements Layerable {
 	
 	@Override
 	public String saveLayer() {
-		String output = "TextFilter?" + name + "?" + font + "?" + size + "?" + r + "?" + g + "?" + b + "?";
+		String output = "CopyRight?" + name + "?" + font + "?" + size + "?" + r + "?" + g + "?" + b + "?";
 		return output;
 	}
 	

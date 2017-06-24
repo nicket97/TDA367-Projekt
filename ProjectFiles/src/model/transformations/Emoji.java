@@ -21,7 +21,7 @@ import model.core.Layerable;
 import model.core.LoadedImage;
 
 /**
- * Adds a chosen text to the picture
+ * Adds an emoji to the picture.
  *
  */
 public class Emoji implements Layerable {
@@ -55,17 +55,6 @@ public class Emoji implements Layerable {
 	private VBox v5 = new VBox();
 	
 	
-
-	/**
-	 * Constructor of the TextFilter class
-	 * @param text text to be written
-	 * @param font font pof written text
-	 * @param size size of written text
-	 * @param yPosition y-postition of the text
-	 * @param r red value
-	 * @param g green value
-	 * @param b blue value
-	 */
 	public Emoji(String emojiText, int size, int r, int g, int b, int x, int y) {
 		sliderSize.setMin(0);
 		sliderSize.setMax(400);
@@ -110,7 +99,6 @@ public class Emoji implements Layerable {
 		g2.setRenderingHint(
 				RenderingHints.KEY_TEXT_ANTIALIASING,
 				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		//FontMetrics metrics = g2.getFontMetrics(new Font(font, Font.BOLD, size));
 		g2.setColor(new java.awt.Color(r, g, b));
 		g2.setFont(new Font(font, Font.BOLD, size));
 		int xPos = newImage.getWidth() * x / 100 ;
